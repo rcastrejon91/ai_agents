@@ -26,7 +26,10 @@ async def process(agent_name: str, input_data: dict) -> dict:
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except Exception as exc:  # pragma: no cover - general error
-        raise HTTPException(status_code=500, detail="Agent processing failed") from exc
+        raise HTTPException(
+            status_code=500,
+            detail="Agent processing failed",
+        ) from exc
 
 
 @app.get("/history")

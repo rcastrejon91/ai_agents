@@ -11,7 +11,8 @@ controller = AgentController(enable_memory=True)
 
 st.title("AITaskFlo")
 
-agent_name = st.selectbox("Choose an agent", list(controller.available_agents().keys()))
+available_agents = list(controller.available_agents().keys())
+agent_name = st.selectbox("Choose an agent", available_agents)
 input_text = st.text_area("Input JSON", "{}")
 
 if st.button("Run"):
@@ -19,10 +20,10 @@ if st.button("Run"):
         data = json.loads(input_text or "{}")
         result = asyncio.run(controller.route(agent_name, data))
         st.json(result)
-    except ValueError as e:
-        st.error(str(e))
-    except Exception as e:
-        st.error("Error processing request")
+    except ValueError as exc:
+        st.error(str(exc))
+    except Exception as exc:
+        st.error(f"Error processing request: {exc}")
 
 if controller.memory:
     st.subheader("History")
@@ -30,4 +31,3 @@ if controller.memory:
         st.write(f"Session {sid}:")
         for item in entries:
             st.json(item)
-

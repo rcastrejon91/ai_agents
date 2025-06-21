@@ -39,7 +39,9 @@ class AgentController:
             self.logger.error("Unknown agent requested: %s", agent_name)
             raise ValueError(f"Unknown agent '{agent_name}'")
         if not isinstance(input_data, dict):
-            self.logger.error("Input data for %s must be a dictionary", agent_name)
+            self.logger.error(
+                "Input data for %s must be a dictionary", agent_name
+            )
             raise ValueError("Input data must be a dictionary")
         try:
             session_id = input_data.get("session_id")
@@ -58,7 +60,9 @@ class AgentController:
                 self.memory.log(session_id, full_input, result)
             return result
         except Exception:
-            self.logger.exception("Agent %s failed to process task", agent_name)
+            self.logger.exception(
+                "Agent %s failed to process task", agent_name
+            )
             raise
 
     def available_agents(self) -> Dict[str, str]:
@@ -69,8 +73,14 @@ async def _memory_test() -> None:
     """Simple in-process test for the memory manager."""
     ctrl = AgentController(enable_memory=True)
     session_id = uuid.uuid4().hex
-    await ctrl.route("finance", {"session_id": session_id, "revenue": 100, "expenses": 50})
-    await ctrl.route("finance", {"session_id": session_id, "revenue": 200, "expenses": 125})
+    await ctrl.route(
+        "finance",
+        {"session_id": session_id, "revenue": 100, "expenses": 50},
+    )
+    await ctrl.route(
+        "finance",
+        {"session_id": session_id, "revenue": 200, "expenses": 125},
+    )
     history = ctrl.memory.recall(session_id) if ctrl.memory else []
     print(json.dumps(history, indent=2))
 
@@ -79,7 +89,11 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Agent Controller")
-    parser.add_argument("--test-memory", action="store_true", help="run memory test")
+    parser.add_argument(
+        "--test-memory",
+        action="store_true",
+        help="run memory test",
+    )
     args = parser.parse_args()
 
     if args.test_memory:
