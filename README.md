@@ -11,3 +11,7 @@ This repository provides a starting point for building a real-time AI video gene
 - `utils/` – Helper functions for logging, decoding, and more.
 
 This project is currently a scaffold and will evolve as development progresses. Contributions are welcome!
+
+## AITaskFlo
+
+This repository also includes **AITaskFlo**, an example automation system built with multiple intelligent agents. Each agent can process specialized tasks such as finance calculations, legal clause extraction, and retail inventory suggestions. A FastAPI gateway exposes a simple HTTP interface.
