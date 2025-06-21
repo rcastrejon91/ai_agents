@@ -25,3 +25,10 @@ when one is not supplied. Inspect stored history or run a quick demo via:
 ```bash
 python controller.py --test-memory
 ```
+
+### Scene Context Manager
+
+The conversational agents can now draw on environmental cues using
+`SceneContextManager`. This layer tracks the time of day, emotional tone,
+and surroundings based on user input so responses feel more grounded in a
+dynamic world.

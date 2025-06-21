@@ -25,9 +25,14 @@ class Memory:
         )
         self.conn.commit()
 
-    def record(self, agent: str, input_data: Dict[str, Any], output: Any) -> None:
+    def record(
+        self, agent: str, input_data: Dict[str, Any], output: Any
+    ) -> None:
         self.conn.execute(
-            "INSERT INTO history (timestamp, agent, input, output) VALUES (?,?,?,?)",
+            (
+                "INSERT INTO history (timestamp, agent, input, output) "
+                "VALUES (?, ?, ?, ?)"
+            ),
             (
                 datetime.utcnow().isoformat(),
                 agent,
@@ -39,7 +44,8 @@ class Memory:
 
     def fetch_all(self) -> List[Tuple[str, str, str, str]]:
         cur = self.conn.execute(
-            "SELECT timestamp, agent, input, output FROM history ORDER BY id DESC"
+            "SELECT timestamp, agent, input, output "
+            "FROM history ORDER BY id DESC"
         )
         return cur.fetchall()
 
@@ -64,7 +70,9 @@ class MemoryManager:
             self.path.write_text("{}", encoding="utf-8")
 
     def _persist(self) -> None:
-        self.path.write_text(json.dumps(self.store, indent=2), encoding="utf-8")
+        self.path.write_text(
+            json.dumps(self.store, indent=2), encoding="utf-8"
+        )
 
     def log(self, session_id: str, user_input: Any, response: Any) -> None:
         """Append a conversation turn to a session."""
@@ -83,4 +91,3 @@ class MemoryManager:
     def fetch_all(self) -> Dict[str, List[Dict[str, Any]]]:
         """Return the entire memory store."""
         return self.store
-
