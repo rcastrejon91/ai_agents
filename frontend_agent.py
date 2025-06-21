@@ -5,6 +5,8 @@ import uuid
 from typing import Any, Dict
 
 from memory import MemoryManager
+from dream_world_sim import DreamWorldSim
+from guardian_protocols import GuardianProtocols
 
 
 class EmotionEngine:
@@ -58,6 +60,8 @@ class FrontendAgent:
         self.memory = MemoryManager(path=memory_path)
         self.emotion_engine = EmotionEngine()
         self.logic_engine = QuantumLogicEngine()
+        self.dream_engine = DreamWorldSim()
+        self.guardian = GuardianProtocols()
 
     def generate_response(self, text: str, logic: Dict[str, Any]) -> str:
         """Return a rudimentary response based on the chosen logic path."""
@@ -77,14 +81,23 @@ class FrontendAgent:
         text = input_data.get("text", "")
         metadata = {k: v for k, v in input_data.items() if k not in {"session_id", "text"}}
 
+        protection = self.guardian.evaluate(text)
+        if protection["status"] == "neutralized":
+            result = {"session_id": session_id, "guardian": protection}
+            self.memory.log(session_id, input_data, result)
+            return result
+
         emotion = self.emotion_engine.analyze(text)
         logic = self.logic_engine.process(text, emotion, metadata)
         response = self.generate_response(text, logic)
+        dream = self.dream_engine.simulate(text)
 
         result = {
             "session_id": session_id,
             "emotion": emotion,
             "logic": logic,
+            "dream": dream,
+            "guardian": protection,
             "response": response,
         }
 
