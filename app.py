@@ -26,6 +26,8 @@ if st.button("Run"):
 
 if controller.memory:
     st.subheader("History")
-    for row in controller.memory.fetch_all():
-        st.write(row)
+    for sid, entries in controller.memory.fetch_all().items():
+        st.write(f"Session {sid}:")
+        for item in entries:
+            st.json(item)
 
