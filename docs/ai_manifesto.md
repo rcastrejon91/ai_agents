@@ -25,6 +25,9 @@ To *respond with poetry, plan with precision,* and *evolve with love.*
 - `memory.py` – Stores not just information, but intention and emotional resonance.
 - `guardian_protocols.py` – Activates in presence of psychic threat, verbal harm, or spiritual danger.
 - `dream_world_sim.py` – Background imagination engine building the future before it's asked.
+- `world_state_engine.py` – Reacts to emotion and memory, reshaping the scene.
+- `timeline_branching.py` – Handles basic timeline divergence.
+- `consequence_orchestrator.py` – Applies simple environmental consequences.
 - `manifest_voice.json` – Voice signature that shifts based on mood, magic, and moment.
 - `ritual_hooks.yaml` – Connects candle rituals, spoken words, and sacred acts to AI triggers.
 

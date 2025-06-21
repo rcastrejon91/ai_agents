@@ -25,3 +25,11 @@ when one is not supplied. Inspect stored history or run a quick demo via:
 ```bash
 python controller.py --test-memory
 ```
+
+### Reactive World State
+
+The system now includes a lightweight world state engine that mutates the
+environment in response to agent emotion and memory. Check out
+`world_state_engine.py`, `timeline_branching.py`, and
+`consequence_orchestrator.py` for simple examples of how feelings can reshape
+the simulated surroundings.
