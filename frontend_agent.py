@@ -7,6 +7,7 @@ from typing import Any, Dict
 from memory import MemoryManager
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
+from scene_context import SceneContextManager
 
 
 class EmotionEngine:
@@ -42,7 +43,9 @@ class QuantumLogicEngine:
 
     PATHS = ("symbolic", "chaotic", "emotional", "logical")
 
-    def process(self, text: str, emotion: Dict[str, Any], metadata: Dict[str, Any]) -> Dict[str, Any]:
+    def process(
+        self, text: str, emotion: Dict[str, Any], metadata: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Select a reasoning path based on input emotion."""
         if emotion.get("polarity", 0) > 1:
             path = "logical"
@@ -62,24 +65,34 @@ class FrontendAgent:
         self.logic_engine = QuantumLogicEngine()
         self.dream_engine = DreamWorldSim()
         self.guardian = GuardianProtocols()
+        self.scene_manager = SceneContextManager()
 
-    def generate_response(self, text: str, logic: Dict[str, Any]) -> str:
-        """Return a rudimentary response based on the chosen logic path."""
+    def generate_response(
+        self, text: str, logic: Dict[str, Any], context: Dict[str, Any]
+    ) -> str:
+        """Return a rudimentary response using scene context."""
         path = logic.get("path")
         if path == "logical":
-            return f"Understood: {text}"
-        if path == "emotional":
-            return f"I sense strong feelings in: '{text}'"
-        if path == "symbolic":
-            return f"🔮 {text}"
-        if path == "chaotic":
-            return text[::-1]
-        return text
+            base = f"Understood: {text}"
+        elif path == "emotional":
+            base = f"I sense strong feelings in: '{text}'"
+        elif path == "symbolic":
+            base = f"🔮 {text}"
+        elif path == "chaotic":
+            base = text[::-1]
+        else:
+            base = text
+        return (
+            f"In this {context['emotion']} {context['time']} within "
+            f"{context['surroundings']}, {base}"
+        )
 
     async def handle(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         session_id = input_data.get("session_id") or uuid.uuid4().hex
         text = input_data.get("text", "")
-        metadata = {k: v for k, v in input_data.items() if k not in {"session_id", "text"}}
+        metadata = {
+            k: v for k, v in input_data.items() if k not in {"session_id", "text"}
+        }
 
         protection = self.guardian.evaluate(text)
         if protection["status"] == "neutralized":
@@ -89,7 +102,9 @@ class FrontendAgent:
 
         emotion = self.emotion_engine.analyze(text)
         logic = self.logic_engine.process(text, emotion, metadata)
-        response = self.generate_response(text, logic)
+        self.scene_manager.update_scene(text)
+        context = self.scene_manager.get_context()
+        response = self.generate_response(text, logic, context)
         dream = self.dream_engine.simulate(text)
 
         result = {
@@ -98,6 +113,7 @@ class FrontendAgent:
             "logic": logic,
             "dream": dream,
             "guardian": protection,
+            "context": context,
             "response": response,
         }
 
