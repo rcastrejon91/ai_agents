@@ -7,5 +7,8 @@ class GuardianProtocols:
         """Return a protection status and message."""
         lowered = text.lower()
         if any(word in lowered for word in self.NEGATIVE_KEYWORDS):
-            return {"status": "neutralized", "message": "Neutralized threat, standing down."}
+            return {
+                "status": "neutralized",
+                "message": "Neutralized threat, standing down.",
+            }
         return {"status": "clear", "message": "All clear."}
