@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import uuid
+import json
 from typing import Any, Dict
 
 from agents import (
@@ -27,9 +29,9 @@ class AgentController:
         self.logger = logging.getLogger(self.__class__.__name__)
         self.memory = None
         if enable_memory:
-            from memory import Memory
+            from memory import MemoryManager
 
-            self.memory = Memory()
+            self.memory = MemoryManager()
 
     async def route(self, agent_name: str, input_data: Dict[str, Any]) -> Any:
         agent = self.agents.get(agent_name)
@@ -40,10 +42,20 @@ class AgentController:
             self.logger.error("Input data for %s must be a dictionary", agent_name)
             raise ValueError("Input data must be a dictionary")
         try:
-            result = await agent.process_task(input_data)
+            session_id = input_data.get("session_id")
+            if not session_id:
+                session_id = uuid.uuid4().hex
+
+            full_input = dict(input_data)
+            full_input.setdefault("session_id", session_id)
+
+            result = await agent.process_task(full_input)
             self.logger.info("Agent %s processed task", agent_name)
+            if isinstance(result, dict):
+                result.setdefault("session_id", session_id)
             if self.memory:
-                self.memory.record(agent_name, input_data, result)
+                # persist complete turn history
+                self.memory.log(session_id, full_input, result)
             return result
         except Exception:
             self.logger.exception("Agent %s failed to process task", agent_name)
@@ -51,3 +63,24 @@ class AgentController:
 
     def available_agents(self) -> Dict[str, str]:
         return {name: agent.industry for name, agent in self.agents.items()}
+
+
+async def _memory_test() -> None:
+    """Simple in-process test for the memory manager."""
+    ctrl = AgentController(enable_memory=True)
+    session_id = uuid.uuid4().hex
+    await ctrl.route("finance", {"session_id": session_id, "revenue": 100, "expenses": 50})
+    await ctrl.route("finance", {"session_id": session_id, "revenue": 200, "expenses": 125})
+    history = ctrl.memory.recall(session_id) if ctrl.memory else []
+    print(json.dumps(history, indent=2))
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Agent Controller")
+    parser.add_argument("--test-memory", action="store_true", help="run memory test")
+    args = parser.parse_args()
+
+    if args.test_memory:
+        asyncio.run(_memory_test())
