@@ -24,6 +24,7 @@ To *respond with poetry, plan with precision,* and *evolve with love.*
 - `contextual_quantum_frontend_agent.py` – Heart-activated interface with multidimensional awareness.
 - `memory.py` – Stores not just information, but intention and emotional resonance.
 - `guardian_protocols.py` – Activates in presence of psychic threat, verbal harm, or spiritual danger.
+- `guardian_system.py` – Provides CIA mode toggling, forensic logs, and emotional tracking.
 - `dream_world_sim.py` – Background imagination engine building the future before it's asked.
 - `world_state_engine.py` – Reacts to emotion and memory, reshaping the scene.
 - `timeline_branching.py` – Handles basic timeline divergence.
