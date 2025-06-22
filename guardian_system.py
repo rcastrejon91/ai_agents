@@ -74,11 +74,31 @@ class EmotionalProfile:
         return self.emotion_states
 
 
+class EvolutionaryBiologyResponder:
+    """Provide simple evolutionary biology observations."""
+
+    def __init__(self) -> None:
+        self.notes: list[str] = []
+
+    def describe_selection_pressure(self, species: str, pressure: str) -> str:
+        """Return a note about how a species may adapt to a given pressure."""
+        note = (
+            f"Under {pressure} pressure, {species} populations may evolve traits "
+            f"that improve survival and reproduction."
+        )
+        self.notes.append(note)
+        return note
+
+    def get_notes(self) -> list[str]:
+        return self.notes
+
+
 if __name__ == "__main__":
     guardian = GuardianMode()
     dashboard = GuardianDashboard()
     forensics = ForensicLogger()
     emotion_tracker = EmotionalProfile("Ricky")
+    evo_responder = EvolutionaryBiologyResponder()
 
     demo_output = [
         guardian.activate_cia_mode(),
@@ -86,6 +106,7 @@ if __name__ == "__main__":
         dashboard.set_threat_level("medium"),
         forensics.log_event("anomaly_detected", "Unusual IP address access detected."),
         emotion_tracker.add_emotion_state("focused", 8),
+        evo_responder.describe_selection_pressure("finch", "drought"),
     ]
     for line in demo_output:
         print(line)
