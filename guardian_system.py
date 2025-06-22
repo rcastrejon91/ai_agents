@@ -6,6 +6,8 @@ Provides basic security toggling, event logging, and emotional profiling.
 
 from __future__ import annotations
 
+import hashlib
+
 
 class GuardianMode:
     """Toggle CIA mode on or off."""
@@ -74,11 +76,79 @@ class EmotionalProfile:
         return self.emotion_states
 
 
+class EvolutionaryBiologyResponder:
+    """Provide simple evolutionary biology observations."""
+
+    def __init__(self) -> None:
+        self.notes: list[str] = []
+
+    def describe_selection_pressure(self, species: str, pressure: str) -> str:
+        """Return a note about how a species may adapt to a given pressure."""
+        note = (
+            f"Under {pressure} pressure, {species} populations may evolve traits "
+            f"that improve survival and reproduction."
+        )
+        self.notes.append(note)
+        return note
+
+    def get_notes(self) -> list[str]:
+        return self.notes
+
+
+class NeuralThreatResponder:
+    """Simulate amygdala-like threat assessments."""
+
+    def assess_threat(self, input_data: str) -> str:
+        """Return a message signaling a high-risk pattern."""
+        return "\u26a0\ufe0f High-risk pattern detected \u2013 prepping countermeasure."
+
+
+class BehaviorAdaptation:
+    """Track observed behaviors over time."""
+
+    def __init__(self) -> None:
+        self.patterns: list[str] = []
+
+    def track_behavior(self, behavior: str) -> str:
+        self.patterns.append(behavior)
+        return f"Behavior logged: {behavior}"
+
+    def get_history(self) -> list[str]:
+        return self.patterns
+
+
+def tag_event_with_dna(event: str) -> str:
+    """Return a unique DNA-style hash for the given event."""
+    return hashlib.sha256(event.encode()).hexdigest()
+
+
+class EthicalGatekeeper:
+    """Allow selective locking of functions based on ethics."""
+
+    def __init__(self) -> None:
+        self.locked_functions: list[str] = []
+
+    def toggle_lock(self, func_name: str, state: bool) -> None:
+        if state:
+            if func_name not in self.locked_functions:
+                self.locked_functions.append(func_name)
+        else:
+            if func_name in self.locked_functions:
+                self.locked_functions.remove(func_name)
+
+    def is_locked(self, func_name: str) -> bool:
+        return func_name in self.locked_functions
+
+
 if __name__ == "__main__":
     guardian = GuardianMode()
     dashboard = GuardianDashboard()
     forensics = ForensicLogger()
     emotion_tracker = EmotionalProfile("Ricky")
+    evo_responder = EvolutionaryBiologyResponder()
+    threat_responder = NeuralThreatResponder()
+    behavior_tracker = BehaviorAdaptation()
+    gatekeeper = EthicalGatekeeper()
 
     demo_output = [
         guardian.activate_cia_mode(),
@@ -86,6 +156,11 @@ if __name__ == "__main__":
         dashboard.set_threat_level("medium"),
         forensics.log_event("anomaly_detected", "Unusual IP address access detected."),
         emotion_tracker.add_emotion_state("focused", 8),
+        evo_responder.describe_selection_pressure("finch", "drought"),
+        threat_responder.assess_threat("unusual pattern"),
+        behavior_tracker.track_behavior("evasive action taken"),
+        tag_event_with_dna("Unusual IP address access detected."),
+        str(gatekeeper.is_locked("assess_threat")),
     ]
     for line in demo_output:
         print(line)
