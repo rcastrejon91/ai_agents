@@ -12,6 +12,7 @@ from agents import (
     RetailAgent,
     HealthcareAgent,
     RealEstateAgent,
+    PricingAgent,
 )
 
 
@@ -25,6 +26,7 @@ class AgentController:
             "retail": RetailAgent(),
             "healthcare": HealthcareAgent(),
             "real_estate": RealEstateAgent(),
+            "pricing": PricingAgent(),
         }
         self.logger = logging.getLogger(self.__class__.__name__)
         self.memory = None
@@ -71,6 +73,21 @@ async def _memory_test() -> None:
     session_id = uuid.uuid4().hex
     await ctrl.route("finance", {"session_id": session_id, "revenue": 100, "expenses": 50})
     await ctrl.route("finance", {"session_id": session_id, "revenue": 200, "expenses": 125})
+    await ctrl.route(
+        "pricing",
+        {
+            "session_id": session_id,
+            "metrics": {
+                "timeOnPage": 120,
+                "pageViews": 3,
+                "timeOfDay": 14,
+                "dayOfWeek": 2,
+                "location": 5,
+                "deviceType": 3,
+                "returningVisitor": 1,
+            },
+        },
+    )
     history = ctrl.memory.recall(session_id) if ctrl.memory else []
     print(json.dumps(history, indent=2))
 
