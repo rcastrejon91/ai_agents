@@ -45,3 +45,15 @@ python controller.py --test-memory  # optional memory test
 # Example call via the controller (pseudo-code)
 # await controller.route("pricing", {"session_id": "123", "metrics": {...}})
 ```
+
+### Passive Income Bot
+
+`passive_income_bot.py` runs the `PricingAgent` on a loop with example metrics
+and stores the recommended prices in `pricing_log.json`. This simple automation
+shows how dynamic pricing could keep working for you even while you sleep.
+
+Run it with:
+
+```bash
+python passive_income_bot.py
+```
