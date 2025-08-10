@@ -1,10 +1,12 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "rootDir": "apps/companion_api",
-    "buildCommand": "npm install && npm run build"
+    "nixpacks": {
+      "phases": {
+        "install": { "cmds": ["npm ci"] },
+        "build":   { "cmds": ["npm --workspace apps/companion_api run build"] }
+      }
+    }
   },
-  "start": {
-    "cmd": "npm start"
-  }
+  "start": { "cmd": "node apps/companion_api/dist/index.js" }
 }
