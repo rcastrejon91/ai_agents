@@ -1,0 +1,6 @@
+node_modules/
+apps/companion_api/dist/
+dist/
+.env
+apps/companion_api/.env
+apps/companion_web/.env.local
