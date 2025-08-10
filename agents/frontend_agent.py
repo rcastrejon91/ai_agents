@@ -7,11 +7,7 @@ from typing import Any, Dict, Optional
 from memory import MemoryManager
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
-
-try:
-    from .scene_context import SceneContextManager
-except ImportError:  # pragma: no cover - fallback for direct execution
-    from scene_context import SceneContextManager
+from agents.scene_context import SceneContextManager
 
 
 class EmotionEngine:
