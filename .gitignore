@@ -1,0 +1,6 @@
+.env
+apps/companion_api/.env
+apps/companion_web/.env.local
+node_modules
+apps/companion_api/dist
+apps/companion_web/.next

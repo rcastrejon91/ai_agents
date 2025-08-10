@@ -57,3 +57,24 @@ Run it with:
 ```bash
 python passive_income_bot.py
 ```
+
+## Environment Variables
+
+The companion API and web app require several secrets which are **never** committed to the repository. Create `.env` files from the provided templates and supply the values in your hosting dashboard.
+
+| Variable | Description |
+| --- | --- |
+| `OPENAI_API_KEY` | OpenAI API key used for chat completions |
+| `STRIPE_SECRET_KEY` | Stripe secret for API requests |
+| `STRIPE_WEBHOOK_SECRET` | Secret to verify Stripe webhooks |
+| `STRIPE_PRICE_PRO` | Stripe price ID for subscriptions |
+| `SUCCESS_URL` / `CANCEL_URL` | Redirect URLs after checkout |
+| `PORT` | API port (default 8787) |
+| `NEXT_PUBLIC_API_URL` | Base URL of the deployed API |
+| `NEXT_PUBLIC_STRIPE_PK` | Stripe publishable key for the web app |
+
+### Rotating Secrets
+
+1. Generate a new key in the provider dashboard (OpenAI, Stripe, etc.).
+2. Update the value in your deployment platform's environment settings (Railway, Vercel, etc.).
+3. Redeploy the service so the new secret takes effect.
