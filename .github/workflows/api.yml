@@ -1,0 +1,14 @@
+name: Deploy API
+on: [push]
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -w apps/companion_api
+      - run: npm --workspace apps/companion_api run build
+      - name: Trigger API deploy
+        run: curl -X POST "$RENDER_HOOK_URL"
+        env:
+          RENDER_HOOK_URL: ${{ secrets.RENDER_HOOK_URL }}

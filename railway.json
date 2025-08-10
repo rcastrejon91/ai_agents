@@ -1,0 +1,10 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "rootDir": "apps/companion_api",
+    "buildCommand": "npm install && npm run build"
+  },
+  "start": {
+    "cmd": "npm start"
+  }
+}
