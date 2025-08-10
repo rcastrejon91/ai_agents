@@ -6,6 +6,7 @@ from .retail_agent import RetailAgent
 from .healthcare_agent import HealthcareAgent
 from .real_estate_agent import RealEstateAgent
 from .pricing_agent import PricingAgent
+from .scene_context import SceneContextManager  # noqa: F401
 
 __all__ = [
     "FinanceAgent",
@@ -14,4 +15,5 @@ __all__ = [
     "HealthcareAgent",
     "RealEstateAgent",
     "PricingAgent",
+    "SceneContextManager",
 ]

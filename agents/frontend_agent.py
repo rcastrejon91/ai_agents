@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import random
 import uuid
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from memory import MemoryManager
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
-from scene_context import SceneContextManager
+
+try:
+    from .scene_context import SceneContextManager
+except ImportError:  # pragma: no cover - fallback for direct execution
+    from scene_context import SceneContextManager
 
 
 class EmotionEngine:
@@ -66,9 +70,13 @@ class FrontendAgent:
         self.scene_manager = SceneContextManager()
 
     def generate_response(
-        self, text: str, logic: Dict[str, Any], context: Dict[str, Any]
+        self,
+        text: str,
+        logic: Dict[str, Any],
+        context: Optional[Dict[str, Any]] = None,
     ) -> str:
-        """Return a rudimentary response based on the chosen logic path with scene context."""
+        """Return a rudimentary response based on the chosen logic path,
+        optionally enriched with scene context."""
         path = logic.get("path")
         if path == "logical":
             base = f"Understood: {text}"
@@ -80,10 +88,13 @@ class FrontendAgent:
             base = text[::-1]
         else:
             base = text
-        return (
-            f"In this {context['emotion']} {context['time']} within {context['surroundings']}, "
-            f"{base}"
-        )
+
+        if context:
+            return (
+                f"In this {context.get('emotion', '')} {context.get('time', '')} within "
+                f"{context.get('surroundings', '')}, {base}"
+            )
+        return base
 
     async def handle(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         session_id = input_data.get("session_id") or uuid.uuid4().hex
