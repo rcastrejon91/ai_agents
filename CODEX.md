@@ -154,3 +154,35 @@ npm run dev   # if frontend present
 - Memory persistence across sessions
 
 ---
+
+---
+
+## Legal Agent (Internal Use)
+
+Endpoints:
+- POST `/api/legal/research`
+- POST `/api/legal/draft`
+
+Headers:
+- `x-user-role`: must be `staff` or `firm_user`
+
+All responses begin with the banner:
+```
+⚠️ Not legal advice. For attorney review.
+```
+
+Example research request:
+```bash
+curl -X POST https://<host>/api/legal/research \
+  -H "Content-Type: application/json" \
+  -H "x-user-role: staff" \
+  -d '{"query":"Non-compete enforceability for software engineers in California","jurisdiction":"US-CA"}'
+```
+
+Example draft request:
+```bash
+curl -X POST https://<host>/api/legal/draft \
+  -H "Content-Type: application/json" \
+  -H "x-user-role: firm_user" \
+  -d '{"type":"NDA_basic","facts":{"PartyA":"Acme LLC","PartyB":"Ricky Castrejon","EffectiveDate":"2025-08-15"},"jurisdiction":"US-CA"}'
+```
