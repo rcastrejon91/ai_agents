@@ -20,8 +20,9 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text, mode }),
       });
-      const { reply } = await resp.json();
-      setMessages(m => [...m, { role: 'lyra', text: reply || '(no reply)' }]);
+      const data = (await resp.json()) as { reply?: string; error?: string };
+      const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
+      setMessages(m => [...m, { role: 'lyra', text: textReply }]);
     } catch (e) {
       console.error('send error', e);
       setMessages(m => [...m, { role: 'lyra', text: '(error sending message)' }]);
