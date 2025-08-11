@@ -15,12 +15,16 @@ export default function Home() {
     setInput(''); setBusy(true);
     setMessages(m => [...m, { role:'you', text }]);
     try {
-      const r = await fetch('/api/chat', {
+      const resp = await fetch('/api/lyra', {
         method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify({ message: text, mode })
-      }).then(r=>r.json());
-      setMessages(m => [...m, { role:'lyra', text: r.reply || '(no reply)' }]);
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, mode }),
+      });
+      const { reply } = await resp.json();
+      setMessages(m => [...m, { role: 'lyra', text: reply || '(no reply)' }]);
+    } catch (e) {
+      console.error('send error', e);
+      setMessages(m => [...m, { role: 'lyra', text: '(error sending message)' }]);
     } finally { setBusy(false); }
   }
 
