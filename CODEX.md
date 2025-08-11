@@ -154,3 +154,30 @@ npm run dev   # if frontend present
 - Memory persistence across sessions
 
 ---
+
+## 13. Legal Agent (Internal Use)
+
+**Endpoints**
+- `POST /api/legal/research` – internal legal research with web citations
+- `POST /api/legal/draft` – generate draft docs from templates
+
+**Headers**
+- `x-user-role`: must be one of `staff` or `firm_user`
+
+**Examples**
+```bash
+curl -X POST https://<site>/api/legal/research \
+  -H "Content-Type: application/json" \
+  -H "x-user-role: staff" \
+  -d '{"query":"California non-compete enforceability 2025 updates","jurisdiction":"US-CA"}'
+
+curl -X POST https://<site>/api/legal/draft \
+  -H "Content-Type: application/json" \
+  -H "x-user-role: firm_user" \
+  -d '{"type":"NDA_basic","facts":{"PartyA":"Acme LLC","PartyB":"Ricky Castrejon","EffectiveDate":"2025-08-15"},"jurisdiction":"US-CA"}'
+```
+
+Requests without an allowed role are refused.
+
+**Disclaimer**
+> ⚠️ Not legal advice. For attorney review.
