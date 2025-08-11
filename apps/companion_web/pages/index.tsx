@@ -6,15 +6,14 @@ type Mode = typeof MODES[number];
 export default function Home() {
   const [mode, setMode] = useState<Mode>('chill');
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState<{role:'you'|'lyra';text:string}[]>([]);
   const [busy, setBusy] = useState(false);
+  const [messages, setMessages] = useState<{role:'you'|'lyra';text:string}[]>([]);
 
   async function send() {
     const text = input.trim();
     if (!text || busy) return;
-    setInput('');
+    setInput(''); setBusy(true);
     setMessages(m => [...m, { role:'you', text }]);
-    setBusy(true);
     try {
       const r = await fetch('/api/chat', {
         method: 'POST',
@@ -22,9 +21,7 @@ export default function Home() {
         body: JSON.stringify({ message: text, mode })
       }).then(r=>r.json());
       setMessages(m => [...m, { role:'lyra', text: r.reply || '(no reply)' }]);
-    } finally {
-      setBusy(false);
-    }
+    } finally { setBusy(false); }
   }
 
   return (
@@ -35,11 +32,11 @@ export default function Home() {
       <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:16}}>
         {MODES.map(m => (
           <button key={m} onClick={()=>setMode(m)}
-            style={{
-              padding:'8px 12px', borderRadius:10, border:'1px solid #223',
-              background: m===mode ? 'linear-gradient(90deg,#6ee7,#8af)' : '#121826',
-              color: m===mode ? '#001' : '#e6f1ff'
-            }}>{m}</button>
+            style={{ padding:'8px 12px', borderRadius:10, border:'1px solid #223',
+                     background: m===mode ? 'linear-gradient(90deg,#6ee7,#8af)' : '#121826',
+                     color: m===mode ? '#001' : '#e6f1ff' }}>
+            {m}
+          </button>
         ))}
       </div>
 

@@ -4,11 +4,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { message, mode = 'chill' } = (req.body as any) || {};
-  if (!message || typeof message !== 'string') {
-    return res.status(400).json({ error: 'message required' });
-  }
+  if (!message || typeof message !== 'string') return res.status(400).json({ error: 'message required' });
 
-  // Demo fallback if no key set
   if (!process.env.OPENAI_API_KEY) {
     return res.status(200).json({ reply: `(demo:${mode}) ${message}` });
   }
