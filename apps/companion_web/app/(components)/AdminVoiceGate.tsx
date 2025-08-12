@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+type SpeechRecognition = any;
 const PHRASE = (process.env.NEXT_PUBLIC_ADMIN_WAKE || "access alpha lyra").toLowerCase();
 
 export default function AdminVoiceGate(){

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
+import { unlockAudio, speak } from "../app/lib/speech";
 
 const MODES = ['chill','sassy','sage','gremlin'] as const;
 type Mode = typeof MODES[number];
@@ -24,6 +25,7 @@ export default function Home() {
       const data = (await resp.json()) as { reply?: string; error?: string };
       const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
       setMessages(m => [...m, { role: 'lyra', text: textReply }]);
+      void speak(textReply, { voice: 'alloy', volume: 0.45 });
     } catch (e) {
       console.error('send error', e);
       setMessages(m => [...m, { role: 'lyra', text: '(error sending message)' }]);
@@ -34,6 +36,19 @@ export default function Home() {
     <div style={{minHeight:'100vh',background:'#0b0f16',color:'#e6f1ff',padding:'24px',maxWidth:780,margin:'0 auto'}}>
       <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
       <div style={{opacity:.7,marginBottom:16}}>Your personality-driven AI console.</div>
+      <button
+        onClick={() => unlockAudio()}
+        style={{
+          padding: '4px 8px',
+          borderRadius: 6,
+          background: '#121826',
+          border: '1px solid #223',
+          fontSize: 12,
+          marginBottom: 16
+        }}
+      >
+        Enable sound 🔊
+      </button>
 
       <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:16}}>
         {MODES.map(m => (
@@ -51,6 +66,14 @@ export default function Home() {
         {messages.map((m,i)=>(
           <div key={i} style={{margin:'10px 0'}}>
             <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
+            {m.role==='lyra' && (
+              <button
+                onClick={() => speak(m.text)}
+                style={{ marginLeft: 8, fontSize: '0.8em', opacity: 0.7 }}
+              >
+                🔊
+              </button>
+            )}
           </div>
         ))}
         {busy && <div style={{opacity:.6,marginTop:8}}>Lyra is typing…</div>}
