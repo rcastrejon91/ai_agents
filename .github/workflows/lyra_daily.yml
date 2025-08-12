@@ -1,0 +1,33 @@
+name: Lyra Daily Learning
+
+on:
+  schedule:
+    - cron: "0 15 * * *"  # Runs every day at 3 PM UTC (adjust as needed)
+  workflow_dispatch: # lets you trigger it manually too
+
+jobs:
+  learn-and-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openai
+
+      - name: Run Lyra learning script
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          OPENAI_API_KEY: ${{ secrets.LYRA_TAVIN_KEY }}
+        run: python lyra_learning.py
