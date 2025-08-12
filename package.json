@@ -2,6 +2,7 @@
   "private": true,
   "workspaces": ["apps/*"],
   "scripts": {
-    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev"
+    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
+    "test": "pytest -q"
   }
 }

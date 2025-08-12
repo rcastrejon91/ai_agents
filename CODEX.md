@@ -181,3 +181,23 @@ Requests without an allowed role are refused.
 
 **Disclaimer**
 > ⚠️ Not legal advice. For attorney review.
+
+---
+
+## Companion Checkups
+
+Periodic mental wellness pings with safety guidance.
+
+**API:**
+- `GET /api/companion/checkups` – fetch user preferences
+- `POST /api/companion/checkups` – save preferences `{ tone, daily, email }`
+- `PUT /api/companion/checkups` – send a check-in immediately (uses `x-user-id` and `x-jurisdiction` headers). Always appends the `988/911` safety footer and gates therapy mode according to `server/compliance/state_policies.json`.
+
+**Admin:**
+- `/admin/companion/checkups?key=<NEXT_PUBLIC_ADMIN_UI_KEY>` – select tone, preview message, or trigger an immediate checkup.
+
+**Cron Job:**
+- `POST /api/jobs/checkups/daily` with header `x-admin-key` sends daily check-ins to all opted-in users. Intended to run Mon–Fri 9:00 AM America/Chicago.
+
+**Compliance:**
+If `state_policies.json` marks a jurisdiction as therapy-restricted, requests for therapy mode are downgraded to `friend+journal` mode.
