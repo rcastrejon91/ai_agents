@@ -181,3 +181,9 @@ Requests without an allowed role are refused.
 
 **Disclaimer**
 > ⚠️ Not legal advice. For attorney review.
+
+## 14. Jurisdiction Detection
+- Uses Vercel headers `x-vercel-ip-country` + `x-vercel-ip-country-region`.
+- Falls back to `US-FED` if unknown.
+- Stores a `jurisdiction` cookie.
+- Users can override via `/api/profile/jurisdiction` and the UI control.

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import JurisdictionControl from '../components/JurisdictionControl';
 
 const MODES = ['chill','sassy','sage','gremlin'] as const;
 type Mode = typeof MODES[number];
@@ -68,6 +69,7 @@ export default function Home() {
           Send
         </button>
       </div>
+      <JurisdictionControl userId="anon" />
     </div>
   );
 }

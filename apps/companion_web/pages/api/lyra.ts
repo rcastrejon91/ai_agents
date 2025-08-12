@@ -1,10 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { resolveJurisdiction } from "../../server/compliance/jurisdiction";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
     const { message, mode = 'chill' } = (req.body ?? {}) as { message?: string; mode?: string };
+    const jur = resolveJurisdiction(req);
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Missing "message" in body' });
