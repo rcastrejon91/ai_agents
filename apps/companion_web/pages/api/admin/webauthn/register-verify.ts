@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const email = (req.body?.email || '').toString();
   if (!email) return res.status(400).json({ error: 'email required' });
 
-  const expectedChallenge = getChallenge(email);
+  const expectedChallenge = getChallenge(email) || '';
 
   try {
     const verification = await verifyRegistrationResponse({
