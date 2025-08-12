@@ -2,12 +2,19 @@ import { useState } from 'react';
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
+import ActionRunner from "../components/ActionRunner";
+import HealthDot from "../components/HealthDot";
 
 export default function Home() {
   const [mode, setMode] = useState<'credible'|'creative'>('credible');
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
-  const [messages, setMessages] = useState<{role:'you'|'lyra';type:'answer'|'plain';text:string;sources?:{title:string;url:string}[]}[]>([]);
+  type Msg =
+    | { role:'you'; type:'plain'; text:string }
+    | { role:'lyra'; type:'plain'; text:string }
+    | { role:'lyra'; type:'answer'; text:string; sources:{title:string;url:string}[] }
+    | { role:'lyra'; type:'action'; query:string };
+  const [messages, setMessages] = useState<Msg[]>([]);
   const [opsLog, setOpsLog] = useState<{t:number;msg:string}[]>([]);
 
   async function ask(question: string) {
@@ -19,7 +26,7 @@ export default function Home() {
       });
       if (!r.ok) return false;
       const data = await r.json();
-      setMessages(m => [...m, { role:'lyra', type:'answer', text: data.answer, sources: data.sources }]);
+      setMessages(m => [...m, { role:'lyra', type:'answer', text: data.answer, sources: data.sources || [] }]);
       setOpsLog(l => [
         { t: Date.now(), msg: `Answer via /api/answer • sources:${data.sources?.length||0} • model:gpt-4o-mini` },
         ...l
@@ -55,6 +62,12 @@ export default function Home() {
     const text = input.trim();
     if (!text || busy) return;
     setInput(''); setBusy(true);
+    if (text.startsWith('/do plan:')) {
+      const q = text.replace('/do plan:','').trim();
+      setMessages(m=>[...m,{ role:'you', type:'plain', text }]);
+      setMessages(m=>[...m,{ role:'lyra', type:'action', query:q }]);
+      setBusy(false); return;
+    }
     setMessages(m => [...m, { role:'you', type:'plain', text }]);
     try {
       let handled = false;
@@ -72,7 +85,10 @@ export default function Home() {
 
   return (
     <div style={{minHeight:'100vh',background:'#0b0f16',color:'#e6f1ff',padding:'24px',maxWidth:780,margin:'0 auto'}}>
-      <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
+        <HealthDot />
+      </div>
       <div style={{opacity:.7,marginBottom:16}}>Your personality-driven AI console.</div>
       <button
         onClick={() => unlockAudio()}
@@ -98,9 +114,11 @@ export default function Home() {
 
       <div style={{border:'1px solid #223',borderRadius:12,padding:12,minHeight:320,background:'#0e1422'}}>
         {messages.length===0 && <div style={{opacity:.6}}>Say hi and I’ll reply…</div>}
-        {messages.map((m,i)=>(
-          m.role==='lyra' && m.type==='answer'
-            ? <AnswerCard key={i} text={m.text} sources={m.sources||[]} onSpeak={()=>speak(m.text)} />
+        {messages.map((m,i)=> (
+          m.type==='action' ?
+            <ActionRunner key={i} query={m.query} />
+          : m.role==='lyra' && m.type==='answer'
+            ? <AnswerCard key={i} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
             : <div key={i} style={{margin:'10px 0'}}>
                 <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
                 {m.role==='lyra' && (
