@@ -4,3 +4,4 @@ dist/
 .env
 apps/companion_api/.env
 apps/companion_web/.env.local
+apps/companion_web/.next/

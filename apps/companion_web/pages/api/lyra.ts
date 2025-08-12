@@ -1,43 +1,41 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+export const config = { api: { bodyParser: true } };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: any, res: any) {
   try {
-    const { message = "" } = req.body || {};
-    if (!process.env.OPENAI_API_KEY) {
-      console.error("[lyra] missing OPENAI_API_KEY");
-      return res.status(500).json({ error: "Server not configured." });
+    if (req.method !== 'POST') return res.status(405).end();
+    const message = (req.body?.message || '').toString().trim();
+
+    if (process.env.NEXT_PUBLIC_LYRA_DEBUG === '1') {
+      return res.status(200).json({ reply: `🛠️ Debug: You said “${message}”.` });
     }
 
-    const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
+    if (!process.env.OPENAI_API_KEY) {
+      return res.status(200).json({ reply: `(demo) ${message}` });
+    }
+
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        'content-type': 'application/json',
+        authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [{ role: "user", content: message }],
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'user', content: message || 'hi' }],
       }),
     });
 
-    if (!openaiRes.ok) {
-      const errText = await openaiRes.text().catch(() => "");
-      console.error("[lyra] upstream", openaiRes.status, errText);
-      return res
-        .status(502)
-        .json({ error: "Sorry, I'm having trouble responding right now." });
+    if (!r.ok) {
+      const t = await r.text().catch(()=> '');
+      console.error('[lyra] upstream', r.status, t.slice(0,300));
+      return res.status(200).json({ reply: `⚠️ Live model is busy. Echo: “${message}”` });
     }
 
-    const data = await openaiRes.json();
-    const reply = data?.choices?.[0]?.message?.content?.trim();
-    return res
-      .status(200)
-      .json({ reply: reply ?? "I'm not sure what to say, but I'm here!" });
+    const j = await r.json();
+    const reply = j?.choices?.[0]?.message?.content?.trim() || '…';
+    return res.status(200).json({ reply });
   } catch (e: any) {
-    console.error("[lyra] exception", e?.stack || e?.message || e);
-    return res
-      .status(500)
-      .json({ error: "Sorry, I'm having trouble responding right now." });
+    console.error('[lyra] exception', e?.stack || e);
+    return res.status(200).json({ reply: '⚠️ Temporary hiccup. Try again.' });
   }
 }
-

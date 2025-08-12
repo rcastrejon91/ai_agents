@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
-import { unlockAudio, speak } from "../app/lib/speech";
+import { speak } from "../lib/speak";
 
 const MODES = ['chill','sassy','sage','gremlin'] as const;
 type Mode = typeof MODES[number];
@@ -25,10 +25,12 @@ export default function Home() {
       const data = (await resp.json()) as { reply?: string; error?: string };
       const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
       setMessages(m => [...m, { role: 'lyra', text: textReply }]);
-      void speak(textReply, { voice: 'alloy', volume: 0.45 });
+      speak(textReply);
     } catch (e) {
       console.error('send error', e);
-      setMessages(m => [...m, { role: 'lyra', text: '(error sending message)' }]);
+      const fallback = '⚠️ Network wobble. Echoing for now.';
+      setMessages(m => [...m, { role: 'lyra', text: fallback }]);
+      speak(fallback);
     } finally { setBusy(false); }
   }
 
@@ -36,19 +38,6 @@ export default function Home() {
     <div style={{minHeight:'100vh',background:'#0b0f16',color:'#e6f1ff',padding:'24px',maxWidth:780,margin:'0 auto'}}>
       <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
       <div style={{opacity:.7,marginBottom:16}}>Your personality-driven AI console.</div>
-      <button
-        onClick={() => unlockAudio()}
-        style={{
-          padding: '4px 8px',
-          borderRadius: 6,
-          background: '#121826',
-          border: '1px solid #223',
-          fontSize: 12,
-          marginBottom: 16
-        }}
-      >
-        Enable sound 🔊
-      </button>
 
       <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:16}}>
         {MODES.map(m => (
@@ -80,6 +69,12 @@ export default function Home() {
       </div>
 
       <div style={{display:'flex',gap:8,marginTop:12}}>
+        <button
+          onClick={() => speak('Sound enabled')}
+          style={{padding:'10px 12px',borderRadius:10,border:'1px solid #223',background:'#0e1422',color:'#e6f1ff'}}
+        >
+          Enable sound 🔊
+        </button>
         <input
           value={input}
           onChange={e=>setInput(e.target.value)}
