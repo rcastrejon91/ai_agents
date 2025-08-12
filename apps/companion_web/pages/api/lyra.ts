@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ reply: `(demo:${mode}) ${message}` });
     }
 
-    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -29,18 +29,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }),
     });
 
-    if (!r.ok) {
-      const errText = await r.text();
+    if (!openaiRes.ok) {
+      const errText = await openaiRes.text();
       console.error('[lyra] openai error:', errText);
-      return res.status(500).json({ error: 'OpenAI request failed' });
+      return res
+        .status(500)
+        .json({ error: "Sorry, I'm having trouble responding right now." });
     }
 
-    const data = await r.json();
-    const reply = data?.choices?.[0]?.message?.content?.trim() || '';
-    return res.status(200).json({ reply: reply || '[No response from AI]' });
+    const data = await openaiRes.json();
+    const reply = data?.choices?.[0]?.message?.content?.trim();
+    return res
+      .status(200)
+      .json({ reply: reply ?? "I'm not sure what to say, but I'm here!" });
   } catch (err) {
     console.error('[lyra] error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    return res
+      .status(500)
+      .json({ error: "I'm having trouble replying right now." });
   }
 }
 
