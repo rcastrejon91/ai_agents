@@ -36,6 +36,8 @@ OPENAI_API_KEY=sk-xxxx
 TAVILY_API_KEY=tvly-xxxx
 LYRA_FREE_DAILY_SEARCH_LIMIT=25   # example limit before upgrade prompt
 USE_LLM_ROUTER=true               # toggle between keyword vs AI intent routing
+ADMIN_DASH_KEY=<long-random>
+NEXT_PUBLIC_ADMIN_UI_KEY=<same-as-admin-key>
 ```
 
 ---
@@ -181,3 +183,11 @@ Requests without an allowed role are refused.
 
 **Disclaimer**
 > ⚠️ Not legal advice. For attorney review.
+
+## 14. Regulation Watchdog
+
+- **Policy store**: `apps/companion_web/server/compliance/state_policies.json` keeps jurisdiction rules. Each entry can set `therapy_ai` (allowed|restricted|prohibited) and derives `companion.mode` for UI gating.
+- **Feature check**: `checkFeature(jur, feature)` reads the policy file. Example: `checkFeature("US-IL", "companion.therapy")` returns `{ allowed:false, mode:"journal_only" }` if therapy AI is prohibited.
+- **Watchdog scan**: POST `/api/watchdog/run` (admin-only, header `x-admin-key`) hits Tavily + OpenAI to detect law updates and updates the policy file. A JSON audit log is kept in `.data_reg_rules.json`.
+- **Admin dashboard**: Visit `/admin/compliance` to view current policies and rule history or trigger a manual scan.
+- **Fail-safe UX copy**: When `allowed:false`, show users: "This feature is paused in your region due to local regulations." When `mode:"friend+journal"` show a strong disclosure about AI limitations.
