@@ -2,6 +2,16 @@
   "private": true,
   "workspaces": ["apps/*"],
   "scripts": {
-    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev"
+    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
+    "ingest:wikipedia": "tsx scripts/ingest_wikipedia.ts",
+    "ingest:gutenberg": "tsx scripts/ingest_gutenberg.ts",
+    "ingest:youtube": "tsx scripts/ingest_youtube.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.2",
+    "cross-fetch": "^3.1.5",
+    "wikipedia": "^2.1.1",
+    "youtube-transcript": "^1.0.6",
+    "tsx": "^4.7.0"
   }
 }
