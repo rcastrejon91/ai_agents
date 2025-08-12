@@ -1,0 +1,4 @@
+{
+  "US-IL": { "therapy": false },
+  "US-CA": { "therapy": true }
+}
