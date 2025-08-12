@@ -1,0 +1,15 @@
+name: Lyra Daily Learning
+on:
+  schedule:
+    - cron: "0 14 * * *"
+  workflow_dispatch: {}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger pull
+        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/pull
+      - name: Process
+        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/process
+      - name: Digest
+        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/digest
