@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const GAMES = [
@@ -23,11 +23,29 @@ const GAMES = [
 
 export default function GamesPage() {
   const [active, setActive] = useState<string>('module-battle');
+  const [isLive, setIsLive] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    async function poll() {
+      try {
+        const res = await fetch('/api/streams/status', { cache: 'no-store' });
+        const data = await res.json();
+        setIsLive(!!(data.twitch?.live || data.youtube?.live));
+      } catch (err) {
+        console.error('poll status failed', err);
+      } finally {
+        timer = setTimeout(poll, 15000);
+      }
+    }
+    poll();
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main className="min-h-screen px-6 py-10 bg-black text-white">
       <header className="mb-8">
-        <h1 className="text-3xl font-semibold">Games</h1>
+        <h1 className="text-3xl font-semibold flex items-center gap-2">Games {isLive && <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-600 text-white">LIVE</span>}</h1>
         <p className="text-sm text-zinc-400">Just for fun. Your core app stays separate.</p>
       </header>
 
