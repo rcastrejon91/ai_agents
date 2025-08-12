@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 import bodyParser from "body-parser";
 import billingRouter from "./billing.js";
+import { checkFeature } from "../../companion_web/server/compliance/check";
 
 dotenv.config();
 const app = express();
@@ -17,6 +18,9 @@ const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 app.post("/chat", async (req, res) => {
+  const jur = String(req.body?.jurisdiction || "");
+  const gate = checkFeature(jur, "companion.therapy");
+  if (!gate.allowed) return res.status(403).json({ error: "feature_unavailable", gate });
   try {
     const { message } = req.body || {};
     const r = await client.chat.completions.create({
