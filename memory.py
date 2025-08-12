@@ -66,12 +66,32 @@ class MemoryManager:
     def _persist(self) -> None:
         self.path.write_text(json.dumps(self.store, indent=2), encoding="utf-8")
 
-    def log(self, session_id: str, user_input: Any, response: Any) -> None:
-        """Append a conversation turn to a session."""
+    def log(self, session_id: str, user_input: Any, response: Any | None = None) -> None:
+        """Append a conversation turn to a session.
+
+        Parameters
+        ----------
+        session_id:
+            Identifier for the conversation session.
+        user_input:
+            Either the user input (if ``response`` provided) or the result to
+            store directly when ``response`` is ``None``.
+        response:
+            Optional response payload. If omitted, ``user_input`` is treated as
+            the response and the input field is left ``None``.
+        """
+
+        if response is None:
+            stored_input = None
+            stored_response = user_input
+        else:
+            stored_input = user_input
+            stored_response = response
+
         entry = {
             "timestamp": datetime.utcnow().isoformat(),
-            "input": user_input,
-            "response": response,
+            "input": stored_input,
+            "response": stored_response,
         }
         self.store.setdefault(session_id, []).append(entry)
         self._persist()

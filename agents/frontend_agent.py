@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 from memory import MemoryManager
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
-from agents.scene_context import SceneContextManager
+from .scene_context import SceneContextManager
 
 
 class EmotionEngine:
@@ -63,7 +63,7 @@ class FrontendAgent:
         self.logic_engine = QuantumLogicEngine()
         self.dream_engine = DreamWorldSim()
         self.guardian = GuardianProtocols()
-        self.scene_manager = SceneContextManager()
+        self.scene_context = SceneContextManager()
 
     def generate_response(
         self,
@@ -94,21 +94,19 @@ class FrontendAgent:
 
     async def handle(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         session_id = input_data.get("session_id") or uuid.uuid4().hex
-        text = input_data.get("text", "")
+        text = (input_data.get("text") or "").strip()
         metadata = {k: v for k, v in input_data.items() if k not in {"session_id", "text"}}
 
-        protection = self.guardian.evaluate(text)
-        if protection["status"] == "neutralized":
-            result = {"session_id": session_id, "guardian": protection}
-            self.memory.log(session_id, input_data, result)
-            return result
-
-        emotion = self.emotion_engine.analyze(text)
+        emotion = self.emotion_engine.analyze(text or "")
         logic = self.logic_engine.process(text, emotion, metadata)
-        self.scene_manager.update_scene(text)
-        context = self.scene_manager.get_context()
+
+        # update and retrieve contextual scene information
+        self.scene_context.update_scene(text)
+        context = self.scene_context.get_context()
+
         response = self.generate_response(text, logic, context)
         dream = self.dream_engine.simulate(text)
+        protection = self.guardian.evaluate(text)
 
         result = {
             "session_id": session_id,
@@ -119,6 +117,5 @@ class FrontendAgent:
             "context": context,
             "response": response,
         }
-
-        self.memory.log(session_id, input_data, result)
+        self.memory.log(session_id, result)
         return result

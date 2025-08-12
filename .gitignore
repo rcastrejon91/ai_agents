@@ -4,3 +4,9 @@ dist/
 .env
 apps/companion_api/.env
 apps/companion_web/.env.local
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.log
+frontend_memory.json

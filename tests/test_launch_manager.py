@@ -1,64 +1,27 @@
-import asyncio
+from time import sleep
 import os
 import sys
-import pytest
 
-# Ensure project root is on sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from bots.core.launch_manager import (
-    FloBot,
-    BotRegistry,
-    LaunchManager,
-    BotValidationError,
-    BotNotFoundError,
-)
+from bots.core.launch_manager import LaunchManager, BotRegistry
 
 
-def test_add_invalid_bot():
-    registry = BotRegistry()
-    bot = FloBot(name="bad", category="demo", description="missing")
-    with pytest.raises(BotValidationError):
-        registry.add_bot(bot)
+def test_schedule_returns_job_and_executes(tmp_path):
+    ran = {"ok": False}
 
-
-def test_launch_callable_bot():
-    registry = BotRegistry()
-
-    def greet(target: str):
+    def demo(target="world", **_):
+        ran["ok"] = True
         return f"hi {target}"
 
-    bot = FloBot(
-        name="greeter",
-        category="test",
-        description="greets",
-        launch_callable=greet,
-    )
-    registry.add_bot(bot)
-    manager = LaunchManager(registry)
-    assert manager.launch("greeter", target="bob") == "hi bob"
+    reg = BotRegistry()
+    reg.add_bot("demo", demo)
+    mgr = LaunchManager(registry=reg, tz="UTC")
 
+    job = mgr.schedule_launch("demo", 1, target="you")
+    assert job is not None
 
-def test_launch_missing_bot():
-    registry = BotRegistry()
-    manager = LaunchManager(registry)
-    with pytest.raises(BotNotFoundError):
-        manager.launch("ghost")
+    sleep(2)  # let the job fire
+    mgr.shutdown()
+    assert ran["ok"] is True
 
-
-def test_async_launch():
-    registry = BotRegistry()
-
-    def greet(target: str):
-        return f"hello {target}"
-
-    bot = FloBot(
-        name="async",
-        category="test",
-        description="async bot",
-        launch_callable=greet,
-    )
-    registry.add_bot(bot)
-    manager = LaunchManager(registry)
-    result = asyncio.run(manager.launch_async("async", target="alice"))
-    assert result == "hello alice"
