@@ -1,23 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
 import ActionRunner from "../components/ActionRunner";
 import ActionConsentCard from "../components/ActionConsentCard";
 import HealthDot from "../components/HealthDot";
+import ToolChips from "../components/ToolChips";
 
 export default function Home() {
   const [mode, setMode] = useState<'credible'|'creative'>('credible');
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
   type Msg =
-    | { role:'you'; type:'plain'; text:string }
-    | { role:'lyra'; type:'plain'; text:string }
-    | { role:'lyra'; type:'answer'; text:string; sources:{title:string;url:string}[] }
-    | { role:'lyra'; type:'action'; query:string }
-    | { role:'lyra'; type:'consent'; intent:string; consent:any };
+    | { id:string; role:'you'; type:'plain'; text:string }
+    | { id:string; role:'lyra'; type:'plain'; text:string; tools?: string[] }
+    | { id:string; role:'lyra'; type:'answer'; text:string; sources:{title:string;url:string}[] }
+    | { id:string; role:'lyra'; type:'action'; query:string }
+    | { id:string; role:'lyra'; type:'consent'; intent:string; consent:any };
   const [messages, setMessages] = useState<Msg[]>([]);
   const [opsLog, setOpsLog] = useState<{t:number;msg:string}[]>([]);
+  const [lastAssistantTools, setLastAssistantTools] = useState<string[] | null>(null);
+  const [currentTools, setCurrentTools] = useState<string[] | null>(null);
+
+  useEffect(() => {
+    if (lastAssistantTools) {
+      const t = setTimeout(() => setLastAssistantTools(null), 3000);
+      return () => clearTimeout(t);
+    }
+  }, [lastAssistantTools]);
 
   async function ask(question: string) {
     try {
@@ -28,7 +38,7 @@ export default function Home() {
       });
       if (!r.ok) return false;
       const data = await r.json();
-      setMessages(m => [...m, { role:'lyra', type:'answer', text: data.answer, sources: data.sources || [] }]);
+      setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'answer', text: data.answer, sources: data.sources || [] }]);
       setOpsLog(l => [
         { t: Date.now(), msg: `Answer via /api/answer • sources:${data.sources?.length||0} • model:gpt-4o-mini` },
         ...l
@@ -45,18 +55,25 @@ export default function Home() {
       const resp = await fetch('/api/lyra', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: question })
+        body: JSON.stringify({ message: question, role: 'patient', mode })
       });
-      const data = (await resp.json()) as { reply?: string; error?: string };
+      const data = (await resp.json()) as { reply?: string; error?: string; tools?: string[] };
       const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
-      setMessages(m => [...m, { role: 'lyra', type:'plain', text: textReply }]);
+      setMessages(m => [...m, { id: crypto.randomUUID(), role: 'lyra', type:'plain', text: textReply, tools: data.tools }]);
+      setCurrentTools(prev => {
+        const next = data.tools && data.tools.length ? data.tools : null;
+        if (JSON.stringify(prev) !== JSON.stringify(next)) {
+          setLastAssistantTools(next);
+        }
+        return next;
+      });
       setOpsLog(l => [
-        { t: Date.now(), msg: 'Answer via /api/lyra' },
+        { t: Date.now(), msg: `Answer via /api/lyra${data.tools ? ' • tools:'+data.tools.join('+') : ''}` },
         ...l
       ].slice(0,50));
     } catch (e) {
       console.error('sendPlain error', e);
-      setMessages(m => [...m, { role:'lyra', type:'plain', text: '(error sending message)' }]);
+      setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: '(error sending message)' }]);
     }
   }
 
@@ -68,7 +85,7 @@ export default function Home() {
     const text = input.trim();
     if (!text || busy) return;
     setInput(''); setBusy(true);
-    setMessages(m => [...m, { role:'you', type:'plain', text }]);
+    setMessages(m => [...m, { id: crypto.randomUUID(), role:'you', type:'plain', text }]);
     try {
       let handled = false;
       if (isActionText(text)) {
@@ -79,15 +96,15 @@ export default function Home() {
         });
         const data = await r.json();
         if (data.status === 'needs_consent') {
-          setMessages(m => [...m, { role:'lyra', type:'consent', intent:text, consent:data.consent }]);
+          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'consent', intent:text, consent:data.consent }]);
           setOpsLog(l => [{ t: Date.now(), msg: 'Action requires consent' }, ...l].slice(0,50));
           handled = true;
         } else if (data.status === 'ok') {
-          setMessages(m => [...m, { role:'lyra', type:'plain', text: 'Action completed.' }]);
+          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: 'Action completed.' }]);
           setOpsLog(l => [{ t: Date.now(), msg: 'Action executed' }, ...l].slice(0,50));
           handled = true;
         } else if (data.status === 'needs_scopes') {
-          setMessages(m => [...m, { role:'lyra', type:'plain', text: 'Missing scopes: ' + data.missing.join(', ') }]);
+          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: 'Missing scopes: ' + data.missing.join(', ') }]);
           handled = true;
         }
       }
@@ -99,7 +116,7 @@ export default function Home() {
       }
     } catch (e) {
       console.error('send error', e);
-      setMessages(m => [...m, { role: 'lyra', type:'plain', text: '(error sending message)' }]);
+      setMessages(m => [...m, { id: crypto.randomUUID(), role: 'lyra', type:'plain', text: '(error sending message)' }]);
     } finally { setBusy(false); }
   }
 
@@ -132,25 +149,35 @@ export default function Home() {
         </div>
       </div>
 
+      {lastAssistantTools?.length ? (
+        <div className="fixed right-4 bottom-24 hidden md:flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse" />
+          <div className="text-xs text-zinc-400">Lyra switched tools: {lastAssistantTools.join(' + ')}</div>
+        </div>
+      ) : null}
+
       <div style={{border:'1px solid #223',borderRadius:12,padding:12,minHeight:320,background:'#0e1422'}}>
         {messages.length===0 && <div style={{opacity:.6}}>Say hi and I’ll reply…</div>}
-        {messages.map((m,i)=> (
+        {messages.map(m=> (
           m.type==='action' ?
-            <ActionRunner key={i} query={m.query} />
+            <ActionRunner key={m.id} query={m.query} />
           : m.type==='consent' ?
-            <ActionConsentCard key={i} intent={m.intent} consent={m.consent} />
+            <ActionConsentCard key={m.id} intent={m.intent} consent={m.consent} />
           : m.role==='lyra' && m.type==='answer'
-            ? <AnswerCard key={i} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
-            : <div key={i} style={{margin:'10px 0'}}>
-                <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
-                {m.role==='lyra' && (
-                  <button
-                    onClick={() => speak(m.text)}
-                    style={{ marginLeft: 8, fontSize: '0.8em', opacity: 0.7 }}
-                  >
-                    🔊
-                  </button>
-                )}
+            ? <AnswerCard key={m.id} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
+            : <div key={m.id} style={{margin:'10px 0'}}>
+                <div>
+                  <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
+                  {m.role==='lyra' && (
+                    <button
+                      onClick={() => speak(m.text)}
+                      style={{ marginLeft: 8, fontSize: '0.8em', opacity: 0.7 }}
+                    >
+                      🔊
+                    </button>
+                  )}
+                </div>
+                {m.role==='lyra' && <ToolChips tools={'tools' in m ? m.tools : undefined} />}
               </div>
         ))}
         {busy && <div style={{opacity:.6,marginTop:8}}>Lyra is typing…</div>}
