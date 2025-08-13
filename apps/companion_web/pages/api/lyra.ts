@@ -5,7 +5,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { message = "" } = req.body || {};
     if (!process.env.OPENAI_API_KEY) {
       console.error("[lyra] missing OPENAI_API_KEY");
-      return res.status(500).json({ error: "Server not configured." });
+      return res
+        .status(200)
+        .json({ reply: "The server is missing credentials, please try later." });
     }
 
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -24,8 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const errText = await openaiRes.text().catch(() => "");
       console.error("[lyra] upstream", openaiRes.status, errText);
       return res
-        .status(502)
-        .json({ error: "Sorry, I'm having trouble responding right now." });
+        .status(200)
+        .json({ reply: "Sorry, I'm having trouble responding right now." });
     }
 
     const data = await openaiRes.json();
@@ -36,8 +38,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } catch (e: any) {
     console.error("[lyra] exception", e?.stack || e?.message || e);
     return res
-      .status(500)
-      .json({ error: "Sorry, I'm having trouble responding right now." });
+      .status(200)
+      .json({ reply: "Sorry, I'm having trouble responding right now." });
   }
 }
 
