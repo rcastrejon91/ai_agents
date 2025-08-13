@@ -14,7 +14,8 @@
     "@simplewebauthn/browser": "^13.1.2",
     "@simplewebauthn/server": "^13.1.2",
     "framer-motion": "^11.0.0",
-    "@supabase/supabase-js": "^2.43.1"
+    "@supabase/supabase-js": "^2.43.1",
+    "nodemailer": "^6.9.8"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
