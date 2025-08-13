@@ -6,8 +6,29 @@ It enables emotional responsiveness, immersive storytelling, and mood-based inte
 Built for AITaskFlo's dream simulation engine.
 """
 
-from soul_signature import SoulSignature
-from scene_context_manager import SceneManager  # Assumed existing module
+# Placeholder implementations to avoid missing-module errors
+# from soul_signature import SoulSignature
+# from scene_context_manager import SceneManager  # Assumed existing module
+
+
+class SoulSignature:
+    """Fallback class with a basic mood palette."""
+
+    def __init__(self):
+        self.mood_palette = ["neutral"]
+
+
+class SceneManager:
+    """Fallback scene manager that stores the current scene."""
+
+    def __init__(self):
+        self.current_scene = "void"
+
+    def set_scene_by_mood(self, mood: str) -> None:
+        self.current_scene = f"scene_for_{mood}"
+
+    def set_scene(self, scene: str) -> None:
+        self.current_scene = scene
 
 
 class SceneSoulDriver:
