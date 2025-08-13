@@ -11,8 +11,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { question } = (req.body ?? {}) as { question?: string };
   if (!question) return res.status(400).json({ error: "Missing question" });
 
-  const { data: anchors } = await supabase.rpc("kg_anchor_nodes", { p_query: question, p_k: 5 }).catch(() => ({ data: [] as any[] }));
-  const anchorIds = (anchors ?? []).map((a: any) => a.id);
+  let anchors: any[] = [];
+  try {
+    const { data } = await supabase.rpc("kg_anchor_nodes", { p_query: question, p_k: 5 });
+    anchors = (data ?? []) as any[];
+  } catch {
+    anchors = [];
+  }
+  const anchorIds = anchors.map((a: any) => a.id);
 
   const { data: edges } = await supabase
     .from("kg_edges")
@@ -24,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     .limit(200);
 
   const lines: string[] = [];
-  for (const e of edges ?? []) {
+  for (const e of (edges ?? []) as any[]) {
     const ev = e.evidence?.source_url ? ` [evidence: ${e.evidence.source_url}]` : "";
     lines.push(`${e.src.kind}:${e.src.name} --${e.rel}(${e.confidence.toFixed(2)})--> ${e.dst.kind}:${e.dst.name}${ev}`);
   }

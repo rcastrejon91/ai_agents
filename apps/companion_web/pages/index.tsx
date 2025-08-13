@@ -47,9 +47,13 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: question })
       });
-      const data = (await resp.json()) as { reply?: string; error?: string };
-      const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
-      setMessages(m => [...m, { role: 'lyra', type:'plain', text: textReply }]);
+      const data = await resp.json().catch(() => ({}));
+      const textReply =
+        data.reply ??
+        (resp.ok
+          ? "I'm not sure what to say, but I'm here!"
+          : data.error ?? "Upstream error.");
+      setMessages(m => [...m, { role: 'lyra', type: 'plain', text: textReply }]);
       setOpsLog(l => [
         { t: Date.now(), msg: 'Answer via /api/lyra' },
         ...l
