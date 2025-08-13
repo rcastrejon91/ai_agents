@@ -1,14 +1,16 @@
 let unlocked = false;
 
 // iOS/Chrome block audio until a user gesture. Call unlock() once from a click/tap.
-export function unlockAudio() {
+export async function unlockAudio() {
   if (unlocked) return;
   try {
     const a = new Audio();
     a.muted = true;
-    a.play().catch(() => {});
+    await a.play();
     unlocked = true;
-  } catch {}
+  } catch (err) {
+    console.error('Audio unlock failed', err);
+  }
 }
 
 export async function speak(text: string, opts?: { voice?: string; volume?: number }) {

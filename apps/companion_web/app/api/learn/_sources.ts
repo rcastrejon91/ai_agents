@@ -11,7 +11,8 @@ export function allowedDomain(url: string) {
   try {
     const u = new URL(url);
     return allow.length ? allow.some(d => u.hostname.endsWith(d)) : true;
-  } catch {
+  } catch (err) {
+    console.error('Invalid URL in allowedDomain', url, err);
     return false;
   }
 }

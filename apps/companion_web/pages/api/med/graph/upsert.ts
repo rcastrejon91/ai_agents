@@ -14,7 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { nodes = [], edges = [] } = (req.body ?? {}) as { nodes: NodeIn[]; edges: EdgeIn[] };
 
   const keyToId: Record<string, string> = {};
-  for (const [i, n] of nodes.entries()) {
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
     const { data, error } = await supabase.rpc("kg_upsert_node", {
       p_kind: n.kind,
       p_name: n.name,

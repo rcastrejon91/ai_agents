@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs"; import path from "path";
+import fs from "fs";
+import path from "path";
 
 let CURRENT = {
   admin: false,
@@ -14,13 +15,21 @@ function logAdminEvent(evt: Record<string, any>) {
     const dir = path.join(process.cwd(), "data");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
     fs.appendFileSync(path.join(dir, "admin_mode.log"), JSON.stringify({ ts: Date.now(), ...evt })+"\n", "utf-8");
-  } catch {}
+  } catch (err) {
+    console.error('Failed to log admin event', err);
+  }
 }
 
 export async function GET(){ return ok(CURRENT); }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json().catch(()=>({}));
+  let body: any = {};
+  try {
+    body = await req.json();
+  } catch (err) {
+    console.error('Failed to parse admin mode body', err);
+    body = {};
+  }
   const { passphrase, pin, admin, personality } = body || {};
   const envPass=(process.env.ADMIN_PASSPHRASE||"").trim().toLowerCase();
   const envPin =(process.env.ADMIN_PIN||"").trim();

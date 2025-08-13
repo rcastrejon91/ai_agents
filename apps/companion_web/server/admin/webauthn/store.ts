@@ -16,7 +16,8 @@ function load(): Record<string, CredentialRecord[]> {
   try {
     const raw = fs.readFileSync(DATA_FILE, 'utf-8');
     return JSON.parse(raw);
-  } catch {
+  } catch (err) {
+    console.error('Failed to load credentials store', err);
     return {};
   }
 }

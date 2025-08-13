@@ -44,12 +44,40 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     const q = String(question).trim(); if (!q) return res.status(400).json({ error: 'missing question' });
 
     // gather free sources
-    const [w, h, r] = await Promise.all([ wiki(q).catch(()=>null), hn(q).catch(()=>[]), rssTech().catch(()=>[]) ]);
+    let w: any = null;
+    let h: any[] = [];
+    let r: any[] = [];
+    await Promise.all([
+      (async () => {
+        try {
+          w = await wiki(q);
+        } catch (err) {
+          console.error('wiki fetch failed', err);
+          w = null;
+        }
+      })(),
+      (async () => {
+        try {
+          h = await hn(q);
+        } catch (err) {
+          console.error('hn fetch failed', err);
+          h = [];
+        }
+      })(),
+      (async () => {
+        try {
+          r = await rssTech();
+        } catch (err) {
+          console.error('rssTech fetch failed', err);
+          r = [];
+        }
+      })(),
+    ]);
     const sources = [
       ...(w ? [w] : []),
       ...h,
-      ...r.slice(0,2),
-    ].slice(0,6);
+      ...r.slice(0, 2),
+    ].slice(0, 6);
 
     // build context for the model
     const context = sources.map((s:any,i:number)=>`[${i+1}] ${s.title}\n${s.url}`).join('\n\n');
@@ -70,7 +98,13 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         body: JSON.stringify({ model: 'gpt-4o-mini', temperature: 0.2, messages:[{role:'user', content: prompt}] })
       });
       if (!r.ok) {
-        const t = await r.text().catch(()=> '');
+        let t = '';
+        try {
+          t = await r.text();
+        } catch (err) {
+          console.error('Failed to read OpenAI error', err);
+          t = '';
+        }
         return res.status(502).json({ error: 'upstream', detail: t.slice(0,400) });
       }
       const j = await r.json();
@@ -78,7 +112,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     }
 
     res.status(200).json({ answer: answerText, sources });
-  } catch (e:any) {
+  } catch (e: any) {
+    console.error('answer route failed', e);
     res.status(500).json({ error: e?.message || 'server_error' });
   }
 }

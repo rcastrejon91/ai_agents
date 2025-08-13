@@ -16,7 +16,13 @@ export default function AdminHealthPanel() {
     const ids = ["RTU-1", "IVU-1"];
     const rs: Robot[] = [];
     for (const id of ids) {
-      const j = await fetch(`/api/robots/${id}/health`).then(r=>r.json()).catch(()=>null);
+      let j: any = null;
+      try {
+        j = await fetch(`/api/robots/${id}/health`).then(r => r.json());
+      } catch (err) {
+        console.error('Failed to fetch robot health', err);
+        j = null;
+      }
       if (j?.robot) rs.push(j.robot);
     }
     setRobots(rs);

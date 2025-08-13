@@ -8,7 +8,13 @@ import { checkScopes, needsStrongAuth } from '@/lib/actions/policy';
 import { executePlan } from '@/lib/actions/executor';
 
 export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => ({}));
+  let body: any = {};
+  try {
+    body = await req.json();
+  } catch (err) {
+    console.error('Failed to parse action request body', err);
+    body = {};
+  }
   const intent = String(body.intent || '').trim();
   const params = (body.params || {}) as Record<string, any>;
   if (!intent)
