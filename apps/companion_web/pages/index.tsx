@@ -3,6 +3,7 @@ import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
 import ActionRunner from "../components/ActionRunner";
+import ActionConsentCard from "../components/ActionConsentCard";
 import HealthDot from "../components/HealthDot";
 
 export default function Home() {
@@ -13,7 +14,8 @@ export default function Home() {
     | { role:'you'; type:'plain'; text:string }
     | { role:'lyra'; type:'plain'; text:string }
     | { role:'lyra'; type:'answer'; text:string; sources:{title:string;url:string}[] }
-    | { role:'lyra'; type:'action'; query:string };
+    | { role:'lyra'; type:'action'; query:string }
+    | { role:'lyra'; type:'consent'; intent:string; consent:any };
   const [messages, setMessages] = useState<Msg[]>([]);
   const [opsLog, setOpsLog] = useState<{t:number;msg:string}[]>([]);
 
@@ -58,20 +60,38 @@ export default function Home() {
     }
   }
 
+  function isActionText(text:string){
+    return /(uber|ride|lyft|transfer|move.*funds|send.*money|trip.*mexico|book.*mexico|airbnb|tiktok|instagram|facebook|call.*store|place.*order|setup.*website|deploy.*site)/i.test(text);
+  }
+
   async function send() {
     const text = input.trim();
     if (!text || busy) return;
     setInput(''); setBusy(true);
-    if (text.startsWith('/do plan:')) {
-      const q = text.replace('/do plan:','').trim();
-      setMessages(m=>[...m,{ role:'you', type:'plain', text }]);
-      setMessages(m=>[...m,{ role:'lyra', type:'action', query:q }]);
-      setBusy(false); return;
-    }
     setMessages(m => [...m, { role:'you', type:'plain', text }]);
     try {
       let handled = false;
-      if (mode === 'credible') {
+      if (isActionText(text)) {
+        const r = await fetch('/api/actions', {
+          method:'POST',
+          headers:{'content-type':'application/json'},
+          body: JSON.stringify({ intent: text })
+        });
+        const data = await r.json();
+        if (data.status === 'needs_consent') {
+          setMessages(m => [...m, { role:'lyra', type:'consent', intent:text, consent:data.consent }]);
+          setOpsLog(l => [{ t: Date.now(), msg: 'Action requires consent' }, ...l].slice(0,50));
+          handled = true;
+        } else if (data.status === 'ok') {
+          setMessages(m => [...m, { role:'lyra', type:'plain', text: 'Action completed.' }]);
+          setOpsLog(l => [{ t: Date.now(), msg: 'Action executed' }, ...l].slice(0,50));
+          handled = true;
+        } else if (data.status === 'needs_scopes') {
+          setMessages(m => [...m, { role:'lyra', type:'plain', text: 'Missing scopes: ' + data.missing.join(', ') }]);
+          handled = true;
+        }
+      }
+      if (!handled && mode === 'credible') {
         handled = await ask(text);
       }
       if (!handled) {
@@ -117,6 +137,8 @@ export default function Home() {
         {messages.map((m,i)=> (
           m.type==='action' ?
             <ActionRunner key={i} query={m.query} />
+          : m.type==='consent' ?
+            <ActionConsentCard key={i} intent={m.intent} consent={m.consent} />
           : m.role==='lyra' && m.type==='answer'
             ? <AnswerCard key={i} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
             : <div key={i} style={{margin:'10px 0'}}>
