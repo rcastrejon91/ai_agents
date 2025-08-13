@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+// Minimal Lyra API route that validates env wiring and proxies to OpenAI.
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { message = "" } = (req.body ?? {}) as { message?: string };
