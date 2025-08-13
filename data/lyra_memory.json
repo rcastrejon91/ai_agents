@@ -1,0 +1,43 @@
+[
+  {
+    "date": "2025-08-13",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Mediators: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Video: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "European: (definition pending — no model key set)",
+      "Trump-Putin: (definition pending — no model key set)",
+      "Friday: (definition pending — no model key set)",
+      "Armoured: (definition pending — no model key set)",
+      "Tuesday: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Ukraine's president says European leaders were united in \"one voice towards one mission\" as they spoke ahead of a Trump-Putin summit on Friday. Mediators say a deal can be pushed through in the weeks before Israel's planned expansion of the war. Video shows mangled train cars piled on top of each other on the tracks, as emergency crews attended the scene Armoured vehicles were spotted at urban centres and tourist sites around the US capital on Tuesday evening. Meltwater is escaping from a basin that is dammed by a glacier - prompting fears of a deluge in state capital Juneau. Mediators say a deal can be pushed through in the weeks before Israel's planned expansion of the war. At least three people have died and dozens more have been inured in Spain, Turkey and Albania. Bodhana Sivanandan, from Harrow, also became the youngest female player to beat a grandmaster. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Video shows mangled train cars piled on top of each other on the tracks, as emergency crews attended the scene"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "This Hormone-Free Pill Could Finally Expand Birth Control Options for Men A new hormone-free birth control pill that reversibly stops sperm production has passed its first safety trial in humans, offering hope for more reversible contraceptive options. Rachel Feltman, Hannah Seo, Fonda Mwangi, Alex Sugiura Spellements: Wednesday, August 13, 2025 Emma R. Hasson These Spiders Puke Up Toxic Digestive Fluid to Marinate Their Prey Alive Gennaro Tomma The Math Trick Hidden in Your Credit Card Number Jack Murtagh Trump Order Gives Political Appointees Vast Powers over Research Grants",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3ce125ea10>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  }
+]
