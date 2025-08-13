@@ -2,19 +2,30 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 // Minimal Lyra API route that validates env wiring and proxies to OpenAI.
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
     const { message = "" } = (req.body ?? {}) as { message?: string };
 
-    // Sanity: env must exist
+    // naive tool inference: pick tools based on message keywords
+    const tools: string[] = [];
+    if (/\btrial|study|paper|pubmed|openalex|arxiv\b/i.test(message)) tools.push("Discovery");
+    if (/\bcbc|cmp|hemoglobin|glucose|platelet|wbc\b/i.test(message)) tools.push("Labs");
+    if (/\bdispatch|deliver|runner|iv|rad|or-|code blue|ops\b/i.test(message)) tools.push("Ops");
+    if (tools.length === 0) tools.push("Chat");
+
     const key = process.env.OPENAI_API_KEY;
     if (!key) {
       console.error("[lyra] missing OPENAI_API_KEY");
-      return res.status(500).json({ error: "Server not configured." });
+      const reply = `(demo) Using ${tools.join(" + ")} → ${message}`;
+      return res.status(200).json({ reply, model: "demo", tools });
     }
 
     // Health ping: allows ?ping=1 check without burning tokens
     if (req.query.ping) {
-      return res.status(200).json({ reply: "pong" });
+      return res.status(200).json({ reply: "pong", model: "demo", tools });
     }
 
     // Call OpenAI
@@ -41,9 +52,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const data = (await openaiRes.json()) as any;
     const reply: string | undefined = data?.choices?.[0]?.message?.content?.trim();
-    return res.status(200).json({ reply: reply ?? "I'm not sure what to say, but I'm here!" });
+    return res.status(200).json({ reply: reply ?? "I'm not sure what to say, but I'm here!", model: "gpt-4o-mini", tools });
   } catch (e: any) {
     console.error("[lyra] exception", e?.stack || e?.message || e);
     return res.status(500).json({ error: "Server error." });
   }
 }
+
