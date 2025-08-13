@@ -20,3 +20,21 @@ Next.js frontend for the Companion project.
 npm install
 npm run dev
 ```
+
+## Research Loop
+
+Additional environment variables for the automated research loop:
+- `OPENAI_API_KEY`
+- `TAVILY_API_KEY` (optional)
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `GITHUB_TOKEN`
+- `REPO_FULL_NAME`
+- `EMAIL_FROM`
+- `EMAIL_TO`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `RESEARCH_SAFE_MODE`
+- `RESEARCH_CRON_SECRET`
