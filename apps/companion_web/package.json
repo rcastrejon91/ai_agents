@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
+    "check:pages": "node scripts/check-pages-default-export.mjs",
+    "prebuild": "npm run check:pages",
     "build": "next build",
     "start": "next start -p 3000"
   },
