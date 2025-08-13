@@ -11,8 +11,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { question } = (req.body ?? {}) as { question?: string };
   if (!question) return res.status(400).json({ error: "Missing question" });
 
-  const { data: anchors } = await supabase.rpc("kg_anchor_nodes", { p_query: question, p_k: 5 }).catch(() => ({ data: [] as any[] }));
-  const anchorIds = (anchors ?? []).map((a: any) => a.id);
+  let anchors: any[] = [];
+  try {
+    const { data } = await supabase.rpc("kg_anchor_nodes", { p_query: question, p_k: 5 });
+    anchors = (data ?? []) as any[];
+  } catch {
+    anchors = [];
+  }
+  const anchorIds = anchors.map((a: any) => a.id);
 
   const { data: edges } = await supabase
     .from("kg_edges")
