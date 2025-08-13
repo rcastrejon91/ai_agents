@@ -5,10 +5,16 @@ export default function HealthDot() {
   const [status, setStatus] = useState<'checking' | 'up' | 'down'>('checking');
 
   useEffect(() => {
-    fetch('/api/selftest')
-      .then(r => r.json())
-      .then(d => setStatus(d.ok ? 'up' : 'down'))
-      .catch(() => setStatus('down'));
+    (async () => {
+      try {
+        const r = await fetch('/api/selftest');
+        const d = await r.json();
+        setStatus(d.ok ? 'up' : 'down');
+      } catch (err) {
+        console.error('Self-test request failed', err);
+        setStatus('down');
+      }
+    })();
   }, []);
 
   const emoji = status === 'checking' ? '⏳' : status === 'up' ? '✅' : '❌';

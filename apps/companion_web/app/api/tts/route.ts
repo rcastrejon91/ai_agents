@@ -2,7 +2,14 @@ export const runtime = 'nodejs';
 import { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const { text, voice } = await req.json();
+  let payload: any = {};
+  try {
+    payload = await req.json();
+  } catch (err) {
+    console.error('Failed to parse TTS request', err);
+    payload = {};
+  }
+  const { text, voice } = payload;
   if (!text || !String(text).trim()) {
     return new Response(
       JSON.stringify({ ok: false, error: 'missing_text' }),
@@ -28,15 +35,21 @@ export async function POST(req: NextRequest) {
   });
 
   if (!res.ok) {
-    const err = await res.text().catch(() => '');
+    let err = '';
+    try {
+      err = await res.text();
+    } catch (e) {
+      console.error('Failed to read TTS error response', e);
+      err = '';
+    }
     return new Response(
       JSON.stringify({ ok: false, error: 'tts_failed', detail: err }),
       { status: 500 }
     );
   }
 
-  const body = res.body!;
-  return new Response(body, {
+  const audio = res.body!;
+  return new Response(audio, {
     status: 200,
     headers: {
       'Content-Type': 'audio/mpeg',

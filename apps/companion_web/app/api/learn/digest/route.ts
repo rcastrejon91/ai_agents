@@ -9,14 +9,26 @@ const EMAIL_TO = process.env.EMAIL_TO!;
 const MAIL_ENDPOINT = process.env.MAIL_ENDPOINT || '';
 const MAIL_API_KEY  = process.env.MAIL_API_KEY || '';
 
-function r<T>(f:string, fb:T):T{ try{ return JSON.parse(fs.readFileSync(path.join(DATA_DIR,f),'utf8')); }catch{ return fb; } }
+function r<T>(f:string, fb:T):T{
+  try {
+    return JSON.parse(fs.readFileSync(path.join(DATA_DIR, f), 'utf8'));
+  } catch (err) {
+    console.error('Failed to read file', f, err);
+    return fb;
+  }
+}
 
 async function send(subject:string, text:string){
   if (!MAIL_ENDPOINT) return;
-  await fetch(MAIL_ENDPOINT, {
-    method:'POST', headers:{'content-type':'application/json','x-mail-key':MAIL_API_KEY},
-    body: JSON.stringify({ from: EMAIL_FROM, to: EMAIL_TO, subject, text })
-  }).catch(()=>{});
+  try {
+    await fetch(MAIL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-mail-key': MAIL_API_KEY },
+      body: JSON.stringify({ from: EMAIL_FROM, to: EMAIL_TO, subject, text })
+    });
+  } catch (err) {
+    console.error('Failed to send digest mail', err);
+  }
 }
 
 export async function POST(){

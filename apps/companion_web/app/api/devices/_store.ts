@@ -17,7 +17,8 @@ function load(): Device[] {
   try {
     const raw = fs.readFileSync(DATA_FILE, 'utf8');
     return JSON.parse(raw);
-  } catch {
+  } catch (err) {
+    console.error('Failed to load device store', err);
     return [];
   }
 }

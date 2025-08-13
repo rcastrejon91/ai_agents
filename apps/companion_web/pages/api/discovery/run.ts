@@ -24,9 +24,25 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   const { topic = "" } = req.body || {};
   if (!topic) return res.status(400).json({ error:"topic required" });
 
-  const [papers, trials] = await Promise.all([
-    fetchOpenAlex(topic).catch(()=>[]),
-    fetchClinicalTrials(topic).catch(()=>[]),
+  let papers: any[] = [];
+  let trials: any[] = [];
+  await Promise.all([
+    (async () => {
+      try {
+        papers = await fetchOpenAlex(topic);
+      } catch (err) {
+        console.error('OpenAlex fetch failed', err);
+        papers = [];
+      }
+    })(),
+    (async () => {
+      try {
+        trials = await fetchClinicalTrials(topic);
+      } catch (err) {
+        console.error('ClinicalTrials fetch failed', err);
+        trials = [];
+      }
+    })(),
   ]);
 
   let summary = `Found ${papers.length} recent papers and ${trials.length} trials for “${topic}”.`;
@@ -47,7 +63,10 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       });
       const j = await r.json();
       summary = j?.choices?.[0]?.message?.content || summary;
-    } catch { /* keep fallback */ }
+    } catch (err) {
+      console.error('OpenAI summary request failed', err);
+      /* keep fallback */
+    }
   }
 
   return res.status(200).json({

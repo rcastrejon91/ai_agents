@@ -60,7 +60,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   if (!resp.ok) {
-    const text = await resp.text().catch(() => "");
+    let text = "";
+    try {
+      text = await resp.text();
+    } catch (err) {
+      console.error('[med/ask] failed reading error body', err);
+      text = "";
+    }
     console.error("[med/ask] upstream", resp.status, text);
     return res.status(502).json({ error: "Upstream error." });
   }
@@ -99,58 +105,69 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 /** -------- Retrieval helpers (free, no key needed) ---------- **/
 async function searchPubMed(q: string): Promise<Doc[]> {
   // E-utilities: esearch + esummary
-  const ids = await fetch(
-    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`
-  )
-    .then((r) => r.json())
-    .then((j) => j.esearchresult?.idlist ?? [])
-    .catch(() => []);
-  const idStr = ids.join(",");
-  if (!idStr) return [];
-  const sum = await fetch(
-    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`
-  )
-    .then((r) => r.json())
-    .catch(() => ({}));
-  const result: Doc[] = [];
-  for (const id of ids) {
-    const it = sum.result?.[id];
-    if (!it) continue;
-    result.push({
-      id,
-      title: it.title,
-      url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
-      snippet: `${it.title}. ${it.source ?? ""} ${it.pubdate ?? ""}`,
-    });
+  try {
+    const idsResp = await fetch(
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`
+    );
+    const idsJson = await idsResp.json();
+    const ids: string[] = idsJson.esearchresult?.idlist ?? [];
+    const idStr = ids.join(",");
+    if (!idStr) return [];
+    const sumResp = await fetch(
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`
+    );
+    const sum = await sumResp.json();
+    const result: Doc[] = [];
+    for (const id of ids) {
+      const it = sum.result?.[id];
+      if (!it) continue;
+      result.push({
+        id,
+        title: it.title,
+        url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+        snippet: `${it.title}. ${it.source ?? ""} ${it.pubdate ?? ""}`,
+      });
+    }
+    return result;
+  } catch (err) {
+    console.error('searchPubMed failed', err);
+    return [];
   }
-  return result;
 }
 
 async function searchClinicalTrials(q: string): Promise<Doc[]> {
   const url = `https://clinicaltrials.gov/api/query/study_fields?expr=${encodeURIComponent(q)}&fields=BriefTitle,NCTId,Condition,BriefSummary&min_rnk=1&max_rnk=5&fmt=json`;
-  const j = await fetch(url)
-    .then((r) => r.json())
-    .catch(() => null);
-  const rows = j?.StudyFieldsResponse?.StudyFields ?? [];
-  return rows.map((r: any) => ({
-    id: r.NCTId?.[0] ?? "",
-    title: r.BriefTitle?.[0] ?? "Clinical trial",
-    url: `https://clinicaltrials.gov/study/${r.NCTId?.[0] ?? ""}`,
-    snippet: r.BriefSummary?.[0] ?? "",
-  }));
+  try {
+    const r = await fetch(url);
+    const j = await r.json();
+    const rows = j?.StudyFieldsResponse?.StudyFields ?? [];
+    return rows.map((r: any) => ({
+      id: r.NCTId?.[0] ?? "",
+      title: r.BriefTitle?.[0] ?? "Clinical trial",
+      url: `https://clinicaltrials.gov/study/${r.NCTId?.[0] ?? ""}`,
+      snippet: r.BriefSummary?.[0] ?? "",
+    }));
+  } catch (err) {
+    console.error('searchClinicalTrials failed', err);
+    return [];
+  }
 }
 
 async function searchFDALabels(q: string): Promise<Doc[]> {
   // OpenFDA drug labels
   const url = `https://api.fda.gov/drug/label.json?search=${encodeURIComponent(q)}&limit=3`;
-  const j = await fetch(url)
-    .then((r) => r.json())
-    .catch(() => null);
-  const results = j?.results ?? [];
-  return results.map((r: any, i: number) => ({
-    id: r.id ?? String(i),
-    title: r.openfda?.brand_name?.[0] ?? "Drug label",
-    url: `https://api.fda.gov/drug/label.json?search=id:${r.id}`,
-    snippet: (r.indications_and_usage ?? r.description ?? [""])[0],
-  }));
+  try {
+    const r = await fetch(url);
+    const j = await r.json();
+    const results = j?.results ?? [];
+    return results.map((r: any, i: number) => ({
+      id: r.id ?? String(i),
+      title: r.openfda?.brand_name?.[0] ?? "Drug label",
+      url: `https://api.fda.gov/drug/label.json?search=id:${r.id}`,
+      snippet: (r.indications_and_usage ?? r.description ?? [""])[0],
+    }));
+  } catch (err) {
+    console.error('searchFDALabels failed', err);
+    return [];
+  }
 }

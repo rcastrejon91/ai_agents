@@ -45,7 +45,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     if (!openaiRes.ok) {
-      const errText = await openaiRes.text().catch(() => "");
+      let errText = "";
+      try {
+        errText = await openaiRes.text();
+      } catch (err) {
+        console.error('[lyra] failed to read error body', err);
+        errText = "";
+      }
       console.error("[lyra] upstream error", openaiRes.status, errText);
       return res.status(502).json({ error: "Upstream error." });
     }

@@ -12,10 +12,29 @@ async function log(task_id: string, phase: string, payload: any) {
 
 async function searchBundle(query: string) {
   // Wiki + arXiv + HN as a minimal trio; Tavily if key exists
-  const [wiki, arxiv, hn] = await Promise.all([
-    safeFetchJSON(`/api/free/wiki?q=${encodeURIComponent(query)}`),
-    safeFetchJSON(`/api/free/arxiv?q=${encodeURIComponent(query)}`).catch(()=>({items:[]})),
-    safeFetchJSON(`/api/free/hn`).catch(()=>([])),
+  let wiki: any = null;
+  let arxiv: any = { items: [] };
+  let hn: any[] = [];
+  await Promise.all([
+    (async () => {
+      wiki = await safeFetchJSON(`/api/free/wiki?q=${encodeURIComponent(query)}`);
+    })(),
+    (async () => {
+      try {
+        arxiv = await safeFetchJSON(`/api/free/arxiv?q=${encodeURIComponent(query)}`);
+      } catch (err) {
+        console.error('arXiv fetch failed', err);
+        arxiv = { items: [] };
+      }
+    })(),
+    (async () => {
+      try {
+        hn = await safeFetchJSON(`/api/free/hn`);
+      } catch (err) {
+        console.error('HN fetch failed', err);
+        hn = [];
+      }
+    })(),
   ]);
   return { wiki, arxiv, hn };
 }
@@ -50,7 +69,11 @@ async function llmSummarize(objective: string, bundle: any) {
   const txt = j?.choices?.[0]?.message?.content || '';
   const propsMatch = txt.match(/\[([\s\S]*?)\]\s*$/); // last JSON array
   let proposals:any[] = [];
-  try { proposals = propsMatch ? JSON.parse(propsMatch[0]) : []; } catch {}
+  try {
+    proposals = propsMatch ? JSON.parse(propsMatch[0]) : [];
+  } catch (err) {
+    console.error('Failed to parse proposals JSON', err);
+  }
   const summary = txt.replace(/\[([\s\S]*?)\]\s*$/,'').trim();
   return { summary, proposals };
 }

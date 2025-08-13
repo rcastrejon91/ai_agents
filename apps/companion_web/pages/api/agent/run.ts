@@ -37,7 +37,12 @@ User: ${q}`;
   if (!r.ok) throw new Error('llm plan failed');
   const j = await r.json();
   const txt = j?.choices?.[0]?.message?.content || '[]';
-  try { return JSON.parse(txt) as Step[]; } catch { return heuristicPlan(q); }
+  try {
+    return JSON.parse(txt) as Step[];
+  } catch (err) {
+    console.error('Failed to parse LLM plan', err);
+    return heuristicPlan(q);
+  }
 }
 
 function fillTemplates(args:Record<string,string>, ctx:Record<string,any>) {
@@ -66,7 +71,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse<Ru
     // Execute steps client-side; this API just returns the plan.
     // (Safer, avoids server SSRF. The client will call our /api/free/* routes.)
     return res.status(200).json({ plan, outputs: [], summary: 'Client should execute steps and report back.' });
-  }catch(e:any){
+  } catch (e: any) {
+    console.error('Agent run failed', e);
     return res.status(500).json({ error: e?.message || 'agent_error' });
   }
 }
