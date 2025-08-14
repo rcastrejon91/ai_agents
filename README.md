@@ -26,6 +26,12 @@ when one is not supplied. Inspect stored history or run a quick demo via:
 python controller.py --test-memory
 ```
 
+### Visualizing Session Activity
+
+The Streamlit dashboard now includes a simple bar chart that displays how many
+records are stored for each session. Launch `app.py` to explore agent interactions
+and view session counts at a glance.
+
 ### Reactive World State
 
 The system now includes a lightweight world state engine that mutates the
