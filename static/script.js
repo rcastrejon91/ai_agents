@@ -1,42 +1,10 @@
-let isMuted = false;
-let currentMood = "neutral";
-
-function appendMessage(sender, message) {
+document.getElementById("sendBtn").addEventListener("click", () => {
+    const msg = document.getElementById("chatInput").value;
     const log = document.getElementById("chatLog");
-    log.innerHTML += `<p><b>${sender}:</b> ${message}</p>`;
-    log.scrollTop = log.scrollHeight;
-}
-
-async function lyraSpeak(text, mood = currentMood) {
-    if (isMuted) return;
-    const res = await fetch(`${LYRA_API_URL}/speak`, {
+    log.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+    fetch("/speak", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, mood })
+        body: JSON.stringify({ text: msg })
     });
-    const audioBlob = await res.blob();
-    const audioUrl = URL.createObjectURL(audioBlob);
-    new Audio(audioUrl).play();
-}
-
-function autoDetectMood(message) {
-    if (message.includes("sad")) currentMood = "calm";
-    else if (message.includes("excited")) currentMood = "cheerful";
-    else currentMood = "neutral";
-}
-
-document.getElementById("sendBtn").addEventListener("click", async () => {
-    const input = document.getElementById("chatInput");
-    const text = input.value.trim();
-    if (!text) return;
-    appendMessage("You", text);
-    autoDetectMood(text);
-    appendMessage("Lyra", text); // Placeholder until backend GPT hooked
-    await lyraSpeak(text);
-    input.value = "";
-});
-
-document.getElementById("muteBtn").addEventListener("click", () => {
-    isMuted = !isMuted;
-    document.getElementById("muteBtn").textContent = isMuted ? "🔊 Unmute" : "🔇 Mute";
 });
