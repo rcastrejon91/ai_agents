@@ -18,9 +18,9 @@ export default function ChatBox({ muted }) {
         body: JSON.stringify({ message: userMessage })
       });
       const data = await res.json();
-      setMessages(prev => [...prev, { sender: 'lyra', text: data.response }]);
+      setMessages(prev => [...prev, { sender: 'lyra', text: data.reply }]);
       if (!muted && typeof window !== 'undefined') {
-        const utter = new SpeechSynthesisUtterance(data.response);
+        const utter = new SpeechSynthesisUtterance(data.reply);
         window.speechSynthesis.speak(utter);
       }
     } catch (err) {
