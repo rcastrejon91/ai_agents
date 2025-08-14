@@ -3,14 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AITaskFlo - Automation Tools</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Lyra Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #dashboard { display: none; }
+        button { margin: 5px; }
+        pre { background: #f0f0f0; padding: 10px; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>AITaskFlo AI Agent 🤖✨</h1>
-        <p>Automation Tools For The Future Of AI Workflows</p>
-        <a href="https://github.com/rcastrejon91/ai_agents" class="btn">View on GitHub</a>
+    <div id="login">
+        <h2>Admin Login</h2>
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="login-status"></p>
     </div>
+
+    <div id="dashboard">
+        <h1>Lyra Admin Command Center</h1>
+        <div>
+            <button onclick="learn()">Learn</button>
+            <button onclick="dailyReport()">Daily Report</button>
+        </div>
+        <div>
+            <h3>Speak</h3>
+            <input id="speak-text" placeholder="Text to speak" />
+            <select id="speak-mood">
+                <option value="neutral">Neutral</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+            </select>
+            <button onclick="speak()">Speak</button>
+            <audio id="audio" controls></audio>
+        </div>
+        <div>
+            <h3>Listen</h3>
+            <button onclick="listen()">Listen</button>
+            <p id="transcript"></p>
+        </div>
+        <div>
+            <h3>Terminal</h3>
+            <input id="command" placeholder="Enter command" />
+            <button onclick="runCommand()">Run</button>
+            <pre id="terminal-output"></pre>
+        </div>
+    </div>
+
+    <script>
+    let adminPassword = "";
+
+    async function login() {
+        const pwd = document.getElementById('password').value;
+        const res = await fetch('/verify_admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: pwd })
+        });
+        const data = await res.json();
+        if (data.access) {
+            adminPassword = pwd;
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        } else {
+            document.getElementById('login-status').innerText = 'Access denied';
+        }
+    }
+
+    async function learn() {
+        await fetch('/learn', { method: 'POST' });
+    }
+
+    async function dailyReport() {
+        const res = await fetch('/daily_report');
+        const data = await res.json();
+        alert(data.status + "\n\n" + data.report);
+    }
+
+    async function speak() {
+        const text = document.getElementById('speak-text').value;
+        const mood = document.getElementById('speak-mood').value;
+        const res = await fetch('/speak', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text, mood: mood })
+        });
+        const blob = await res.blob();
+        document.getElementById('audio').src = URL.createObjectURL(blob);
+    }
+
+    async function listen() {
+        const res = await fetch('/listen');
+        const data = await res.json();
+        document.getElementById('transcript').innerText = data.transcript;
+    }
+
+    async function runCommand() {
+        const command = document.getElementById('command').value;
+        const res = await fetch('/run_command', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: adminPassword, command: command })
+        });
+        const data = await res.json();
+        document.getElementById('terminal-output').innerText = data.output;
+    }
+    </script>
 </body>
 </html>
+

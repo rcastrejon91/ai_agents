@@ -22,3 +22,8 @@ openai>=1.40.0
 streamlit
 requests
 torch
+
+# Web interface
+Flask
+gTTS
+SpeechRecognition
