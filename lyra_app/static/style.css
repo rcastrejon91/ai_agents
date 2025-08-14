@@ -42,3 +42,12 @@ footer button {
     color: white;
     cursor: pointer;
 }
+.section {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #0f0;
+}
+
+textarea, input {
+    width: 100%;
+}

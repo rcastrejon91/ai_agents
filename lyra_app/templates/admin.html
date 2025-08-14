@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lyra Admin Command Center</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>🛡️ Lyra Admin Command Center</h1>
+
+<div class="section">
+    <h3>📚 Trigger Lyra Learning</h3>
+    <button onclick="triggerLearning()">Run Learning Protocols</button>
+</div>
+
+<div class="section">
+    <h3>📩 Fetch Private Daily Report</h3>
+    <button onclick="fetchPrivateReport()">Get Report</button>
+    <pre id="privateReport"></pre>
+</div>
+
+<div class="section">
+    <h3>💻 Remote Terminal</h3>
+    <textarea id="terminalCommand" placeholder="Enter command..."></textarea>
+    <button onclick="runTerminalCommand()">Run</button>
+    <div id="terminal-output"></div>
+</div>
+
+<script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>
