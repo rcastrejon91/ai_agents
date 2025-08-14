@@ -33,6 +33,10 @@
     <button onclick="lyraSpeakPrompt()">🗣 Speak</button>
     <button onclick="lyraListen()">🎤 Listen</button>
 
+    <h3>📊 System Vitals</h3>
+    <p>CPU: <span id="cpuUsage">0</span>%</p>
+    <p>Memory: <span id="memUsage">0</span>%</p>
+
     <h3>📜 Output Log</h3>
     <div id="chatLog" style="background:#111; padding:10px; height:200px; overflow:auto;"></div>
 
@@ -46,6 +50,7 @@
 const LYRA_API_URL = "http://localhost:5000";
 let isMuted = false;
 let currentMood = "neutral";
+let isAdmin = false;
 
 function verifyAdmin() {
     const password = document.getElementById("adminPass").value;
@@ -59,6 +64,7 @@ function verifyAdmin() {
         if (data.access) {
             document.getElementById("loginPanel").classList.add("hidden");
             document.getElementById("adminPanel").classList.remove("hidden");
+            isAdmin = true;
         } else {
             document.getElementById("loginStatus").innerText = "❌ Wrong password";
         }
@@ -117,6 +123,15 @@ function runCommand() {
 function appendMessage(sender, msg) {
     document.getElementById("chatLog").innerHTML += `<p><b>${sender}:</b> ${msg}</p>`;
 }
+
+async function updateVitals() {
+    if (!isAdmin) return;
+    const res = await fetch(`${LYRA_API_URL}/system_stats`);
+    const data = await res.json();
+    document.getElementById("cpuUsage").innerText = data.cpu.toFixed(1);
+    document.getElementById("memUsage").innerText = data.memory.toFixed(1);
+}
+setInterval(updateVitals, 2000);
 </script>
 </body>
 </html>

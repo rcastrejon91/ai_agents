@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, send_file
+import psutil
 import datetime
 import smtplib
 from email.mime.text import MIMEText
@@ -152,6 +153,14 @@ def terminal():
     except Exception as e:
         result = str(e)
     return jsonify({"output": result})
+
+@app.route("/system_stats")
+def system_stats():
+    stats = {
+        "cpu": psutil.cpu_percent(interval=0.5),
+        "memory": psutil.virtual_memory().percent
+    }
+    return jsonify(stats)
 
 if __name__ == "__main__":
     lyra.learn_security()
