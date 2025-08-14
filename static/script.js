@@ -1,5 +1,5 @@
+const LYRA_API_URL = window.location.origin;
 let isMuted = false;
-let currentMood = "neutral";
 
 function appendMessage(sender, message) {
     const log = document.getElementById("chatLog");
@@ -7,33 +7,29 @@ function appendMessage(sender, message) {
     log.scrollTop = log.scrollHeight;
 }
 
-async function lyraSpeak(text, mood = currentMood) {
-    if (isMuted) return;
-    const res = await fetch(`${LYRA_API_URL}/speak`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, mood })
-    });
-    const audioBlob = await res.blob();
-    const audioUrl = URL.createObjectURL(audioBlob);
-    new Audio(audioUrl).play();
-}
-
-function autoDetectMood(message) {
-    if (message.includes("sad")) currentMood = "calm";
-    else if (message.includes("excited")) currentMood = "cheerful";
-    else currentMood = "neutral";
-}
-
 document.getElementById("sendBtn").addEventListener("click", async () => {
     const input = document.getElementById("chatInput");
     const text = input.value.trim();
     if (!text) return;
+
     appendMessage("You", text);
-    autoDetectMood(text);
-    appendMessage("Lyra", text); // Placeholder until backend GPT hooked
-    await lyraSpeak(text);
     input.value = "";
+
+    const res = await fetch(`${LYRA_API_URL}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+    });
+    const data = await res.json();
+    appendMessage("Lyra", data.response);
+
+    if (!isMuted) {
+        await fetch(`${LYRA_API_URL}/speak`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: data.response })
+        });
+    }
 });
 
 document.getElementById("muteBtn").addEventListener("click", () => {

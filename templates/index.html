@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Lyra AI Chat</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
         <h1>💬 Lyra AI</h1>
         <button id="muteBtn">🔇 Mute</button>
+        <a href="/login" class="admin-link">Admin Login</a>
     </header>
 
     <main id="chatLog"></main>
@@ -18,9 +19,6 @@
         <button id="sendBtn">Send</button>
     </footer>
 
-    <script>
-        const LYRA_API_URL = window.location.origin;
-    </script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
