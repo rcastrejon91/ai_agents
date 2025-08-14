@@ -4,3 +4,4 @@ dist/
 .env
 apps/companion_api/.env
 apps/companion_web/.env.local
+lyra_app/lyra.db
