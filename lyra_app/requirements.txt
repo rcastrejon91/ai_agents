@@ -1,0 +1,6 @@
+Flask
+Flask-Session
+gTTS
+SpeechRecognition
+pyaudio
+python-dotenv
