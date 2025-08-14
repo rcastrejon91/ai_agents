@@ -6,6 +6,7 @@ import io
 from gtts import gTTS
 import speech_recognition as sr
 import subprocess
+import os
 
 # --- CONFIG ---
 OWNER_NAME = "Ricky"
@@ -13,6 +14,7 @@ OWNER_EMAIL = "ricardomcastrejon@gmail.com"
 GMAIL_USER = "YOUR_EMAIL"       # Set in env vars
 GMAIL_PASS = "YOUR_PASSWORD"    # Set in env vars
 ADMIN_PASSWORD = "supersecret"  # Change this
+ADMIN_KEY = os.getenv("LYRA_ADMIN_KEY", "YOUR_SECRET_KEY")
 
 app = Flask(__name__)
 
@@ -137,8 +139,12 @@ def listen():
 
 @app.route("/terminal", methods=["POST"])
 def terminal():
-    data = request.get_json()
-    cmd = data.get("command")
+    key = request.headers.get("Admin-Key") or ""
+    if key != ADMIN_KEY:
+        return jsonify({"error": "Unauthorized"}), 403
+
+    data = request.get_json() or {}
+    cmd = data.get("command", "")
     try:
         result = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True, timeout=10)
     except subprocess.CalledProcessError as e:
