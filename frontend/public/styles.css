@@ -1,0 +1,71 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.chat-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.user {
+  text-align: right;
+  background: #dcf8c6;
+  padding: 5px 8px;
+  border-radius: 10px;
+  margin: 3px 0;
+}
+
+.lyra {
+  text-align: left;
+  background: #f1f0f0;
+  padding: 5px 8px;
+  border-radius: 10px;
+  margin: 3px 0;
+}
+
+.input-row {
+  display: flex;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 8px;
+}
+
+.input-row button {
+  padding: 8px;
+}
+
+.mode-bubble {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #007bff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 50px;
+}
+
+.mute-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+}
+
+.mic-button {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  font-size: 20px;
+}
