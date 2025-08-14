@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyra Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Lyra Admin Command Center</h1>
+    <button id="getReportBtn">📅 Get Daily Report</button>
+    <button id="learnBtn">📚 Force Learn</button>
+    <h2>Output</h2>
+    <pre id="output"></pre>
+
+    <h2>Live Terminal</h2>
+    <textarea id="terminalInput" placeholder="Type Python code..."></textarea>
+    <button id="runTerminalBtn">Run Code</button>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>
