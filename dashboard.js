@@ -31,10 +31,25 @@ function autoDetectMood(message) {
 }
 
 document.getElementById("sendBtn").addEventListener("click", async () => {
-    const input = document.getElementById("chatInput").value;
+    const inputEl = document.getElementById("chatInput");
+    const input = inputEl.value.trim();
+    if (!input) return;
     autoDetectMood(input);
     appendMessage("You", input);
-    await lyraSpeak(input, currentMood);
+    inputEl.value = "";
+    try {
+        const res = await fetch(`${LYRA_API_URL}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: input })
+        });
+        const data = await res.json();
+        const reply = data.reply || "";
+        appendMessage("Lyra", reply);
+        await lyraSpeak(reply, currentMood);
+    } catch (err) {
+        appendMessage("Lyra", "Error: " + err.message);
+    }
 });
 
 document.getElementById("muteBtn").addEventListener("click", () => {
@@ -43,17 +58,17 @@ document.getElementById("muteBtn").addEventListener("click", () => {
 
 document.getElementById("runTerminalBtn").addEventListener("click", () => {
     const code = document.getElementById("terminalInput").value;
-    fetch(`${LYRA_API_URL}/run_code`, {
+    fetch(`${LYRA_API_URL}/terminal`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "X-Admin-Key": ADMIN_KEY
         },
-        body: JSON.stringify({ code })
+        body: JSON.stringify({ command: code })
     })
     .then(res => res.json())
     .then(data => {
-        appendMessage("Terminal Output", data.result || data.error);
+        appendMessage("Terminal Output", data.output || data.error);
     });
 });
 

@@ -7,7 +7,7 @@ from gtts import gTTS
 import speech_recognition as sr
 import subprocess
 import os
-from openai import OpenAI
+import openai
 
 # --- CONFIG ---
 OWNER_NAME = "Ricky"
@@ -15,8 +15,9 @@ OWNER_EMAIL = "ricardomcastrejon@gmail.com"
 GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_PASS = os.getenv("GMAIL_PASS")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASS", "supersecret")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-client = OpenAI()  # uses OPENAI_API_KEY from environment
+openai.api_key = OPENAI_API_KEY
 
 app = Flask(__name__)
 
@@ -71,8 +72,6 @@ class LyraAI:
         return report
 
     def email_report(self):
-        if not GMAIL_USER or not GMAIL_PASS:
-            return
         msg = MIMEText(self.daily_report())
         msg['Subject'] = f"Lyra AI Update – {datetime.date.today().isoformat()}"
         msg['From'] = GMAIL_USER
@@ -83,19 +82,6 @@ class LyraAI:
             server.login(GMAIL_USER, GMAIL_PASS)
             server.sendmail(msg['From'], [msg['To']], msg.as_string())
 
-    def chat(self, text: str) -> str:
-        system_prompt = (
-            "You are Lyra, an AI assistant with expertise in cybersecurity and medicine. "
-            "Respond in Lyra's helpful and concise style."
-        )
-        completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": text},
-            ],
-        )
-        return completion.choices[0].message.content
 
 lyra = LyraAI()
 
@@ -108,12 +94,14 @@ def verify_admin():
         return jsonify({"access": True})
     return jsonify({"access": False})
 
+
 @app.route("/learn", methods=["POST"])
 def learn():
     lyra.learn_security()
     lyra.learn_medicine()
     lyra.email_report()
     return jsonify({"status": "Learning complete, email sent"})
+
 
 @app.route("/daily_report", methods=["GET"])
 def daily_report_api():
@@ -125,11 +113,6 @@ def daily_report_api():
         status = f"Email failed: {e}"
     return jsonify({"status": status, "report": report_text})
 
-@app.route("/chat", methods=["POST"])
-def chat_route():
-    user_text = request.json.get("text", "")
-    response = lyra.chat(user_text)
-    return jsonify({"response": response})
 
 @app.route("/speak", methods=["POST"])
 def speak():
@@ -141,6 +124,7 @@ def speak():
     audio_buffer.seek(0)
     return send_file(audio_buffer, mimetype="audio/mpeg")
 
+
 @app.route("/listen", methods=["GET"])
 def listen():
     recognizer = sr.Recognizer()
@@ -151,6 +135,7 @@ def listen():
     except Exception:
         transcript = ""
     return jsonify({"transcript": transcript})
+
 
 @app.route("/terminal", methods=["POST"])
 def terminal():
@@ -164,8 +149,31 @@ def terminal():
         result = str(e)
     return jsonify({"output": result})
 
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.json.get("message", "")
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are Lyra, a friendly, advanced AI assistant with expertise in security, medicine, and personal support.",
+                },
+                {"role": "user", "content": user_message},
+            ],
+            temperature=0.8,
+        )
+        reply = completion.choices[0].message["content"]
+    except Exception as e:
+        reply = f"Error: {e}"
+    return jsonify({"reply": reply})
+
+
 if __name__ == "__main__":
     lyra.learn_security()
     lyra.learn_medicine()
     lyra.email_report()
     app.run(host="0.0.0.0", port=5000)
+

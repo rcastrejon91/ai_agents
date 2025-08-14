@@ -18,7 +18,7 @@ export default function Home() {
     });
     const data = await res.json();
 
-    setMessages((prev) => [...prev, { sender: "user", text }, { sender: "lyra", text: data.response }]);
+    setMessages((prev) => [...prev, { sender: "user", text }, { sender: "lyra", text: data.reply }]);
   };
 
   return (
