@@ -4,3 +4,7 @@ dist/
 .env
 apps/companion_api/.env
 apps/companion_web/.env.local
+lyra-ai/frontend/.next/
+lyra-ai/frontend/node_modules/
+lyra-ai/frontend/out/
+!lyra-ai/.env

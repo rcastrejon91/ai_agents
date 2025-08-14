@@ -1,0 +1,15 @@
+version: '3'
+services:
+  backend:
+    build: .
+    ports:
+      - '5000:5000'
+    env_file: .env
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:5000
+    depends_on:
+      - backend
