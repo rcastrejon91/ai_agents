@@ -26,3 +26,6 @@ torch
 Flask==3.0.3
 Flask-Cors==4.0.0
 gTTS==2.5.4
+
+SpeechRecognition==3.10.0
+PyAudio==0.2.13
