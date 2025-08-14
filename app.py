@@ -4,6 +4,7 @@ import json
 import asyncio
 
 import streamlit as st
+import pandas as pd
 
 from controller import AgentController
 
@@ -26,8 +27,16 @@ if st.button("Run"):
 
 if controller.memory:
     st.subheader("History")
-    for sid, entries in controller.memory.fetch_all().items():
+    memory_data = controller.memory.fetch_all()
+    for sid, entries in memory_data.items():
         st.write(f"Session {sid}:")
         for item in entries:
             st.json(item)
+
+    # Simple data visualization of session activity
+    session_counts = {sid: len(entries) for sid, entries in memory_data.items()}
+    if session_counts:
+        st.subheader("Session Activity")
+        df = pd.DataFrame(list(session_counts.items()), columns=["session", "entries"]).set_index("session")
+        st.bar_chart(df)
 

@@ -20,6 +20,7 @@ loguru==0.7.2
 # Future AI/LLM integration placeholders
 openai>=1.40.0
 streamlit
+pandas
 requests
 torch
 Flask==3.0.3
