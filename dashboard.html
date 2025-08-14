@@ -9,6 +9,29 @@
 <body>
   <h1>Lyra Admin Dashboard</h1>
 
+  <section id="vitals-section" class="vitals-panel">
+    <h2>🛡 Lyra Vitals Monitor</h2>
+    <div class="vital-grid">
+      <div class="vital" id="cpu-vital">
+        <label>CPU</label>
+        <div class="gauge"><span></span></div>
+      </div>
+      <div class="vital" id="memory-vital">
+        <label>Memory</label>
+        <div class="gauge"><span></span></div>
+      </div>
+      <div class="vital" id="disk-vital">
+        <label>Disk</label>
+        <div class="gauge"><span></span></div>
+      </div>
+    </div>
+    <div class="lyra-status">
+      <p>🫀 Lyra Heartbeat: <span id="heartbeat" class="pulse"></span></p>
+      <p>😶 Mood: <span id="lyra-mood">Neutral</span></p>
+      <p>🔇 Muted: <span id="lyra-muted">No</span></p>
+    </div>
+  </section>
+
   <div class="section">
     <h2>Chat</h2>
     <div id="chatLog" class="log"></div>

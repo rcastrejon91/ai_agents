@@ -44,3 +44,65 @@ button {
 button:hover {
   background: #45a049;
 }
+
+.vitals-panel {
+  background: #0d0d0d;
+  border: 2px solid #0ff;
+  border-radius: 12px;
+  padding: 20px;
+  color: #0ff;
+  font-family: monospace;
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
+
+.vital-grid {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.vital {
+  flex: 1;
+  text-align: center;
+}
+
+.vital label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.gauge {
+  background: #111;
+  border: 1px solid #0ff;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gauge span {
+  display: block;
+  height: 100%;
+  background: lime;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.lyra-status {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.pulse {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: red;
+  border-radius: 50%;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); background: red; }
+  50% { transform: scale(1.3); background: #ff6666; }
+}

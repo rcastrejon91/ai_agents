@@ -4,15 +4,21 @@ from gtts import gTTS
 import io
 import contextlib
 import traceback
+import psutil
 
 app = Flask(__name__)
 CORS(app)
 
+lyra_mood = "Neutral"
+lyra_muted = False
+
 @app.route('/speak', methods=['POST'])
 def speak():
+    global lyra_mood
     data = request.get_json(force=True)
     text = data.get('text', '')
     mood = data.get('mood', 'neutral')
+    lyra_mood = mood
     tts = gTTS(text)
     audio_bytes = io.BytesIO()
     tts.write_to_fp(audio_bytes)
@@ -31,6 +37,26 @@ def learn():
 @app.route('/daily_report', methods=['GET'])
 def daily_report():
     return jsonify({'report': 'All systems operational.'})
+
+@app.route('/set_mute', methods=['POST'])
+def set_mute():
+    global lyra_muted
+    data = request.get_json(force=True)
+    lyra_muted = bool(data.get('muted', False))
+    return jsonify({'status': 'ok'})
+
+@app.route('/admin/vitals', methods=['GET'])
+def admin_vitals():
+    cpu = psutil.cpu_percent()
+    memory = psutil.virtual_memory().percent
+    disk = psutil.disk_usage('/').percent
+    return jsonify({
+        'cpu_usage': cpu,
+        'memory_usage': memory,
+        'disk_usage': disk,
+        'lyra_mood': lyra_mood,
+        'lyra_muted': lyra_muted
+    })
 
 @app.route('/run_code', methods=['POST'])
 def run_code():

@@ -26,3 +26,4 @@ torch
 Flask==3.0.3
 Flask-Cors==4.0.0
 gTTS==2.5.4
+psutil==5.9.8
