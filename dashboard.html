@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyra Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <h1>Lyra Admin Dashboard</h1>
+
+  <div class="section">
+    <h2>Chat</h2>
+    <div id="chatLog" class="log"></div>
+    <input id="chatInput" type="text" placeholder="Type a message..." />
+    <button id="sendBtn">Send</button>
+    <button id="muteBtn">Mute</button>
+  </div>
+
+  <div class="section">
+    <h2>Admin Terminal</h2>
+    <textarea id="terminalInput" placeholder="Python code"></textarea>
+    <button id="runTerminalBtn">Run Code</button>
+  </div>
+
+  <div class="section">
+    <h2>Reports</h2>
+    <button id="getDailyReportBtn">Get Daily Report</button>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
