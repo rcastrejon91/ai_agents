@@ -57,3 +57,18 @@ body {
 .flex.items-center { display: flex; align-items: center; }
 .flex.gap-2 { display: flex; gap: 0.5rem; }
 .glow { background: linear-gradient(90deg,#6ee7,#8af); color:#001; }
+
+.voice-settings {
+  position: fixed;
+  bottom: 150px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.voice-settings label {
+  display: block;
+  margin: 5px 0;
+}
