@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lyra AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>💬 Lyra AI</h1>
+        <button id="muteBtn">🔇 Mute</button>
+    </header>
+
+    <main id="chatLog"></main>
+
+    <footer>
+        <input id="chatInput" type="text" placeholder="Type your message..." />
+        <button id="sendBtn">Send</button>
+    </footer>
+
+    <script>
+        const LYRA_API_URL = window.location.origin;
+        let isMuted = false;
+        let currentMood = "neutral";
+
+        function appendMessage(sender, message) {
+            const log = document.getElementById("chatLog");
+            log.innerHTML += `<p><b>${sender}:</b> ${message}</p>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        async function lyraSpeak(text, mood = currentMood) {
+            if (isMuted) return;
+            const res = await fetch(`${LYRA_API_URL}/speak`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text, mood })
+            });
+            const audioBlob = await res.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+            new Audio(audioUrl).play();
+        }
+
+        function autoDetectMood(message) {
+            if (message.includes("sad")) currentMood = "calm";
+            else if (message.includes("excited")) currentMood = "cheerful";
+            else currentMood = "neutral";
+        }
+
+        document.getElementById("sendBtn").addEventListener("click", async () => {
+            const input = document.getElementById("chatInput");
+            const text = input.value.trim();
+            if (!text) return;
+            appendMessage("You", text);
+            autoDetectMood(text);
+
+            // Echo for now — connect to GPT or backend here
+            appendMessage("Lyra", text);
+            await lyraSpeak(text);
+            input.value = "";
+        });
+
+        document.getElementById("muteBtn").addEventListener("click", () => {
+            isMuted = !isMuted;
+            document.getElementById("muteBtn").textContent = isMuted ? "🔊 Unmute" : "🔇 Mute";
+        });
+    </script>
+</body>
+</html>
