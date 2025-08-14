@@ -1,4 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { scrubSecrets } from "../../lib/guardian";
+
+const LYRA_MODEL = "gpt-4o-mini";
 
 // Minimal Lyra API route that validates env wiring and proxies to OpenAI.
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -36,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: LYRA_MODEL,
         messages: [
           { role: "system", content: "You are Lyra, a concise, friendly assistant." },
           { role: "user", content: message },
@@ -58,7 +61,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const data = (await openaiRes.json()) as any;
     const reply: string | undefined = data?.choices?.[0]?.message?.content?.trim();
-    return res.status(200).json({ reply: reply ?? "I'm not sure what to say, but I'm here!", model: "gpt-4o-mini", tools });
+    const safeReply = scrubSecrets(reply ?? "I'm not sure what to say, but I'm here!");
+    return res.status(200).json({ reply: safeReply, model: LYRA_MODEL, tools });
   } catch (e: any) {
     console.error("[lyra] exception", e?.stack || e?.message || e);
     return res.status(500).json({ error: "Server error." });
