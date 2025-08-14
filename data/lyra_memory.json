@@ -39,5 +39,44 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3ce125ea10>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-14",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "The Russian: (definition pending — no model key set)",
+      "American: (definition pending — no model key set)",
+      "CCTV: (definition pending — no model key set)",
+      "Ukrainian: (definition pending — no model key set)",
+      "Russian: (definition pending — no model key set)",
+      "Belgorod: (definition pending — no model key set)",
+      "Vyacheslav Gladkov: (definition pending — no model key set)",
+      "Telegram: (definition pending — no model key set)",
+      "Friday: (definition pending — no model key set)",
+      "Alaska: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The US president says if Friday’s summit in Alaska is a “good meeting” he will call Zelensky to arrange a second meeting. The Russian leader senses a chance for more international recognition, while his American counterpart hopes to play peacemaker. CCTV captured the moment a car was hit by a Ukrainian drone in the Russian city of Belgorod, governor Vyacheslav Gladkov said in his official Telegram channel. The document, signed by Hernán Cortés in 1527, is thought to have been taken over three decades ago. The first lady's lawyer has demanded that Joe Biden's son retract claims he made about how she met her husband. The Russian leader senses a chance for more international recognition, while his American counterpart hopes to play peacemaker. Far-right Israeli minister Bezalel Smotrich announced approval for 3,401 new homes in the controversial E1 area project in the occupied West Bank. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The pop superstar gives a rare insight into their life together and reveals details of her new album. CCTV captured the moment a car was hit by a Ukrainian drone in the Russian city of Belgorod, governor Vyacheslav Gladkov said in his official Telegram channel."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "New Brain Device Is First to Read Out Inner Speech A new brain prosthesis can read out inner thoughts in real time, helping people with ALS and brain stem stroke communicate fast and comfortably Emma R. Hasson Wordology: Thursday, August 14, 2025 Sarah Lewin Frasier Why ChatGPT Shouldn’t Be Your Therapist Allison Parshall Entirely New Species of Human Ancestor Discovered Kate Wong Why Glacial Lake Outbursts like the One in Alaska May Happen More Often"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f63e3d08520>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
