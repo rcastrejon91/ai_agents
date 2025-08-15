@@ -1,428 +1,46 @@
-name: Repo Autofix & Deep Checks (everything + K8s/Helm)
-
+name: Autofix Starter
 on:
   workflow_dispatch: {}
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: "0 12 * * *"   # daily at 7am UTC
-
 permissions:
   contents: write
-  pull-requests: write
-
-concurrency:
-  group: autofix-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   autofix:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      - uses: actions/checkout@v4
 
-      - name: Basic OS deps
+      # JS/TS (only if package.json exists)
+      - uses: actions/setup-node@v4
+        if: ${{ hashFiles('package.json') != '' }}
+        with: { node-version: 'lts/*' }
+      - name: ESLint + Prettier (JS/TS)
+        if: ${{ hashFiles('package.json') != '' }}
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y shellcheck jq curl tar
+          npm ci || npm install
+          npx --yes eslint . --fix || true
+          npx --yes prettier . --write || true
 
-      # ===================== JS / TS =====================
-      - name: Setup Node
-        if: ${{ hashFiles('**/package.json') != '' }}
-        uses: actions/setup-node@v4
-        with: { node-version: 'lts/*', cache: 'npm' }
-
-      - name: Find JS package folders
-        if: ${{ hashFiles('**/package.json') != '' }}
-        id: jsdirs
-        shell: bash
-        run: |
-          set -e
-          mapfile -t PKGS < <(git ls-files -- ':/*package.json' ':*/package.json' | xargs -n1 dirname | sort -u)
-          if [ -f package.json ] && ! printf '%s\n' "${PKGS[@]}" | grep -qx '.'; then PKGS=("." "${PKGS[@]}"); fi
-          echo "dirs=$(printf '%s,' "${PKGS[@]}" | sed 's/,$//')" >> "$GITHUB_OUTPUT"
-
-      - name: ESLint / Prettier / TS check / tests
-        if: ${{ steps.jsdirs.outputs.dirs != '' }}
-        shell: bash
-        run: |
-          IFS=',' read -r -a DIRS <<< "${{ steps.jsdirs.outputs.dirs }}"
-          for d in "${DIRS[@]}"; do
-            echo "=== JS in $d ==="
-            pushd "$d" >/dev/null
-              if [ -f package.json ]; then
-                npm ci || npm install || true
-                npx --yes eslint . --fix || true
-                npx --yes prettier . --write || true
-                if ls tsconfig*.json >/dev/null 2>&1; then npx --yes tsc --noEmit || true; fi
-                if npm run | grep -q "^  test"; then npm test --silent || true; fi
-              fi
-            popd >/dev/null
-          done
-
-      - name: Global Prettier (md,yml,yaml,json)
-        if: ${{ hashFiles('**/*.md') != '' || hashFiles('**/*.yml') != '' || hashFiles('**/*.yaml') != '' || hashFiles('**/*.json') != '' }}
-        run: |
-          npx --yes prettier "**/*.{md,markdown,yml,yaml,json}" --write || true
-
-      - name: cspell (spelling)
-        if: ${{ hashFiles('**/*.md') != '' || hashFiles('**/*.ts') != '' || hashFiles('**/*.js') != '' || hashFiles('**/*.py') != '' }}
-        uses: streetsidesoftware/cspell-action@v6
-        with:
-          incremental_files_only: false
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
-      - name: Link check (Markdown)
-        if: ${{ hashFiles('**/*.md') != '' }}
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: --verbose --no-progress "**/*.md" --exclude-mail
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
-      # ===================== Python =====================
-      - name: Setup Python
+      # Python (only if *.py exists)
+      - uses: actions/setup-python@v5
         if: ${{ hashFiles('**/*.py') != '' }}
-        uses: actions/setup-python@v5
-        with: { python-version: '3.11', cache: 'pip' }
-
-      - name: Install Python tooling
+        with: { python-version: '3.11' }
+      - name: Ruff/Black/isort (Py)
         if: ${{ hashFiles('**/*.py') != '' }}
         run: |
           python -m pip install --upgrade pip
-          pip install ruff black isort pytest || true
-          if ls **/requirements.txt >/dev/null 2>&1; then
-            pip install -r $(ls **/requirements.txt | head -n1) || true
-          fi
-
-      - name: Ruff / Black / isort + pytest
-        if: ${{ hashFiles('**/*.py') != '' }}
-        run: |
-          ruff check . || true
+          pip install ruff black isort || true
           ruff check . --fix || true
           isort . || true
           black . || true
-          if ls **/test_*.py >/dev/null 2>&1; then pytest -q || true; fi
 
-      # ===================== Go =====================
-      - name: Setup Go
-        if: ${{ hashFiles('**/go.mod') != '' }}
-        uses: actions/setup-go@v5
-        with: { go-version: 'stable', cache: true }
-
-      - name: go fmt / go vet
-        if: ${{ hashFiles('**/go.mod') != '' }}
+      - name: Commit changes (if any)
         run: |
-          go fmt ./... || true
-          go vet ./... || true
-
-      # ===================== Rust =====================
-      - name: Setup Rust
-        if: ${{ hashFiles('**/Cargo.toml') != '' }}
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: cargo fmt / clippy
-        if: ${{ hashFiles('**/Cargo.toml') != '' }}
-        run: |
-          rustup component add rustfmt clippy || true
-          cargo fmt --all || true
-          cargo clippy --all-targets --all-features -D warnings || true
-
-      # ===================== Java (Maven/Gradle) =====================
-      - name: Setup Java
-        if: ${{ hashFiles('**/pom.xml') != '' || hashFiles('**/build.gradle*') != '' }}
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Maven verify (no tests)
-        if: ${{ hashFiles('**/pom.xml') != '' }}
-        run: |
-          if [ -x ./mvnw ]; then ./mvnw -q -DskipTests verify || true
-          else mvn -q -DskipTests verify || true
+          if git status --porcelain | grep .; then
+            git config user.name "autofix-bot"
+            git config user.email "autofix-bot@users.noreply.github.com"
+            git checkout -b "autofix/${GITHUB_RUN_ID}"
+            git add -A && git commit -m "chore: autofix" && git push -u origin HEAD
           fi
-
-      - name: Gradle build (no tests)
-        if: ${{ hashFiles('**/build.gradle*') != '' }}
-        run: |
-          if [ -x ./gradlew ]; then ./gradlew build -x test || true
-          else gradle build -x test || true
-          fi
-
-      # ===================== .NET =====================
-      - name: Setup .NET
-        if: ${{ hashFiles('**/*.sln') != '' || hashFiles('**/*.csproj') != '' }}
-        uses: actions/setup-dotnet@v4
-        with: { dotnet-version: '8.0.x' }
-
-      - name: dotnet format (non-blocking)
-        if: ${{ hashFiles('**/*.sln') != '' || hashFiles('**/*.csproj') != '' }}
-        run: |
-          dotnet tool update -g dotnet-format || dotnet tool install -g dotnet-format
-          export PATH="$PATH:/home/runner/.dotnet/tools"
-          dotnet format --verify-no-changes || dotnet format || true
-
-      # ===================== PHP / Ruby =====================
-      - name: Setup PHP
-        if: ${{ hashFiles('**/*.php') != '' }}
-        uses: shivammathur/setup-php@v2
-        with: { php-version: '8.2' }
-
-      - name: PHP lint
-        if: ${{ hashFiles('**/*.php') != '' }}
-        run: |
-          find . -type f -name "*.php" -print0 | xargs -0 -n1 -I{} php -l "{}" || true
-
-      - name: Setup Ruby
-        if: ${{ hashFiles('**/Gemfile') != '' || hashFiles('**/*.rb') != '' }}
-        uses: ruby/setup-ruby@v1
-        with: { ruby-version: '3.3' }
-
-      - name: RuboCop (non-blocking)
-        if: ${{ hashFiles('**/*.rb') != '' }}
-        run: |
-          gem install rubocop || true
-          rubocop -A || true
-
-      # ===================== Shell =====================
-      - name: shfmt + shellcheck
-        run: |
-          curl -sSLo /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/latest/download/shfmt_linux_amd64
-          chmod +x /usr/local/bin/shfmt
-          if ls **/*.sh >/dev/null 2>&1; then
-            shfmt -w . || true
-            shellcheck $(git ls-files '*.sh') || true
-          fi
-
-      # ===================== Docker =====================
-      - name: Lint Dockerfiles (hadolint)
-        if: ${{ hashFiles('**/Dockerfile') != '' || hashFiles('**/dockerfile') != '' }}
-        uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: |
-            **/Dockerfile
-            **/dockerfile
-        continue-on-error: true
-
-      # ===================== Terraform =====================
-      - name: Setup Terraform
-        if: ${{ hashFiles('**/*.tf') != '' }}
-        uses: hashicorp/setup-terraform@v3
-
-      - name: terraform fmt & validate
-        if: ${{ hashFiles('**/*.tf') != '' }}
-        run: |
-          terraform fmt -recursive || true
-          terraform init -input=false || true
-          terraform validate || true
-
-      # ===================== GitHub Actions hygiene =====================
-      - name: actionlint
-        uses: reviewdog/action-actionlint@v1
-        with:
-          reporter: github-pr-check
-        continue-on-error: true
-
-      # ===================== Security / SBOM =====================
-      - name: Gitleaks (secrets)
-        uses: gitleaks/gitleaks-action@v2
-        with:
-          args: detect --no-banner --redact --verbose
-        continue-on-error: true
-
-      - name: Generate SBOM (Syft)
-        uses: anchore/sbom-action@v0
-        with:
-          path: .
-          format: spdx-json
-          output-file: sbom.spdx.json
-
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom-spdx
-          path: sbom.spdx.json
-
-      # ===================== Kubernetes / Helm =====================
-      - name: Install Helm
-        if: ${{ hashFiles('**/Chart.yaml') != '' || hashFiles('**/*.helm*') != '' }}
-        run: |
-          curl -sSL https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz -o helm.tgz
-          tar -xzf helm.tgz
-          sudo mv linux-amd64/helm /usr/local/bin/helm
-          helm version
-
-      - name: Install kubeconform
-        if: ${{ hashFiles('**/Chart.yaml') != '' || hashFiles('**/*k8s*.y*ml') != '' || hashFiles('k8s/**/*.y*ml') != '' || hashFiles('manifests/**/*.y*ml') != '' }}
-        run: |
-          curl -sSL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz -o kc.tgz
-          tar -xzf kc.tgz
-          sudo mv kubeconform /usr/local/bin/kubeconform
-          kubeconform -v || true
-
-      - name: Helm dependency build + lint (lockfile check)
-        if: ${{ hashFiles('**/Chart.yaml') != '' }}
-        shell: bash
-        run: |
-          set -e
-          mapfile -t CHARTS < <(git ls-files -- '*/Chart.yaml' 'Chart.yaml' | xargs -n1 dirname | sort -u)
-          for c in "${CHARTS[@]}"; do
-            echo "=== Helm chart: $c ==="
-            pushd "$c" >/dev/null
-              # Build deps and refresh Chart.lock if needed
-              helm dependency build || true
-              helm lint . || true
-            popd >/dev/null
-          done
-
-      - name: Render Helm templates + kubeconform
-        if: ${{ hashFiles('**/Chart.yaml') != '' }}
-        shell: bash
-        run: |
-          set -e
-          mkdir -p /tmp/rendered
-          mapfile -t CHARTS < <(git ls-files -- '*/Chart.yaml' 'Chart.yaml' | xargs -n1 dirname | sort -u)
-          for c in "${CHARTS[@]}"; do
-            OUT="/tmp/rendered/$(echo "$c" | tr '/' '_').yaml"
-            echo "Rendering $c -> $OUT"
-            helm template "$c" > "$OUT" || true
-            kubeconform -strict -ignore-missing-schemas -summary "$OUT" || true
-          done
-
-      - name: Validate raw Kubernetes manifests (kubeconform)
-        if: ${{ hashFiles('**/*k8s*.y*ml') != '' || hashFiles('k8s/**/*.y*ml') != '' || hashFiles('deploy/**/*.y*ml') != '' || hashFiles('manifests/**/*.y*ml') != '' }}
-        run: |
-          set -e
-          FILES=$(git ls-files '**/*k8s*.y*ml' 'k8s/**/*.y*ml' 'deploy/**/*.y*ml' 'manifests/**/*.y*ml' || true)
-          if [ -n "$FILES" ]; then
-            echo "$FILES" | xargs -r kubeconform -strict -ignore-missing-schemas -summary || true
-          fi
-
-      - name: Guardrails: flag root/privileged containers
-        shell: bash
-        run: |
-          echo "### Kubernetes Security Findings" >> $GITHUB_STEP_SUMMARY
-          set +e
-          FOUND=0
-          # scan rendered and raw manifests
-          all_yaml=$( (ls /tmp/rendered/*.yaml 2>/dev/null || true; git ls-files '**/*.y*ml') | sort -u )
-          if [ -z "$all_yaml" ]; then
-            echo "- No Kubernetes YAML detected." >> $GITHUB_STEP_SUMMARY
-            exit 0
-          fi
-          echo "- Scanning for risky settings (runAsUser: 0, runAsNonRoot: false/missing, privileged: true, allowPrivilegeEscalation: true)..." >> $GITHUB_STEP_SUMMARY
-
-          check() {
-            local pattern="$1"; local label="$2"
-            hits=$(grep -nH -E "$pattern" $all_yaml || true)
-            if [ -n "$hits" ]; then
-              FOUND=1
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "**$label**" >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-              echo "$hits" | sed -e 's/^\.\///' >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-            fi
-          }
-
-          check 'runAsUser:\s*0' 'runAsUser: 0 (root user)'
-          check 'privileged:\s*true' 'privileged: true'
-          check 'allowPrivilegeEscalation:\s*true' 'allowPrivilegeEscalation: true'
-          # missing runAsNonRoot (very naive heuristic): show files without it at all
-          MISSING=$(grep -L -E 'runAsNonRoot:\s*true' $all_yaml || true)
-          if [ -n "$MISSING" ]; then
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "**Files missing `runAsNonRoot: true`**" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "$MISSING" | sed -e 's/^\.\///' >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ $FOUND -eq 0 ]; then
-            echo "- No obvious root/privileged flags found. ✅" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "> Recommendation: set `securityContext.runAsNonRoot: true`, avoid `privileged: true`, and disable `allowPrivilegeEscalation`." >> $GITHUB_STEP_SUMMARY
-          fi
-
-      # ===================== PR creation =====================
-      - name: Create PR with fixes
-        id: pr
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { execSync } = require('node:child_process');
-
-            const changed = execSync('git status --porcelain').toString().trim();
-            if (!changed) {
-              core.setOutput('created', 'false');
-              await core.summary
-                .addRaw('# Autofix Summary\n')
-                .addRaw('- No auto-fixable changes were necessary 🎉\n')
-                .addRaw('- See Kubernetes and security sections above for findings.\n')
-                .write();
-              return;
-            }
-
-            execSync('git config user.name "autofix-bot"');
-            execSync('git config user.email "autofix-bot@users.noreply.github.com"');
-            const branch = `autofix/${{ github.run_id }}`;
-            execSync(`git checkout -b "${branch}"`);
-            execSync('git add -A');
-            execSync('git commit -m "chore(autofix): repo-wide formatting, linting, helm deps/locks"');
-            execSync(`git push origin "${branch}"`);
-
-            const { data: pr } = await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: 'AutoFix: repo-wide cleanup (incl. K8s/Helm)',
-              head: branch,
-              base: 'main',
-              body: [
-                'Automated fixes & deep checks across the repo.',
-                '',
-                '**Highlights:**',
-                '- ESLint/Prettier (JS/TS) + TS type-check',
-                '- Ruff/Black/isort (Python) + pytest if present',
-                '- go fmt/vet, cargo fmt/clippy, Maven/Gradle verify, dotnet format, rubocop, php -l',
-                '- shfmt + shellcheck, hadolint, terraform fmt/validate',
-                '- Docs/config prettified; spellcheck + broken link check',
-                '- Helm: dependency build (updates Chart.lock), helm lint, kubeconform validation',
-                '- Guardrails: flagged root/privileged/allowPrivilegeEscalation and missing runAsNonRoot',
-                '- SBOM (Syft) + Gitleaks secrets scan',
-                '',
-                'Review and merge if it looks good ✅'
-              ].join('\n')
-            });
-
-            core.setOutput('created', 'true');
-            core.setOutput('pr_number', pr.number);
-
-      - name: Final Summary
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const created = "${{ steps.pr.outputs.created }}" === "true";
-            let s = "# Autofix Summary\n";
-            s += "- Scanned **all folders** and ran stack-specific fixes/checks.\n";
-            s += "- Kubernetes/Helm validated (helm lint, kubeconform). Lockfiles built.\n";
-            s += "- Guardrails run for root/privileged containers.\n";
-            s += "- SBOM + secret scan artifacts available.\n";
-            s += created ? "- Opened a PR with fixes ✅\n" : "- No PR needed 🎉\n";
-            core.summary.addRaw(s).write()
-
-      # 🧪 Fun placeholder (non-blocking)
-      - name: Quantum Lint (placeholder)
-        run: |
-          echo "Engaging imaginary quantum linter... ✅"
-          echo "All superpositions collapsed to clean code." >> $GITHUB_STEP_SUMMARY
-        continue-on-error: true
