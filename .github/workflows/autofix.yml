@@ -1,0 +1,32 @@
+name: Quick Fix & Summary
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  lint-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Install deps
+        run: npm install || true
+
+      - name: Lint & Auto-Fix
+        run: |
+          npx --yes eslint . --fix || true
+          npx --yes prettier . --write || true
+
+      - name: Show summary
+        run: |
+          echo "### Autofix Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Ran ESLint (with --fix)" >> $GITHUB_STEP_SUMMARY
+          echo "- Ran Prettier (auto-format)" >> $GITHUB_STEP_SUMMARY
