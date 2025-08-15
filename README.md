@@ -1,4 +1,6 @@
+
 # Real-Time Video Generation with AAPT
+
 # ai_agents
 
 [![Repo Autofix & Deep Checks](https://github.com/rcastrejon91/ai_agents/actions/workflows/autofix.yml/badge.svg)](https://github.com/rcastrejon91/ai_agents/actions/workflows/autofix.yml)
