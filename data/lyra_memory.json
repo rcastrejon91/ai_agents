@@ -78,5 +78,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f63e3d08520>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-15",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Ukraine: (definition pending — no model key set)",
+      "The BBC: (definition pending — no model key set)",
+      "Russia: (definition pending — no model key set)",
+      "The DEA: (definition pending — no model key set)",
+      "Terry Cole: (definition pending — no model key set)",
+      "Bondi: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Alaska: (definition pending — no model key set)",
+      "Zelensky: (definition pending — no model key set)",
+      "America: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "As both presidents head to Alaska, Ukraine's Zelensky says \"we are counting on America\". The BBC’s US and Russia correspondents outline the leaders' different approaches to the high stakes summit on the Ukraine war. The DEA head, Terry Cole, would assume \"all the powers and duties\" of DC police chief, Bondi said. What the president sees on his journey out of Washington DC helps explain this week's push to clean up the capital. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The BBC’s US and Russia correspondents outline the leaders' different approaches to the high stakes summit on the Ukraine war. Left uninvited to key talks, many Ukrainians look on with a mix of fatigue and mistrust. Video shows Itamar Ben Gvir telling the most prominent Palestinian prisoner Marwan Barghouti \"you will not win\". Jeremy Bowen travelled through Israel to hear views from all sides - from protesters in 'psychological despair' over Gaza, to those who feel an overwhelming sense that their country's actions are justified. The DEA head, Terry Cole, would assume \"all the powers and duties\" of DC police chief, Bondi said."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Here’s Why Rabbits Are Sprouting Tentacle Horns Rabbits spotted with hornlike growths on their face in northern Colorado are doing better than they look Stephanie Pappas The Internet Is Making Us Fluent in Algospeak Allison Parshall Wordology: Friday, August 15, 2025 Sarah Lewin Frasier Sam Kean’s New Book Dinner with King Tut Explores the Wild World of Experimental Archaeology Rachel Feltman, Fonda Mwangi, Alex Sugiura One Year after Scientific American ’s First Issue, the Solar System Grew by a Planet",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f4cf17294e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
