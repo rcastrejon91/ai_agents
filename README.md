@@ -1,13 +1,6 @@
 # ai_agents
 
-[![Repo Autofix & Deep Checks](https://github.com/rcastrejon91/ai_agents/actions/workflows/autofix.yml/badge.svg)](https://github.com/rcastrejon91/ai_agents/actions/workflows/autofix.yml)
-![GitHub Repo stars](https://img.shields.io/github/stars/rcastrejon91/ai_agents?style=social) 
-![GitHub forks](https://img.shields.io/github/forks/rcastrejon91/ai_agents?style=social) 
-![GitHub license](https://img.shields.io/github/license/rcastrejon91/ai_agents) 
-![GitHub last commit](https://img.shields.io/github/last-commit/rcastrejon91/ai_agents) 
-![GitHub issues](https://img.shields.io/github/issues/rcastrejon91/ai_agents) 
-![GitHub pull requests](https://img.shields.io/github/issues-pr/rcastrejon91/ai_agents) 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+
 
 # Real-Time Video Generation with AAPT
 
