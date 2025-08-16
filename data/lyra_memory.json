@@ -2,8 +2,12 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -39,8 +43,12 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -74,7 +82,9 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"
@@ -110,5 +120,48 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f4cf17294e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-16",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Alaska: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Ukrainians: (definition pending — no model key set)",
+      "Putin: (definition pending — no model key set)",
+      "Pakistan: (definition pending — no model key set)",
+      "Khyber Pakhtunkhwa: (definition pending — no model key set)",
+      "After: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "The French: (definition pending — no model key set)",
+      "Ilan Halimi: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "After leaving Alaska, Trump says he would prefer to \"go directly to a peace agreement\" to end the war in Ukraine, rather than a temporary ceasefire. In the absence of a deal, Ukrainians focused on the optics of Putin's visit to Trump in Alaska. The majority of deaths were recorded in Pakistan's mountainous Khyber Pakhtunkhwa area. The airline says the strike will disrupt travel plans for around 130,000 passengers a day. The French president said the felling of the tree honouring Ilan Halimi was \"an attempt to kill him a second time\". In the absence of a deal, Ukrainians focused on the optics of Putin's visit to Trump in Alaska. Can the world's largest economy skirt damage from tariffs? The city had asked a judge to block Attorney General Bondi's order that put in place an \"emergency police commissioner\". Prosecutors accuse LaToya Cantrell of conspiring with her protection cop to pay him for personal liasons. The majority of deaths were recorded in Pakistan's mountainous Khyber Pakhtunkhwa area."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "error": "HTTPSConnectionPool(host='www.scientificamerican.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f92c90f6c20>, 'Connection to www.scientificamerican.com timed out. (connect timeout=12)'))",
+        "reason": "fetch error: HTTPSConnectionPool(host='www.scientificamerican.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f92c90f6c20>, 'Connection to www.scientificamerican.com timed out. (connect timeout=12)'))"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f92c8e1a350>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
