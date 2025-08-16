@@ -1,0 +1,113 @@
+name: Bootstrap Railway (one-shot)
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Ensure requirements.txt has flask + gunicorn
+        shell: bash
+        run: |
+          touch requirements.txt
+          # add flask if missing
+          grep -qi '^flask\(\s\|$\)' requirements.txt || echo "flask" >> requirements.txt
+          # add gunicorn if missing
+          grep -qi '^gunicorn\(\s\|$\)' requirements.txt || echo "gunicorn" >> requirements.txt
+          echo "requirements.txt:"
+          cat requirements.txt
+
+      - name: Write railway.json (force python + gunicorn)
+        shell: bash
+        run: |
+          cat > railway.json << 'JSON'
+          {
+            "$schema": "https://railway.com/railway.schema.json",
+            "build": {
+              "builder": "NIXPACKS",
+              "nixpacks": {
+                "providers": ["python"],
+                "phases": {
+                  "install": {
+                    "cmds": [
+                      "pip install --upgrade pip",
+                      "pip install -r requirements.txt"
+                    ]
+                  }
+                }
+              }
+            },
+            "startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120",
+            "deploy": {
+              "runtime": "V2",
+              "numReplicas": 1,
+              "sleepApplication": false,
+              "restartPolicyType": "ON_FAILURE",
+              "restartPolicyMaxRetries": 10
+            }
+          }
+          JSON
+          echo "Wrote railway.json"
+
+      - name: Ensure minimal Flask app routes exist
+        shell: bash
+        run: |
+          if [ ! -f app.py ]; then
+            cat > app.py << 'PY'
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "OK"
+
+@app.route("/health")
+def health():
+    return "healthy"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+PY
+            echo "Created app.py with minimal routes"
+          else
+            # append safe routes only if they're not already present
+            grep -q '@app.route("/")' app.py || cat >> app.py << 'PY'
+
+@app.route("/")
+def index():
+    return "OK"
+PY
+            grep -q '@app.route("/health")' app.py || cat >> app.py << 'PY'
+
+@app.route("/health")
+def health():
+    return "healthy"
+PY
+            echo "Ensured / and /health routes exist in app.py"
+          fi
+
+      - name: Commit & push (ignore workflow files)
+        shell: bash
+        run: |
+          set -e
+          git add requirements.txt railway.json app.py || true
+          # don't commit workflow files to avoid permission issues
+          git restore --staged .github/workflows || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: bootstrap Railway (requirements, railway.json, minimal app)"
+          git push origin HEAD:main
