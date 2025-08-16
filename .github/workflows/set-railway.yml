@@ -1,0 +1,53 @@
+name: Set Railway JSON
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # allows this workflow to push the file
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write railway.json
+        run: |
+          cat > railway.json << 'JSON'
+          {
+            "$schema": "https://railway.com/railway.schema.json",
+            "build": {
+              "builder": "NIXPACKS",
+              "nixpacks": {
+                "providers": ["python"],
+                "phases": {
+                  "install": {
+                    "cmds": [
+                      "pip install --upgrade pip",
+                      "pip install -r requirements.txt"
+                    ]
+                  }
+                }
+              }
+            },
+            "startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120",
+            "deploy": {
+              "runtime": "V2",
+              "numReplicas": 1,
+              "sleepApplication": false,
+              "restartPolicyType": "ON_FAILURE",
+              "restartPolicyMaxRetries": 10
+            }
+          }
+          JSON
+
+      - name: Commit file to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add railway.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"; exit 0
+          fi
+          git commit -m "chore: add/update railway.json (force python + start command)"
+          git push origin HEAD:main
