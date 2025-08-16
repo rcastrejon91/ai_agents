@@ -1,11 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
 
-const supa = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
-  ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
-  : null;
+const supa =
+  process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
+    ? createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY,
+      )
+    : null;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const auth = req.headers.authorization || "";
   if (!auth || auth !== `Bearer ${process.env.GUARDIAN_INGEST_TOKEN}`) {
     return res.status(401).json({ error: "Unauthorized" });

@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 
+
 class AAPTTransformer(nn.Module):
     """Placeholder transformer model for AAPT video generation."""
 
@@ -19,4 +20,3 @@ class AAPTTransformer(nn.Module):
             torch.Tensor: Output tensor after dummy transformation.
         """
         return self.dummy_layer(x)
-

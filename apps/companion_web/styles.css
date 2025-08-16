@@ -20,8 +20,9 @@ body {
   cursor: pointer;
 }
 
-.badge.glow, .glow {
-  background: linear-gradient(90deg,#6ee7,#8af);
+.badge.glow,
+.glow {
+  background: linear-gradient(90deg, #6ee7, #8af);
   color: #001;
 }
 
@@ -32,28 +33,81 @@ body {
   cursor: pointer;
 }
 
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-1 { margin-bottom: 0.25rem; }
-.mt-3 { margin-top: 0.75rem; }
-.text-sm { font-size: 0.875rem; }
-.text-xs { font-size: 0.75rem; }
-.font-medium { font-weight: 500; }
-.prose-invert { color: #e6f1ff; }
-.text-zinc-100 { color: #f4f4f5; }
-.text-zinc-300 { color: #d4d4d8; }
-.text-zinc-400 { color: #a1a1aa; }
-.text-zinc-500 { color: #71717a; }
-.space-y-1 li + li { margin-top: 0.25rem; }
-.underline { text-decoration: underline; }
-.hover\:no-underline:hover { text-decoration: none; }
-.max-w-none { max-width: none; }
-.whitespace-pre-wrap { white-space: pre-wrap; }
-.text-[11px] { font-size: 11px; }
-.mr-2 { margin-right: 0.5rem; }
-.gap-2 { gap: 0.5rem; }
-.flex.items-center { display: flex; align-items: center; }
-.flex.gap-2 { display: flex; gap: 0.5rem; }
-.glow { background: linear-gradient(90deg,#6ee7,#8af); color:#001; }
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+}
+.font-medium {
+  font-weight: 500;
+}
+.prose-invert {
+  color: #e6f1ff;
+}
+.text-zinc-100 {
+  color: #f4f4f5;
+}
+.text-zinc-300 {
+  color: #d4d4d8;
+}
+.text-zinc-400 {
+  color: #a1a1aa;
+}
+.text-zinc-500 {
+  color: #71717a;
+}
+.space-y-1 li + li {
+  margin-top: 0.25rem;
+}
+.underline {
+  text-decoration: underline;
+}
+.hover\:no-underline:hover {
+  text-decoration: none;
+}
+.max-w-none {
+  max-width: none;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.text-[11px] {
+  font-size: 11px;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.flex.items-center {
+  display: flex;
+  align-items: center;
+}
+.flex.gap-2 {
+  display: flex;
+  gap: 0.5rem;
+}
+.glow {
+  background: linear-gradient(90deg, #6ee7, #8af);
+  color: #001;
+}

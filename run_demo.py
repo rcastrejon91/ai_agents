@@ -1,8 +1,8 @@
 from core import WraithForgeCore
+from modules.amplify import amplify_spell
 from modules.fire import pyro_pulse
 from modules.ice import cryo_breach
 from modules.mind import neuro_disturb
-from modules.amplify import amplify_spell
 
 # Optional: Amplify spells
 pyro_pulse = amplify_spell(pyro_pulse)

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from world_state_engine import trigger_world_event, simulate_consequence_pathways
+from world_state_engine import simulate_consequence_pathways, trigger_world_event
 
 
 class ConsequenceOrchestrator:

@@ -9,18 +9,21 @@ export async function unlockAudio() {
     await a.play();
     unlocked = true;
   } catch (err) {
-    console.error('Audio unlock failed', err);
+    console.error("Audio unlock failed", err);
   }
 }
 
-export async function speak(text: string, opts?: { voice?: string; volume?: number }) {
-  const r = await fetch('/api/tts', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ text, voice: opts?.voice })
+export async function speak(
+  text: string,
+  opts?: { voice?: string; volume?: number },
+) {
+  const r = await fetch("/api/tts", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ text, voice: opts?.voice }),
   });
   if (!r.ok) {
-    console.warn('TTS failed', await r.text());
+    console.warn("TTS failed", await r.text());
     return false;
   }
   const blob = await r.blob();
@@ -31,7 +34,7 @@ export async function speak(text: string, opts?: { voice?: string; volume?: numb
     await audio.play();
     return true;
   } catch (e) {
-    console.warn('Autoplay blocked. User gesture required.');
+    console.warn("Autoplay blocked. User gesture required.");
     return false;
   }
 }

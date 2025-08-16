@@ -8,14 +8,18 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   const url = new URL(req.url);
-  const ip =
-    (req.headers.get("x-real-ip") ||
-      req.headers.get("x-forwarded-for") ||
-      (req as any).ip ||
-      "unknown") as string;
+  const ip = (req.headers.get("x-real-ip") ||
+    req.headers.get("x-forwarded-for") ||
+    (req as any).ip ||
+    "unknown") as string;
 
   if (!rateLimit(ip, 90)) {
-    await edgeLog({ event: "rate_limit_block", ip, path: url.pathname, method: req.method });
+    await edgeLog({
+      event: "rate_limit_block",
+      ip,
+      path: url.pathname,
+      method: req.method,
+    });
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
@@ -47,7 +51,7 @@ export async function middleware(req: NextRequest) {
       "style-src 'self' 'unsafe-inline'",
       "connect-src 'self' https:",
       "frame-ancestors 'none'",
-    ].join("; ")
+    ].join("; "),
   );
   return res;
 }

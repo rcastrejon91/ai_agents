@@ -3,15 +3,36 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE!
+  process.env.SUPABASE_SERVICE_ROLE!,
 );
 
-type NodeIn = { kind: string; name: string; canonical_id?: string; source_url?: string; embedding?: number[] };
-type EdgeIn = { src_key: string; dst_key: string; rel: string; evidence_key?: string; confidence: number; justification?: string; snippet?: string };
+type NodeIn = {
+  kind: string;
+  name: string;
+  canonical_id?: string;
+  source_url?: string;
+  embedding?: number[];
+};
+type EdgeIn = {
+  src_key: string;
+  dst_key: string;
+  rel: string;
+  evidence_key?: string;
+  confidence: number;
+  justification?: string;
+  snippet?: string;
+};
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-  const { nodes = [], edges = [] } = (req.body ?? {}) as { nodes: NodeIn[]; edges: EdgeIn[] };
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method !== "POST")
+    return res.status(405).json({ error: "Method not allowed" });
+  const { nodes = [], edges = [] } = (req.body ?? {}) as {
+    nodes: NodeIn[];
+    edges: EdgeIn[];
+  };
 
   const keyToId: Record<string, string> = {};
   for (let i = 0; i < nodes.length; i++) {
@@ -50,5 +71,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
-  return res.status(200).json({ ok: true, nodes: Object.values(keyToId).length, edges: edges.length });
+  return res
+    .status(200)
+    .json({
+      ok: true,
+      nodes: Object.values(keyToId).length,
+      edges: edges.length,
+    });
 }

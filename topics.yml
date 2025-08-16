@@ -39,11 +39,11 @@ safety:
   escalation:
     levels:
       - name: "observe"
-        actions: [ "record", "log", "notify_owner" ]
+        actions: ["record", "log", "notify_owner"]
       - name: "protect"
-        actions: [ "retreat", "flash_light", "audible_alarm", "call_help" ]
+        actions: ["retreat", "flash_light", "audible_alarm", "call_help"]
       - name: "emergency"
-        actions: [ "live_stream_owner", "geolocate", "call_911" ]
+        actions: ["live_stream_owner", "geolocate", "call_911"]
     default_level: "observe"
 
 robotics:

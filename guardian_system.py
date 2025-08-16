@@ -17,11 +17,11 @@ class GuardianMode:
 
     def activate_cia_mode(self) -> str:
         self.cia_mode = True
-        return "\U0001F6E1\uFE0F CIA Mode Activated: Threat detection + forensic tracking live."
+        return "\U0001f6e1\ufe0f CIA Mode Activated: Threat detection + forensic tracking live."
 
     def deactivate_cia_mode(self) -> str:
         self.cia_mode = False
-        return "\U0001F54A\uFE0F CIA Mode Deactivated: Returning to compassionate companion state."
+        return "\U0001f54a\ufe0f CIA Mode Deactivated: Returning to compassionate companion state."
 
 
 class GuardianDashboard:

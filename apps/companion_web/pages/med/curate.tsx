@@ -17,7 +17,9 @@ export default function CuratePage() {
   const [token, setToken] = useState<string>("");
 
   async function load() {
-    const r = await fetch("/api/med/curate/list", { headers: { Authorization: `Bearer ${token}` } });
+    const r = await fetch("/api/med/curate/list", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     const j = await r.json();
     setItems(j.items ?? []);
   }
@@ -28,7 +30,10 @@ export default function CuratePage() {
   async function act(id: string, path: "approve" | "reject") {
     await fetch(`/api/med/curate/${path}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ id }),
     });
     await load();
@@ -36,15 +41,22 @@ export default function CuratePage() {
 
   return (
     <div className="max-w-3xl mx-auto p-6 text-zinc-100">
-      <h1 className="text-2xl font-semibold mb-2">Knowledge Graph — Curation</h1>
-      <p className="mb-4 text-sm text-zinc-400">Paste admin token to manage pending relations.</p>
+      <h1 className="text-2xl font-semibold mb-2">
+        Knowledge Graph — Curation
+      </h1>
+      <p className="mb-4 text-sm text-zinc-400">
+        Paste admin token to manage pending relations.
+      </p>
       <input
         className="w-full mb-4 bg-zinc-800 border border-zinc-700 rounded px-3 py-2"
         placeholder="Admin token"
         value={token}
         onChange={(e) => setToken(e.target.value)}
       />
-      <button onClick={load} className="mb-6 px-3 py-2 rounded bg-sky-600 hover:bg-sky-500">
+      <button
+        onClick={load}
+        className="mb-6 px-3 py-2 rounded bg-sky-600 hover:bg-sky-500"
+      >
         Refresh
       </button>
       <div className="space-y-3">
@@ -53,12 +65,18 @@ export default function CuratePage() {
             <div className="text-sm">
               <b>{it.src_kind}</b>: {it.src_name}
               <span className="mx-2">
-                — <i className="text-sky-400">{it.rel}</i> ({it.confidence.toFixed(2)}) —
+                — <i className="text-sky-400">{it.rel}</i> (
+                {it.confidence.toFixed(2)}) —
               </span>
               <b>{it.dst_kind}</b>: {it.dst_name}
             </div>
             {it.ev_url && (
-              <a className="text-xs text-sky-400" href={it.ev_url} target="_blank" rel="noreferrer">
+              <a
+                className="text-xs text-sky-400"
+                href={it.ev_url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 evidence
               </a>
             )}
@@ -78,7 +96,9 @@ export default function CuratePage() {
             </div>
           </div>
         ))}
-        {!items.length && <div className="text-zinc-400 text-sm">No pending edges.</div>}
+        {!items.length && (
+          <div className="text-zinc-400 text-sm">No pending edges.</div>
+        )}
       </div>
     </div>
   );

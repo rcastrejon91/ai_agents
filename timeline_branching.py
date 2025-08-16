@@ -14,9 +14,7 @@ class TimelineBranching:
     """Manage simple timeline states."""
 
     def __init__(self) -> None:
-        self.timeline: List[Dict[str, Any]] = [
-            {"branch": 0, "description": "origin"}
-        ]
+        self.timeline: List[Dict[str, Any]] = [{"branch": 0, "description": "origin"}]
 
     def diverge(self, description: str) -> Dict[str, Any]:
         """Create a new branch from the current timeline."""

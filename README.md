@@ -1,11 +1,6 @@
 # ai_agents
 
-
-
 # Real-Time Video Generation with AAPT
-
-
-
 
 This repository provides a starting point for building a real-time AI video generation pipeline using **AAPT** (autoregressive adversarial post-training). The goal is to combine transformer models with a variational autoencoder (VAE) to generate videos from text prompts or images with minimal latency.
 

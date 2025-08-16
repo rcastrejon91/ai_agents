@@ -1,39 +1,40 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const GAMES = [
   {
-    id: 'module-battle',
-    title: 'Module Battle',
-    blurb: 'Use AI “skills” (fire/ice/mind) to beat glitches. Short runs, high scores.',
+    id: "module-battle",
+    title: "Module Battle",
+    blurb:
+      "Use AI “skills” (fire/ice/mind) to beat glitches. Short runs, high scores.",
   },
   {
-    id: 'dream-arena',
-    title: 'Dream Arena',
-    blurb: 'Surreal prompts from the Imagination Core. Story-driven bouts.',
+    id: "dream-arena",
+    title: "Dream Arena",
+    blurb: "Surreal prompts from the Imagination Core. Story-driven bouts.",
   },
   {
-    id: 'guardian-defense',
-    title: 'Guardian Defense',
-    blurb: 'Scan threats, counter with safety moves. Beat the risk score.',
+    id: "guardian-defense",
+    title: "Guardian Defense",
+    blurb: "Scan threats, counter with safety moves. Beat the risk score.",
   },
 ];
 
 export default function GamesPage() {
-  const [active, setActive] = useState<string>('module-battle');
+  const [active, setActive] = useState<string>("module-battle");
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
     async function poll() {
       try {
-        const res = await fetch('/api/streams/status', { cache: 'no-store' });
+        const res = await fetch("/api/streams/status", { cache: "no-store" });
         const data = await res.json();
         setIsLive(!!(data.twitch?.live || data.youtube?.live));
       } catch (err) {
-        console.error('poll status failed', err);
+        console.error("poll status failed", err);
       } finally {
         timer = setTimeout(poll, 15000);
       }
@@ -45,25 +46,34 @@ export default function GamesPage() {
   return (
     <main className="min-h-screen px-6 py-10 bg-black text-white">
       <header className="mb-8">
-        <h1 className="text-3xl font-semibold flex items-center gap-2">Games {isLive && <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-600 text-white">LIVE</span>}</h1>
-        <p className="text-sm text-zinc-400">Just for fun. Your core app stays separate.</p>
+        <h1 className="text-3xl font-semibold flex items-center gap-2">
+          Games{" "}
+          {isLive && (
+            <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-600 text-white">
+              LIVE
+            </span>
+          )}
+        </h1>
+        <p className="text-sm text-zinc-400">
+          Just for fun. Your core app stays separate.
+        </p>
       </header>
 
       {/* Tabs */}
       <div className="flex gap-2 mb-6">
-        {GAMES.map(g => (
+        {GAMES.map((g) => (
           <button
             key={g.id}
             onClick={() => setActive(g.id)}
             className={`relative px-4 py-2 rounded-md border border-zinc-800 transition
-              ${active === g.id ? 'bg-zinc-900' : 'bg-zinc-950 hover:bg-zinc-900'}`}
+              ${active === g.id ? "bg-zinc-900" : "bg-zinc-950 hover:bg-zinc-900"}`}
           >
             <span className="text-sm">{g.title}</span>
             {active === g.id && (
               <motion.div
                 layoutId="pill"
                 className="absolute inset-0 rounded-md ring-1 ring-cyan-400/30"
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
           </button>
@@ -90,7 +100,7 @@ export default function GamesPage() {
 }
 
 function GamePanel({ id }: { id: string }) {
-  const game = GAMES.find(g => g.id === id)!;
+  const game = GAMES.find((g) => g.id === id)!;
   return (
     <div className="grid gap-4 md:grid-cols-[1fr,320px]">
       <div>
@@ -106,9 +116,13 @@ function GamePanel({ id }: { id: string }) {
 function IframePreview({ id }: { id: string }) {
   // Later: replace with your actual web UIs for each game. For now, placeholder.
   return (
-    <div className="aspect-video rounded-lg border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black
-                    flex items-center justify-center text-zinc-400">
-      <span>Game canvas for <b>{id}</b> goes here</span>
+    <div
+      className="aspect-video rounded-lg border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black
+                    flex items-center justify-center text-zinc-400"
+    >
+      <span>
+        Game canvas for <b>{id}</b> goes here
+      </span>
     </div>
   );
 }
@@ -129,7 +143,8 @@ function Sidebar({ id }: { id: string }) {
         </button>
       </div>
       <div className="mt-4 text-xs text-zinc-500">
-        Switching tabs uses animated transitions (Framer Motion). Core app unaffected.
+        Switching tabs uses animated transitions (Framer Motion). Core app
+        unaffected.
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 export type Device = {
   id: string;
@@ -11,14 +11,14 @@ export type Device = {
   health_url?: string;
 };
 
-const DATA_FILE = path.join(process.cwd(), 'devices.json');
+const DATA_FILE = path.join(process.cwd(), "devices.json");
 
 function load(): Device[] {
   try {
-    const raw = fs.readFileSync(DATA_FILE, 'utf8');
+    const raw = fs.readFileSync(DATA_FILE, "utf8");
     return JSON.parse(raw);
   } catch (err) {
-    console.error('Failed to load device store', err);
+    console.error("Failed to load device store", err);
     return [];
   }
 }
@@ -34,7 +34,7 @@ export function list(): Device[] {
 
 export function update(id: string, patch: Partial<Device>): Device {
   const devs = load();
-  const idx = devs.findIndex(d => d.id === id);
+  const idx = devs.findIndex((d) => d.id === id);
   if (idx >= 0) {
     devs[idx] = { ...devs[idx], ...patch };
   } else {
@@ -43,4 +43,3 @@ export function update(id: string, patch: Partial<Device>): Device {
   save(devs);
   return devs[idx >= 0 ? idx : devs.length - 1];
 }
-

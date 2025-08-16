@@ -5,19 +5,22 @@ This document explains what each module does, how they fit together, and the com
 ## Modules
 
 ### `frontend_agent.py`
+
 **Role:** Orchestrates a single user request end‑to‑end.
 
 Pipeline:
+
 1. Create/read `session_id`
 2. Read `text`, collect extras as `metadata`
 3. `emotion = EmotionEngine.analyze(text)`
 4. `logic = QuantumLogicEngine.process(text, emotion, metadata)`
 5. `response = generate_response(text, logic)`
-6. `dream = DreamWorldSim.simulate(text)`  _(new)_
-7. `protection = GuardianProtocols.evaluate(text)`  _(new)_
+6. `dream = DreamWorldSim.simulate(text)` _(new)_
+7. `protection = GuardianProtocols.evaluate(text)` _(new)_
 8. Build result dict and log to memory
 
 Integration:
+
 ```py
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
@@ -43,7 +46,7 @@ Role: Basic content‑safety pulse (placeholder).
 •{"status":"neutralized","message":"Neutralized threat, standing down."} if keyword found
 •else {"status":"clear","message":"All clear."}
 
-scene_* (optional)
+scene\_\* (optional)
 
 scene_soul_driver.py, scene_context.py — wire a “soul signature” to a scene manager for mood‑based tone/scene shifts. Non‑blocking.
 
@@ -56,7 +59,7 @@ Role: Playful Phase II package: agents + security + lore.
 •CodexLore.add_entry(title, content) → stores and returns “📖 New Codex Entry: {title}”
 •Stubs: DreamSyncer, RealityDetector, AstralShield
 
-Demo (if __name__ == "__main__":):
+Demo (if **name** == "**main**":):
 •Instantiates 4 archetype agents
 •Adds a Codex entry (“Phase II: The Awakening…”)
 •Creates firewall/shield/sync/detector and prints statuses
@@ -100,12 +103,12 @@ pip install apscheduler
 Project layout:
 
 your_app/
-  frontend_agent.py
-  dream_world_sim.py
-  guardian_protocols.py
-  memory.py
-  bots/core/launch_manager.py
-  tests/test_launch_manager.py
+frontend_agent.py
+dream_world_sim.py
+guardian_protocols.py
+memory.py
+bots/core/launch_manager.py
+tests/test_launch_manager.py
 
 FastAPI glue:
 
@@ -115,7 +118,7 @@ app = FastAPI(); agent = FrontendAgent()
 
 @app.post("/handle")
 async def handle(payload: dict):
-    return await agent.handle(payload)
+return await agent.handle(payload)
 
 Smoke test:
 
@@ -123,21 +126,21 @@ import asyncio
 from frontend_agent import FrontendAgent
 
 async def main():
-    agent = FrontendAgent()
-    print(await agent.handle({"text": "I feel angry about this bug"}))
+agent = FrontendAgent()
+print(await agent.handle({"text": "I feel angry about this bug"}))
 
 asyncio.run(main())
 
 Scheduler sanity:
 
 from bots.core.launch_manager import LaunchManager
+
 # create LaunchManager, schedule a job for +10s, assert Job handle and execution
 
 Small Quality Improvements
 •Guard missing text:
 
 text = (input_data.get("text") or "").strip()
-
 
 •Always include an int polarity in EmotionEngine outputs
 •Add logging around each stage in handle(...)

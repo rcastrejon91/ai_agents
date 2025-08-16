@@ -1,1 +1,1 @@
-export { speak } from '../app/lib/speech';
+export { speak } from "../app/lib/speech";

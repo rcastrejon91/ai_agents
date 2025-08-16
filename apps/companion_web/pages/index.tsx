@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
@@ -8,18 +8,38 @@ import HealthDot from "../components/HealthDot";
 import ToolChips from "../components/ToolChips";
 
 export default function Home() {
-  const [mode, setMode] = useState<'credible'|'creative'>('credible');
-  const [input, setInput] = useState('');
+  const [mode, setMode] = useState<"credible" | "creative">("credible");
+  const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   type Msg =
-    | { id:string; role:'you'; type:'plain'; text:string }
-    | { id:string; role:'lyra'; type:'plain'; text:string; tools?: string[] }
-    | { id:string; role:'lyra'; type:'answer'; text:string; sources:{title:string;url:string}[] }
-    | { id:string; role:'lyra'; type:'action'; query:string }
-    | { id:string; role:'lyra'; type:'consent'; intent:string; consent:any };
+    | { id: string; role: "you"; type: "plain"; text: string }
+    | {
+        id: string;
+        role: "lyra";
+        type: "plain";
+        text: string;
+        tools?: string[];
+      }
+    | {
+        id: string;
+        role: "lyra";
+        type: "answer";
+        text: string;
+        sources: { title: string; url: string }[];
+      }
+    | { id: string; role: "lyra"; type: "action"; query: string }
+    | {
+        id: string;
+        role: "lyra";
+        type: "consent";
+        intent: string;
+        consent: any;
+      };
   const [messages, setMessages] = useState<Msg[]>([]);
-  const [opsLog, setOpsLog] = useState<{t:number;msg:string}[]>([]);
-  const [lastAssistantTools, setLastAssistantTools] = useState<string[] | null>(null);
+  const [opsLog, setOpsLog] = useState<{ t: number; msg: string }[]>([]);
+  const [lastAssistantTools, setLastAssistantTools] = useState<string[] | null>(
+    null,
+  );
   const [currentTools, setCurrentTools] = useState<string[] | null>(null);
 
   useEffect(() => {
@@ -31,182 +51,355 @@ export default function Home() {
 
   async function ask(question: string) {
     try {
-      const r = await fetch('/api/answer', {
-        method:'POST',
-        headers:{'content-type':'application/json'},
-        body: JSON.stringify({ question })
+      const r = await fetch("/api/answer", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ question }),
       });
       if (!r.ok) return false;
       const data = await r.json();
-      setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'answer', text: data.answer, sources: data.sources || [] }]);
-      setOpsLog(l => [
-        { t: Date.now(), msg: `Answer via /api/answer • sources:${data.sources?.length||0} • model:gpt-4o-mini` },
-        ...l
-      ].slice(0,50));
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "lyra",
+          type: "answer",
+          text: data.answer,
+          sources: data.sources || [],
+        },
+      ]);
+      setOpsLog((l) =>
+        [
+          {
+            t: Date.now(),
+            msg: `Answer via /api/answer • sources:${data.sources?.length || 0} • model:gpt-4o-mini`,
+          },
+          ...l,
+        ].slice(0, 50),
+      );
       return true;
     } catch (e) {
-      console.error('ask error', e);
+      console.error("ask error", e);
       return false;
     }
   }
 
   async function sendPlain(question: string) {
     try {
-      const resp = await fetch('/api/lyra', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: question, role: 'patient', mode })
+      const resp = await fetch("/api/lyra", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question, role: "patient", mode }),
       });
-      const data = (await resp.json()) as { reply?: string; error?: string; tools?: string[] };
-      const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
-      setMessages(m => [...m, { id: crypto.randomUUID(), role: 'lyra', type:'plain', text: textReply, tools: data.tools }]);
-      setCurrentTools(prev => {
+      const data = (await resp.json()) as {
+        reply?: string;
+        error?: string;
+        tools?: string[];
+      };
+      const textReply = data.reply ?? data.error ?? "I had trouble replying.";
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "lyra",
+          type: "plain",
+          text: textReply,
+          tools: data.tools,
+        },
+      ]);
+      setCurrentTools((prev) => {
         const next = data.tools && data.tools.length ? data.tools : null;
         if (JSON.stringify(prev) !== JSON.stringify(next)) {
           setLastAssistantTools(next);
         }
         return next;
       });
-      setOpsLog(l => [
-        { t: Date.now(), msg: `Answer via /api/lyra${data.tools ? ' • tools:'+data.tools.join('+') : ''}` },
-        ...l
-      ].slice(0,50));
+      setOpsLog((l) =>
+        [
+          {
+            t: Date.now(),
+            msg: `Answer via /api/lyra${data.tools ? " • tools:" + data.tools.join("+") : ""}`,
+          },
+          ...l,
+        ].slice(0, 50),
+      );
     } catch (e) {
-      console.error('sendPlain error', e);
-      setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: '(error sending message)' }]);
+      console.error("sendPlain error", e);
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "lyra",
+          type: "plain",
+          text: "(error sending message)",
+        },
+      ]);
     }
   }
 
-  function isActionText(text:string){
-    return /(uber|ride|lyft|transfer|move.*funds|send.*money|trip.*mexico|book.*mexico|airbnb|tiktok|instagram|facebook|call.*store|place.*order|setup.*website|deploy.*site)/i.test(text);
+  function isActionText(text: string) {
+    return /(uber|ride|lyft|transfer|move.*funds|send.*money|trip.*mexico|book.*mexico|airbnb|tiktok|instagram|facebook|call.*store|place.*order|setup.*website|deploy.*site)/i.test(
+      text,
+    );
   }
 
   async function send() {
     const text = input.trim();
     if (!text || busy) return;
-    setInput(''); setBusy(true);
-    setMessages(m => [...m, { id: crypto.randomUUID(), role:'you', type:'plain', text }]);
+    setInput("");
+    setBusy(true);
+    setMessages((m) => [
+      ...m,
+      { id: crypto.randomUUID(), role: "you", type: "plain", text },
+    ]);
     try {
       let handled = false;
       if (isActionText(text)) {
-        const r = await fetch('/api/actions', {
-          method:'POST',
-          headers:{'content-type':'application/json'},
-          body: JSON.stringify({ intent: text })
+        const r = await fetch("/api/actions", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ intent: text }),
         });
         const data = await r.json();
-        if (data.status === 'needs_consent') {
-          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'consent', intent:text, consent:data.consent }]);
-          setOpsLog(l => [{ t: Date.now(), msg: 'Action requires consent' }, ...l].slice(0,50));
+        if (data.status === "needs_consent") {
+          setMessages((m) => [
+            ...m,
+            {
+              id: crypto.randomUUID(),
+              role: "lyra",
+              type: "consent",
+              intent: text,
+              consent: data.consent,
+            },
+          ]);
+          setOpsLog((l) =>
+            [{ t: Date.now(), msg: "Action requires consent" }, ...l].slice(
+              0,
+              50,
+            ),
+          );
           handled = true;
-        } else if (data.status === 'ok') {
-          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: 'Action completed.' }]);
-          setOpsLog(l => [{ t: Date.now(), msg: 'Action executed' }, ...l].slice(0,50));
+        } else if (data.status === "ok") {
+          setMessages((m) => [
+            ...m,
+            {
+              id: crypto.randomUUID(),
+              role: "lyra",
+              type: "plain",
+              text: "Action completed.",
+            },
+          ]);
+          setOpsLog((l) =>
+            [{ t: Date.now(), msg: "Action executed" }, ...l].slice(0, 50),
+          );
           handled = true;
-        } else if (data.status === 'needs_scopes') {
-          setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'plain', text: 'Missing scopes: ' + data.missing.join(', ') }]);
+        } else if (data.status === "needs_scopes") {
+          setMessages((m) => [
+            ...m,
+            {
+              id: crypto.randomUUID(),
+              role: "lyra",
+              type: "plain",
+              text: "Missing scopes: " + data.missing.join(", "),
+            },
+          ]);
           handled = true;
         }
       }
-      if (!handled && mode === 'credible') {
+      if (!handled && mode === "credible") {
         handled = await ask(text);
       }
       if (!handled) {
         await sendPlain(text);
       }
     } catch (e) {
-      console.error('send error', e);
-      setMessages(m => [...m, { id: crypto.randomUUID(), role: 'lyra', type:'plain', text: '(error sending message)' }]);
-    } finally { setBusy(false); }
+      console.error("send error", e);
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "lyra",
+          type: "plain",
+          text: "(error sending message)",
+        },
+      ]);
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
-    <div style={{minHeight:'100vh',background:'#0b0f16',color:'#e6f1ff',padding:'24px',maxWidth:780,margin:'0 auto'}}>
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-        <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#0b0f16",
+        color: "#e6f1ff",
+        padding: "24px",
+        maxWidth: 780,
+        margin: "0 auto",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h1 style={{ fontSize: 28, marginBottom: 6 }}>AITaskFlo</h1>
         <HealthDot />
       </div>
-      <div style={{opacity:.7,marginBottom:16}}>Your personality-driven AI console.</div>
+      <div style={{ opacity: 0.7, marginBottom: 16 }}>
+        Your personality-driven AI console.
+      </div>
       <button
         onClick={() => unlockAudio()}
         style={{
-          padding: '4px 8px',
+          padding: "4px 8px",
           borderRadius: 6,
-          background: '#121826',
-          border: '1px solid #223',
+          background: "#121826",
+          border: "1px solid #223",
           fontSize: 12,
-          marginBottom: 16
+          marginBottom: 16,
         }}
       >
         Enable sound 🔊
       </button>
 
-      <div className="card" style={{marginBottom:12,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+      <div
+        className="card"
+        style={{
+          marginBottom: 12,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <div className="text-sm">Mode</div>
-        <div className="flex gap-2" style={{display:'flex',gap:8}}>
-          <button className={`badge ${mode==='credible'?'glow':''}`} onClick={()=>setMode('credible')}>Evidence</button>
-          <button className={`badge ${mode==='creative'?'glow':''}`} onClick={()=>setMode('creative')}>Creative</button>
+        <div className="flex gap-2" style={{ display: "flex", gap: 8 }}>
+          <button
+            className={`badge ${mode === "credible" ? "glow" : ""}`}
+            onClick={() => setMode("credible")}
+          >
+            Evidence
+          </button>
+          <button
+            className={`badge ${mode === "creative" ? "glow" : ""}`}
+            onClick={() => setMode("creative")}
+          >
+            Creative
+          </button>
         </div>
       </div>
 
       {lastAssistantTools?.length ? (
         <div className="fixed right-4 bottom-24 hidden md:flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse" />
-          <div className="text-xs text-zinc-400">Lyra switched tools: {lastAssistantTools.join(' + ')}</div>
+          <div className="text-xs text-zinc-400">
+            Lyra switched tools: {lastAssistantTools.join(" + ")}
+          </div>
         </div>
       ) : null}
 
-      <div style={{border:'1px solid #223',borderRadius:12,padding:12,minHeight:320,background:'#0e1422'}}>
-        {messages.length===0 && <div style={{opacity:.6}}>Say hi and I’ll reply…</div>}
-        {messages.map(m=> (
-          m.type==='action' ?
+      <div
+        style={{
+          border: "1px solid #223",
+          borderRadius: 12,
+          padding: 12,
+          minHeight: 320,
+          background: "#0e1422",
+        }}
+      >
+        {messages.length === 0 && (
+          <div style={{ opacity: 0.6 }}>Say hi and I’ll reply…</div>
+        )}
+        {messages.map((m) =>
+          m.type === "action" ? (
             <ActionRunner key={m.id} query={m.query} />
-          : m.type==='consent' ?
-            <ActionConsentCard key={m.id} intent={m.intent} consent={m.consent} />
-          : m.role==='lyra' && m.type==='answer'
-            ? <AnswerCard key={m.id} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
-            : <div key={m.id} style={{margin:'10px 0'}}>
-                <div>
-                  <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
-                  {m.role==='lyra' && (
-                    <button
-                      onClick={() => speak(m.text)}
-                      style={{ marginLeft: 8, fontSize: '0.8em', opacity: 0.7 }}
-                    >
-                      🔊
-                    </button>
-                  )}
-                </div>
-                {m.role==='lyra' && <ToolChips tools={'tools' in m ? m.tools : undefined} />}
+          ) : m.type === "consent" ? (
+            <ActionConsentCard
+              key={m.id}
+              intent={m.intent}
+              consent={m.consent}
+            />
+          ) : m.role === "lyra" && m.type === "answer" ? (
+            <AnswerCard
+              key={m.id}
+              text={m.text}
+              sources={"sources" in m ? m.sources : []}
+              onSpeak={() => speak(m.text)}
+            />
+          ) : (
+            <div key={m.id} style={{ margin: "10px 0" }}>
+              <div>
+                <b style={{ color: m.role === "you" ? "#9ff" : "#9f9" }}>
+                  {m.role === "you" ? "You" : "Lyra"}
+                </b>
+                : {m.text}
+                {m.role === "lyra" && (
+                  <button
+                    onClick={() => speak(m.text)}
+                    style={{ marginLeft: 8, fontSize: "0.8em", opacity: 0.7 }}
+                  >
+                    🔊
+                  </button>
+                )}
               </div>
-        ))}
-        {busy && <div style={{opacity:.6,marginTop:8}}>Lyra is typing…</div>}
+              {m.role === "lyra" && (
+                <ToolChips tools={"tools" in m ? m.tools : undefined} />
+              )}
+            </div>
+          ),
+        )}
+        {busy && (
+          <div style={{ opacity: 0.6, marginTop: 8 }}>Lyra is typing…</div>
+        )}
       </div>
 
-      <div style={{display:'flex',gap:8,marginTop:12}}>
+      <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
         <input
           value={input}
-          onChange={e=>setInput(e.target.value)}
-          onKeyDown={e=>e.key==='Enter' && send()}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && send()}
           placeholder="Type a message…"
-          style={{flex:1,padding:'10px 12px',borderRadius:10,border:'1px solid #223',background:'#0e1422',color:'#e6f1ff'}}
+          style={{
+            flex: 1,
+            padding: "10px 12px",
+            borderRadius: 10,
+            border: "1px solid #223",
+            background: "#0e1422",
+            color: "#e6f1ff",
+          }}
         />
-        <button onClick={send} disabled={busy}
-          style={{padding:'10px 16px',borderRadius:10,background:'linear-gradient(90deg,#6ee7,#8af)',border:'none',color:'#001'}}
+        <button
+          onClick={send}
+          disabled={busy}
+          style={{
+            padding: "10px 16px",
+            borderRadius: 10,
+            background: "linear-gradient(90deg,#6ee7,#8af)",
+            border: "none",
+            color: "#001",
+          }}
         >
           Send
         </button>
       </div>
 
-      <div className="card mt-3" style={{marginTop:12}}>
+      <div className="card mt-3" style={{ marginTop: 12 }}>
         <div className="text-sm font-medium mb-2">Activity</div>
         <ul className="text-xs text-zinc-400 space-y-1">
-          {opsLog.map((e,i)=> <li key={i}>• {new Date(e.t).toLocaleTimeString()} — {e.msg}</li>)}
+          {opsLog.map((e, i) => (
+            <li key={i}>
+              • {new Date(e.t).toLocaleTimeString()} — {e.msg}
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div style={{marginTop:12,fontSize:'11px',color:'#71717a'}}>
-        Lyra provides AI-generated assistance with linked sources. Not professional advice.
+      <div style={{ marginTop: 12, fontSize: "11px", color: "#71717a" }}>
+        Lyra provides AI-generated assistance with linked sources. Not
+        professional advice.
       </div>
 
       <AdminVoiceGate />

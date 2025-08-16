@@ -1,6 +1,6 @@
 # Mutual Non-Disclosure Agreement
 
-This Mutual Non-Disclosure Agreement ("Agreement") is made effective as of {{EffectiveDate}} 
+This Mutual Non-Disclosure Agreement ("Agreement") is made effective as of {{EffectiveDate}}
 between {{PartyA}} and {{PartyB}} in {{Jurisdiction}}.
 
 1. The Parties agree to keep all confidential information private.

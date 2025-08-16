@@ -36,7 +36,9 @@ def trigger_world_event(memory_trigger: str) -> Dict[str, Any]:
     return dict(state)
 
 
-def shift_world_state(agent_state: Dict[str, Any], environment: Dict[str, Any]) -> Dict[str, Any]:
+def shift_world_state(
+    agent_state: Dict[str, Any], environment: Dict[str, Any]
+) -> Dict[str, Any]:
     """Merge agent and environment information into the world ``state``."""
     state.update(agent_state)
     state.update(environment)

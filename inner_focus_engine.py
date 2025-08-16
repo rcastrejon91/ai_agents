@@ -16,7 +16,9 @@ from typing import Any, Dict, List
 class InnerFocusEngine:
     """Handles dynamic focus management for an agent."""
 
-    def __init__(self, state_path: str | Path = "focus_state.json", autoload: bool = True) -> None:
+    def __init__(
+        self, state_path: str | Path = "focus_state.json", autoload: bool = True
+    ) -> None:
         self.focus_stream: List[Dict[str, Any]] = []
         self.priority_index: Dict[str, float] = {}
         self.state_path = Path(state_path)

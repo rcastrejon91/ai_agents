@@ -1,16 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Lyra Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-<h1>Admin Login</h1>
-{% if error %}<p>{{ error }}</p>{% endif %}
-<form method="post">
-    <input type="password" name="password" placeholder="Password">
-    <button type="submit">Login</button>
-</form>
-</body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Admin Login</h1>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form method="post">
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit">Login</button>
+    </form>
+  </body>
 </html>

@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
   backend:
     build: .
     ports:
-      - '5000:5000'
+      - "5000:5000"
   frontend:
     image: node:18
     working_dir: /app
@@ -13,6 +13,6 @@ services:
     environment:
       - BACKEND_URL=http://backend:5000/chat
     ports:
-      - '3000:3000'
+      - "3000:3000"
     depends_on:
       - backend

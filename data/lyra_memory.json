@@ -2,12 +2,8 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source"
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
+    "next_plan": ["Deep-dive one allow-listed source"],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -43,12 +39,8 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source"
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
+    "next_plan": ["Deep-dive one allow-listed source"],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -82,9 +74,7 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"

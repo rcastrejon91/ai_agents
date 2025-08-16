@@ -8,5 +8,4 @@
 
 **Next:** Replace keyword safety with a proper moderation layer; enrich dream simulation; admin UI for scheduled jobs.
 
-
 ⸻

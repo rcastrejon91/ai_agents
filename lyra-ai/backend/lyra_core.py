@@ -1,11 +1,13 @@
 import datetime
 import os
+
 import openai
 from utils.emailer import send_email
 from utils.security import SecurityModule
 from utils.tts import speak
 
 openai.api_key = os.getenv("OPENAI_API_KEY", "YOUR_OPENAI_KEY")
+
 
 class LyraAI:
     def __init__(self, owner_name, owner_email):
@@ -26,8 +28,7 @@ class LyraAI:
 
         # AI Chat
         completion = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": message}]
+            model="gpt-4o-mini", messages=[{"role": "user", "content": message}]
         )
         response_text = completion.choices[0].message.content
         speak(response_text)  # voice output
@@ -44,11 +45,13 @@ class LyraAI:
         self.log_learning("medical", studies)
 
     def log_learning(self, category, data):
-        self.self_learning_log.append({
-            "timestamp": datetime.datetime.now().isoformat(),
-            "category": category,
-            "data": data
-        })
+        self.self_learning_log.append(
+            {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "category": category,
+                "data": data,
+            }
+        )
 
     def email_report(self):
         send_email(self.owner_email, "Lyra Daily Report", str(self.self_learning_log))

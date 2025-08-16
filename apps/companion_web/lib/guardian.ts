@@ -54,12 +54,15 @@ export function scrubSecrets(text: string) {
 
 export async function edgeLog(event: GuardEvent) {
   try {
-  const token = process.env.GUARDIAN_INGEST_TOKEN;
-  if (!token) return;
-  const base = process.env.NEXT_PUBLIC_BASE_URL || "";
-  await fetch(`${base}/api/security/log`, {
+    const token = process.env.GUARDIAN_INGEST_TOKEN;
+    if (!token) return;
+    const base = process.env.NEXT_PUBLIC_BASE_URL || "";
+    await fetch(`${base}/api/security/log`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-guardian-token": token },
+      headers: {
+        "Content-Type": "application/json",
+        "x-guardian-token": token,
+      },
       body: JSON.stringify(event),
       keepalive: true as any,
     }).catch(() => {});

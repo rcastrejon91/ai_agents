@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import uuid
-import json
 from typing import Any, Dict
 
 from agents import (
     FinanceAgent,
-    LegalAgent,
-    RetailAgent,
     HealthcareAgent,
-    RealEstateAgent,
+    LegalAgent,
     PricingAgent,
+    RealEstateAgent,
+    RetailAgent,
 )
 
 
@@ -71,8 +71,12 @@ async def _memory_test() -> None:
     """Simple in-process test for the memory manager."""
     ctrl = AgentController(enable_memory=True)
     session_id = uuid.uuid4().hex
-    await ctrl.route("finance", {"session_id": session_id, "revenue": 100, "expenses": 50})
-    await ctrl.route("finance", {"session_id": session_id, "revenue": 200, "expenses": 125})
+    await ctrl.route(
+        "finance", {"session_id": session_id, "revenue": 100, "expenses": 50}
+    )
+    await ctrl.route(
+        "finance", {"session_id": session_id, "revenue": 200, "expenses": 125}
+    )
     await ctrl.route(
         "pricing",
         {

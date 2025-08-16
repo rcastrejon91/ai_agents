@@ -1,8 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  _req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const key = process.env.OPENAI_API_KEY;
-  if (!key) return res.status(500).json({ ok: false, step: "env", msg: "No OPENAI_API_KEY" });
+  if (!key)
+    return res
+      .status(500)
+      .json({ ok: false, step: "env", msg: "No OPENAI_API_KEY" });
   const r = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {

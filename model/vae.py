@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 
+
 class AAPTVAE(nn.Module):
     """Placeholder variational autoencoder for AAPT video generation."""
 
@@ -18,4 +19,3 @@ class AAPTVAE(nn.Module):
     def decode(self, z: torch.Tensor) -> torch.Tensor:
         """Decode the latent representation back to the input space."""
         return self.decoder(z)
-

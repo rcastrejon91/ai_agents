@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
 export function supaAdmin() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;

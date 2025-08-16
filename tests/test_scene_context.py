@@ -13,4 +13,3 @@ def test_handle_includes_context() -> None:
     output = asyncio.run(agent.handle({"text": "cold but full of love"}))
     assert "context" in output and isinstance(output["context"], dict)
     assert output["response"]
-

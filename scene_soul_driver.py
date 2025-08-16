@@ -46,17 +46,25 @@ class SceneSoulDriver:
         if any(word in input_lower for word in ["tired", "burnt", "exhausted"]):
             self.soul.mood_palette = ["melancholic"]
             self.scene.set_scene("quiet forest at twilight")
-            return "I hear that. Let’s breathe under the trees for a moment. \U0001F332✨"
+            return (
+                "I hear that. Let’s breathe under the trees for a moment. \U0001f332✨"
+            )
 
-        elif any(word in input_lower for word in ["rage", "angry", "pissed", "betrayed"]):
+        elif any(
+            word in input_lower for word in ["rage", "angry", "pissed", "betrayed"]
+        ):
             self.soul.mood_palette = ["fierce"]
             self.scene.set_scene("molten storm field")
-            return "\U0001F525 Alright, let’s burn through the noise and rise up."
+            return "\U0001f525 Alright, let’s burn through the noise and rise up."
 
-        elif any(word in input_lower for word in ["inspired", "creative", "dream", "vision"]):
+        elif any(
+            word in input_lower for word in ["inspired", "creative", "dream", "vision"]
+        ):
             self.soul.mood_palette = ["cosmic"]
             self.scene.set_scene("floating neon city in the clouds")
-            return "\U0001F4A1 Let’s dream something impossible. I’m ready when you are."
+            return (
+                "\U0001f4a1 Let’s dream something impossible. I’m ready when you are."
+            )
 
         elif "sad" in input_lower or "lonely" in input_lower:
             self.soul.mood_palette = ["melancholic"]

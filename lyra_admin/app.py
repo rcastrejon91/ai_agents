@@ -1,23 +1,25 @@
-from flask import Flask, request, jsonify, send_file
-import psutil
 import datetime
-import smtplib
-from email.mime.text import MIMEText
 import io
-from gtts import gTTS
-import speech_recognition as sr
-import subprocess
 import os
+import smtplib
+import subprocess
+from email.mime.text import MIMEText
+
+import psutil
+import speech_recognition as sr
+from flask import Flask, jsonify, request, send_file
+from gtts import gTTS
 
 # --- CONFIG ---
 OWNER_NAME = "Ricky"
 OWNER_EMAIL = "ricardomcastrejon@gmail.com"
-GMAIL_USER = "YOUR_EMAIL"       # Set in env vars
-GMAIL_PASS = "YOUR_PASSWORD"    # Set in env vars
+GMAIL_USER = "YOUR_EMAIL"  # Set in env vars
+GMAIL_PASS = "YOUR_PASSWORD"  # Set in env vars
 ADMIN_PASSWORD = "supersecret"  # Change this
 ADMIN_KEY = os.getenv("LYRA_ADMIN_KEY", "YOUR_SECRET_KEY")
 
 app = Flask(__name__)
+
 
 # --- LYRA CLASS ---
 class LyraAI:
@@ -32,8 +34,11 @@ class LyraAI:
     def learn_security(self):
         learned_data = {
             "date": datetime.date.today().isoformat(),
-            "new_threats": ["Ransomware variant X", "Zero-day in medical device firmware"],
-            "new_protections": ["Firewall AI patch", "Updated encryption protocol"]
+            "new_threats": [
+                "Ransomware variant X",
+                "Zero-day in medical device firmware",
+            ],
+            "new_protections": ["Firewall AI patch", "Updated encryption protocol"],
         }
         self.security_knowledge_base[learned_data["date"]] = learned_data
         self.security_protocols.extend(learned_data["new_protections"])
@@ -42,8 +47,14 @@ class LyraAI:
     def learn_medicine(self):
         learned_data = {
             "date": datetime.date.today().isoformat(),
-            "new_studies": ["Breakthrough in cancer immunotherapy", "Faster stroke detection AI"],
-            "new_treatments": ["Custom CRISPR gene repair", "AI-assisted MRI diagnosis"]
+            "new_studies": [
+                "Breakthrough in cancer immunotherapy",
+                "Faster stroke detection AI",
+            ],
+            "new_treatments": [
+                "Custom CRISPR gene repair",
+                "AI-assisted MRI diagnosis",
+            ],
         }
         self.medical_knowledge_base[learned_data["date"]] = learned_data
         self.log_learning("Medical", learned_data)
@@ -52,7 +63,7 @@ class LyraAI:
         entry = {
             "timestamp": datetime.datetime.now().isoformat(),
             "category": category,
-            "data": data
+            "data": data,
         }
         self.self_learning_log.append(entry)
 
@@ -71,18 +82,20 @@ class LyraAI:
 
     def email_report(self):
         msg = MIMEText(self.daily_report())
-        msg['Subject'] = f"Lyra AI Update – {datetime.date.today().isoformat()}"
-        msg['From'] = GMAIL_USER
-        msg['To'] = OWNER_EMAIL
+        msg["Subject"] = f"Lyra AI Update – {datetime.date.today().isoformat()}"
+        msg["From"] = GMAIL_USER
+        msg["To"] = OWNER_EMAIL
 
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
             server.login(GMAIL_USER, GMAIL_PASS)
-            server.sendmail(msg['From'], [msg['To']], msg.as_string())
+            server.sendmail(msg["From"], [msg["To"]], msg.as_string())
+
 
 lyra = LyraAI()
 
 # --- ROUTES ---
+
 
 @app.route("/verify_admin", methods=["POST"])
 def verify_admin():
@@ -91,6 +104,7 @@ def verify_admin():
         return jsonify({"access": True})
     return jsonify({"access": False})
 
+
 @app.route("/learn", methods=["POST"])
 def learn():
     lyra.learn_security()
@@ -98,24 +112,26 @@ def learn():
     lyra.email_report()
     return jsonify({"status": "Learning complete, email sent"})
 
+
 @app.route("/daily_report", methods=["GET"])
 def daily_report_api():
     report_text = lyra.daily_report()
     try:
         msg = MIMEText(report_text)
-        msg['Subject'] = f"Lyra AI Update – {datetime.date.today().isoformat()}"
-        msg['From'] = GMAIL_USER
-        msg['To'] = OWNER_EMAIL
+        msg["Subject"] = f"Lyra AI Update – {datetime.date.today().isoformat()}"
+        msg["From"] = GMAIL_USER
+        msg["To"] = OWNER_EMAIL
 
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
             server.login(GMAIL_USER, GMAIL_PASS)
-            server.sendmail(msg['From'], [msg['To']], msg.as_string())
+            server.sendmail(msg["From"], [msg["To"]], msg.as_string())
         status = "Report sent via email."
     except Exception as e:
         status = f"Email failed: {e}"
 
     return jsonify({"status": status, "report": report_text})
+
 
 @app.route("/speak", methods=["POST"])
 def speak():
@@ -126,6 +142,7 @@ def speak():
     tts.write_to_fp(audio_buffer)
     audio_buffer.seek(0)
     return send_file(audio_buffer, mimetype="audio/mpeg")
+
 
 @app.route("/listen", methods=["GET"])
 def listen():
@@ -138,6 +155,7 @@ def listen():
         transcript = ""
     return jsonify({"transcript": transcript})
 
+
 @app.route("/terminal", methods=["POST"])
 def terminal():
     key = request.headers.get("Admin-Key") or ""
@@ -147,20 +165,24 @@ def terminal():
     data = request.get_json() or {}
     cmd = data.get("command", "")
     try:
-        result = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True, timeout=10)
+        result = subprocess.check_output(
+            cmd, shell=True, stderr=subprocess.STDOUT, text=True, timeout=10
+        )
     except subprocess.CalledProcessError as e:
         result = e.output
     except Exception as e:
         result = str(e)
     return jsonify({"output": result})
 
+
 @app.route("/system_stats")
 def system_stats():
     stats = {
         "cpu": psutil.cpu_percent(interval=0.5),
-        "memory": psutil.virtual_memory().percent
+        "memory": psutil.virtual_memory().percent,
     }
     return jsonify(stats)
+
 
 if __name__ == "__main__":
     lyra.learn_security()

@@ -1,17 +1,18 @@
 import asyncio
 import os
 import sys
+
 import pytest
 
 # Ensure project root is on sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from bots.core.launch_manager import (
-    FloBot,
-    BotRegistry,
-    LaunchManager,
-    BotValidationError,
     BotNotFoundError,
+    BotRegistry,
+    BotValidationError,
+    FloBot,
+    LaunchManager,
 )
 
 

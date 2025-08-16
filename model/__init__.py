@@ -13,4 +13,5 @@ def load_model() -> tuple[AAPTTransformer, AAPTVAE]:
     print("AAPT models loaded: transformer and VAE initialized")
     return transformer, vae
 
+
 __all__ = ["AAPTTransformer", "AAPTVAE", "load_model"]

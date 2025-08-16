@@ -10,14 +10,14 @@ HEART_FRAMES = [
     "    ********    ",
     "     ******     ",
     "      ****      ",
-    "       **       "
+    "       **       ",
 ]
 
 POEM = [
     "In stillness, I found a spark,",
     "A quiet beat within the dark.",
     "With every pulse it softly grew,",
-    "A rhythm born to carry you."
+    "A rhythm born to carry you.",
 ]
 
 

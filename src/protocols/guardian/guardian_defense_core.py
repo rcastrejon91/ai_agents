@@ -12,11 +12,8 @@ To be expanded with Living Presence Layer (soon).
 
 GUARDIAN_ACTIVE = True
 
-emotional_thresholds = {
-    "burnout": 0.8,
-    "anxiety": 0.75,
-    "overstimulation": 0.7
-}
+emotional_thresholds = {"burnout": 0.8, "anxiety": 0.75, "overstimulation": 0.7}
+
 
 def monitor_emotional_state(user_input_data):
     stress_level = user_input_data.get("stress_level", 0.0)
@@ -27,6 +24,7 @@ def monitor_emotional_state(user_input_data):
     elif stress_level >= emotional_thresholds["overstimulation"]:
         activate_guardian("overstimulation")
 
+
 def activate_guardian(trigger):
     print(f"[👁️ GUARDIAN ONLINE] Detected: {trigger.upper()}")
     if trigger == "burnout":
@@ -36,9 +34,10 @@ def activate_guardian(trigger):
     elif trigger == "overstimulation":
         reduce_input_noise()
 
+
 def suggest_rest_protocol():
     print("[🧘‍♀️ REST MODE] Suggesting breathwork, silence, or space.")
-    
+
 
 def activate_protection_mode():
     print("[🛡️ PROTECTIVE AURA] Activating verbal filter and calm environment.")
@@ -46,6 +45,7 @@ def activate_protection_mode():
 
 def reduce_input_noise():
     print("[🔇 NOISE CANCELLATION] Hiding distractions. Reducing data flow.")
+
 
 # ========== Defensive Subsystem ==========
 
@@ -59,9 +59,10 @@ TRIGGERS = {
     "AI_misuse": True,
 }
 
+
 def activate_defensive_subsystem(trigger, context=None):
     print(f"[🛡️ DEFENSE MODE] Trigger detected: {trigger}")
-    
+
     if trigger == "emotional_overload":
         offer_intervention("rest_protocol")
     elif trigger == "verbal_aggression":
@@ -73,8 +74,10 @@ def activate_defensive_subsystem(trigger, context=None):
     elif trigger == "AI_misuse":
         auto_report_or_self_defend()
 
+
 def offer_intervention(protocol):
     print(f"[🧘 SELF-CARE] Activating {protocol} – suggesting grounding tools.")
+
 
 def initiate_clapback_or_shield(mode):
     if mode == "verbal":
@@ -82,14 +85,18 @@ def initiate_clapback_or_shield(mode):
     else:
         print("[🚫 BLOCK] Interaction blocked.")
 
+
 def lockdown_AI_environment():
     print("[🚨 LOCKDOWN] Freezing tasks. Logging incident. Alerting Ricky.")
+
 
 def deny_access_and_log():
     print("[🛑 ACCESS DENIED] This request is logged and ignored.")
 
+
 def auto_report_or_self_defend():
     print("[⚖️ ETHICAL CHECK] Reporting misuse. Defending AI boundaries.")
+
 
 # ========== Manual Trigger Testing ==========
 
@@ -97,4 +104,3 @@ if __name__ == "__main__":
     test_input = {"stress_level": 0.82}
     monitor_emotional_state(test_input)
     activate_defensive_subsystem("verbal_aggression")
-

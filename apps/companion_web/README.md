@@ -24,6 +24,7 @@ npm run dev
 ## Research Loop
 
 Additional environment variables for the automated research loop:
+
 - `OPENAI_API_KEY`
 - `TAVILY_API_KEY` (optional)
 - `SUPABASE_URL`

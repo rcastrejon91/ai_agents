@@ -1,6 +1,8 @@
 {
   "private": true,
-  "workspaces": ["apps/*"],
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
     "check:pages": "node scripts/check-pages-default-export.mjs apps/companion_web/pages",

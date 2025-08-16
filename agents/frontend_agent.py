@@ -4,10 +4,10 @@ import random
 import uuid
 from typing import Any, Dict, Optional
 
-from memory import MemoryManager
+from agents.scene_context import SceneContextManager
 from dream_world_sim import DreamWorldSim
 from guardian_protocols import GuardianProtocols
-from agents.scene_context import SceneContextManager
+from memory import MemoryManager
 
 
 class EmotionEngine:
@@ -43,7 +43,9 @@ class QuantumLogicEngine:
 
     PATHS = ("symbolic", "chaotic", "emotional", "logical")
 
-    def process(self, text: str, emotion: Dict[str, Any], metadata: Dict[str, Any]) -> Dict[str, Any]:
+    def process(
+        self, text: str, emotion: Dict[str, Any], metadata: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Select a reasoning path based on input emotion."""
         if emotion.get("polarity", 0) > 1:
             path = "logical"
@@ -95,7 +97,9 @@ class FrontendAgent:
     async def handle(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         session_id = input_data.get("session_id") or uuid.uuid4().hex
         text = input_data.get("text", "")
-        metadata = {k: v for k, v in input_data.items() if k not in {"session_id", "text"}}
+        metadata = {
+            k: v for k, v in input_data.items() if k not in {"session_id", "text"}
+        }
 
         protection = self.guardian.evaluate(text)
         if protection["status"] == "neutralized":

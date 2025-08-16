@@ -1,4 +1,4 @@
-import { banner } from '../server/legal/guardrails';
+import { banner } from "../server/legal/guardrails";
 
 export default function LegalNotice() {
   return (

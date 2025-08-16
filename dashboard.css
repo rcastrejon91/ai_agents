@@ -6,7 +6,8 @@ body {
   padding: 20px;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -22,7 +23,8 @@ h1, h2 {
   background: #1e1e1e;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   margin-top: 10px;
   background: #1e1e1e;
@@ -34,7 +36,7 @@ input, textarea {
 button {
   margin-top: 10px;
   padding: 8px 16px;
-  background: #4CAF50;
+  background: #4caf50;
   color: #fff;
   border: none;
   cursor: pointer;

@@ -4,10 +4,13 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -25,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (error) throw error;
     anchors = data ?? [];
   } catch (err) {
-    console.error('kg_anchor_nodes RPC failed', err);
+    console.error("kg_anchor_nodes RPC failed", err);
     anchors = [];
   }
 
@@ -37,13 +40,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data, error } = await supabase
       .from("kg_edges_view")
       .select("*")
-      .or(`src_id.in.(${anchorIds.join(",")}),dst_id.in.(${anchorIds.join(",")})`)
+      .or(
+        `src_id.in.(${anchorIds.join(",")}),dst_id.in.(${anchorIds.join(",")})`,
+      )
       .eq("status", "approved")
       .limit(200);
     if (error) throw error;
     edges = data ?? [];
   } catch (err) {
-    console.error('kg_edges_view fetch failed', err);
+    console.error("kg_edges_view fetch failed", err);
     edges = [];
   }
 
@@ -52,11 +57,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   for (const e of edges as any[]) {
     const evSrc = e?.evidence?.source_url;
     const ev = evSrc ? `[evidence: ${evSrc}]` : "";
-    lines.push(`${e.src.kind}:${e.src.name} --${e.rel}--> ${e.dst.kind}:${e.dst.name}${ev}`);
+    lines.push(
+      `${e.src.kind}:${e.src.name} --${e.rel}--> ${e.dst.kind}:${e.dst.name}${ev}`,
+    );
   }
 
   if (!lines.length) {
-    return res.status(200).json({ abstain: true, reasons: ["No graph context found."] });
+    return res
+      .status(200)
+      .json({ abstain: true, reasons: ["No graph context found."] });
   }
 
   return res.status(200).json({

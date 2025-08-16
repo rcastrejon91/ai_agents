@@ -1,8 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { sb } from "../curate/_supabase";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (process.env.NODE_ENV !== "test" && req.headers.authorization !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (
+    process.env.NODE_ENV !== "test" &&
+    req.headers.authorization !== `Bearer ${process.env.ADMIN_TOKEN}`
+  ) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
@@ -18,7 +24,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     .single();
   const { data: n3 } = await sb
     .from("kg_nodes")
-    .insert({ kind: "Paper", name: "Test RCT", source_url: "https://example.org/pmid-test" })
+    .insert({
+      kind: "Paper",
+      name: "Test RCT",
+      source_url: "https://example.org/pmid-test",
+    })
     .select()
     .single();
   await sb.from("kg_edges").insert({

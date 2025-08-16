@@ -3,8 +3,8 @@ from __future__ import annotations
 import random
 from typing import Any, Dict
 
-from core.base_agent import BaseAIAgent
 from analytics import analytics_store
+from core.base_agent import BaseAIAgent
 
 
 class PricingAgent(BaseAIAgent):

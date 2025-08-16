@@ -2,12 +2,20 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
 import { alertWebhook } from "../../../lib/guardian";
 
-const supa = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
-  ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
-  : null;
+const supa =
+  process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
+    ? createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY,
+      )
+    : null;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method !== "POST")
+    return res.status(405).json({ error: "Method not allowed" });
 
   const token = req.headers["x-guardian-token"];
   if (!token || token !== process.env.GUARDIAN_INGEST_TOKEN) {
@@ -17,18 +25,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const body = (req.body ?? {}) as any;
   const record = {
     event: body.event || "unknown",
-    ip: body.ip || (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || null,
+    ip:
+      body.ip ||
+      (req.headers["x-forwarded-for"] as string) ||
+      req.socket.remoteAddress ||
+      null,
     path: body.path || null,
     method: body.method || req.method,
     query: body.query || null,
-    user_agent: body.user_agent || (req.headers["user-agent"] as string) || null,
+    user_agent:
+      body.user_agent || (req.headers["user-agent"] as string) || null,
     referrer: body.referrer || (req.headers["referer"] as string) || null,
     country: body.country || null,
     city: body.city || null,
     details: body.details || {},
   };
 
-  if (["waf_block", "rate_limit_block", "honeytoken_triggered"].includes(record.event)) {
+  if (
+    ["waf_block", "rate_limit_block", "honeytoken_triggered"].includes(
+      record.event,
+    )
+  ) {
     await alertWebhook(record.event, record);
   }
 

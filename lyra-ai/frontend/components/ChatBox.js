@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import MicButton from './MicButton';
+import { useState } from "react";
+import MicButton from "./MicButton";
 
 export default function ChatBox({ muted }) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
   async function sendMessage(e) {
     e.preventDefault();
     const userMessage = input.trim();
     if (!userMessage) return;
-    setMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
-    setInput('');
+    setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
+    setInput("");
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMessage })
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
       });
       const data = await res.json();
-      setMessages(prev => [...prev, { sender: 'lyra', text: data.reply }]);
-      if (!muted && typeof window !== 'undefined') {
+      setMessages((prev) => [...prev, { sender: "lyra", text: data.reply }]);
+      if (!muted && typeof window !== "undefined") {
         const utter = new SpeechSynthesisUtterance(data.reply);
         window.speechSynthesis.speak(utter);
       }
     } catch (err) {
-      console.error('Chat error', err);
+      console.error("Chat error", err);
     }
   }
 
@@ -44,7 +44,7 @@ export default function ChatBox({ muted }) {
       <form onSubmit={sendMessage} className="chat-form">
         <input
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message"
         />
         <button type="submit">Send</button>

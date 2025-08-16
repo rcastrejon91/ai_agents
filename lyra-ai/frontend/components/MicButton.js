@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function MicButton({ onResult }) {
   const [recording, setRecording] = useState(false);
 
   function startListening() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert('Speech recognition not supported');
+      alert("Speech recognition not supported");
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.onresult = e => {
+    recognition.onresult = (e) => {
       const text = e.results[0][0].transcript;
       onResult && onResult(text);
     };
@@ -21,7 +22,7 @@ export default function MicButton({ onResult }) {
 
   return (
     <button type="button" onClick={startListening}>
-      {recording ? 'Listening...' : '🎤'}
+      {recording ? "Listening..." : "🎤"}
     </button>
   );
 }

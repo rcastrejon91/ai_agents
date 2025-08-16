@@ -1,4 +1,4 @@
-'use client';
+"use client";
 type Props = { tools?: string[] };
 
 const COLORS: Record<string, string> = {
@@ -25,4 +25,3 @@ export default function ToolChips({ tools }: Props) {
     </div>
   );
 }
-

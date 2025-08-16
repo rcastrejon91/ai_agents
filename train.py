@@ -5,10 +5,15 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train the AAPT model")
-    parser.add_argument('--config', type=str, required=True,
-                        help='Path to a YAML config file')
-    parser.add_argument('--output', type=str, default='checkpoints',
-                        help='Directory to store model checkpoints')
+    parser.add_argument(
+        "--config", type=str, required=True, help="Path to a YAML config file"
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default="checkpoints",
+        help="Directory to store model checkpoints",
+    )
     return parser.parse_args()
 
 

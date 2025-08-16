@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 export type CredentialRecord = {
   credentialId: string;
@@ -10,14 +10,20 @@ export type CredentialRecord = {
   addedAt: number;
 };
 
-const DATA_FILE = path.join(process.cwd(), 'server', 'admin', 'webauthn', 'credentials.json');
+const DATA_FILE = path.join(
+  process.cwd(),
+  "server",
+  "admin",
+  "webauthn",
+  "credentials.json",
+);
 
 function load(): Record<string, CredentialRecord[]> {
   try {
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8');
+    const raw = fs.readFileSync(DATA_FILE, "utf-8");
     return JSON.parse(raw);
   } catch (err) {
-    console.error('Failed to load credentials store', err);
+    console.error("Failed to load credentials store", err);
     return {};
   }
 }
@@ -40,10 +46,14 @@ export function addForUser(email: string, rec: CredentialRecord): void {
   save(db);
 }
 
-export function updateCounter(email: string, credentialId: string, counter: number): void {
+export function updateCounter(
+  email: string,
+  credentialId: string,
+  counter: number,
+): void {
   const db = load();
   const arr = db[email] || [];
-  const idx = arr.findIndex(r => r.credentialId === credentialId);
+  const idx = arr.findIndex((r) => r.credentialId === credentialId);
   if (idx >= 0) {
     arr[idx].counter = counter;
     db[email] = arr;
@@ -53,7 +63,7 @@ export function updateCounter(email: string, credentialId: string, counter: numb
 
 export function removeForUser(email: string, credentialId: string): void {
   const db = load();
-  db[email] = (db[email] || []).filter(r => r.credentialId !== credentialId);
+  db[email] = (db[email] || []).filter((r) => r.credentialId !== credentialId);
   save(db);
 }
 

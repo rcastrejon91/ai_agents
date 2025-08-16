@@ -83,4 +83,3 @@ class MemoryManager:
     def fetch_all(self) -> Dict[str, List[Dict[str, Any]]]:
         """Return the entire memory store."""
         return self.store
-

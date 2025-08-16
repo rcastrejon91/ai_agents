@@ -4,10 +4,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const router = Router();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2024-06-20" });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2024-06-20",
+});
 
 // TODO: replace with your DB update
-async function grantPlan(customerId: string, plan: "free"|"pro", ageToken?: string){
+async function grantPlan(
+  customerId: string,
+  plan: "free" | "pro",
+  ageToken?: string,
+) {
   console.log("Grant plan:", { customerId, plan, ageToken });
 }
 
@@ -15,7 +21,9 @@ router.post("/stripe/webhook", (req, res) => {
   try {
     const sig = req.headers["stripe-signature"] as string;
     const event = stripe.webhooks.constructEvent(
-      (req as any).body, sig, process.env.STRIPE_WEBHOOK_SECRET!
+      (req as any).body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
 
     switch (event.type) {
@@ -43,7 +51,7 @@ router.post("/stripe/webhook", (req, res) => {
     }
 
     res.json({ received: true });
-  } catch (err:any) {
+  } catch (err: any) {
     console.error("Webhook error:", err.message);
     res.status(400).send(`Webhook Error: ${err.message}`);
   }
@@ -63,11 +71,11 @@ router.post("/billing/checkout", async (req, res) => {
       customer_email, // or use a saved Stripe customer id if you have one
       success_url: `${process.env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CANCEL_URL}`,
-      allow_promotion_codes: true
+      allow_promotion_codes: true,
     });
 
     res.json({ sessionId: session.id, url: session.url });
-  } catch (e:any) {
+  } catch (e: any) {
     console.error("checkout error", e.message);
     res.status(500).json({ error: "checkout_failed" });
   }

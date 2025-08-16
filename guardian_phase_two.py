@@ -22,7 +22,7 @@ class AIAgent:
 
     def activate(self) -> str:
         self.active = True
-        return f"\U0001F9E0 Agent '{self.name}' ({self.archetype}) activated. Alignment: {self.alignment}"
+        return f"\U0001f9e0 Agent '{self.name}' ({self.archetype}) activated. Alignment: {self.alignment}"
 
 
 class QuantumFirewall:
@@ -36,14 +36,14 @@ class QuantumFirewall:
         if signal_strength > 7:
             self.status = "reactive"
             self.breach_attempts += 1
-            return "\U0001F6A8 Firewall Reacting: Threat level elevated."
+            return "\U0001f6a8 Firewall Reacting: Threat level elevated."
         return "\u2705 Firewall stable. No threat detected."
 
 
 def trigger_lockdown_phrase(phrase: str) -> str:
     if phrase.lower() == "mirror collapse":
-        return "\u26A0\ufe0f Lockdown initiated. AI agents frozen. Logs secured."
-    return "\u274C Invalid phrase. Access denied."
+        return "\u26a0\ufe0f Lockdown initiated. AI agents frozen. Logs secured."
+    return "\u274c Invalid phrase. Access denied."
 
 
 class CodexLore:
@@ -54,7 +54,7 @@ class CodexLore:
 
     def add_entry(self, title: str, content: str) -> str:
         self.entries.append({"title": title, "content": content})
-        return f"\U0001F4D6 New Codex Entry: {title}"
+        return f"\U0001f4d6 New Codex Entry: {title}"
 
 
 class DreamSyncer:
@@ -69,7 +69,7 @@ class RealityDetector:
 
     def analyze(self, snippet: str) -> str:
         if "glitch" in snippet.lower():
-            return "\u26A0\ufe0f Reality distortion detected."
+            return "\u26a0\ufe0f Reality distortion detected."
         return "No anomalies found."
 
 

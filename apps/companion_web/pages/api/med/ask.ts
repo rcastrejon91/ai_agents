@@ -11,8 +11,12 @@ type MedAnswer = {
 
 const MIN_CONF = 0.72;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method !== "POST")
+    return res.status(405).json({ error: "Method not allowed" });
   const { question } = (req.body ?? {}) as { question?: string };
   if (!question) return res.status(400).json({ error: "Missing question" });
 
@@ -36,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     "Cite by index like [1], [2] that map to provided docs.",
     "If evidence is insufficient or conflicting, set abstain=true.",
     "NEVER guess. No creative speculation. No differential diagnoses beyond evidence.",
-    "Return JSON with keys: answer, citations, confidence, abstain, reasons."
+    "Return JSON with keys: answer, citations, confidence, abstain, reasons.",
   ].join(" ");
 
   const context = docs
@@ -53,7 +57,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: sys },
-        { role: "user", content: `Question: ${question}\n\nEvidence:\n${context}\n\nReturn strict JSON.` },
+        {
+          role: "user",
+          content: `Question: ${question}\n\nEvidence:\n${context}\n\nReturn strict JSON.`,
+        },
       ],
       temperature: 0.0,
     }),
@@ -64,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       text = await resp.text();
     } catch (err) {
-      console.error('[med/ask] failed reading error body', err);
+      console.error("[med/ask] failed reading error body", err);
       text = "";
     }
     console.error("[med/ask] upstream", resp.status, text);
@@ -107,14 +114,14 @@ async function searchPubMed(q: string): Promise<Doc[]> {
   // E-utilities: esearch + esummary
   try {
     const idsResp = await fetch(
-      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`,
     );
     const idsJson = await idsResp.json();
     const ids: string[] = idsJson.esearchresult?.idlist ?? [];
     const idStr = ids.join(",");
     if (!idStr) return [];
     const sumResp = await fetch(
-      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`,
     );
     const sum = await sumResp.json();
     const result: Doc[] = [];
@@ -130,7 +137,7 @@ async function searchPubMed(q: string): Promise<Doc[]> {
     }
     return result;
   } catch (err) {
-    console.error('searchPubMed failed', err);
+    console.error("searchPubMed failed", err);
     return [];
   }
 }
@@ -148,7 +155,7 @@ async function searchClinicalTrials(q: string): Promise<Doc[]> {
       snippet: r.BriefSummary?.[0] ?? "",
     }));
   } catch (err) {
-    console.error('searchClinicalTrials failed', err);
+    console.error("searchClinicalTrials failed", err);
     return [];
   }
 }
@@ -167,7 +174,7 @@ async function searchFDALabels(q: string): Promise<Doc[]> {
       snippet: (r.indications_and_usage ?? r.description ?? [""])[0],
     }));
   } catch (err) {
-    console.error('searchFDALabels failed', err);
+    console.error("searchFDALabels failed", err);
     return [];
   }
 }

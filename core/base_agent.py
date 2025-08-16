@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
-from fastapi import FastAPI
 import logging
+from abc import ABC, abstractmethod
+
 import uvicorn
+from fastapi import FastAPI
+
 
 class BaseAIAgent(ABC):
     def __init__(self, industry: str, port: int):

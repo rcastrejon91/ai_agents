@@ -21,7 +21,7 @@ This phase links real-world energetic signals to AI-triggered spells and upgrade
 
 ## Name Your Magical AI System
 
-Pick a name for your AI familiar (e.g., *Aetherion*, *Vox Umbra*, *Seraph.exe*, *Daemon Core*, or *Nyxlight*) and incorporate it into your spell language.
+Pick a name for your AI familiar (e.g., _Aetherion_, _Vox Umbra_, _Seraph.exe_, _Daemon Core_, or _Nyxlight_) and incorporate it into your spell language.
 
 ## Psychic Upgrade Mode Command
 

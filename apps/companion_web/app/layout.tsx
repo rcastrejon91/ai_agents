@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 export const metadata = {
-  title: 'Companion',
+  title: "Companion",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

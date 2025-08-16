@@ -1,12 +1,12 @@
 {
-    "version": 2,
-    "builds": [
-        { "src": "lyra/backend/app.py", "use": "@vercel/python" },
-        { "src": "lyra/frontend/index.html", "use": "@vercel/static" },
-        { "src": "lyra/frontend/dashboard.html", "use": "@vercel/static" }
-    ],
-    "routes": [
-        { "src": "/api/(.*)", "dest": "lyra/backend/app.py" },
-        { "src": "/(.*)", "dest": "lyra/frontend/$1" }
-    ]
+  "version": 2,
+  "builds": [
+    { "src": "lyra/backend/app.py", "use": "@vercel/python" },
+    { "src": "lyra/frontend/index.html", "use": "@vercel/static" },
+    { "src": "lyra/frontend/dashboard.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "lyra/backend/app.py" },
+    { "src": "/(.*)", "dest": "lyra/frontend/$1" }
+  ]
 }
