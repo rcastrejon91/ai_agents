@@ -1,1 +1,1 @@
-web: node apps/companion_api/dist/index.js
+web: gunicorn lyra_app.app:app --bind 0.0.0.0:$PORT
