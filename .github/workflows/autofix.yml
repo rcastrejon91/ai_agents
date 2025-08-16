@@ -1,33 +1,45 @@
-name: Autofix Starter
+name: Autofix (push to main)
+
 on:
   workflow_dispatch: {}
   push:
     branches: [ main ]
+
 permissions:
   contents: write
 
 jobs:
   autofix:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      # JS/TS (only if package.json exists)
-      - uses: actions/setup-node@v4
-        if: ${{ hashFiles('package.json') != '' }}
-        with: { node-version: 'lts/*' }
-      - name: ESLint + Prettier (JS/TS)
-        if: ${{ hashFiles('package.json') != '' }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---------- JS / TS ----------
+      - name: Setup Node
+        if: ${{ hashFiles('**/package.json') != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: ESLint + Prettier
+        if: ${{ hashFiles('**/package.json') != '' }}
         run: |
           npm ci || npm install
-          npx --yes eslint . --fix || true
+          npx --yes eslint . --ext .js,.ts --fix || true
           npx --yes prettier . --write || true
 
-      # Python (only if *.py exists)
-      - uses: actions/setup-python@v5
+      # ---------- Python ----------
+      - name: Setup Python
         if: ${{ hashFiles('**/*.py') != '' }}
-        with: { python-version: '3.11' }
-      - name: Ruff/Black/isort (Py)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ruff + Black + isort
         if: ${{ hashFiles('**/*.py') != '' }}
         run: |
           python -m pip install --upgrade pip
@@ -36,11 +48,22 @@ jobs:
           isort . || true
           black . || true
 
-      - name: Commit changes (if any)
+      # ---------- Commit fixes directly to main (never commit workflow files) ----------
+      - name: Commit & push to main
         run: |
-          if git status --porcelain | grep .; then
-            git config user.name "autofix-bot"
-            git config user.email "autofix-bot@users.noreply.github.com"
-            git checkout -b "autofix/${GITHUB_RUN_ID}"
-            git add -A && git commit -m "chore: autofix" && git push -u origin HEAD
+          set -e
+          git add -A
+          # don't try to commit workflow files (GitHub blocks this)
+          git restore --staged .github/workflows || true
+          # nothing to commit? exit cleanly
+          if git diff --cached --quiet; then
+            echo "No changes to commit 🎉"
+            exit 0
           fi
+          # make sure we can push fast-forward
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main || true
+          git commit -m "chore: autofix (ESLint/Prettier, Ruff/Black/isort)"
+          git push origin HEAD:main
