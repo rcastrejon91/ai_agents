@@ -103,13 +103,11 @@ export default async function handler(
 
     // Execute steps client-side; this API just returns the plan.
     // (Safer, avoids server SSRF. The client will call our /api/free/* routes.)
-    return res
-      .status(200)
-      .json({
-        plan,
-        outputs: [],
-        summary: "Client should execute steps and report back.",
-      });
+    return res.status(200).json({
+      plan,
+      outputs: [],
+      summary: "Client should execute steps and report back.",
+    });
   } catch (e: any) {
     console.error("Agent run failed", e);
     return res.status(500).json({ error: e?.message || "agent_error" });

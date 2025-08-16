@@ -27,12 +27,10 @@ export default async function handler(
   const gate = limitGate(req, res);
   res.setHeader("Set-Cookie", gate.setCookie);
   if (!gate.ok) {
-    return res
-      .status(402)
-      .json({
-        error: "limit_reached",
-        upgrade: process.env.BILLING_URL || null,
-      });
+    return res.status(402).json({
+      error: "limit_reached",
+      upgrade: process.env.BILLING_URL || null,
+    });
   }
   const tplPath = path.join(
     process.cwd(),

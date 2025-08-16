@@ -71,11 +71,9 @@ export default async function handler(
     });
   }
 
-  return res
-    .status(200)
-    .json({
-      ok: true,
-      nodes: Object.values(keyToId).length,
-      edges: edges.length,
-    });
+  return res.status(200).json({
+    ok: true,
+    nodes: Object.values(keyToId).length,
+    edges: edges.length,
+  });
 }
