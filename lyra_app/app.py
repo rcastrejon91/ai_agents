@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
-from flask import Flask, request, jsonify, render_template_string
+
+from flask import Flask, jsonify, render_template_string, request
 
 # ====== Config ======
 OWNER_NAME = "Ricky"
@@ -10,6 +11,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI = None
 if OPENAI_API_KEY:
     from openai import OpenAI
+
     OPENAI = OpenAI(apiKey=OPENAI_API_KEY)
 
 app = Flask(__name__)
@@ -100,15 +102,22 @@ f.addEventListener('submit', async (e) => {
 </html>
 """
 
+
 @app.route("/")
 def ui():
     return render_template_string(HTML)
 
+
 # ====== Health check ======
 @app.route("/ping")
 def ping():
-    return jsonify(ok=True, service="Lyra Flask", time=datetime.utcnow().isoformat()+"Z",
-                   openai=bool(OPENAI is not None))
+    return jsonify(
+        ok=True,
+        service="Lyra Flask",
+        time=datetime.utcnow().isoformat() + "Z",
+        openai=bool(OPENAI is not None),
+    )
+
 
 # ====== Chat endpoint ======
 @app.route("/api/lyra", methods=["POST"])
@@ -122,33 +131,44 @@ def lyra():
     if not msg:
         return jsonify(error="Missing 'message'"), 400
 
-    system = ("You are Lyra, a warm, supportive AI companion. Keep replies concise, kind, and practical. "
-              "No explicit content. Encourage small next steps and reflect user details empathetically.")
+    system = (
+        "You are Lyra, a warm, supportive AI companion. Keep replies concise, kind, and practical. "
+        "No explicit content. Encourage small next steps and reflect user details empathetically."
+    )
 
     try:
         r = OPENAI.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role":"system","content":system}] + history + [{"role":"user","content":msg}],
+            messages=[{"role": "system", "content": system}]
+            + history
+            + [{"role": "user", "content": msg}],
         )
         reply = r.choices[0].message.content
         return jsonify(reply=reply)
     except Exception as e:
         return jsonify(error="upstream", detail=str(e)), 500
 
+
 # ====== Optional tiny memory demo ======
 _MEM = {}
+
+
 @app.route("/remember", methods=["POST"])
 def remember():
     d = request.get_json(silent=True) or {}
     uid, fact = d.get("user_id"), d.get("fact")
     if not uid or not fact:
         return jsonify(error="user_id and fact required"), 400
-    _MEM.setdefault(uid, []).append({"fact": fact, "ts": datetime.utcnow().isoformat()+"Z"})
+    _MEM.setdefault(uid, []).append(
+        {"fact": fact, "ts": datetime.utcnow().isoformat() + "Z"}
+    )
     return jsonify(ok=True, count=len(_MEM[uid]))
+
 
 @app.route("/memories/<uid>")
 def memories(uid):
     return jsonify(memories=_MEM.get(uid, []))
+
 
 if __name__ == "__main__":
     # Local dev run: python lyra_app/app.py
