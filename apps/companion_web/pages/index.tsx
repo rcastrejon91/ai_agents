@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
-import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
 import ActionRunner from "../components/ActionRunner";
 import ActionConsentCard from "../components/ActionConsentCard";
 import HealthDot from "../components/HealthDot";
 import ToolChips from "../components/ToolChips";
+import VoiceSettings from "../components/VoiceSettings";
 
 export default function Home() {
   const [mode, setMode] = useState<'credible'|'creative'>('credible');
@@ -21,6 +21,18 @@ export default function Home() {
   const [opsLog, setOpsLog] = useState<{t:number;msg:string}[]>([]);
   const [lastAssistantTools, setLastAssistantTools] = useState<string[] | null>(null);
   const [currentTools, setCurrentTools] = useState<string[] | null>(null);
+  const [muted, setMuted] = useState(false);
+  const [voiceSettings, setVoiceSettings] = useState({ pitch: 1.1, rate: 1, volume: 1 });
+
+  function speakText(text: string) {
+    if (muted) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.pitch = voiceSettings.pitch;
+    utterance.rate = voiceSettings.rate;
+    utterance.volume = voiceSettings.volume;
+    window.speechSynthesis.speak(utterance);
+  }
 
   useEffect(() => {
     if (lastAssistantTools) {
@@ -39,6 +51,7 @@ export default function Home() {
       if (!r.ok) return false;
       const data = await r.json();
       setMessages(m => [...m, { id: crypto.randomUUID(), role:'lyra', type:'answer', text: data.answer, sources: data.sources || [] }]);
+      speakText(data.answer);
       setOpsLog(l => [
         { t: Date.now(), msg: `Answer via /api/answer • sources:${data.sources?.length||0} • model:gpt-4o-mini` },
         ...l
@@ -60,6 +73,7 @@ export default function Home() {
       const data = (await resp.json()) as { reply?: string; error?: string; tools?: string[] };
       const textReply = data.reply ?? data.error ?? 'I had trouble replying.';
       setMessages(m => [...m, { id: crypto.randomUUID(), role: 'lyra', type:'plain', text: textReply, tools: data.tools }]);
+      speakText(textReply);
       setCurrentTools(prev => {
         const next = data.tools && data.tools.length ? data.tools : null;
         if (JSON.stringify(prev) !== JSON.stringify(next)) {
@@ -124,22 +138,23 @@ export default function Home() {
     <div style={{minHeight:'100vh',background:'#0b0f16',color:'#e6f1ff',padding:'24px',maxWidth:780,margin:'0 auto'}}>
       <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <h1 style={{fontSize:28,marginBottom:6}}>AITaskFlo</h1>
-        <HealthDot />
+        <div style={{display:'flex',alignItems:'center',gap:8}}>
+          <button
+            onClick={() => setMuted(m => !m)}
+            style={{
+              padding: '4px 8px',
+              borderRadius: 6,
+              background: '#121826',
+              border: '1px solid #223',
+              fontSize: 12
+            }}
+          >
+            {muted ? 'Unmute' : 'Mute'} 🔊
+          </button>
+          <HealthDot />
+        </div>
       </div>
       <div style={{opacity:.7,marginBottom:16}}>Your personality-driven AI console.</div>
-      <button
-        onClick={() => unlockAudio()}
-        style={{
-          padding: '4px 8px',
-          borderRadius: 6,
-          background: '#121826',
-          border: '1px solid #223',
-          fontSize: 12,
-          marginBottom: 16
-        }}
-      >
-        Enable sound 🔊
-      </button>
 
       <div className="card" style={{marginBottom:12,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
         <div className="text-sm">Mode</div>
@@ -148,6 +163,7 @@ export default function Home() {
           <button className={`badge ${mode==='creative'?'glow':''}`} onClick={()=>setMode('creative')}>Creative</button>
         </div>
       </div>
+      <VoiceSettings settings={voiceSettings} setSettings={setVoiceSettings} />
 
       {lastAssistantTools?.length ? (
         <div className="fixed right-4 bottom-24 hidden md:flex items-center gap-2">
@@ -164,13 +180,13 @@ export default function Home() {
           : m.type==='consent' ?
             <ActionConsentCard key={m.id} intent={m.intent} consent={m.consent} />
           : m.role==='lyra' && m.type==='answer'
-            ? <AnswerCard key={m.id} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speak(m.text)} />
+            ? <AnswerCard key={m.id} text={m.text} sources={'sources' in m ? m.sources : []} onSpeak={()=>speakText(m.text)} />
             : <div key={m.id} style={{margin:'10px 0'}}>
                 <div>
                   <b style={{color:m.role==='you'?'#9ff':'#9f9'}}>{m.role==='you'?'You':'Lyra'}</b>: {m.text}
                   {m.role==='lyra' && (
                     <button
-                      onClick={() => speak(m.text)}
+                      onClick={() => speakText(m.text)}
                       style={{ marginLeft: 8, fontSize: '0.8em', opacity: 0.7 }}
                     >
                       🔊
