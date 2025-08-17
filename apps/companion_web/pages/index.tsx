@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
