@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
-import { safeFetchJSON, riskGate } from "../../../app/lib/research/utils";
+import { safeFetchJSON, riskGate, utcTimestamp } from "../../../app/lib/research/utils";
 
 export const config = { api: { bodyParser: false } };
 
@@ -10,7 +10,13 @@ const sb = createClient(
 );
 
 async function log(task_id: string, phase: string, payload: any) {
-  await sb.from("research_logs").insert({ task_id, phase, payload });
+  await sb.from("research_logs").insert({ 
+    task_id, 
+    phase, 
+    payload,
+    timestamp: utcTimestamp(),
+    created_at: new Date().toISOString()
+  });
 }
 
 async function searchBundle(query: string) {
@@ -263,7 +269,11 @@ export default async function handler(
 
     await sb
       .from("research_tasks")
-      .update({ status: "running", started_at: new Date().toISOString() })
+      .update({ 
+        status: "running", 
+        started_at: new Date().toISOString(),
+        started_timestamp: utcTimestamp()
+      })
       .eq("id", task.id);
 
     // 2) Search bundle
@@ -280,7 +290,11 @@ export default async function handler(
       await log(task.id, "guard", { denied: true, reason: gate.reason });
       await sb
         .from("research_tasks")
-        .update({ status: "failed", finished_at: new Date().toISOString() })
+        .update({ 
+          status: "failed", 
+          finished_at: new Date().toISOString(),
+          finished_timestamp: utcTimestamp()
+        })
         .eq("id", task.id);
       return res
         .status(200)
@@ -293,7 +307,11 @@ export default async function handler(
     // 6) Mark done
     await sb
       .from("research_tasks")
-      .update({ status: "done", finished_at: new Date().toISOString() })
+      .update({ 
+        status: "done", 
+        finished_at: new Date().toISOString(),
+        finished_timestamp: utcTimestamp()
+      })
       .eq("id", task.id);
 
     res.status(200).json({ ok: true, task, summary, proposals, applied });
