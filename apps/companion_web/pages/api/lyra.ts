@@ -54,15 +54,13 @@ export default async function handler(
 
     // Environment validation
     const key = process.env.OPENAI_API_KEY;
-    if (!key) {
-      console.error("[lyra] missing OPENAI_API_KEY");
-      
-      // Return demo response when no API key is configured
-      const demoReply = `(demo mode) Using ${tools.join(" + ")} → ${message.substring(0, 100)}${message.length > 100 ? "..." : ""}`;
+    
+    // Health ping: allows quick health check without burning tokens
+    if (req.query.ping) {
       const response: LyraResponse = {
-        reply: demoReply,
+        reply: "pong",
         model: "demo",
-        tools,
+        tools: [],
         timestamp: new Date().toISOString(),
         requestId,
       };
@@ -76,13 +74,16 @@ export default async function handler(
       await logRequest(req, res, undefined, duration, requestId);
       return;
     }
-
-    // Health ping: allows quick health check without burning tokens
-    if (req.query.ping) {
+    
+    if (!key) {
+      console.error("[lyra] missing OPENAI_API_KEY");
+      
+      // Return demo response when no API key is configured
+      const demoReply = `(demo mode) Using ${tools.join(" + ")} → ${message.substring(0, 100)}${message.length > 100 ? "..." : ""}`;
       const response: LyraResponse = {
-        reply: "pong",
+        reply: demoReply,
         model: "demo",
-        tools: [],
+        tools,
         timestamp: new Date().toISOString(),
         requestId,
       };
