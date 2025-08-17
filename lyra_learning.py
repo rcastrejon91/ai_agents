@@ -5,10 +5,15 @@ import pathlib
 import re
 import smtplib
 from email.mime.text import MIMEText
+import sys
 
 import requests
 import yaml
 from bs4 import BeautifulSoup
+
+# Add utils to path for datetime utilities
+sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
+from datetime_utils import utc_date, utc_timestamp
 
 # ---- Paths / Config
 MEM_PATH = "data/lyra_memory.json"
@@ -466,7 +471,8 @@ if __name__ == "__main__":
         self_repair = f"(robot_core not reachable: {e})"
 
     entry = {
-        "date": dt.datetime.utcnow().strftime("%Y-%m-%d"),
+        "date": utc_date(),
+        "timestamp": utc_timestamp(),
         "summary": analysis["summary"],
         "insights": analysis["insights"],
         "next_plan": analysis["next_plan"],

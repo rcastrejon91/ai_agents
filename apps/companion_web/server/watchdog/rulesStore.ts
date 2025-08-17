@@ -10,6 +10,7 @@ type RuleRec = {
   effective_date?: string;
   hash: string;
   ts: string;
+  timestamp?: string;
 };
 function load(): RuleRec[] {
   try {

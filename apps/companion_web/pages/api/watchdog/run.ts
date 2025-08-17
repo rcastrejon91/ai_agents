@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { scanJurisdiction } from "../../../server/watchdog/scan";
 import { applyPolicy } from "../../../server/watchdog/apply";
 import { put } from "../../../server/watchdog/rulesStore";
+import { utcTimestamp } from "../../../app/lib/research/utils";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -25,6 +26,7 @@ export default async function handler(
         sources: parsed.sources || [],
         effective_date: parsed.effective_date,
         hash: s.hash,
+        timestamp: utcTimestamp(),
         ts: new Date().toISOString(),
       });
       applyPolicy(jur, parsed);

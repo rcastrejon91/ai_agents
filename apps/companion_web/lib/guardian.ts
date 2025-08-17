@@ -1,4 +1,6 @@
 // Lightweight security utilities for Lyra
+import { utcTimestamp } from "../app/lib/research/utils";
+
 export type GuardEvent = {
   event: string;
   ip?: string | null;
@@ -76,7 +78,12 @@ export async function alertWebhook(event: string, details: any = {}) {
     await fetch(hook, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event, details, ts: new Date().toISOString() }),
+      body: JSON.stringify({ 
+        event, 
+        details, 
+        timestamp: utcTimestamp(),
+        ts: new Date().toISOString() 
+      }),
     });
   } catch {}
 }
