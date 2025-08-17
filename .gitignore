@@ -5,3 +5,8 @@ dist/
 apps/companion_api/.env
 apps/companion_web/.env.local
 lyra_app/lyra.db
+# Next.js build artifacts
+.next/
+# Frontend build artifacts
+frontend/.next/
+lyra-ai/frontend/.next/

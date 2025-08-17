@@ -1,4 +1,4 @@
-const ADMIN_API_URL = "http://localhost:5000";
+const ADMIN_API_URL = window.BACKEND_URL || "http://localhost:5000";
 
 document.getElementById("getReportBtn").addEventListener("click", () => {
   fetch(`${ADMIN_API_URL}/daily_report`)

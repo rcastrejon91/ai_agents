@@ -17,6 +17,12 @@
     <textarea id="terminalInput" placeholder="Type Python code..."></textarea>
     <button id="runTerminalBtn">Run Code</button>
 
+    <script>
+      // Configure backend URL - can be overridden by setting window.BACKEND_URL
+      // or by passing ?backend=<url> in the query string
+      const urlParams = new URLSearchParams(window.location.search);
+      window.BACKEND_URL = urlParams.get('backend') || window.BACKEND_URL || "http://localhost:5000";
+    </script>
     <script src="dashboard.js"></script>
   </body>
 </html>
