@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 import psutil
 import speech_recognition as sr
 from flask import Flask, jsonify, request, send_file
+from flask_cors import CORS
 from gtts import gTTS
 
 # --- CONFIG ---
@@ -19,6 +20,7 @@ ADMIN_PASSWORD = "supersecret"  # Change this
 ADMIN_KEY = os.getenv("LYRA_ADMIN_KEY", "YOUR_SECRET_KEY")
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 
 # --- LYRA CLASS ---

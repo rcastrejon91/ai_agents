@@ -5,7 +5,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const backendRes = await fetch("http://localhost:5000/chat", {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
+    const backendRes = await fetch(`${backendUrl}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
