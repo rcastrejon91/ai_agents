@@ -2,8 +2,12 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -39,8 +43,12 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -74,7 +82,9 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"
@@ -114,7 +124,9 @@
   {
     "date": "2025-08-16",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -151,5 +163,46 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f92c8e1a350>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-17",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Israeli: (definition pending — no model key set)",
+      "Zeitoun: (definition pending — no model key set)",
+      "Hamas-run: (definition pending — no model key set)",
+      "Ronnie Rondell: (definition pending — no model key set)",
+      "Baywatch: (definition pending — no model key set)",
+      "Spartacus: (definition pending — no model key set)",
+      "The Matrix Reloaded: (definition pending — no model key set)",
+      "Steve Witkoff: (definition pending — no model key set)",
+      "Zelensky: (definition pending — no model key set)",
+      "European: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Steve Witkoff describes the proposal as \"game-changing\" as Zelensky joins a call with European leaders ahead of his White House visit. Israeli bombardment has created a \"catastrophic\" situation in the city's Zeitoun neighbourhood, the city's Hamas-run authority says. Ronnie Rondell Jr's decades-long career saw him appear in films and TV including Baywatch, Spartacus and The Matrix Reloaded. More than 2,500 people have crossed the English Channel in the 11 days since the \"one in, one out\" migrant scheme took effect, Home Office figures show. As an authoritarian China tries other forms of soft power, a sumptuous table may  be a useful draw. Israeli bombardment has created a \"catastrophic\" situation in the city's Zeitoun neighbourhood, the city's Hamas-run authority says. Hundreds are reported missing in Khyber Pakhtunkhwa province as a result of devastating floods. Video shows the aircraft flying over the golf course before crash landing, as the pilot and passenger escaped without major injuries. DC's largest homeless encampment was destroyed after the president called for a crackdown. What happened to its residents? Ronnie Rondell Jr's decades-long career saw him appear in films and TV including Baywatch, Spartacus and The Matrix Reloaded."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "First 3D Images of Human Embryo Implantation Reveal New Details of the Process Analyzing embryo movements in uteruslike environments could offer clues to improving the success rate of in vitro fertilization Humberto Basilio Climate Change's Effect on Sudan's Cholera Outbreak, Explained Andrea Tamayo Here’s Why Rabbits Are Sprouting Tentacle Horns Stephanie Pappas This Company Claimed to ‘De-extinct’ Dire Wolves. Then the Fighting Started Ewen Callaway, Nature magazine The Internet Is Making Us Fluent in Algospeak"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f108a05d870>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
