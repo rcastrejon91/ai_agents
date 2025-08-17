@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import AdminVoiceGate from "../app/(components)/AdminVoiceGate";
 import { unlockAudio, speak } from "../app/lib/speech";
 import { AnswerCard } from "../components/AnswerCard";
@@ -6,6 +7,16 @@ import ActionRunner from "../components/ActionRunner";
 import ActionConsentCard from "../components/ActionConsentCard";
 import HealthDot from "../components/HealthDot";
 import ToolChips from "../components/ToolChips";
+import { ErrorBoundary, ChatErrorFallback } from "../components/ErrorBoundary";
+
+// Dynamic import for better performance
+const DynamicAdminVoiceGate = dynamic(
+  () => import("../app/(components)/AdminVoiceGate"),
+  {
+    ssr: false,
+    loading: () => <div style={{ opacity: 0.5 }}>Loading voice controls...</div>,
+  }
+);
 
 export default function Home() {
   const [mode, setMode] = useState<"credible" | "creative">("credible");
