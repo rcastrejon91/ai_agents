@@ -65,3 +65,50 @@ Run it with:
 ```bash
 python passive_income_bot.py
 ```
+
+## Environment Configuration
+
+This repository includes frontend applications in `frontend/`, `lyra-ai/frontend/`, and `lyra/frontend/` that can be configured to work with different backend environments.
+
+### Setup Instructions
+
+1. **Copy the environment template:**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Configure your environment variables:**
+   - `NEXT_PUBLIC_BACKEND_URL`: Set this to your backend API URL (e.g., `https://api.yourdomain.com`)
+   - `NODE_ENV`: Set to `production` for production builds, defaults to `development`
+
+3. **Development vs Production:**
+   - **Development**: Uses `http://localhost:5000` by default
+   - **Production**: Uses the value from `NEXT_PUBLIC_BACKEND_URL` or falls back to `https://api.yourdomain.com`
+
+### Frontend Applications
+
+Each frontend application includes:
+- **Centralized configuration** in `frontend/config/` directory
+- **Timeout handling** (10 seconds) for API calls  
+- **Proper error handling** with user-friendly messages
+- **Environment-based URL switching** for development and production
+
+### Backend Configuration
+
+Both backend applications (`lyra/backend/` and `lyra-ai/backend/`) include:
+- **CORS configuration** allowing cross-origin requests
+- **Flask applications** running on port 5000 by default
+
+### Building and Running
+
+```bash
+# Frontend applications
+cd frontend/
+npm install
+npm run build
+npm run dev
+
+# Backend applications  
+cd lyra/backend/
+python app.py
+```
