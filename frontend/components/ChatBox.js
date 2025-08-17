@@ -6,7 +6,7 @@ export default function ChatBox({ messages, sendMessage }) {
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
-    
+
     setLoading(true);
     try {
       await sendMessage(input);
@@ -30,9 +30,7 @@ export default function ChatBox({ messages, sendMessage }) {
       <div className="messages">
         {messages.map((m, idx) => (
           <div key={idx} className={`message ${m.sender}`}>
-            <div className="message-content">
-              {m.text}
-            </div>
+            <div className="message-content">{m.text}</div>
           </div>
         ))}
         {loading && (
@@ -58,10 +56,7 @@ export default function ChatBox({ messages, sendMessage }) {
           disabled={loading}
           className={loading ? "loading" : ""}
         />
-        <button 
-          onClick={handleSend}
-          disabled={loading || !input.trim()}
-        >
+        <button onClick={handleSend} disabled={loading || !input.trim()}>
           {loading ? "..." : "Send"}
         </button>
       </div>

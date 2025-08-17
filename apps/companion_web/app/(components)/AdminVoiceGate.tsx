@@ -17,18 +17,21 @@ export default function AdminVoiceGate() {
       const voices = speechSynthesis.getVoices();
       if (voices.length > 0) {
         setVoicesLoaded(true);
-        console.log('Available voices:', voices.map(v => v.name));
+        console.log(
+          "Available voices:",
+          voices.map((v) => v.name),
+        );
       }
     };
-    
+
     // Load voices immediately if available
     loadVoices();
-    
+
     // Also listen for the voiceschanged event (needed for some browsers)
-    speechSynthesis.addEventListener('voiceschanged', loadVoices);
-    
+    speechSynthesis.addEventListener("voiceschanged", loadVoices);
+
     return () => {
-      speechSynthesis.removeEventListener('voiceschanged', loadVoices);
+      speechSynthesis.removeEventListener("voiceschanged", loadVoices);
     };
   }, []);
 
@@ -104,27 +107,30 @@ export default function AdminVoiceGate() {
   function speak(text: string) {
     // Cancel any existing speech
     speechSynthesis.cancel();
-    
+
     const u = new SpeechSynthesisUtterance(text);
-    
+
     // Configure voice settings for better quality
     u.rate = 0.9; // Slightly slower for clarity
     u.pitch = 1.0; // Normal pitch
     u.volume = 0.8; // Comfortable volume
-    
+
     // Try to use a preferred voice if available
     const voices = speechSynthesis.getVoices();
-    const preferredVoice = voices.find(voice => 
-      voice.lang.startsWith('en') && 
-      (voice.name.includes('Google') || voice.name.includes('Microsoft') || voice.default)
+    const preferredVoice = voices.find(
+      (voice) =>
+        voice.lang.startsWith("en") &&
+        (voice.name.includes("Google") ||
+          voice.name.includes("Microsoft") ||
+          voice.default),
     );
     if (preferredVoice) {
       u.voice = preferredVoice;
     }
-    
+
     // Add error handling and fallback
     u.onerror = (event) => {
-      console.warn('Speech synthesis error:', event.error);
+      console.warn("Speech synthesis error:", event.error);
       // Fallback: try basic speech without voice configuration
       const fallback = new SpeechSynthesisUtterance(text);
       fallback.rate = 1.0;
@@ -132,19 +138,19 @@ export default function AdminVoiceGate() {
       try {
         speechSynthesis.speak(fallback);
       } catch (err) {
-        console.error('Speech synthesis completely failed:', err);
+        console.error("Speech synthesis completely failed:", err);
       }
     };
-    
+
     // Add completion handler
     u.onend = () => {
-      console.log('Speech synthesis completed');
+      console.log("Speech synthesis completed");
     };
-    
+
     try {
       speechSynthesis.speak(u);
     } catch (err) {
-      console.error('Speech synthesis failed:', err);
+      console.error("Speech synthesis failed:", err);
     }
   }
   return (

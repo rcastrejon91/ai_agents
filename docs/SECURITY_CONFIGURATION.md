@@ -11,12 +11,14 @@ The implementation includes comprehensive security measures, environment validat
 ### 1. Environment Configuration
 
 #### Enhanced .env.example
+
 - Comprehensive documentation with clear sections
 - All required and optional environment variables
 - Security-focused configuration options
 - Production deployment guidelines
 
 #### Environment Validation
+
 - **Location**: `apps/companion_api/src/config/env-validation.ts`
 - **Features**:
   - Required variable validation
@@ -28,11 +30,13 @@ The implementation includes comprehensive security measures, environment validat
 ### 2. CORS Configuration
 
 #### Environment-Specific Settings
+
 - **Development**: Allows all localhost origins for easy development
 - **Staging**: Configurable origins from ALLOWED_ORIGINS environment variable
 - **Production**: Strict origin validation from ALLOWED_ORIGINS
 
 #### Features
+
 - Preflight request handling
 - Credential support
 - Custom headers configuration
@@ -42,12 +46,14 @@ The implementation includes comprehensive security measures, environment validat
 ### 3. Security Measures
 
 #### Rate Limiting
+
 - **Development**: 1000 requests per 15 minutes (lenient for development)
 - **Staging**: 200 requests per 15 minutes
 - **Production**: 100 requests per 15 minutes (strict)
 - IP-based tracking with automatic reset
 
 #### Security Headers
+
 - `X-Frame-Options: DENY` - Prevents clickjacking
 - `X-Content-Type-Options: nosniff` - Prevents MIME sniffing
 - `X-XSS-Protection: 1; mode=block` - XSS protection
@@ -55,6 +61,7 @@ The implementation includes comprehensive security measures, environment validat
 - `Permissions-Policy` - Restricts access to sensitive APIs
 
 #### Input Validation
+
 - Message length validation (max 1000 characters)
 - Empty message detection
 - Type validation (must be string)
@@ -63,6 +70,7 @@ The implementation includes comprehensive security measures, environment validat
 ### 4. Health Check Endpoints
 
 #### `/health` endpoint
+
 ```json
 {
   "ok": true,
@@ -77,16 +85,19 @@ The implementation includes comprehensive security measures, environment validat
 ```
 
 #### `/ready` endpoint
+
 - Readiness check for deployment platforms
 - Can be extended with database connectivity checks
 
 ### 5. Railway Deployment Configuration
 
 #### Application-Specific Configurations
+
 - **companion_api**: `apps/companion_api/railway.json`
 - **companion_web**: `apps/companion_web/railway.json`
 
 #### Features
+
 - Node.js optimized build configuration
 - Health check integration
 - Proper environment variable handling
@@ -97,11 +108,13 @@ The implementation includes comprehensive security measures, environment validat
 ### Development Setup
 
 1. Copy environment file:
+
 ```bash
 cp .env.example .env
 ```
 
 2. Fill in required variables:
+
 ```bash
 OPENAI_API_KEY=sk-your-api-key
 NODE_ENV=development
@@ -110,6 +123,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 ```
 
 3. Start the API:
+
 ```bash
 cd apps/companion_api
 npm install
@@ -119,6 +133,7 @@ npm run dev
 ### Production Deployment
 
 1. Set environment variables in deployment platform:
+
 ```bash
 OPENAI_API_KEY=sk-prod-key
 NODE_ENV=production
@@ -131,6 +146,7 @@ PORT=8787
 ### Testing Security Features
 
 Run the comprehensive test script:
+
 ```bash
 ./test_security_features.sh
 ```
@@ -138,9 +154,11 @@ Run the comprehensive test script:
 ## Environment Variables Reference
 
 ### Required Variables
+
 - `OPENAI_API_KEY`: OpenAI API key (must start with `sk-`)
 
 ### Optional Variables
+
 - `NODE_ENV`: Environment type (development/staging/production)
 - `PORT`: Server port (default: 8787)
 - `ALLOWED_ORIGINS`: Comma-separated list of allowed origins
@@ -148,12 +166,14 @@ Run the comprehensive test script:
 - `STRIPE_WEBHOOK_SECRET`: Stripe webhook secret
 
 ### Security Variables
+
 - `ORIGIN`: WebAuthn origin for authentication
 - `RP_ID`: WebAuthn relying party ID
 
 ## Validation Examples
 
 ### Valid Configuration
+
 ```bash
 ✅ Environment validation passed
 🚀 API server running on port 8787
@@ -163,6 +183,7 @@ Run the comprehensive test script:
 ```
 
 ### Invalid Configuration
+
 ```bash
 Environment validation failed:
   ❌ OPENAI_API_KEY is required
@@ -172,6 +193,7 @@ Environment validation failed:
 ## Security Testing
 
 ### CORS Testing
+
 ```bash
 # Test allowed origin
 curl -H "Origin: http://localhost:3000" http://localhost:8787/health
@@ -181,6 +203,7 @@ curl -H "Origin: http://malicious-site.com" http://localhost:8787/health
 ```
 
 ### Input Validation Testing
+
 ```bash
 # Test empty message
 curl -X POST http://localhost:8787/chat \
@@ -194,6 +217,7 @@ curl -X POST http://localhost:8787/chat \
 ```
 
 ### Rate Limiting Testing
+
 ```bash
 # Make multiple requests to test rate limiting
 for i in {1..150}; do
@@ -205,6 +229,7 @@ done
 ## Monitoring and Logging
 
 The implementation includes comprehensive logging for:
+
 - Environment validation results
 - CORS policy violations
 - Rate limit violations

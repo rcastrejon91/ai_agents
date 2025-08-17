@@ -14,8 +14,10 @@ const DynamicAdminVoiceGate = dynamic(
   () => import("../app/(components)/AdminVoiceGate"),
   {
     ssr: false,
-    loading: () => <div style={{ opacity: 0.5 }}>Loading voice controls...</div>,
-  }
+    loading: () => (
+      <div style={{ opacity: 0.5 }}>Loading voice controls...</div>
+    ),
+  },
 );
 
 export default function Home() {
