@@ -3,7 +3,7 @@
  */
 import { Router, Response } from 'express';
 import { Config } from '../config/env.js';
-import { generateTokens, verifyToken } from '../middleware/auth.js';
+import { generateTokens, verifyToken, jwtAuthMiddleware } from '../middleware/auth.js';
 import { AppError, asyncHandler } from '../middleware/error.js';
 import { AuthenticatedRequest } from '../middleware/security.js';
 
@@ -86,11 +86,7 @@ export const createAuthRoutes = (config: Config) => {
   /**
    * Get current user profile
    */
-  router.get('/me', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
-    if (!req.user) {
-      throw new AppError('Authentication required', 401, 'AUTHENTICATION_REQUIRED');
-    }
-
+  router.get('/me', jwtAuthMiddleware(config), asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
     res.json({
       user: req.user,
       requestId: req.id
