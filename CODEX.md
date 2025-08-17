@@ -41,6 +41,7 @@ LYRA_FREE_DAILY_SEARCH_LIMIT=25   # example limit before upgrade prompt
 USE_LLM_ROUTER=true               # toggle between keyword vs AI intent routing
 ADMIN_DASH_KEY=<long-random>
 NEXT_PUBLIC_ADMIN_UI_KEY=<same-as-admin-key>
+BACKEND_URL=http://localhost:5000 # configurable backend URL for frontend components
 ```
 
 ---
