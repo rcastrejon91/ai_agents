@@ -3,6 +3,7 @@ import io
 import os
 import smtplib
 import subprocess
+import sys
 from email.mime.text import MIMEText
 
 import psutil
@@ -10,12 +11,51 @@ import speech_recognition as sr
 from flask import Flask, jsonify, request, send_file
 from gtts import gTTS
 
+# Add parent directory to sys.path for secure config
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Try to import secure configuration
+try:
+    from config.secure_config import SecureConfig
+    from utils.env_validator import EnvironmentValidator
+    
+    # Validate environment if secure components are available
+    validator = EnvironmentValidator()
+    validation_errors = validator.validate_all()
+    
+    if validation_errors:
+        print("Warning: Environment validation issues detected:")
+        for error in validation_errors:
+            print(f"  - {error}")
+    
+    # Load secure config if possible
+    secure_config = None
+    try:
+        secure_config = SecureConfig()
+        secure_config.load_env()
+        print("Lyra Admin: Secure configuration loaded")
+    except Exception as e:
+        print(f"Lyra Admin: Could not load secure config: {e}")
+        
+except ImportError:
+    print("Lyra Admin: Secure configuration not available, using basic config")
+    secure_config = None
+
+def get_secure_config(key: str, fallback: str = "") -> str:
+    """Get configuration value from secure config with fallback"""
+    if secure_config:
+        try:
+            return secure_config.get(key)
+        except KeyError:
+            pass
+    return os.getenv(key, fallback)
+
 # --- CONFIG ---
 OWNER_NAME = "Ricky"
 OWNER_EMAIL = "ricardomcastrejon@gmail.com"
-GMAIL_USER = "YOUR_EMAIL"  # Set in env vars
-GMAIL_PASS = "YOUR_PASSWORD"  # Set in env vars
-ADMIN_PASSWORD = "supersecret"  # Change this
+GMAIL_USER = os.getenv("GMAIL_USER", "YOUR_EMAIL")
+GMAIL_PASS = os.getenv("GMAIL_PASS", "YOUR_PASSWORD")
+ADMIN_PASSWORD = get_secure_config("ADMIN_PASSWORD", os.getenv("ADMIN_PASSWORD", "supersecret"))
 ADMIN_KEY = os.getenv("LYRA_ADMIN_KEY", "YOUR_SECRET_KEY")
 
 app = Flask(__name__)

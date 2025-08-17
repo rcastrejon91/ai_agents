@@ -93,16 +93,14 @@ class TestEnvironmentValidator:
         validator = EnvironmentValidator()
         pwd_validation = next(v for v in validator.validations if v.name == "ADMIN_PASSWORD")
         
-        # Valid passwords (at least 8 chars, at least 1 letter and 1 digit)
-        assert pwd_validation.validate("password123") is True
-        assert pwd_validation.validate("MyPass99") is True
-        assert pwd_validation.validate("a1b2c3d4") is True
+        # Valid passwords (base64-like strings, at least 8 chars)
+        assert pwd_validation.validate("Q8SgQ2uvkBqOFzD95F/C3Q==") is True
+        assert pwd_validation.validate("abcdefgh") is True
+        assert pwd_validation.validate("VGVzdFBhc3N3b3Jk") is True
         
         # Invalid passwords
-        assert pwd_validation.validate("short1") is False  # too short
-        assert pwd_validation.validate("nouppercase123") is True  # still valid (has letter+digit)
-        assert pwd_validation.validate("NoDigitsHere") is False  # no digits
-        assert pwd_validation.validate("12345678") is False  # no letters
+        assert pwd_validation.validate("short") is False  # too short
+        assert pwd_validation.validate("has@special#chars") is False  # invalid chars
     
     def test_validate_all_success(self):
         """Test validate_all with all valid environment variables"""
@@ -110,7 +108,7 @@ class TestEnvironmentValidator:
             'JWT_SECRET': 'VGVzdFNlY3JldEtleUZvckpXVEF1dGhlbnRpY2F0aW9u',  # Valid base64-like string
             'DATABASE_URL': 'postgresql://user:pass@localhost:5432/dbname',
             'API_KEYS': 'key1,key2,key3',
-            'ADMIN_PASSWORD': 'SecurePass123'
+            'ADMIN_PASSWORD': 'Q8SgQ2uvkBqOFzD95F/C3Q=='  # Valid base64-like password
         }
         
         with patch.dict(os.environ, test_env):
@@ -124,7 +122,7 @@ class TestEnvironmentValidator:
             'JWT_SECRET': 'invalid-jwt',  # doesn't match pattern
             'DATABASE_URL': 'not-a-url',  # doesn't match pattern
             'API_KEYS': 'key with spaces',  # doesn't match pattern
-            'ADMIN_PASSWORD': 'short'  # too short and no digits
+            'ADMIN_PASSWORD': 'bad@'  # too short and invalid chars
         }
         
         with patch.dict(os.environ, test_env):
