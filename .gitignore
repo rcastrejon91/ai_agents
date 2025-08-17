@@ -5,3 +5,11 @@ dist/
 apps/companion_api/.env
 apps/companion_web/.env.local
 lyra_app/lyra.db
+
+# Next.js build artifacts
+.next/
+# Python cache
+__pycache__/
+*.pyc
+# Lock files (keeping package.json for dependency tracking)
+package-lock.json
