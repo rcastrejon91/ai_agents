@@ -7,7 +7,7 @@ from flask_cors import CORS
 from gtts import gTTS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/speak", methods=["POST"])

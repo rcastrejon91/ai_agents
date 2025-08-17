@@ -3,7 +3,7 @@ from flask_cors import CORS
 from lyra_core import LyraAI
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 lyra = LyraAI(owner_name="Ricky", owner_email="ricardomcastrejon@gmail.com")
 
