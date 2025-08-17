@@ -3,6 +3,19 @@ from datetime import datetime
 
 from flask import Flask, jsonify, render_template_string, request
 
+# Import enhanced error handling
+from error_handling import (
+    error_handler,
+    validate_lyra_request,
+    rate_limit_check,
+    make_request_with_retry,
+    ValidationError,
+    UpstreamError,
+    RateLimitError,
+    check_openai_health,
+    TIMEOUT_CONFIG,
+)
+
 # ====== Config ======
 OWNER_NAME = "Ricky"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -11,10 +24,16 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI = None
 if OPENAI_API_KEY:
     from openai import OpenAI
-
-    OPENAI = OpenAI(apiKey=OPENAI_API_KEY)
+    OPENAI = OpenAI(api_key=OPENAI_API_KEY)
 
 app = Flask(__name__)
+
+# Configure logging
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 # ====== Minimal in-browser chat UI at "/" ======
 HTML = """
@@ -108,45 +127,101 @@ def ui():
     return render_template_string(HTML)
 
 
-# ====== Health check ======
+# ====== Enhanced Health check ======
 @app.route("/ping")
+@error_handler
 def ping():
-    return jsonify(
-        ok=True,
-        service="Lyra Flask",
-        time=datetime.utcnow().isoformat() + "Z",
-        openai=bool(OPENAI is not None),
-    )
+    """Enhanced health check endpoint."""
+    openai_health = check_openai_health()
+    
+    overall_status = "healthy"
+    if openai_health["status"] == "unhealthy":
+        overall_status = "unhealthy"
+    elif openai_health["status"] == "degraded":
+        overall_status = "degraded"
+    
+    health_data = {
+        "status": overall_status,
+        "service": "Lyra Flask",
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "services": {
+            "openai": openai_health,
+        },
+        "version": "1.0.0",
+    }
+    
+    status_code = 200 if overall_status != "unhealthy" else 503
+    response = jsonify(health_data)
+    response.status_code = status_code
+    return response
 
 
-# ====== Chat endpoint ======
+# ====== Enhanced Chat endpoint ======
 @app.route("/api/lyra", methods=["POST"])
+@error_handler
 def lyra():
+    """Enhanced Lyra chat endpoint with comprehensive error handling."""
+    # Check OpenAI configuration
     if OPENAI is None:
-        return jsonify(error="OpenAI not configured", detail="Set OPENAI_API_KEY"), 500
-
-    data = request.get_json(silent=True) or {}
-    msg = (data.get("message") or "").strip()
-    history = data.get("history") or []
-    if not msg:
-        return jsonify(error="Missing 'message'"), 400
-
-    system = (
-        "You are Lyra, a warm, supportive AI companion. Keep replies concise, kind, and practical. "
-        "No explicit content. Encourage small next steps and reflect user details empathetically."
-    )
-
-    try:
-        r = OPENAI.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "system", "content": system}]
-            + history
-            + [{"role": "user", "content": msg}],
+        raise UpstreamError(
+            "OpenAI not configured", 
+            {"detail": "Set OPENAI_API_KEY environment variable"}
         )
-        reply = r.choices[0].message.content
-        return jsonify(reply=reply)
+    
+    # Rate limiting
+    client_ip = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+    if not rate_limit_check(client_ip, 30):  # 30 requests per minute
+        raise RateLimitError("Too many requests. Please try again later.")
+    
+    # Get and validate request data
+    data = request.get_json(silent=True) or {}
+    validated_data = validate_lyra_request(data)
+    
+    message = validated_data["message"]
+    history = validated_data["history"]
+    
+    # System prompt
+    system_prompt = (
+        "You are Lyra, a warm, supportive AI companion. Keep replies concise, kind, and practical. "
+        "No explicit content. Encourage small next steps and reflect user details empathetically. "
+        "Limit responses to 500 words or less."
+    )
+    
+    # Prepare messages
+    messages = [{"role": "system", "content": system_prompt}]
+    messages.extend(history)
+    messages.append({"role": "user", "content": message})
+    
+    try:
+        # Call OpenAI with timeout and error handling
+        response = OPENAI.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            temperature=0.7,
+            max_tokens=500,
+            timeout=TIMEOUT_CONFIG["OPENAI"],
+        )
+        
+        reply = response.choices[0].message.content
+        if not reply:
+            raise UpstreamError("Empty response from OpenAI API")
+        
+        return jsonify({
+            "reply": reply.strip(),
+            "model": "gpt-4o-mini",
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "request_id": getattr(request, 'request_id', None),
+        })
+        
     except Exception as e:
-        return jsonify(error="upstream", detail=str(e)), 500
+        # Convert OpenAI exceptions to our error types
+        error_msg = str(e)
+        if "timeout" in error_msg.lower():
+            raise TimeoutError(f"OpenAI request timed out: {error_msg}")
+        elif "rate" in error_msg.lower() and "limit" in error_msg.lower():
+            raise RateLimitError(f"OpenAI rate limit exceeded: {error_msg}")
+        else:
+            raise UpstreamError(f"OpenAI API error: {error_msg}")
 
 
 # ====== Optional tiny memory demo ======
