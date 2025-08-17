@@ -1,3 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
 flask
 gunicorn
 openai
+redis
+psutil
+python-multipart
