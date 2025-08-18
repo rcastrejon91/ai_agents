@@ -3,7 +3,6 @@
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 
 export interface SecurityConfig {
   requireAuth?: boolean;
@@ -98,8 +97,8 @@ export function sanitizeInput(
 
   // Remove potentially dangerous HTML/script content
   sanitized = sanitized
-    .replace(/<script[^>]*>.*?<\/script>/gis, "")
-    .replace(/<iframe[^>]*>.*?<\/iframe>/gis, "")
+    .replace(/<script[^>]*>.*?<\/script>/gi, "")
+    .replace(/<iframe[^>]*>.*?<\/iframe>/gi, "")
     .replace(/javascript:/gi, "")
     .replace(/vbscript:/gi, "")
     .replace(/on\w+\s*=/gi, "");
@@ -195,15 +194,27 @@ export function withSecurity(
         }
       }
 
-      // Authentication check
+      // Authentication check  
       if (config.requireAuth) {
-        const session = await getSession({ req });
-        if (!session) {
+        // Simple authentication check using API key or session
+        const authHeader = req.headers.authorization;
+        const apiKey = process.env.API_SECRET_KEY;
+        
+        if (!authHeader && !apiKey) {
           logSecurityEvent("unauthorized_access", {
             url: req.url,
             userAgent: req.headers["user-agent"],
           });
           return res.status(401).json({ error: "Unauthorized" });
+        }
+        
+        // Check API key if provided
+        if (apiKey && authHeader !== `Bearer ${apiKey}`) {
+          logSecurityEvent("invalid_api_key", {
+            url: req.url,
+            userAgent: req.headers["user-agent"],
+          });
+          return res.status(401).json({ error: "Invalid API key" });
         }
       }
 

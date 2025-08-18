@@ -5,24 +5,29 @@ import {
   sanitizeInput,
   sanitizeApiBody,
 } from "../../lib/security";
-import { logger } from "../../lib/logger";
 
 const LYRA_MODEL = "gpt-4o-mini";
 
-// Minimal Lyra API route that validates env wiring and proxies to OpenAI.
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    // Check for OpenAI API key
+    const key = process.env.OPENAI_API_KEY;
+    if (!key) {
+      console.error("OPENAI_API_KEY not configured");
+      return res.status(500).json({ error: "Service configuration error" });
+    }
+
     // Validate and sanitize request body
     const body = sanitizeApiBody(req.body || {}, {
       message: { type: "string", maxLength: 2000, required: true },
       history: { type: "array" },
     });
 
-    const message = body.message || "";
+    const message = String(body.message || "");
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
     if (!message) {
-      logger.warn("Empty message received", { ip: req.socket.remoteAddress });
+      console.warn("Empty message received", { ip: req.socket.remoteAddress });
       return res.status(400).json({ error: "Message is required" });
     }
 
@@ -52,12 +57,24 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(200).json({ reply: "pong", model: "demo", tools });
     }
 
-    // Call OpenAI
-    logger.info("Making OpenAI request", {
+    // Call OpenAI with proper error handling
+    console.log("Making OpenAI request", {
       messageLength: message.length,
       tools,
       historyLength: sanitizedHistory.length,
     });
+
+    const openaiBody = {
+      model: LYRA_MODEL,
+      messages: [
+        {
+          role: "system",
+          content: "You are Lyra, a concise, friendly assistant.",
+        },
+        ...sanitizedHistory,
+        { role: "user", content: message },
+      ],
+    };
 
     const openaiRes = await fetch(
       "https://api.openai.com/v1/chat/completions",
@@ -67,17 +84,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${key}`,
         },
-        body: JSON.stringify({
-          model: LYRA_MODEL,
-          messages: [
-            {
-              role: "system",
-              content: "You are Lyra, a concise, friendly assistant.",
-            },
-            ...sanitizedHistory,
-            { role: "user", content: message },
-          ],
-        }),
+        body: JSON.stringify(openaiBody),
       },
     );
 
@@ -86,31 +93,31 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       try {
         errText = await openaiRes.text();
       } catch (err) {
-        logger.error("Failed to read error body", { error: err });
+        console.error("Failed to read error body", err);
         errText = "";
       }
-      logger.error("OpenAI upstream error", {
+      console.error("OpenAI upstream error", {
         status: openaiRes.status,
         error: errText,
       });
       return res.status(502).json({ error: "Upstream error." });
     }
 
-    const data = (await openaiRes.json()) as any;
+    const data = await openaiRes.json();
     const reply: string | undefined =
       data?.choices?.[0]?.message?.content?.trim();
     const safeReply = scrubSecrets(
       reply ?? "I'm not sure what to say, but I'm here!",
     );
 
-    logger.info("Successful OpenAI response", {
+    console.log("Successful OpenAI response", {
       replyLength: safeReply.length,
       model: LYRA_MODEL,
     });
 
     return res.status(200).json({ reply: safeReply, model: LYRA_MODEL, tools });
   } catch (e: any) {
-    logger.error("Lyra API exception", {
+    console.error("Lyra API exception", {
       error: e?.message || e,
       stack: e?.stack,
     });

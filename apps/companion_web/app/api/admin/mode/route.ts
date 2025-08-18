@@ -4,9 +4,7 @@ import path from "path";
 import {
   sanitizeInput,
   logSecurityEvent,
-  setSecurityHeaders,
 } from "../../../../lib/security";
-import { logger } from "../../../../lib/logger";
 
 let CURRENT = {
   admin: false,
@@ -72,22 +70,20 @@ function logAdminEvent(evt: Record<string, any>) {
       "utf-8",
     );
   } catch (err) {
-    logger.error("Failed to log admin event", { error: err });
+    console.error("Failed to log admin event", { error: err });
   }
 }
 
 export async function GET(req: NextRequest) {
-  // Set security headers
   const response = ok(CURRENT);
-  setSecurityHeaders(response);
+  // Add basic security headers manually
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
   return response;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
-
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
     if (!checkRateLimit(ip, 5, 300000)) {
@@ -110,7 +106,7 @@ export async function POST(req: NextRequest) {
       }
       body = JSON.parse(text);
     } catch (err) {
-      logger.error("Failed to parse admin mode body", { error: err, ip });
+      console.error("Failed to parse admin mode body", { error: err, ip });
       return bad("Invalid JSON");
     }
 
@@ -142,7 +138,7 @@ export async function POST(req: NextRequest) {
     const envPin = (process.env.ADMIN_PIN || "").trim();
 
     if (!envPass && !envPin) {
-      logger.error("No admin credentials configured");
+      console.error("No admin credentials configured");
       return bad("Admin access not configured", 503);
     }
 
@@ -169,7 +165,7 @@ export async function POST(req: NextRequest) {
       ip,
     });
 
-    logger.info("Admin mode updated", {
+    console.log("Admin mode updated", {
       used,
       changes: { admin, personality },
       ip,
@@ -177,7 +173,7 @@ export async function POST(req: NextRequest) {
 
     return ok(CURRENT);
   } catch (error) {
-    logger.error("Admin mode POST error", { error });
+    console.error("Admin mode POST error", { error });
     return bad("Internal server error", 500);
   }
 }

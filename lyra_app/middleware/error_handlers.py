@@ -29,6 +29,7 @@ def register_error_handlers(app) -> None:
             "error": "Bad Request",
             "message": error.description or "Invalid request data",
             "code": 400,
+            "request_id": getattr(request, 'request_id', None),
         }
 
         if request.is_json:
@@ -47,6 +48,7 @@ def register_error_handlers(app) -> None:
             "error": "Unauthorized",
             "message": "Authentication required",
             "code": 401,
+            "request_id": getattr(request, 'request_id', None),
         }
 
         if request.is_json:
@@ -163,6 +165,29 @@ def register_error_handlers(app) -> None:
     @app.errorhandler(Exception)
     def handle_generic_error(error: Exception) -> Tuple[Dict[str, Any], int]:
         """Handle all other exceptions."""
+        # Check for specific API-related errors
+        error_name = type(error).__name__
+        
+        if 'timeout' in error_name.lower() or 'ConnectionTimeout' in error_name:
+            app.logger.warning(f"API timeout error: {error}")
+            response = {
+                "error": "Service Timeout",
+                "message": "The request took too long to complete. Please try again.",
+                "code": 408,
+                "request_id": getattr(request, 'request_id', None),
+            }
+            return jsonify(response), 408
+        
+        if 'connection' in error_name.lower() or 'ConnectionError' in error_name:
+            app.logger.warning(f"API connection error: {error}")
+            response = {
+                "error": "Service Unavailable",
+                "message": "Unable to connect to external service. Please try again later.",
+                "code": 503,
+                "request_id": getattr(request, 'request_id', None),
+            }
+            return jsonify(response), 503
+        
         # Log the full traceback for debugging
         app.logger.error(f"Unhandled exception: {str(error)}", exc_info=True)
 
@@ -170,6 +195,7 @@ def register_error_handlers(app) -> None:
             "error": "Internal Server Error",
             "message": "An unexpected error occurred. Please try again later.",
             "code": 500,
+            "request_id": getattr(request, 'request_id', None),
         }
 
         # Include debug information in development mode
