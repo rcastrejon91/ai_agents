@@ -1,424 +1,458 @@
-{#
-  Base layout template for Lyra applications
-  
-  This template provides the basic HTML structure and includes:
-  - CSS variables and common styles
-  - CSRF token generation
-  - Flash message handling
-  - Responsive meta tags
-  - Security headers
-#}
+{# Base layout template for Lyra applications This template provides the basic
+HTML structure and includes: - CSS variables and common styles - CSRF token
+generation - Flash message handling - Responsive meta tags - Security headers #}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() if csrf_token else '' }}">
-    
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="csrf-token"
+      content="{{ csrf_token() if csrf_token else '' }}"
+    />
+
     {# Security headers #}
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+
     <title>{% block title %}Lyra{% endblock %} - AI Companion</title>
-    
+
     {# Favicon #}
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-    
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="{{ url_for('static', filename='images/favicon.svg') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/favicon.png') }}"
+    />
+
     {# CSS Variables and Base Styles #}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
-    
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/variables.css') }}"
+    />
+
     {# Base styles #}
     <style>
-        /* Base reset and typography */
-        * {
-            box-sizing: border-box;
+      /* Base reset and typography */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-primary);
+        font-size: var(--font-base);
+        line-height: var(--line-height-normal);
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        transition: var(--transition-all);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0 0 var(--spacing-md) 0;
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
+      }
+
+      h1 {
+        font-size: var(--font-3xl);
+      }
+      h2 {
+        font-size: var(--font-2xl);
+      }
+      h3 {
+        font-size: var(--font-xl);
+      }
+      h4 {
+        font-size: var(--font-lg);
+      }
+      h5 {
+        font-size: var(--font-base);
+      }
+      h6 {
+        font-size: var(--font-sm);
+      }
+
+      p {
+        margin: 0 0 var(--spacing-md) 0;
+      }
+
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition-all);
+      }
+
+      a:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
+      }
+
+      /* Form elements */
+      input,
+      textarea,
+      select,
+      button {
+        font-family: inherit;
+        font-size: var(--font-base);
+        line-height: var(--line-height-normal);
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: var(--input-padding-y) var(--input-padding-x);
+        border: var(--border-width-thin) solid var(--input-border-color);
+        border-radius: var(--input-border-radius);
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        transition: var(--transition-all);
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--input-focus-border-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      button {
+        padding: var(--btn-padding-y) var(--btn-padding-x);
+        border: none;
+        border-radius: var(--btn-border-radius);
+        font-weight: var(--btn-font-weight);
+        cursor: pointer;
+        transition: var(--btn-transition);
+        background-color: var(--primary-color);
+        color: var(--text-light);
+      }
+
+      button:hover:not(:disabled) {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+      }
+
+      button:disabled {
+        background-color: var(--text-tertiary);
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Layout utilities */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--container-padding);
+      }
+
+      .card {
+        background: var(--surface-light);
+        border: var(--card-border);
+        border-radius: var(--card-border-radius);
+        padding: var(--card-padding);
+        box-shadow: var(--card-shadow);
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .flex-col {
+        flex-direction: column;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+
+      .justify-between {
+        justify-content: space-between;
+      }
+
+      .gap-md {
+        gap: var(--spacing-md);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .w-full {
+        width: 100%;
+      }
+
+      .h-full {
+        height: 100%;
+      }
+
+      /* Flash messages */
+      .flash-messages {
+        position: fixed;
+        top: var(--spacing-lg);
+        right: var(--spacing-lg);
+        z-index: var(--z-toast);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        max-width: 400px;
+      }
+
+      .flash-message {
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--shadow-md);
+        animation: slideIn 0.3s ease;
+        position: relative;
+      }
+
+      .flash-message.success {
+        background: var(--success-light);
+        color: var(--success-dark);
+        border: var(--border-width-thin) solid var(--success-color);
+      }
+
+      .flash-message.error {
+        background: var(--error-light);
+        color: var(--error-dark);
+        border: var(--border-width-thin) solid var(--error-color);
+      }
+
+      .flash-message.warning {
+        background: var(--warning-light);
+        color: var(--warning-dark);
+        border: var(--border-width-thin) solid var(--warning-color);
+      }
+
+      .flash-message.info {
+        background: var(--info-light);
+        color: var(--info-dark);
+        border: var(--border-width-thin) solid var(--info-color);
+      }
+
+      .flash-close {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        background: none;
+        border: none;
+        font-size: var(--font-lg);
+        cursor: pointer;
+        color: inherit;
+        padding: 0;
+        line-height: 1;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
         }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-primary);
-            font-size: var(--font-base);
-            line-height: var(--line-height-normal);
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            transition: var(--transition-all);
+        to {
+          transform: translateX(0);
+          opacity: 1;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
-            margin: 0 0 var(--spacing-md) 0;
-            font-weight: var(--font-weight-semibold);
-            line-height: var(--line-height-tight);
+      }
+
+      /* Loading spinner */
+      .spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--text-tertiary);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
-        
-        h1 { font-size: var(--font-3xl); }
-        h2 { font-size: var(--font-2xl); }
-        h3 { font-size: var(--font-xl); }
-        h4 { font-size: var(--font-lg); }
-        h5 { font-size: var(--font-base); }
-        h6 { font-size: var(--font-sm); }
-        
-        p {
-            margin: 0 0 var(--spacing-md) 0;
-        }
-        
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition-all);
-        }
-        
-        a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
-        
-        /* Form elements */
-        input, textarea, select, button {
-            font-family: inherit;
-            font-size: var(--font-base);
-            line-height: var(--line-height-normal);
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: var(--input-padding-y) var(--input-padding-x);
-            border: var(--border-width-thin) solid var(--input-border-color);
-            border-radius: var(--input-border-radius);
-            background-color: var(--input-bg);
-            color: var(--text-primary);
-            transition: var(--transition-all);
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--input-focus-border-color);
-            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-        }
-        
-        button {
-            padding: var(--btn-padding-y) var(--btn-padding-x);
-            border: none;
-            border-radius: var(--btn-border-radius);
-            font-weight: var(--btn-font-weight);
-            cursor: pointer;
-            transition: var(--btn-transition);
-            background-color: var(--primary-color);
-            color: var(--text-light);
-        }
-        
-        button:hover:not(:disabled) {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-        
-        button:disabled {
-            background-color: var(--text-tertiary);
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        /* Layout utilities */
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--container-padding);
+          padding: 0 var(--spacing-md);
         }
-        
-        .card {
-            background: var(--surface-light);
-            border: var(--card-border);
-            border-radius: var(--card-border-radius);
-            padding: var(--card-padding);
-            box-shadow: var(--card-shadow);
-        }
-        
-        .flex {
-            display: flex;
-        }
-        
-        .flex-col {
-            flex-direction: column;
-        }
-        
-        .items-center {
-            align-items: center;
-        }
-        
-        .justify-between {
-            justify-content: space-between;
-        }
-        
-        .gap-md {
-            gap: var(--spacing-md);
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .w-full {
-            width: 100%;
-        }
-        
-        .h-full {
-            height: 100%;
-        }
-        
-        /* Flash messages */
+
         .flash-messages {
-            position: fixed;
-            top: var(--spacing-lg);
-            right: var(--spacing-lg);
-            z-index: var(--z-toast);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-            max-width: 400px;
+          top: var(--spacing-md);
+          right: var(--spacing-md);
+          left: var(--spacing-md);
+          max-width: none;
         }
-        
-        .flash-message {
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-md);
-            animation: slideIn 0.3s ease;
-            position: relative;
-        }
-        
-        .flash-message.success {
-            background: var(--success-light);
-            color: var(--success-dark);
-            border: var(--border-width-thin) solid var(--success-color);
-        }
-        
-        .flash-message.error {
-            background: var(--error-light);
-            color: var(--error-dark);
-            border: var(--border-width-thin) solid var(--error-color);
-        }
-        
-        .flash-message.warning {
-            background: var(--warning-light);
-            color: var(--warning-dark);
-            border: var(--border-width-thin) solid var(--warning-color);
-        }
-        
-        .flash-message.info {
-            background: var(--info-light);
-            color: var(--info-dark);
-            border: var(--border-width-thin) solid var(--info-color);
-        }
-        
-        .flash-close {
-            position: absolute;
-            top: var(--spacing-sm);
-            right: var(--spacing-sm);
-            background: none;
-            border: none;
-            font-size: var(--font-lg);
-            cursor: pointer;
-            color: inherit;
-            padding: 0;
-            line-height: 1;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        /* Loading spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text-tertiary);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 var(--spacing-md);
-            }
-            
-            .flash-messages {
-                top: var(--spacing-md);
-                right: var(--spacing-md);
-                left: var(--spacing-md);
-                max-width: none;
-            }
-        }
+      }
     </style>
-    
+
     {% block head_extra %}{% endblock %}
-</head>
-<body>
-    {# Flash messages #}
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages" id="flash-messages">
-                {% for category, message in messages %}
-                    <div class="flash-message {{ category }}">
-                        {{ message }}
-                        <button class="flash-close" onclick="this.parentElement.remove()">&times;</button>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
-    
-    {# Main content #}
-    <div class="app-container">
-        {% block header %}
-            {% from 'components/header.html' import header %}
-            {{ header(csrf_token=csrf_token()) }}
-        {% endblock %}
-        
-        <main class="main-content">
-            {% block content %}{% endblock %}
-        </main>
-        
-        {% block footer %}
-            <footer class="app-footer">
-                <div class="container">
-                    <p class="footer-text">
-                        &copy; {{ moment().year }} Lyra AI Companion. 
-                        <span class="footer-links">
-                            <a href="/privacy">Privacy</a> |
-                            <a href="/terms">Terms</a> |
-                            <a href="/help">Help</a>
-                        </span>
-                    </p>
-                </div>
-            </footer>
-        {% endblock %}
+  </head>
+  <body>
+    {# Flash messages #} {% with messages =
+    get_flashed_messages(with_categories=true) %} {% if messages %}
+    <div class="flash-messages" id="flash-messages">
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">
+        {{ message }}
+        <button class="flash-close" onclick="this.parentElement.remove()">
+          &times;
+        </button>
+      </div>
+      {% endfor %}
     </div>
-    
+    {% endif %} {% endwith %} {# Main content #}
+    <div class="app-container">
+      {% block header %} {% from 'components/header.html' import header %} {{
+      header(csrf_token=csrf_token()) }} {% endblock %}
+
+      <main class="main-content">{% block content %}{% endblock %}</main>
+
+      {% block footer %}
+      <footer class="app-footer">
+        <div class="container">
+          <p class="footer-text">
+            &copy; {{ moment().year }} Lyra AI Companion.
+            <span class="footer-links">
+              <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> |
+              <a href="/help">Help</a>
+            </span>
+          </p>
+        </div>
+      </footer>
+      {% endblock %}
+    </div>
+
     {# Base JavaScript #}
     <script>
-        // CSRF token setup for AJAX requests
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-        
-        // Set up CSRF token for fetch requests
-        const originalFetch = window.fetch;
-        window.fetch = function(url, options = {}) {
-            if (options.method && ['POST', 'PUT', 'DELETE', 'PATCH'].includes(options.method.toUpperCase())) {
-                if (!options.headers) {
-                    options.headers = {};
-                }
-                if (csrfToken && !options.headers['X-CSRF-Token']) {
-                    options.headers['X-CSRF-Token'] = csrfToken;
-                }
+      // CSRF token setup for AJAX requests
+      const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        ?.getAttribute("content");
+
+      // Set up CSRF token for fetch requests
+      const originalFetch = window.fetch;
+      window.fetch = function (url, options = {}) {
+        if (
+          options.method &&
+          ["POST", "PUT", "DELETE", "PATCH"].includes(
+            options.method.toUpperCase(),
+          )
+        ) {
+          if (!options.headers) {
+            options.headers = {};
+          }
+          if (csrfToken && !options.headers["X-CSRF-Token"]) {
+            options.headers["X-CSRF-Token"] = csrfToken;
+          }
+        }
+        return originalFetch(url, options);
+      };
+
+      // Auto-dismiss flash messages after 5 seconds
+      document.addEventListener("DOMContentLoaded", function () {
+        const messages = document.querySelectorAll(".flash-message");
+        messages.forEach(function (message) {
+          setTimeout(function () {
+            if (message.parentElement) {
+              message.style.animation = "slideOut 0.3s ease forwards";
+              setTimeout(() => message.remove(), 300);
             }
-            return originalFetch(url, options);
-        };
-        
-        // Auto-dismiss flash messages after 5 seconds
-        document.addEventListener('DOMContentLoaded', function() {
-            const messages = document.querySelectorAll('.flash-message');
-            messages.forEach(function(message) {
-                setTimeout(function() {
-                    if (message.parentElement) {
-                        message.style.animation = 'slideOut 0.3s ease forwards';
-                        setTimeout(() => message.remove(), 300);
-                    }
-                }, 5000);
-            });
+          }, 5000);
         });
-        
-        // Loading state management
-        function showLoading(element) {
-            if (element) {
-                element.disabled = true;
-                const originalText = element.textContent;
-                element.dataset.originalText = originalText;
-                element.innerHTML = '<span class="spinner"></span> Loading...';
-            }
+      });
+
+      // Loading state management
+      function showLoading(element) {
+        if (element) {
+          element.disabled = true;
+          const originalText = element.textContent;
+          element.dataset.originalText = originalText;
+          element.innerHTML = '<span class="spinner"></span> Loading...';
         }
-        
-        function hideLoading(element) {
-            if (element && element.dataset.originalText) {
-                element.disabled = false;
-                element.textContent = element.dataset.originalText;
-                delete element.dataset.originalText;
-            }
+      }
+
+      function hideLoading(element) {
+        if (element && element.dataset.originalText) {
+          element.disabled = false;
+          element.textContent = element.dataset.originalText;
+          delete element.dataset.originalText;
         }
-        
-        // Make loading functions globally available
-        window.showLoading = showLoading;
-        window.hideLoading = hideLoading;
+      }
+
+      // Make loading functions globally available
+      window.showLoading = showLoading;
+      window.hideLoading = hideLoading;
     </script>
-    
+
     {% block scripts %}{% endblock %}
-    
+
     <style>
-        .app-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+      .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: var(--section-spacing) 0;
+      }
+
+      .app-footer {
+        background: var(--bg-secondary);
+        border-top: var(--border-width-thin) solid var(--border-color);
+        padding: var(--spacing-lg) 0;
+        margin-top: auto;
+      }
+
+      .footer-text {
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: var(--font-sm);
+        margin: 0;
+      }
+
+      .footer-links {
+        margin-left: var(--spacing-sm);
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        margin: 0 var(--spacing-xs);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
         }
-        
-        .main-content {
-            flex: 1;
-            padding: var(--section-spacing) 0;
+        to {
+          transform: translateX(100%);
+          opacity: 0;
         }
-        
-        .app-footer {
-            background: var(--bg-secondary);
-            border-top: var(--border-width-thin) solid var(--border-color);
-            padding: var(--spacing-lg) 0;
-            margin-top: auto;
-        }
-        
-        .footer-text {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: var(--font-sm);
-            margin: 0;
-        }
-        
-        .footer-links {
-            margin-left: var(--spacing-sm);
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            margin: 0 var(--spacing-xs);
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
+      }
     </style>
-</body>
+  </body>
 </html>

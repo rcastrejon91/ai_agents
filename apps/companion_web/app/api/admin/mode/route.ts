@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { sanitizeInput, logSecurityEvent, setSecurityHeaders } from "../../../../lib/security";
+import {
+  sanitizeInput,
+  logSecurityEvent,
+  setSecurityHeaders,
+} from "../../../../lib/security";
 import { logger } from "../../../../lib/logger";
 
 let CURRENT = {
@@ -16,13 +20,18 @@ let CURRENT = {
 };
 
 // Rate limiting store
-const rateLimitStore: { [key: string]: { count: number; resetTime: number } } = {};
+const rateLimitStore: { [key: string]: { count: number; resetTime: number } } =
+  {};
 
-function checkRateLimit(identifier: string, max: number = 5, windowMs: number = 300000): boolean {
+function checkRateLimit(
+  identifier: string,
+  max: number = 5,
+  windowMs: number = 300000,
+): boolean {
   const now = Date.now();
-  
+
   // Clean old entries
-  Object.keys(rateLimitStore).forEach(key => {
+  Object.keys(rateLimitStore).forEach((key) => {
     if (rateLimitStore[key].resetTime < now) {
       delete rateLimitStore[key];
     }
@@ -55,10 +64,10 @@ function logAdminEvent(evt: Record<string, any>) {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
     fs.appendFileSync(
       path.join(dir, "admin_mode.log"),
-      JSON.stringify({ 
-        ts: Date.now(), 
+      JSON.stringify({
+        ts: Date.now(),
         timestamp: new Date().toISOString(),
-        ...evt 
+        ...evt,
       }) + "\n",
       "utf-8",
     );
@@ -80,17 +89,23 @@ export async function POST(req: NextRequest) {
     setSecurityHeaders(NextResponse);
 
     // Rate limiting
-    const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
-    if (!checkRateLimit(ip, 5, 300000)) { // 5 attempts per 5 minutes
-      logSecurityEvent('admin_rate_limit', { ip }, 'WARNING');
+    const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
+    if (!checkRateLimit(ip, 5, 300000)) {
+      // 5 attempts per 5 minutes
+      logSecurityEvent("admin_rate_limit", { ip }, "WARNING");
       return bad("Too many attempts. Please try again later.", 429);
     }
 
     let body: any = {};
     try {
       const text = await req.text();
-      if (text.length > 1000) { // Limit body size
-        logSecurityEvent('admin_body_too_large', { ip, size: text.length }, 'WARNING');
+      if (text.length > 1000) {
+        // Limit body size
+        logSecurityEvent(
+          "admin_body_too_large",
+          { ip, size: text.length },
+          "WARNING",
+        );
         return bad("Request body too large");
       }
       body = JSON.parse(text);
@@ -102,19 +117,30 @@ export async function POST(req: NextRequest) {
     // Sanitize inputs
     const passphrase = sanitizeInput(body?.passphrase, 100);
     const pin = sanitizeInput(body?.pin, 20);
-    const admin = typeof body?.admin === 'boolean' ? body.admin : undefined;
+    const admin = typeof body?.admin === "boolean" ? body.admin : undefined;
     const personality = sanitizeInput(body?.personality, 20);
 
     // Validate personality if provided
-    const validPersonalities = ["chill", "sassy", "sage", "gremlin", "guardian", "gamer"];
+    const validPersonalities = [
+      "chill",
+      "sassy",
+      "sage",
+      "gremlin",
+      "guardian",
+      "gamer",
+    ];
     if (personality && !validPersonalities.includes(personality)) {
-      logSecurityEvent('admin_invalid_personality', { ip, personality }, 'WARNING');
+      logSecurityEvent(
+        "admin_invalid_personality",
+        { ip, personality },
+        "WARNING",
+      );
       return bad("Invalid personality");
     }
 
     const envPass = (process.env.ADMIN_PASSPHRASE || "").trim().toLowerCase();
     const envPin = (process.env.ADMIN_PIN || "").trim();
-    
+
     if (!envPass && !envPin) {
       logger.error("No admin credentials configured");
       return bad("Admin access not configured", 503);
@@ -127,7 +153,7 @@ export async function POST(req: NextRequest) {
 
     if (!authed) {
       logAdminEvent({ type: "auth_failed", used, ip });
-      logSecurityEvent('admin_auth_failed', { ip, used }, 'CRITICAL');
+      logSecurityEvent("admin_auth_failed", { ip, used }, "CRITICAL");
       return bad("Unauthorized", 401);
     }
 
@@ -135,23 +161,23 @@ export async function POST(req: NextRequest) {
     if (admin !== undefined) CURRENT.admin = admin;
     if (personality) CURRENT.personality = personality as any;
 
-    logAdminEvent({ 
-      type: "admin_mode_update", 
-      used, 
-      before, 
+    logAdminEvent({
+      type: "admin_mode_update",
+      used,
+      before,
       after: CURRENT,
-      ip 
+      ip,
     });
-    
-    logger.info('Admin mode updated', { 
-      used, 
+
+    logger.info("Admin mode updated", {
+      used,
       changes: { admin, personality },
-      ip 
+      ip,
     });
 
     return ok(CURRENT);
   } catch (error) {
-    logger.error('Admin mode POST error', { error });
+    logger.error("Admin mode POST error", { error });
     return bad("Internal server error", 500);
   }
 }

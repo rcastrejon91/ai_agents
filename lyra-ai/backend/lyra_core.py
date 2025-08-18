@@ -2,6 +2,7 @@ import datetime
 import os
 
 import openai
+
 from utils.emailer import send_email
 from utils.security import SecurityModule
 from utils.tts import speak

@@ -12,16 +12,20 @@ export interface LogEntry {
 export class Logger {
   private context: string;
 
-  constructor(context: string = 'App') {
+  constructor(context: string = "App") {
     this.context = context;
   }
 
-  private log(level: string, message: string, meta?: Record<string, any>): void {
+  private log(
+    level: string,
+    message: string,
+    meta?: Record<string, any>,
+  ): void {
     const entry: LogEntry = {
       timestamp: new Date().toISOString(),
       level,
       message: `[${this.context}] ${message}`,
-      ...(meta && { meta })
+      ...(meta && { meta }),
     };
 
     // In production, you might want to send this to a logging service
@@ -29,20 +33,20 @@ export class Logger {
   }
 
   info(message: string, meta?: Record<string, any>): void {
-    this.log('INFO', message, meta);
+    this.log("INFO", message, meta);
   }
 
   warn(message: string, meta?: Record<string, any>): void {
-    this.log('WARN', message, meta);
+    this.log("WARN", message, meta);
   }
 
   error(message: string, meta?: Record<string, any>): void {
-    this.log('ERROR', message, meta);
+    this.log("ERROR", message, meta);
   }
 
   debug(message: string, meta?: Record<string, any>): void {
-    if (process.env.NODE_ENV === 'development') {
-      this.log('DEBUG', message, meta);
+    if (process.env.NODE_ENV === "development") {
+      this.log("DEBUG", message, meta);
     }
   }
 }

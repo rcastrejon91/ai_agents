@@ -1,15 +1,22 @@
 import os
 from datetime import datetime
 
-from flask import Flask, jsonify, render_template_string, request, session, redirect, url_for
+from flask import Flask, jsonify, render_template_string, request
 
 # Import security middleware
 from middleware.auth import (
-    require_csrf, generate_csrf_token, verify_csrf_token, 
-    sanitize_input, secure_session_config, rate_limited,
-    log_security_event
+    generate_csrf_token,
+    log_security_event,
+    rate_limited,
+    require_csrf,
+    sanitize_input,
+    secure_session_config,
 )
-from middleware.error_handlers import register_error_handlers, setup_logging, log_request_info
+from middleware.error_handlers import (
+    log_request_info,
+    register_error_handlers,
+    setup_logging,
+)
 
 # ====== Config ======
 OWNER_NAME = "Ricky"
@@ -32,10 +39,12 @@ register_error_handlers(app)
 setup_logging(app)
 log_request_info(app)
 
+
 # Add CSRF token to template context
 @app.context_processor
 def inject_csrf_token():
     return dict(csrf_token=generate_csrf_token)
+
 
 # ====== Minimal in-browser chat UI at "/" ======
 HTML = """
@@ -154,28 +163,36 @@ def ping():
 @rate_limited(max_requests=20, window_seconds=60)
 def lyra():
     if OPENAI is None:
-        log_security_event('openai_not_configured', {'endpoint': '/api/lyra'})
+        log_security_event("openai_not_configured", {"endpoint": "/api/lyra"})
         return jsonify(error="OpenAI not configured", detail="Set OPENAI_API_KEY"), 500
 
     data = request.get_json(silent=True) or {}
     msg = (data.get("message") or "").strip()
     history = data.get("history") or []
-    
+
     # Sanitize input
     msg = sanitize_input(msg, max_length=2000)
-    
+
     if not msg:
-        log_security_event('invalid_input', {'endpoint': '/api/lyra', 'reason': 'empty_message'})
+        log_security_event(
+            "invalid_input", {"endpoint": "/api/lyra", "reason": "empty_message"}
+        )
         return jsonify(error="Missing 'message'"), 400
 
     # Sanitize history
     sanitized_history = []
     for item in history[-10:]:  # Limit history to last 10 messages
-        if isinstance(item, dict) and 'role' in item and 'content' in item:
-            sanitized_history.append({
-                'role': item['role'] if item['role'] in ['user', 'assistant'] else 'user',
-                'content': sanitize_input(str(item['content']), max_length=1000)
-            })
+        if isinstance(item, dict) and "role" in item and "content" in item:
+            sanitized_history.append(
+                {
+                    "role": (
+                        item["role"]
+                        if item["role"] in ["user", "assistant"]
+                        else "user"
+                    ),
+                    "content": sanitize_input(str(item["content"]), max_length=1000),
+                }
+            )
 
     system = (
         "You are Lyra, a warm, supportive AI companion. Keep replies concise, kind, and practical. "
@@ -190,15 +207,17 @@ def lyra():
             + [{"role": "user", "content": msg}],
         )
         reply = r.choices[0].message.content
-        
+
         # Log successful interaction
         app.logger.info(f"Successful chat interaction - message length: {len(msg)}")
-        
+
         return jsonify(reply=reply)
     except Exception as e:
         # Log error without exposing sensitive details
         app.logger.error(f"Chat API error: {str(e)}")
-        log_security_event('api_error', {'endpoint': '/api/lyra', 'error_type': type(e).__name__})
+        log_security_event(
+            "api_error", {"endpoint": "/api/lyra", "error_type": type(e).__name__}
+        )
         return jsonify(error="upstream", detail="Unable to process request"), 500
 
 
@@ -212,21 +231,25 @@ _MEM = {}
 def remember():
     d = request.get_json(silent=True) or {}
     uid, fact = d.get("user_id"), d.get("fact")
-    
+
     # Sanitize inputs
     uid = sanitize_input(str(uid) if uid else "", max_length=100)
     fact = sanitize_input(str(fact) if fact else "", max_length=500)
-    
+
     if not uid or not fact:
-        log_security_event('invalid_input', {'endpoint': '/remember', 'reason': 'missing_required_fields'})
+        log_security_event(
+            "invalid_input",
+            {"endpoint": "/remember", "reason": "missing_required_fields"},
+        )
         return jsonify(error="user_id and fact required"), 400
-        
+
     # Use UTC datetime
     from datetime import datetime, timezone
+
     _MEM.setdefault(uid, []).append(
         {"fact": fact, "ts": datetime.now(timezone.utc).isoformat()}
     )
-    
+
     app.logger.info(f"Memory stored for user {uid}")
     return jsonify(ok=True, count=len(_MEM[uid]))
 
@@ -238,7 +261,7 @@ def memories(uid):
     uid = sanitize_input(str(uid), max_length=100)
     if not uid:
         return jsonify(error="Invalid user ID"), 400
-        
+
     return jsonify(memories=_MEM.get(uid, []))
 
 

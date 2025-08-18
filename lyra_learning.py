@@ -1,12 +1,11 @@
-import datetime as dt
-from datetime import datetime, timezone
 import json
+import logging
 import os
 import pathlib
 import re
 import smtplib
+from datetime import datetime, timezone
 from email.mime.text import MIMEText
-import logging
 
 import requests
 import yaml
@@ -15,25 +14,25 @@ from bs4 import BeautifulSoup
 # ---- Setup logging ----
 logging.basicConfig(
     level=logging.INFO,
-    format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    format="[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('data/lyra_learning.log', mode='a', encoding='utf-8')
-    ]
+        logging.FileHandler("data/lyra_learning.log", mode="a", encoding="utf-8"),
+    ],
 )
 logger = logging.getLogger(__name__)
 
 # Ensure data directory exists
-os.makedirs('data', exist_ok=True)
+os.makedirs("data", exist_ok=True)
 
 
 def validate_email(email):
     """Validate email address format."""
     if not isinstance(email, str) or not email:
         return False
-    
+
     # Simple email validation regex
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     return bool(re.match(pattern, email)) and len(email) <= 254
 
 
@@ -47,7 +46,7 @@ def format_datetime(dt_obj):
     if dt_obj.tzinfo is None:
         # Assume naive datetime is UTC
         dt_obj = dt_obj.replace(tzinfo=timezone.utc)
-    return dt_obj.strftime('%Y-%m-%d %H:%M:%S UTC')
+    return dt_obj.strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
 def get_utc_date_string():
@@ -450,35 +449,37 @@ def send_email(subject, body):
     try:
         # Validate email configuration
         if not all([SMTP_HOST, SMTP_USER, SMTP_PASS, EMAIL_FROM, EMAIL_TO]):
-            logger.error("Email configuration incomplete. Check SMTP_HOST, SMTP_USER, SMTP_PASS, EMAIL_FROM, EMAIL_TO environment variables.")
+            logger.error(
+                "Email configuration incomplete. Check SMTP_HOST, SMTP_USER, SMTP_PASS, EMAIL_FROM, EMAIL_TO environment variables."
+            )
             return False
-        
+
         # Validate email addresses
         if not validate_email(EMAIL_FROM):
             logger.error(f"Invalid sender email address: {EMAIL_FROM}")
             return False
-            
+
         if not validate_email(EMAIL_TO):
             logger.error(f"Invalid recipient email address: {EMAIL_TO}")
             return False
-        
+
         # Create message
         msg = MIMEText(body, "plain", "utf-8")
         msg["Subject"] = subject
         msg["From"] = EMAIL_FROM
         msg["To"] = EMAIL_TO
         msg["Date"] = format_datetime(get_utc_timestamp())
-        
+
         # Send email
         logger.info(f"Sending email to {EMAIL_TO}: {subject}")
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
             s.starttls()
             s.login(SMTP_USER, SMTP_PASS)
             s.send_message(msg)
-        
+
         logger.info("Email sent successfully")
         return True
-        
+
     except smtplib.SMTPAuthenticationError as e:
         logger.error(f"SMTP authentication failed: {str(e)}")
         return False
@@ -497,15 +498,17 @@ def send_email(subject, body):
 if __name__ == "__main__":
     try:
         logger.info("Starting Lyra learning process")
-        
+
         # Load memory and fetch sources
         logger.info("Loading memory and fetching sources")
         memory = load_memory()
         raw = fetch_sources()
         kept, skipped = filter_chunks(raw)
-        
-        logger.info(f"Fetched {len(raw)} sources, kept {len(kept)}, skipped {len(skipped)}")
-        
+
+        logger.info(
+            f"Fetched {len(raw)} sources, kept {len(kept)}, skipped {len(skipped)}"
+        )
+
         if not kept:
             logger.warning("No sources kept after filtering, using first 2 raw sources")
             kept = [c for c in raw if "error" not in c][:2]
@@ -544,10 +547,12 @@ if __name__ == "__main__":
         robotics_enabled = bool(ROBOTICS_POLICY.get("enabled")) and os.getenv(
             "ROBOTICS_ENABLE", "0"
         ).lower() in {"1", "true", "yes"}
-        
+
         if robotics_enabled:
             try:
-                robotics_section = robotics_brainstorm(kept, ROBOTICS_POLICY, USE_OPENAI)
+                robotics_section = robotics_brainstorm(
+                    kept, ROBOTICS_POLICY, USE_OPENAI
+                )
             except Exception as e:
                 logger.warning(f"Robotics brainstorm failed: {str(e)}")
                 robotics_section = "(robotics brainstorm failed)"
@@ -558,11 +563,13 @@ if __name__ == "__main__":
         logger.info("Checking self-repair status")
         try:
             diag = requests.post(
-                os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/diagnose",
+                os.getenv("ROBOT_CORE_URL", "http://localhost:8088")
+                + "/robot/diagnose",
                 timeout=3,
             ).json()
             plan = requests.post(
-                os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/repair/plan",
+                os.getenv("ROBOT_CORE_URL", "http://localhost:8088")
+                + "/robot/repair/plan",
                 timeout=5,
             ).json()
             self_repair = f"Diagnostic: {'OK' if diag.get('ok') else 'Issues found'}; Steps: {len(plan.get('steps',[]))}; Approval required: {plan.get('requires_approval', True)}"
@@ -584,9 +591,9 @@ if __name__ == "__main__":
             "robotics_sandbox": robotics_section,
             "self_repair_status": self_repair,
         }
-        
+
         memory.append(entry)
-        
+
         # Save memory with error handling
         try:
             save_memory(memory)
@@ -604,21 +611,25 @@ if __name__ == "__main__":
         except Exception as e:
             logger.warning(f"Failed to read safety audit: {str(e)}")
             safety_audit = "(audit log unavailable)"
-            
+
         admin_summary = summarize_admin_mode_events()
         pitches_summary = summarize_pitch_history()
 
         # Send email report
         logger.info("Sending email report")
         body = make_email_body(entry, safety_audit, admin_summary, pitches_summary)
-        
+
         if send_email("Lyra Daily Learning Update", body):
             logger.info("Learning process completed successfully")
-            print("✅ Learning process completed successfully. Email sent; memory updated.")
+            print(
+                "✅ Learning process completed successfully. Email sent; memory updated."
+            )
         else:
             logger.warning("Email sending failed, but learning process completed")
-            print("⚠️ Learning process completed but email sending failed. Memory updated.")
-            
+            print(
+                "⚠️ Learning process completed but email sending failed. Memory updated."
+            )
+
     except KeyboardInterrupt:
         logger.info("Learning process interrupted by user")
         print("⏹️ Learning process interrupted by user")

@@ -1,352 +1,518 @@
-{#
-  Shared form components with CSRF protection
-  
-  Usage:
-  {% from 'components/forms.html' import form_input, form_textarea, form_select, form_button, secure_form %}
-#}
-
-{% macro secure_form(action, method='POST', class='', id='', enctype='application/x-www-form-urlencoded') %}
-<form action="{{ action }}" method="{{ method }}" 
-      {% if class %}class="{{ class }}"{% endif %}
-      {% if id %}id="{{ id }}"{% endif %}
-      {% if enctype %}enctype="{{ enctype }}"{% endif %}>
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+{# Shared form components with CSRF protection Usage: {% from
+'components/forms.html' import form_input, form_textarea, form_select,
+form_button, secure_form %} #} {% macro secure_form(action, method='POST',
+class='', id='', enctype='application/x-www-form-urlencoded') %}
+<form
+  action="{{ action }}"
+  method="{{ method }}"
+  {%
+  if
+  class
+  %}class="{{ class }}"
+  {%
+  endif
+  %}
+  {%
+  if
+  id
+  %}id="{{ id }}"
+  {%
+  endif
+  %}
+  {%
+  if
+  enctype
+  %}enctype="{{ enctype }}"
+  {%
+  endif
+  %}
+>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   {{ caller() }}
 </form>
-{% endmacro %}
-
-{% macro form_input(name, type='text', label='', placeholder='', value='', required=false, class='', id='', maxlength=255) %}
+{% endmacro %} {% macro form_input(name, type='text', label='', placeholder='',
+value='', required=false, class='', id='', maxlength=255) %}
 <div class="form-group">
   {% if label %}
-    <label for="{{ id or name }}" class="form-label">{{ label }}</label>
+  <label for="{{ id or name }}" class="form-label">{{ label }}</label>
   {% endif %}
-  <input 
-    type="{{ type }}" 
-    name="{{ name }}" 
-    {% if id %}id="{{ id }}"{% else %}id="{{ name }}"{% endif %}
-    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
-    {% if value %}value="{{ value }}"{% endif %}
-    {% if required %}required{% endif %}
-    {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+  <input
+    type="{{ type }}"
+    name="{{ name }}"
+    {%
+    if
+    id
+    %}id="{{ id }}"
+    {%
+    else
+    %}id="{{ name }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    placeholder
+    %}placeholder="{{ placeholder }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    value
+    %}value="{{ value }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    required
+    %}required{%
+    endif
+    %}
+    {%
+    if
+    maxlength
+    %}maxlength="{{ maxlength }}"
+    {%
+    endif
+    %}
     class="form-input {% if class %}{{ class }}{% endif %}"
-  >
+  />
 </div>
-{% endmacro %}
-
-{% macro form_textarea(name, label='', placeholder='', value='', required=false, class='', id='', rows=4, maxlength=1000) %}
+{% endmacro %} {% macro form_textarea(name, label='', placeholder='', value='',
+required=false, class='', id='', rows=4, maxlength=1000) %}
 <div class="form-group">
   {% if label %}
-    <label for="{{ id or name }}" class="form-label">{{ label }}</label>
+  <label for="{{ id or name }}" class="form-label">{{ label }}</label>
   {% endif %}
-  <textarea 
-    name="{{ name }}" 
-    {% if id %}id="{{ id }}"{% else %}id="{{ name }}"{% endif %}
-    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
-    {% if required %}required{% endif %}
-    {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+  <textarea
+    name="{{ name }}"
+    {%
+    if
+    id
+    %}id="{{ id }}"
+    {%
+    else
+    %}id="{{ name }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    placeholder
+    %}placeholder="{{ placeholder }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    required
+    %}required{%
+    endif
+    %}
+    {%
+    if
+    maxlength
+    %}maxlength="{{ maxlength }}"
+    {%
+    endif
+    %}
     rows="{{ rows }}"
     class="form-textarea {% if class %}{{ class }}{% endif %}"
-  >{{ value or '' }}</textarea>
+  >
+{{ value or '' }}</textarea
+  >
 </div>
-{% endmacro %}
-
-{% macro form_select(name, options, label='', selected='', required=false, class='', id='') %}
+{% endmacro %} {% macro form_select(name, options, label='', selected='',
+required=false, class='', id='') %}
 <div class="form-group">
   {% if label %}
-    <label for="{{ id or name }}" class="form-label">{{ label }}</label>
+  <label for="{{ id or name }}" class="form-label">{{ label }}</label>
   {% endif %}
-  <select 
-    name="{{ name }}" 
-    {% if id %}id="{{ id }}"{% else %}id="{{ name }}"{% endif %}
-    {% if required %}required{% endif %}
+  <select
+    name="{{ name }}"
+    {%
+    if
+    id
+    %}id="{{ id }}"
+    {%
+    else
+    %}id="{{ name }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    required
+    %}required{%
+    endif
+    %}
     class="form-select {% if class %}{{ class }}{% endif %}"
   >
-    {% for option in options %}
-      {% if option is mapping %}
-        <option value="{{ option.value }}" {% if option.value == selected %}selected{% endif %}>
-          {{ option.label }}
-        </option>
-      {% else %}
-        <option value="{{ option }}" {% if option == selected %}selected{% endif %}>
-          {{ option }}
-        </option>
-      {% endif %}
-    {% endfor %}
+    {% for option in options %} {% if option is mapping %}
+    <option
+      value="{{ option.value }}"
+      {%
+      if
+      option.value=""
+      ="selected"
+      %}selected{%
+      endif
+      %}
+    >
+      {{ option.label }}
+    </option>
+    {% else %}
+    <option
+      value="{{ option }}"
+      {%
+      if
+      option=""
+      ="selected"
+      %}selected{%
+      endif
+      %}
+    >
+      {{ option }}
+    </option>
+    {% endif %} {% endfor %}
   </select>
 </div>
-{% endmacro %}
-
-{% macro form_button(text, type='submit', class='btn-primary', id='', disabled=false, onclick='') %}
-<button 
-  type="{{ type }}" 
-  {% if id %}id="{{ id }}"{% endif %}
-  {% if disabled %}disabled{% endif %}
-  {% if onclick %}onclick="{{ onclick }}"{% endif %}
+{% endmacro %} {% macro form_button(text, type='submit', class='btn-primary',
+id='', disabled=false, onclick='') %}
+<button
+  type="{{ type }}"
+  {%
+  if
+  id
+  %}id="{{ id }}"
+  {%
+  endif
+  %}
+  {%
+  if
+  disabled
+  %}disabled{%
+  endif
+  %}
+  {%
+  if
+  onclick
+  %}onclick="{{ onclick }}"
+  {%
+  endif
+  %}
   class="btn {{ class }}"
 >
   {{ text }}
 </button>
-{% endmacro %}
-
-{% macro form_checkbox(name, label, checked=false, value='1', class='', id='') %}
+{% endmacro %} {% macro form_checkbox(name, label, checked=false, value='1',
+class='', id='') %}
 <div class="form-group form-group--checkbox">
-  <input 
-    type="checkbox" 
-    name="{{ name }}" 
-    {% if id %}id="{{ id }}"{% else %}id="{{ name }}"{% endif %}
+  <input
+    type="checkbox"
+    name="{{ name }}"
+    {%
+    if
+    id
+    %}id="{{ id }}"
+    {%
+    else
+    %}id="{{ name }}"
+    {%
+    endif
+    %}
     value="{{ value }}"
-    {% if checked %}checked{% endif %}
+    {%
+    if
+    checked
+    %}checked{%
+    endif
+    %}
     class="form-checkbox {% if class %}{{ class }}{% endif %}"
-  >
+  />
   {% if label %}
-    <label for="{{ id or name }}" class="form-label form-label--checkbox">{{ label }}</label>
+  <label for="{{ id or name }}" class="form-label form-label--checkbox"
+    >{{ label }}</label
+  >
   {% endif %}
 </div>
-{% endmacro %}
-
-{% macro form_radio(name, options, label='', selected='', required=false, class='', inline=false) %}
+{% endmacro %} {% macro form_radio(name, options, label='', selected='',
+required=false, class='', inline=false) %}
 <div class="form-group">
   {% if label %}
-    <fieldset class="form-fieldset">
-      <legend class="form-legend">{{ label }}</legend>
-  {% endif %}
-  
-  <div class="form-radio-group {% if inline %}form-radio-group--inline{% endif %}">
-    {% for option in options %}
-      {% set option_id = name + '_' + loop.index0|string %}
+  <fieldset class="form-fieldset">
+    <legend class="form-legend">{{ label }}</legend>
+    {% endif %}
+
+    <div
+      class="form-radio-group {% if inline %}form-radio-group--inline{% endif %}"
+    >
+      {% for option in options %} {% set option_id = name + '_' +
+      loop.index0|string %}
       <div class="form-radio-item">
-        <input 
-          type="radio" 
-          name="{{ name }}" 
+        <input
+          type="radio"
+          name="{{ name }}"
           id="{{ option_id }}"
           value="{{ option.value if option is mapping else option }}"
-          {% if (option.value if option is mapping else option) == selected %}checked{% endif %}
-          {% if required %}required{% endif %}
+          {%
+          if
+          (option.value
+          if
+          option
+          is
+          mapping
+          else
+          option)=""
+          ="selected"
+          %}checked{%
+          endif
+          %}
+          {%
+          if
+          required
+          %}required{%
+          endif
+          %}
           class="form-radio {% if class %}{{ class }}{% endif %}"
-        >
+        />
         <label for="{{ option_id }}" class="form-label form-label--radio">
           {{ option.label if option is mapping else option }}
         </label>
       </div>
-    {% endfor %}
-  </div>
-  
-  {% if label %}
-    </fieldset>
+      {% endfor %}
+    </div>
+
+    {% if label %}
+  </fieldset>
   {% endif %}
 </div>
-{% endmacro %}
-
-{% macro form_file(name, label='', accept='', required=false, multiple=false, class='', id='') %}
+{% endmacro %} {% macro form_file(name, label='', accept='', required=false,
+multiple=false, class='', id='') %}
 <div class="form-group">
   {% if label %}
-    <label for="{{ id or name }}" class="form-label">{{ label }}</label>
+  <label for="{{ id or name }}" class="form-label">{{ label }}</label>
   {% endif %}
-  <input 
-    type="file" 
-    name="{{ name }}" 
-    {% if id %}id="{{ id }}"{% else %}id="{{ name }}"{% endif %}
-    {% if accept %}accept="{{ accept }}"{% endif %}
-    {% if required %}required{% endif %}
-    {% if multiple %}multiple{% endif %}
+  <input
+    type="file"
+    name="{{ name }}"
+    {%
+    if
+    id
+    %}id="{{ id }}"
+    {%
+    else
+    %}id="{{ name }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    accept
+    %}accept="{{ accept }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    required
+    %}required{%
+    endif
+    %}
+    {%
+    if
+    multiple
+    %}multiple{%
+    endif
+    %}
     class="form-file {% if class %}{{ class }}{% endif %}"
-  >
+  />
 </div>
-{% endmacro %}
-
-{# Form validation and error display #}
-{% macro form_errors(errors) %}
-{% if errors %}
-  <div class="form-errors">
-    {% for error in errors %}
-      <div class="form-error">{{ error }}</div>
-    {% endfor %}
-  </div>
-{% endif %}
-{% endmacro %}
-
-{% macro form_field_error(field_name, errors) %}
-{% if errors and errors.get(field_name) %}
-  <div class="form-field-error">
-    {% for error in errors[field_name] %}
-      <span class="error-message">{{ error }}</span>
-    {% endfor %}
-  </div>
-{% endif %}
-{% endmacro %}
-
-{# Success/info messages #}
-{% macro form_success(message) %}
-{% if message %}
-  <div class="form-success">{{ message }}</div>
-{% endif %}
-{% endmacro %}
+{% endmacro %} {# Form validation and error display #} {% macro
+form_errors(errors) %} {% if errors %}
+<div class="form-errors">
+  {% for error in errors %}
+  <div class="form-error">{{ error }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endmacro %} {% macro form_field_error(field_name, errors) %} {%
+if errors and errors.get(field_name) %}
+<div class="form-field-error">
+  {% for error in errors[field_name] %}
+  <span class="error-message">{{ error }}</span>
+  {% endfor %}
+</div>
+{% endif %} {% endmacro %} {# Success/info messages #} {% macro
+form_success(message) %} {% if message %}
+<div class="form-success">{{ message }}</div>
+{% endif %} {% endmacro %}
 
 <style>
-/* Form component styles */
-.form-group {
-  margin-bottom: var(--spacing-md);
-}
+  /* Form component styles */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
 
-.form-group--checkbox {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
+  .form-group--checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
 
-.form-label {
-  display: block;
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-  margin-bottom: var(--spacing-xs);
-}
+  .form-label {
+    display: block;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    margin-bottom: var(--spacing-xs);
+  }
 
-.form-label--checkbox,
-.form-label--radio {
-  display: inline;
-  margin-bottom: 0;
-  font-weight: var(--font-weight-normal);
-  cursor: pointer;
-}
+  .form-label--checkbox,
+  .form-label--radio {
+    display: inline;
+    margin-bottom: 0;
+    font-weight: var(--font-weight-normal);
+    cursor: pointer;
+  }
 
-.form-input,
-.form-textarea,
-.form-select {
-  width: 100%;
-  padding: var(--input-padding-y) var(--input-padding-x);
-  border: var(--border-width-thin) solid var(--input-border-color);
-  border-radius: var(--input-border-radius);
-  background-color: var(--input-bg);
-  color: var(--text-primary);
-  font-size: var(--font-base);
-  transition: var(--transition-all);
-}
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: var(--input-padding-y) var(--input-padding-x);
+    border: var(--border-width-thin) solid var(--input-border-color);
+    border-radius: var(--input-border-radius);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-size: var(--font-base);
+    transition: var(--transition-all);
+  }
 
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--input-focus-border-color);
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-}
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  }
 
-.form-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
 
-.form-checkbox,
-.form-radio {
-  width: auto;
-  margin-right: var(--spacing-xs);
-}
+  .form-checkbox,
+  .form-radio {
+    width: auto;
+    margin-right: var(--spacing-xs);
+  }
 
-.form-file {
-  padding: var(--spacing-xs);
-}
+  .form-file {
+    padding: var(--spacing-xs);
+  }
 
-.btn {
-  padding: var(--btn-padding-y) var(--btn-padding-x);
-  border: none;
-  border-radius: var(--btn-border-radius);
-  font-weight: var(--btn-font-weight);
-  font-size: var(--font-base);
-  cursor: pointer;
-  transition: var(--btn-transition);
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-}
+  .btn {
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    border: none;
+    border-radius: var(--btn-border-radius);
+    font-weight: var(--btn-font-weight);
+    font-size: var(--font-base);
+    cursor: pointer;
+    transition: var(--btn-transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: var(--text-light);
-}
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+  }
 
-.btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-}
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
 
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--text-light);
-}
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+  }
 
-.btn-secondary:hover:not(:disabled) {
-  background-color: var(--secondary-hover);
-}
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--secondary-hover);
+  }
 
-.btn-danger {
-  background-color: var(--error-color);
-  color: var(--text-light);
-}
+  .btn-danger {
+    background-color: var(--error-color);
+    color: var(--text-light);
+  }
 
-.btn-danger:hover:not(:disabled) {
-  background-color: var(--error-dark);
-}
+  .btn-danger:hover:not(:disabled) {
+    background-color: var(--error-dark);
+  }
 
-.btn:disabled {
-  background-color: var(--text-tertiary);
-  cursor: not-allowed;
-  transform: none;
-}
+  .btn:disabled {
+    background-color: var(--text-tertiary);
+    cursor: not-allowed;
+    transform: none;
+  }
 
-.form-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
+  .form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
 
-.form-legend {
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-  margin-bottom: var(--spacing-xs);
-}
+  .form-legend {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    margin-bottom: var(--spacing-xs);
+  }
 
-.form-radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
+  .form-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
 
-.form-radio-group--inline {
-  flex-direction: row;
-  gap: var(--spacing-md);
-}
+  .form-radio-group--inline {
+    flex-direction: row;
+    gap: var(--spacing-md);
+  }
 
-.form-radio-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-}
+  .form-radio-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
 
-.form-errors {
-  background: var(--error-light);
-  border: var(--border-width-thin) solid var(--error-color);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-}
+  .form-errors {
+    background: var(--error-light);
+    border: var(--border-width-thin) solid var(--error-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
 
-.form-error,
-.error-message {
-  color: var(--error-dark);
-  font-size: var(--font-sm);
-}
+  .form-error,
+  .error-message {
+    color: var(--error-dark);
+    font-size: var(--font-sm);
+  }
 
-.form-field-error {
-  margin-top: var(--spacing-xs);
-}
+  .form-field-error {
+    margin-top: var(--spacing-xs);
+  }
 
-.form-success {
-  background: var(--success-light);
-  border: var(--border-width-thin) solid var(--success-color);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  color: var(--success-dark);
-}
+  .form-success {
+    background: var(--success-light);
+    border: var(--border-width-thin) solid var(--success-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    color: var(--success-dark);
+  }
 </style>

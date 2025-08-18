@@ -9,25 +9,25 @@
   /* ================================
      COLOR PALETTE
      ================================ */
-  
+
   /* Primary Colors */
   --primary-color: #4caf50;
   --primary-hover: #45a049;
   --primary-light: #81c784;
   --primary-dark: #2e7d32;
-  
+
   /* Secondary Colors */
   --secondary-color: #2196f3;
   --secondary-hover: #1976d2;
   --secondary-light: #64b5f6;
   --secondary-dark: #0d47a1;
-  
+
   /* Accent Colors */
   --accent-color: #ff9800;
   --accent-hover: #f57c00;
   --accent-light: #ffb74d;
   --accent-dark: #e65100;
-  
+
   /* Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
@@ -35,12 +35,12 @@
   --bg-dark: #121212;
   --bg-dark-secondary: #1e1e1e;
   --bg-dark-tertiary: #2d2d2d;
-  
+
   /* Surface Colors */
   --surface-light: #ffffff;
   --surface-medium: #f5f5f5;
   --surface-dark: #333333;
-  
+
   /* Text Colors */
   --text-primary: #000000;
   --text-secondary: #6c757d;
@@ -48,34 +48,34 @@
   --text-light: #ffffff;
   --text-light-secondary: #e6ecff;
   --text-muted: #8fa1d8;
-  
+
   /* Border Colors */
   --border-color: #e0e4e7;
   --border-light: #f0f0f0;
   --border-medium: #d0d0d0;
   --border-dark: #1d2742;
-  
+
   /* Status Colors */
   --success-color: #28a745;
   --success-light: #d4edda;
   --success-dark: #155724;
-  
+
   --warning-color: #ffc107;
   --warning-light: #fff3cd;
   --warning-dark: #856404;
-  
+
   --error-color: #dc3545;
   --error-light: #f8d7da;
   --error-dark: #721c24;
-  
+
   --info-color: #17a2b8;
   --info-light: #d1ecf1;
   --info-dark: #0c5460;
-  
+
   /* ================================
      SPACING SYSTEM
      ================================ */
-  
+
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -83,51 +83,54 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
-  
+
   /* Layout spacing */
   --container-padding: var(--spacing-lg);
   --section-spacing: var(--spacing-2xl);
   --element-gap: var(--spacing-md);
-  
+
   /* ================================
      TYPOGRAPHY
      ================================ */
-  
+
   /* Font Families */
-  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  --font-primary:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", sans-serif;
   --font-secondary: Inter, system-ui, sans-serif;
-  --font-mono: "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
-  
+  --font-mono:
+    "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+
   /* Font Sizes */
-  --font-xs: 0.75rem;    /* 12px */
-  --font-sm: 0.875rem;   /* 14px */
-  --font-base: 1rem;     /* 16px */
-  --font-lg: 1.125rem;   /* 18px */
-  --font-xl: 1.25rem;    /* 20px */
-  --font-2xl: 1.5rem;    /* 24px */
-  --font-3xl: 1.875rem;  /* 30px */
-  --font-4xl: 2.25rem;   /* 36px */
-  
+  --font-xs: 0.75rem; /* 12px */
+  --font-sm: 0.875rem; /* 14px */
+  --font-base: 1rem; /* 16px */
+  --font-lg: 1.125rem; /* 18px */
+  --font-xl: 1.25rem; /* 20px */
+  --font-2xl: 1.5rem; /* 24px */
+  --font-3xl: 1.875rem; /* 30px */
+  --font-4xl: 2.25rem; /* 36px */
+
   /* Line Heights */
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
-  
+
   /* Font Weights */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   /* ================================
      BORDERS & RADIUS
      ================================ */
-  
+
   --border-width-thin: 1px;
   --border-width-medium: 2px;
   --border-width-thick: 4px;
-  
+
   --border-radius-none: 0;
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
@@ -135,39 +138,39 @@
   --border-radius-xl: 16px;
   --border-radius-2xl: 24px;
   --border-radius-full: 50%;
-  
+
   /* ================================
      SHADOWS
      ================================ */
-  
+
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.25);
   --shadow-2xl: 0 32px 64px rgba(0, 0, 0, 0.3);
-  
+
   /* Colored shadows */
   --shadow-primary: 0 4px 8px rgba(76, 175, 80, 0.3);
   --shadow-secondary: 0 4px 8px rgba(33, 150, 243, 0.3);
   --shadow-error: 0 4px 8px rgba(220, 53, 69, 0.3);
-  
+
   /* ================================
      TRANSITIONS & ANIMATIONS
      ================================ */
-  
+
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
-  
+
   --transition-fade: opacity var(--transition-normal);
   --transition-slide: transform var(--transition-normal);
   --transition-all: all var(--transition-normal);
-  
+
   /* ================================
      Z-INDEX LAYERS
      ================================ */
-  
+
   --z-dropdown: 1000;
   --z-sticky: 1020;
   --z-fixed: 1030;
@@ -176,29 +179,29 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-toast: 1080;
-  
+
   /* ================================
      BREAKPOINTS (for reference)
      ================================ */
-  
+
   --breakpoint-xs: 480px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
-  
+
   /* ================================
      COMPONENT-SPECIFIC VARIABLES
      ================================ */
-  
+
   /* Buttons */
   --btn-padding-x: var(--spacing-md);
   --btn-padding-y: var(--spacing-sm);
   --btn-border-radius: var(--border-radius-md);
   --btn-font-weight: var(--font-weight-medium);
   --btn-transition: var(--transition-all);
-  
+
   /* Form Elements */
   --input-padding-x: var(--spacing-md);
   --input-padding-y: var(--spacing-sm);
@@ -206,19 +209,19 @@
   --input-border-color: var(--border-color);
   --input-focus-border-color: var(--primary-color);
   --input-bg: var(--bg-primary);
-  
+
   /* Cards */
   --card-padding: var(--spacing-lg);
   --card-border-radius: var(--border-radius-lg);
   --card-shadow: var(--shadow-sm);
   --card-border: var(--border-width-thin) solid var(--border-color);
-  
+
   /* Navigation */
   --nav-height: 64px;
   --nav-padding: var(--spacing-md);
   --nav-bg: var(--bg-primary);
   --nav-border: var(--border-width-thin) solid var(--border-color);
-  
+
   /* Chat/Messages */
   --message-padding: var(--spacing-md);
   --message-border-radius: var(--border-radius-md);
@@ -262,47 +265,113 @@
    ================================ */
 
 /* Spacing utilities */
-.p-xs { padding: var(--spacing-xs); }
-.p-sm { padding: var(--spacing-sm); }
-.p-md { padding: var(--spacing-md); }
-.p-lg { padding: var(--spacing-lg); }
-.p-xl { padding: var(--spacing-xl); }
+.p-xs {
+  padding: var(--spacing-xs);
+}
+.p-sm {
+  padding: var(--spacing-sm);
+}
+.p-md {
+  padding: var(--spacing-md);
+}
+.p-lg {
+  padding: var(--spacing-lg);
+}
+.p-xl {
+  padding: var(--spacing-xl);
+}
 
-.m-xs { margin: var(--spacing-xs); }
-.m-sm { margin: var(--spacing-sm); }
-.m-md { margin: var(--spacing-md); }
-.m-lg { margin: var(--spacing-lg); }
-.m-xl { margin: var(--spacing-xl); }
+.m-xs {
+  margin: var(--spacing-xs);
+}
+.m-sm {
+  margin: var(--spacing-sm);
+}
+.m-md {
+  margin: var(--spacing-md);
+}
+.m-lg {
+  margin: var(--spacing-lg);
+}
+.m-xl {
+  margin: var(--spacing-xl);
+}
 
 /* Text utilities */
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-tertiary); }
-.text-success { color: var(--success-color); }
-.text-warning { color: var(--warning-color); }
-.text-error { color: var(--error-color); }
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-muted {
+  color: var(--text-tertiary);
+}
+.text-success {
+  color: var(--success-color);
+}
+.text-warning {
+  color: var(--warning-color);
+}
+.text-error {
+  color: var(--error-color);
+}
 
 /* Background utilities */
-.bg-primary { background-color: var(--bg-primary); }
-.bg-secondary { background-color: var(--bg-secondary); }
-.bg-success { background-color: var(--success-color); }
-.bg-warning { background-color: var(--warning-color); }
-.bg-error { background-color: var(--error-color); }
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+.bg-success {
+  background-color: var(--success-color);
+}
+.bg-warning {
+  background-color: var(--warning-color);
+}
+.bg-error {
+  background-color: var(--error-color);
+}
 
 /* Border utilities */
-.border { border: var(--border-width-thin) solid var(--border-color); }
-.border-primary { border-color: var(--primary-color); }
-.border-success { border-color: var(--success-color); }
-.border-warning { border-color: var(--warning-color); }
-.border-error { border-color: var(--error-color); }
+.border {
+  border: var(--border-width-thin) solid var(--border-color);
+}
+.border-primary {
+  border-color: var(--primary-color);
+}
+.border-success {
+  border-color: var(--success-color);
+}
+.border-warning {
+  border-color: var(--warning-color);
+}
+.border-error {
+  border-color: var(--error-color);
+}
 
 /* Shadow utilities */
-.shadow-sm { box-shadow: var(--shadow-sm); }
-.shadow-md { box-shadow: var(--shadow-md); }
-.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
 
 /* Border radius utilities */
-.rounded-sm { border-radius: var(--border-radius-sm); }
-.rounded-md { border-radius: var(--border-radius-md); }
-.rounded-lg { border-radius: var(--border-radius-lg); }
-.rounded-full { border-radius: var(--border-radius-full); }
+.rounded-sm {
+  border-radius: var(--border-radius-sm);
+}
+.rounded-md {
+  border-radius: var(--border-radius-md);
+}
+.rounded-lg {
+  border-radius: var(--border-radius-lg);
+}
+.rounded-full {
+  border-radius: var(--border-radius-full);
+}

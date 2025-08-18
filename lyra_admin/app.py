@@ -1,9 +1,10 @@
 import datetime
-from datetime import datetime as dt, timezone
 import io
 import os
 import smtplib
 import subprocess
+from datetime import datetime as dt
+from datetime import timezone
 from email.mime.text import MIMEText
 
 import psutil
@@ -12,11 +13,20 @@ from flask import Flask, jsonify, request, send_file, session
 
 # Import security middleware
 from middleware.auth import (
-    require_auth, require_csrf, generate_csrf_token, 
-    sanitize_input, sanitize_terminal_command, secure_session_config, 
-    rate_limited, log_security_event
+    generate_csrf_token,
+    log_security_event,
+    rate_limited,
+    require_auth,
+    require_csrf,
+    sanitize_input,
+    sanitize_terminal_command,
+    secure_session_config,
 )
-from middleware.error_handlers import register_error_handlers, setup_logging, log_request_info
+from middleware.error_handlers import (
+    log_request_info,
+    register_error_handlers,
+    setup_logging,
+)
 
 # --- CONFIG ---
 OWNER_NAME = "Ricky"
@@ -36,6 +46,7 @@ register_error_handlers(app)
 setup_logging(app)
 log_request_info(app)
 
+
 # Add CSRF token to template context
 @app.context_processor
 def inject_csrf_token():
@@ -45,32 +56,42 @@ def inject_csrf_token():
 # Helper function for admin auth
 def check_admin_session():
     """Check if admin is properly authenticated."""
-    return session.get('admin_authenticated') == True
+    return session.get("admin_authenticated") == True
+
 
 # Custom admin auth decorator
 def admin_auth_required(f):
     from functools import wraps
+
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not check_admin_session():
-            log_security_event('admin_access_denied', {'endpoint': request.endpoint}, 'WARNING')
+            log_security_event(
+                "admin_access_denied", {"endpoint": request.endpoint}, "WARNING"
+            )
             if request.is_json:
-                return jsonify({'error': 'Admin authentication required'}), 401
-            return redirect(url_for('admin_login'))
+                return jsonify({"error": "Admin authentication required"}), 401
+            return redirect(url_for("admin_login"))
         return f(*args, **kwargs)
+
     return decorated_function
+
 
 # Update require_auth to use admin session
 def require_auth(f):
     from functools import wraps
+
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not check_admin_session():
-            log_security_event('admin_access_denied', {'endpoint': request.endpoint}, 'WARNING')
+            log_security_event(
+                "admin_access_denied", {"endpoint": request.endpoint}, "WARNING"
+            )
             if request.is_json:
-                return jsonify({'error': 'Admin authentication required'}), 401
-            return jsonify({'error': 'Admin authentication required'}), 401
+                return jsonify({"error": "Admin authentication required"}), 401
+            return jsonify({"error": "Admin authentication required"}), 401
         return f(*args, **kwargs)
+
     return decorated_function
 
 
@@ -101,6 +122,8 @@ def admin_login():
     </body>
     </html>
     """
+
+
 class LyraAI:
     def __init__(self):
         self.security_protocols = []
@@ -190,28 +213,32 @@ def verify_admin():
         password = data.get("password", "")
     else:
         password = request.form.get("password", "")
-    
+
     password = sanitize_input(str(password), max_length=100)
-    
+
     if not password:
-        log_security_event('admin_auth_attempt', {'reason': 'no_password'}, 'WARNING')
+        log_security_event("admin_auth_attempt", {"reason": "no_password"}, "WARNING")
         if request.is_json:
             return jsonify({"access": False}), 400
-        return redirect(url_for('admin_login'))
-    
+        return redirect(url_for("admin_login"))
+
     if password == ADMIN_PASSWORD:
-        session['admin_authenticated'] = True
-        session['admin_login_time'] = dt.now(timezone.utc).isoformat()
-        log_security_event('admin_auth_success', {'timestamp': session['admin_login_time']}, 'INFO')
-        
+        session["admin_authenticated"] = True
+        session["admin_login_time"] = dt.now(timezone.utc).isoformat()
+        log_security_event(
+            "admin_auth_success", {"timestamp": session["admin_login_time"]}, "INFO"
+        )
+
         if request.is_json:
             return jsonify({"access": True})
         return jsonify({"status": "Login successful", "redirect": "/admin_dashboard"})
     else:
-        log_security_event('admin_auth_failed', {'password_hash': hash(password)}, 'WARNING')
+        log_security_event(
+            "admin_auth_failed", {"password_hash": hash(password)}, "WARNING"
+        )
         if request.is_json:
             return jsonify({"access": False}), 401
-        return redirect(url_for('admin_login'))
+        return redirect(url_for("admin_login"))
 
 
 @app.route("/learn", methods=["POST"])
@@ -220,7 +247,7 @@ def verify_admin():
 @rate_limited(max_requests=3, window_seconds=3600)  # Max 3 per hour
 def learn():
     try:
-        log_security_event('learning_initiated', {'user': 'admin'}, 'INFO')
+        log_security_event("learning_initiated", {"user": "admin"}, "INFO")
         lyra.learn_security()
         lyra.learn_medicine()
         lyra.email_report()
@@ -266,12 +293,13 @@ def speak():
     data = request.get_json() or {}
     text = sanitize_input(str(data.get("text", "")), max_length=500)
     mood = sanitize_input(str(data.get("mood", "neutral")), max_length=50)
-    
+
     if not text:
         return jsonify({"error": "Text is required"}), 400
-    
+
     try:
         from gtts import gTTS
+
         tts = gTTS(text=f"[{mood}] {text}", lang="en")
         audio_buffer = io.BytesIO()
         tts.write_to_fp(audio_buffer)
@@ -306,46 +334,55 @@ def terminal():
     # Double authentication check
     key = request.headers.get("Admin-Key") or ""
     if key != ADMIN_KEY:
-        log_security_event('terminal_unauthorized', {'ip': request.environ.get('REMOTE_ADDR')}, 'CRITICAL')
+        log_security_event(
+            "terminal_unauthorized",
+            {"ip": request.environ.get("REMOTE_ADDR")},
+            "CRITICAL",
+        )
         return jsonify({"error": "Unauthorized"}), 403
 
     data = request.get_json() or {}
     cmd = str(data.get("command", "")).strip()
-    
+
     if not cmd:
         return jsonify({"error": "Command is required"}), 400
-    
+
     try:
         # Sanitize the command with strict validation
         sanitized_cmd = sanitize_terminal_command(cmd)
-        
-        log_security_event('terminal_command', {
-            'command': sanitized_cmd, 
-            'original_length': len(cmd),
-            'sanitized_length': len(sanitized_cmd)
-        }, 'WARNING')
-        
-        result = subprocess.check_output(
-            sanitized_cmd, shell=True, stderr=subprocess.STDOUT, 
-            text=True, timeout=10
+
+        log_security_event(
+            "terminal_command",
+            {
+                "command": sanitized_cmd,
+                "original_length": len(cmd),
+                "sanitized_length": len(sanitized_cmd),
+            },
+            "WARNING",
         )
-        
+
+        result = subprocess.check_output(
+            sanitized_cmd, shell=True, stderr=subprocess.STDOUT, text=True, timeout=10
+        )
+
         # Sanitize output before returning
         result = sanitize_input(result, max_length=5000)
-        
+
     except ValueError as e:
         # Command was blocked by sanitization
-        log_security_event('terminal_blocked', {'command': cmd, 'reason': str(e)}, 'CRITICAL')
+        log_security_event(
+            "terminal_blocked", {"command": cmd, "reason": str(e)}, "CRITICAL"
+        )
         return jsonify({"error": f"Command not allowed: {str(e)}"}), 403
     except subprocess.CalledProcessError as e:
         result = sanitize_input(str(e.output), max_length=5000)
     except subprocess.TimeoutExpired:
-        log_security_event('terminal_timeout', {'command': sanitized_cmd}, 'WARNING')
+        log_security_event("terminal_timeout", {"command": sanitized_cmd}, "WARNING")
         result = "Command timed out"
     except Exception as e:
         app.logger.error(f"Terminal command failed: {str(e)}")
         result = "Command execution failed"
-    
+
     return jsonify({"output": result})
 
 
@@ -357,7 +394,7 @@ def system_stats():
         stats = {
             "cpu": psutil.cpu_percent(interval=0.5),
             "memory": psutil.virtual_memory().percent,
-            "timestamp": dt.now(timezone.utc).isoformat()
+            "timestamp": dt.now(timezone.utc).isoformat(),
         }
         return jsonify(stats)
     except Exception as e:

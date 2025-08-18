@@ -35,13 +35,13 @@ export class ErrorBoundary extends React.Component<
       error,
       errorInfo,
     });
-    
+
     // Log to monitoring service
     Sentry.captureException(error, {
       extra: {
         errorInfo,
-        component: this.props.componentName
-      }
+        component: this.props.componentName,
+      },
     });
   }
 
@@ -65,10 +65,10 @@ export class ErrorBoundary extends React.Component<
         <div className="error-container">
           <h2>Something went wrong</h2>
           <p>{this.state.error?.message}</p>
-          <details style={{ whiteSpace: 'pre-wrap' }}>
+          <details style={{ whiteSpace: "pre-wrap" }}>
             {this.state.errorInfo?.componentStack}
           </details>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="retry-button"
           >
