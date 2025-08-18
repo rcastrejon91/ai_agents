@@ -2,8 +2,12 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -39,8 +43,12 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -74,7 +82,9 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"
@@ -114,7 +124,9 @@
   {
     "date": "2025-08-16",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -155,7 +167,9 @@
   {
     "date": "2025-08-17",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -190,5 +204,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f108a05d870>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-18",
+    "timestamp": "2025-08-18T15:29:38.452670+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Ukraine: (definition pending — no model key set)",
+      "The Washington: (definition pending — no model key set)",
+      "Europe: (definition pending — no model key set)",
+      "The Oscar-winning: (definition pending — no model key set)",
+      "EST: (definition pending — no model key set)",
+      "BST: (definition pending — no model key set)",
+      "Calum Macdonald: (definition pending — no model key set)",
+      "South East Asia: (definition pending — no model key set)",
+      "Foreign Office: (definition pending — no model key set)",
+      "The Category: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "“I’ll get it done,” the US president says ahead of peace talks with Ukraine’s president at 13:00 EST (18:00 BST). The Washington meeting could prove to be crucial to the future of Ukraine, and all of Europe's security. The Oscar-winning actor says that the famous 007 character can't be a woman as it \"just doesn't work\". Calum Macdonald and the families of three people who died in South East Asia call on the Foreign Office for clearer travel advice. The Category 4 storm threatens to bring life-threatening surf and rip currents to the US East Coast. The Washington meeting could prove to be crucial to the future of Ukraine, and all of Europe's security. As world leaders dash across the Atlantic for crunch talks, what will they and the others present regard as a win? A BBC team was interviewing a Palestinian farmer when masked men charged towards them. The Oscar-winning actor says that the famous 007 character can't be a woman as it \"just doesn't work\". Stamp, the dashing 60s acting icon who re-emerged as a fine character actor, has died aged 87."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Chikungunya Outbreak, Glacial Outbursts and a New Human Ancestor China is having a fast-rising chikungunya outbreak in a place that has never had one before. Rachel Feltman, Fonda Mwangi, Alex Sugiura First 3D Images of Human Embryo Implantation Reveal New Details of the Process Humberto Basilio Here’s Why Rabbits Are Sprouting Tentacle Horns Stephanie Pappas Climate Change's Effect on Sudan's Cholera Outbreak, Explained Andrea Tamayo Wordology: Monday, August 18, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f77ec989660>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
