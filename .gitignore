@@ -10,3 +10,5 @@ lyra_app/lyra.db
 # Frontend build artifacts
 frontend/.next/
 lyra-ai/frontend/.next/
+__pycache__/
+*.pyc
