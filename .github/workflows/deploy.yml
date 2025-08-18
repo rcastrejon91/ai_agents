@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push API image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./apps/companion_api
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}/api:latest
+          ghcr.io/${{ github.repository }}/api:${{ github.sha }}
+
+    - name: Build and push Web image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./apps/companion_web
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}/web:latest
+          ghcr.io/${{ github.repository }}/web:${{ github.sha }}
+
+    - name: Deploy to staging
+      if: github.ref == 'refs/heads/main'
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      run: |
+        echo "$KUBE_CONFIG" > kubeconfig.yaml
+        kubectl --kubeconfig=kubeconfig.yaml apply -f k8s/staging/
+
+    - name: Deploy to production
+      if: startsWith(github.ref, 'refs/tags/v')
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      run: |
+        echo "$KUBE_CONFIG" > kubeconfig.yaml
+        kubectl --kubeconfig=kubeconfig.yaml apply -f k8s/production/

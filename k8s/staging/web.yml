@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: companion-web-staging
+  namespace: staging
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: companion-web
+      env: staging
+  template:
+    metadata:
+      labels:
+        app: companion-web
+        env: staging
+    spec:
+      containers:
+      - name: companion-web
+        image: ghcr.io/rcastrejon91/ai_agents/web:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "staging"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: companion-web-service-staging
+  namespace: staging
+spec:
+  selector:
+    app: companion-web
+    env: staging
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: ClusterIP
