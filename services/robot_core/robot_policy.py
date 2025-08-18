@@ -19,7 +19,13 @@ def load_policy():
         try:
             cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, "r", encoding="utf-8")) or {}
             rob = cfg.get("robotics", {})
-            p.update({k: v for k, v in rob.items() if k in DEFAULT or k in {"focus", "sandbox_limits"}})
+            p.update(
+                {
+                    k: v
+                    for k, v in rob.items()
+                    if k in DEFAULT or k in {"focus", "sandbox_limits"}
+                }
+            )
         except:
             pass
     if os.getenv("ROBOTICS_ENABLE", "0").lower() in {"1", "true", "yes"}:

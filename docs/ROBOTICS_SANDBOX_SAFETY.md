@@ -14,9 +14,9 @@ The robotics sandbox is configured in the `topics.yml` file under the `robotics`
 
 ```yaml
 robotics:
-  enabled: true                    # Sandbox is now enabled
-  self_repair_enabled: false       # Self-repair remains disabled for safety
-  approve_required: true           # Human approval required for all operations
+  enabled: true # Sandbox is now enabled
+  self_repair_enabled: false # Self-repair remains disabled for safety
+  approve_required: true # Human approval required for all operations
 ```
 
 ## Safety Measures
@@ -27,7 +27,7 @@ All existing safety measures remain in place:
 
 - **Human Approval Required**: All robotics operations require human approval before execution
 - **Self-Repair Disabled**: The robot cannot modify its own hardware or software
-- **Actuator Limits**: 
+- **Actuator Limits**:
   - Maximum torque: 2.0 Nm
   - Maximum speed: 0.5 m/s
 - **Materials Whitelist**: Only approved materials (PLA, PETG, TPU, aluminum 6061)
@@ -38,35 +38,39 @@ All existing safety measures remain in place:
 Additional safety boundaries have been implemented specifically for sandbox operations:
 
 #### Operating Area Constraints
+
 ```yaml
 operating_area:
-  max_radius_m: 50              # Maximum 50-meter operating radius
-  require_geofence: true        # Geofencing must be active
+  max_radius_m: 50 # Maximum 50-meter operating radius
+  require_geofence: true # Geofencing must be active
 ```
 
 #### Session Management
+
 ```yaml
 session_limits:
-  max_duration_minutes: 30                    # Maximum 30-minute sessions
-  max_operations_per_session: 10              # Maximum 10 operations per session
-  cooldown_between_sessions_minutes: 15       # 15-minute cooldown between sessions
+  max_duration_minutes: 30 # Maximum 30-minute sessions
+  max_operations_per_session: 10 # Maximum 10 operations per session
+  cooldown_between_sessions_minutes: 15 # 15-minute cooldown between sessions
 ```
 
 #### Monitoring and Oversight
+
 ```yaml
 monitoring:
-  log_all_actions: true             # All actions must be logged
-  video_recording_required: true    # Video recording required during operations
-  real_time_telemetry: true         # Real-time monitoring active
-  alert_on_anomalies: true          # Automatic anomaly detection and alerts
+  log_all_actions: true # All actions must be logged
+  video_recording_required: true # Video recording required during operations
+  real_time_telemetry: true # Real-time monitoring active
+  alert_on_anomalies: true # Automatic anomaly detection and alerts
 ```
 
 #### Safety Boundaries
+
 ```yaml
 safety_boundaries:
-  emergency_stop_required: true      # Emergency stop capability required
-  human_supervisor_required: true    # Human supervisor must be present
-  backup_systems_active: true        # Backup safety systems must be active
+  emergency_stop_required: true # Emergency stop capability required
+  human_supervisor_required: true # Human supervisor must be present
+  backup_systems_active: true # Backup safety systems must be active
 ```
 
 ### 3. Existing Safety Infrastructure (Maintained)
@@ -74,15 +78,18 @@ safety_boundaries:
 The following safety infrastructure from the broader system remains active:
 
 #### Geofencing
+
 - Enabled geofence system with predefined safe zones
 - Home/Office zone: 41.899°N, -87.941°W, 400m radius
 
 #### Escalation Protocols
+
 - **Observe**: Record, log, notify owner
 - **Protect**: Retreat, flash light, audible alarm, call help
 - **Emergency**: Live stream to owner, geolocate, call 911
 
 #### Forbidden Actions
+
 - Strike, shove, tase, pepper spray
 - Lock bypass, weapon mounting
 - Any violent or harmful actions
@@ -98,12 +105,14 @@ The following safety infrastructure from the broader system remains active:
 ### Policy Loading
 
 The robotics policy is loaded by:
+
 - `services/robot_core/robot_policy.py` - Main policy loader
 - `lyra_learning.py` - Integration with Lyra learning system
 
 ### Environment Variables
 
 The system supports environment variable overrides:
+
 - `ROBOTICS_ENABLE`: Can enable/disable robotics functionality
 - `ROBOTICS_REPAIR_ENABLE`: Can enable self-repair (use with extreme caution)
 
@@ -112,6 +121,7 @@ The system supports environment variable overrides:
 ### Automated Tests
 
 Comprehensive test suite in `tests/test_robotics_sandbox.py` verifies:
+
 - Sandbox enablement with safety measures intact
 - Proper configuration of sandbox limits
 - Environment variable override functionality
@@ -155,6 +165,7 @@ The sandbox implements multiple layers of safety:
 ### Audit Trail
 
 All robotics operations are:
+
 - Logged with timestamps and details
 - Video recorded for review
 - Monitored in real-time
@@ -187,6 +198,7 @@ All robotics operations are:
 ## Future Enhancements
 
 Potential safety improvements being considered:
+
 - Enhanced anomaly detection algorithms
 - Integration with external safety monitoring systems
 - Automated safety compliance reporting
@@ -195,6 +207,7 @@ Potential safety improvements being considered:
 ## Contact and Support
 
 For questions about robotics safety configuration:
+
 - Review this documentation first
 - Check the test suite for examples
 - Consult the broader safety documentation in `docs/SECURITY_CONFIGURATION.md`
