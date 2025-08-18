@@ -1,51 +1,87 @@
-{% extends "base.html" %}
-
-{% block title %}Admin Panel - AI Agents{% endblock %}
-
+{% extends "base.html" %} {% block title %}Admin Panel - AI Agents{% endblock %}
 {% block content %}
 <h2>🛡️ Admin Control Panel</h2>
-<p style="margin-bottom: var(--spacing-lg);">Welcome to the secure admin area. All security measures are active.</p>
+<p style="margin-bottom: var(--spacing-lg)">
+  Welcome to the secure admin area. All security measures are active.
+</p>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-    <div style="padding: var(--spacing-md); border: 1px solid #ddd; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-        <h3>🔐 Security Status</h3>
-        <ul style="margin-top: var(--spacing-md); list-style: none;">
-            <li style="margin-bottom: var(--spacing-xs);">✅ Authentication Active</li>
-            <li style="margin-bottom: var(--spacing-xs);">✅ CSRF Protection Enabled</li>
-            <li style="margin-bottom: var(--spacing-xs);">✅ Error Logging Active</li>
-            <li style="margin-bottom: var(--spacing-xs);">✅ UTC Timestamps</li>
-        </ul>
+<div
+  style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  "
+>
+  <div
+    style="
+      padding: var(--spacing-md);
+      border: 1px solid #ddd;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    "
+  >
+    <h3>🔐 Security Status</h3>
+    <ul style="margin-top: var(--spacing-md); list-style: none">
+      <li style="margin-bottom: var(--spacing-xs)">✅ Authentication Active</li>
+      <li style="margin-bottom: var(--spacing-xs)">
+        ✅ CSRF Protection Enabled
+      </li>
+      <li style="margin-bottom: var(--spacing-xs)">✅ Error Logging Active</li>
+      <li style="margin-bottom: var(--spacing-xs)">✅ UTC Timestamps</li>
+    </ul>
+  </div>
+
+  <div
+    style="
+      padding: var(--spacing-md);
+      border: 1px solid #ddd;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    "
+  >
+    <h3>📊 System Info</h3>
+    <p style="margin-top: var(--spacing-md)">
+      <strong>Current Time (UTC):</strong><br />
+      <span id="current-time"></span>
+    </p>
+    <p style="margin-top: var(--spacing-sm)">
+      <strong>Session:</strong> Active<br />
+      <strong>Design System:</strong> Loaded
+    </p>
+  </div>
+
+  <div
+    style="
+      padding: var(--spacing-md);
+      border: 1px solid #ddd;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    "
+  >
+    <h3>🔧 Quick Actions</h3>
+    <div style="margin-top: var(--spacing-md)">
+      <a
+        href="{{ url_for('health') }}"
+        class="btn"
+        style="margin-right: var(--spacing-sm)"
+        >Health Check</a
+      >
+      <a
+        href="{{ url_for('logout') }}"
+        class="btn"
+        style="background: var(--error)"
+        >Logout</a
+      >
     </div>
-    
-    <div style="padding: var(--spacing-md); border: 1px solid #ddd; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-        <h3>📊 System Info</h3>
-        <p style="margin-top: var(--spacing-md);">
-            <strong>Current Time (UTC):</strong><br>
-            <span id="current-time"></span>
-        </p>
-        <p style="margin-top: var(--spacing-sm);">
-            <strong>Session:</strong> Active<br>
-            <strong>Design System:</strong> Loaded
-        </p>
-    </div>
-    
-    <div style="padding: var(--spacing-md); border: 1px solid #ddd; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-        <h3>🔧 Quick Actions</h3>
-        <div style="margin-top: var(--spacing-md);">
-            <a href="{{ url_for('health') }}" class="btn" style="margin-right: var(--spacing-sm);">Health Check</a>
-            <a href="{{ url_for('logout') }}" class="btn" style="background: var(--error);">Logout</a>
-        </div>
-    </div>
+  </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script>
-function updateTime() {
+  function updateTime() {
     const now = new Date();
-    document.getElementById('current-time').textContent = now.toISOString();
-}
-updateTime();
-setInterval(updateTime, 1000);
+    document.getElementById("current-time").textContent = now.toISOString();
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
 </script>
 {% endblock %}
