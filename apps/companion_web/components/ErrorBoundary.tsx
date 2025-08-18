@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -8,6 +9,7 @@ interface ErrorBoundaryState {
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
+  componentName?: string;
   fallback?: React.ComponentType<{ error?: Error; resetError: () => void }>;
 }
 
@@ -33,6 +35,14 @@ export class ErrorBoundary extends React.Component<
       error,
       errorInfo,
     });
+    
+    // Log to monitoring service
+    Sentry.captureException(error, {
+      extra: {
+        errorInfo,
+        component: this.props.componentName
+      }
+    });
   }
 
   resetError = () => {
@@ -52,49 +62,17 @@ export class ErrorBoundary extends React.Component<
       }
 
       return (
-        <div
-          style={{
-            padding: "20px",
-            margin: "20px",
-            border: "2px solid #ff6b6b",
-            borderRadius: "8px",
-            backgroundColor: "#ffe0e0",
-            color: "#d32f2f",
-          }}
-        >
-          <h2>🚨 Something went wrong</h2>
-          <details style={{ marginTop: "10px" }}>
-            <summary style={{ cursor: "pointer", fontWeight: "bold" }}>
-              Error Details
-            </summary>
-            <pre
-              style={{
-                marginTop: "10px",
-                padding: "10px",
-                backgroundColor: "#f5f5f5",
-                color: "#333",
-                overflow: "auto",
-                fontSize: "12px",
-                borderRadius: "4px",
-              }}
-            >
-              {this.state.error && this.state.error.toString()}
-              {this.state.errorInfo && this.state.errorInfo.componentStack}
-            </pre>
+        <div className="error-container">
+          <h2>Something went wrong</h2>
+          <p>{this.state.error?.message}</p>
+          <details style={{ whiteSpace: 'pre-wrap' }}>
+            {this.state.errorInfo?.componentStack}
           </details>
-          <button
-            onClick={this.resetError}
-            style={{
-              marginTop: "10px",
-              padding: "8px 16px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+          <button 
+            onClick={() => window.location.reload()}
+            className="retry-button"
           >
-            Try Again
+            Retry
           </button>
         </div>
       );
@@ -144,4 +122,4 @@ export const ChatErrorFallback: React.FC<{
   </div>
 );
 
-export default ErrorBoundary;
+export default Sentry.withProfiler(ErrorBoundary);
