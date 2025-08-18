@@ -13,7 +13,16 @@
     "express": "^4.19.2",
     "openai": "^4.55.0",
     "stripe": "^16.9.0",
-    "body-parser": "^1.20.2"
+    "body-parser": "^1.20.2",
+    "jsonwebtoken": "^9.0.2",
+    "ioredis": "^5.3.2",
+    "rate-limiter-flexible": "^5.0.3",
+    "@opentelemetry/api": "^1.8.0",
+    "@opentelemetry/resources": "^1.24.1",
+    "@opentelemetry/semantic-conventions": "^1.24.1",
+    "winston": "^3.13.0",
+    "winston-elasticsearch": "^0.17.4",
+    "prom-client": "^15.1.2"
   },
   "devDependencies": {
     "tsx": "^4.7.0",
@@ -21,6 +30,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.10",
     "@types/cors": "^2.8.17",
-    "@types/body-parser": "^1.19.5"
+    "@types/body-parser": "^1.19.5",
+    "@types/jsonwebtoken": "^9.0.6"
   }
 }
