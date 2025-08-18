@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AI Agents{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: var(--spacing-lg);">
+    <h2>Welcome to AI Agents</h2>
+    <p style="margin: var(--spacing-md) 0; color: #666;">
+        A secure and modern AI agent platform with proper authentication and design system.
+    </p>
+    
+    {% if not session.authenticated %}
+    <p style="margin-top: var(--spacing-lg);">
+        <a href="{{ url_for('login') }}" class="btn">Login to Admin</a>
+    </p>
+    {% else %}
+    <p style="margin-top: var(--spacing-lg);">
+        <a href="{{ url_for('admin') }}" class="btn">Go to Admin Panel</a>
+    </p>
+    {% endif %}
+</div>
+{% endblock %}
