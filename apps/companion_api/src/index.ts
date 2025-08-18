@@ -8,6 +8,7 @@ import { checkFeature } from "../../companion_web/server/compliance/check";
 import {
   validateEnvironment,
   getEnvironmentConfig,
+  getEnvironmentUrls,
 } from "./config/env-validation.js";
 
 dotenv.config();
@@ -15,6 +16,7 @@ dotenv.config();
 // Validate environment variables on startup
 const envConfig = validateEnvironment();
 const appConfig = getEnvironmentConfig();
+const urlConfig = getEnvironmentUrls();
 
 const app = express();
 
@@ -190,7 +192,10 @@ const PORT = envConfig.PORT;
 app.listen(PORT, () => {
   console.log(`🚀 API server running on port ${PORT}`);
   console.log(`📝 Environment: ${envConfig.NODE_ENV}`);
+  console.log(`🌐 Backend URL: ${urlConfig.backendUrl}`);
+  console.log(`🌐 API URL: ${urlConfig.apiUrl}`);
   console.log(`🔒 CORS origins: ${JSON.stringify(appConfig.cors.origin)}`);
+  console.log(`🔒 Security level: ${appConfig.securityLevel}`);
   console.log(
     `⏱️  Rate limit: ${appConfig.rateLimit.maxRequests} requests per ${appConfig.rateLimit.windowMs / 1000 / 60} minutes`,
   );

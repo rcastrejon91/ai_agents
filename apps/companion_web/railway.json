@@ -13,6 +13,10 @@
   },
   "env": {
     "NODE_ENV": "production",
-    "PORT": "${{RAILWAY_PORT}}"
+    "PORT": "${{RAILWAY_PORT}}",
+    "NEXT_PUBLIC_BASE_URL": "${{RAILWAY_PUBLIC_DOMAIN}}",
+    "NEXT_PUBLIC_APP_DOMAIN": "${{RAILWAY_PUBLIC_DOMAIN}}",
+    "ORIGIN": "${{RAILWAY_PUBLIC_DOMAIN}}",
+    "RP_ID": "${{RAILWAY_PUBLIC_DOMAIN}}"
   }
 }
