@@ -1,12 +1,39 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "lyra/backend/app.py", "use": "@vercel/python" },
-    { "src": "lyra/frontend/index.html", "use": "@vercel/static" },
-    { "src": "lyra/frontend/dashboard.html", "use": "@vercel/static" }
-  ],
+  "framework": "nextjs",
+  "buildCommand": "cd apps/companion_web && npm run build",
+  "outputDirectory": "apps/companion_web/.next",
+  "installCommand": "cd apps/companion_web && npm install",
+  "functions": {
+    "apps/companion_web/pages/api/**/*.js": {
+      "runtime": "@vercel/node"
+    },
+    "apps/companion_web/app/api/**/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
   "routes": [
-    { "src": "/api/(.*)", "dest": "lyra/backend/app.py" },
-    { "src": "/(.*)", "dest": "lyra/frontend/$1" }
-  ]
+    {
+      "src": "/api/(.*)",
+      "dest": "/apps/companion_web/pages/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/apps/companion_web/$1"
+    }
+  ],
+  "env": {
+    "OPENAI_API_KEY": "@openai_api_key",
+    "TAVILY_API_KEY": "@tavily_api_key",
+    "LYRA_FREE_DAILY_SEARCH_LIMIT": "@lyra_free_daily_search_limit",
+    "USE_LLM_ROUTER": "@use_llm_router",
+    "ADMIN_DASH_KEY": "@admin_dash_key",
+    "NEXT_PUBLIC_ADMIN_UI_KEY": "@next_public_admin_ui_key",
+    "BACKEND_URL": "@backend_url",
+    "NEXT_PUBLIC_SUPABASE_URL": "@next_public_supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@next_public_supabase_anon_key",
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "DEBUG": "@debug"
+  }
 }

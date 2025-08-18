@@ -8,5 +8,33 @@
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
+  },
+  "services": {
+    "backend": {
+      "workingDirectory": "lyra/backend",
+      "buildCommand": "pip install -r ../../requirements.txt",
+      "startCommand": "gunicorn --bind 0.0.0.0:$PORT app:app",
+      "healthcheckPath": "/health",
+      "env": {
+        "PORT": "${{RAILWAY_PORT}}",
+        "ALLOWED_ORIGINS": "${{ALLOWED_ORIGINS}}",
+        "DEBUG": "${{DEBUG}}"
+      }
+    },
+    "frontend": {
+      "workingDirectory": "apps/companion_web",
+      "buildCommand": "npm install && npm run build",
+      "startCommand": "npm start",
+      "healthcheckPath": "/api/debug/env",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "${{RAILWAY_PORT}}",
+        "OPENAI_API_KEY": "${{OPENAI_API_KEY}}",
+        "TAVILY_API_KEY": "${{TAVILY_API_KEY}}",
+        "NEXT_PUBLIC_SUPABASE_URL": "${{NEXT_PUBLIC_SUPABASE_URL}}",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${{NEXT_PUBLIC_SUPABASE_ANON_KEY}}",
+        "BACKEND_URL": "${{BACKEND_URL}}"
+      }
+    }
   }
 }
