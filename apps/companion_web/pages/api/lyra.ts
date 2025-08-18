@@ -21,8 +21,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const message = body.message || "";
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
-    if (!message) {
-      logger.warn("Empty message received", { ip: req.socket.remoteAddress });
+    if (!message || typeof message !== "string") {
+      logger.warn("Empty or invalid message received", { ip: req.socket.remoteAddress });
       return res.status(400).json({ error: "Message is required" });
     }
 
@@ -50,6 +50,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Health ping: allows ?ping=1 check without burning tokens
     if (req.query.ping) {
       return res.status(200).json({ reply: "pong", model: "demo", tools });
+    }
+
+    // Get OpenAI API key
+    const key = process.env.OPENAI_API_KEY;
+    if (!key) {
+      logger.error("OPENAI_API_KEY not configured");
+      return res.status(500).json({ error: "OpenAI API key not configured" });
     }
 
     // Call OpenAI
