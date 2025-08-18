@@ -1,6 +1,0 @@
-flask
-flask-cors
-openai
-pyttsx3
-SpeechRecognition
-pyaudio

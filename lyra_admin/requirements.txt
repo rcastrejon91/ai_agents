@@ -1,5 +1,0 @@
-flask
-gTTS
-SpeechRecognition
-pyaudio
-psutil

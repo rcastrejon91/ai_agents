@@ -1,12 +1,31 @@
 node_modules/
 apps/companion_api/dist/
+apps/companion_web/.next/
 dist/
 .env
+.env.local
 apps/companion_api/.env
 apps/companion_web/.env.local
-lyra_app/lyra.db
-# Next.js build artifacts
+
+# SSH keys and sensitive files
+*.pub
+*ssh*
+*.key
+*.pem
+
+# Build artifacts
 .next/
-# Frontend build artifacts
-frontend/.next/
-lyra-ai/frontend/.next/
+build/
+dist/
+
+# Database files
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
