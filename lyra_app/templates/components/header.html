@@ -1,0 +1,247 @@
+{#
+  Shared header component for Lyra applications
+  
+  Usage:
+  {% from 'components/header.html' import header %}
+  {{ header(title="Page Title", show_nav=True, user=current_user) }}
+#}
+
+{% macro header(title="Lyra", show_nav=True, user=None, csrf_token=None) %}
+<header class="app-header">
+  <div class="header-container">
+    <div class="header-brand">
+      <span class="status-indicator" id="health-indicator"></span>
+      <h1 class="header-title">{{ title }}</h1>
+      <span class="header-subtitle">— your companion is live</span>
+    </div>
+    
+    {% if show_nav %}
+    <nav class="header-nav">
+      {% if user and user.authenticated %}
+        <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+        <a href="{{ url_for('chat') }}" class="nav-link">Chat</a>
+        {% if user.is_admin %}
+          <a href="{{ url_for('admin') }}" class="nav-link">Admin</a>
+        {% endif %}
+        <form method="POST" action="{{ url_for('logout') }}" class="logout-form">
+          {% if csrf_token %}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          {% endif %}
+          <button type="submit" class="nav-link logout-btn">Logout</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</header>
+
+<style>
+.app-header {
+  background: var(--nav-bg);
+  border-bottom: var(--nav-border);
+  padding: var(--nav-padding);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--border-radius-full);
+  background: var(--success-color);
+  display: inline-block;
+  transition: var(--transition-all);
+}
+
+.status-indicator.warning {
+  background: var(--warning-color);
+}
+
+.status-indicator.error {
+  background: var(--error-color);
+}
+
+.header-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.header-subtitle {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-all);
+}
+
+.nav-link:hover {
+  background: var(--bg-secondary);
+  color: var(--primary-color);
+}
+
+.logout-form {
+  margin: 0;
+  display: inline;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .header-brand {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .header-subtitle {
+    font-size: var(--font-xs);
+  }
+  
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+}
+</style>
+
+<script>
+// Health check indicator
+(async () => {
+  const indicator = document.getElementById('health-indicator');
+  if (!indicator) return;
+  
+  try {
+    const response = await fetch('/ping');
+    const data = await response.json();
+    
+    if (!data.ok) {
+      indicator.className = 'status-indicator warning';
+    }
+  } catch (error) {
+    indicator.className = 'status-indicator error';
+    console.error('Health check failed:', error);
+  }
+})();
+</script>
+{% endmacro %}
+
+{#
+  Navigation breadcrumb component
+  
+  Usage:
+  {% from 'components/header.html' import breadcrumb %}
+  {{ breadcrumb([
+    {'text': 'Home', 'url': url_for('index')},
+    {'text': 'Dashboard', 'url': url_for('dashboard')},
+    {'text': 'Current Page', 'active': True}
+  ]) }}
+#}
+
+{% macro breadcrumb(items) %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    {% for item in items %}
+    <li class="breadcrumb-item {% if item.active %}active{% endif %}">
+      {% if item.url and not item.active %}
+        <a href="{{ item.url }}" class="breadcrumb-link">{{ item.text }}</a>
+      {% else %}
+        <span class="breadcrumb-text">{{ item.text }}</span>
+      {% endif %}
+      {% if not loop.last %}
+        <span class="breadcrumb-separator">/</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</nav>
+
+<style>
+.breadcrumb {
+  margin: var(--spacing-md) 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-sm);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-all);
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.breadcrumb-text {
+  color: var(--text-primary);
+}
+
+.breadcrumb-item.active .breadcrumb-text {
+  font-weight: var(--font-weight-medium);
+}
+
+.breadcrumb-separator {
+  color: var(--text-tertiary);
+  user-select: none;
+}
+</style>
+{% endmacro %}

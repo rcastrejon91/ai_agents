@@ -1,14 +1,59 @@
 import datetime as dt
+from datetime import datetime, timezone
 import json
 import os
 import pathlib
 import re
 import smtplib
 from email.mime.text import MIMEText
+import logging
 
 import requests
 import yaml
 from bs4 import BeautifulSoup
+
+# ---- Setup logging ----
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('data/lyra_learning.log', mode='a', encoding='utf-8')
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Ensure data directory exists
+os.makedirs('data', exist_ok=True)
+
+
+def validate_email(email):
+    """Validate email address format."""
+    if not isinstance(email, str) or not email:
+        return False
+    
+    # Simple email validation regex
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(pattern, email)) and len(email) <= 254
+
+
+def get_utc_timestamp():
+    """Get current UTC timestamp."""
+    return datetime.now(timezone.utc)
+
+
+def format_datetime(dt_obj):
+    """Format datetime object to string with UTC indicator."""
+    if dt_obj.tzinfo is None:
+        # Assume naive datetime is UTC
+        dt_obj = dt_obj.replace(tzinfo=timezone.utc)
+    return dt_obj.strftime('%Y-%m-%d %H:%M:%S UTC')
+
+
+def get_utc_date_string():
+    """Get current date in UTC as string."""
+    return get_utc_timestamp().strftime("%Y-%m-%d")
+
 
 # ---- Paths / Config
 MEM_PATH = "data/lyra_memory.json"
@@ -401,94 +446,183 @@ def make_email_body(entry, safety_audit: str, admin_summary: str, pitches_summar
 
 
 def send_email(subject, body):
-    msg = MIMEText(body, "plain", "utf-8")
-    msg["Subject"] = subject
-    msg["From"] = EMAIL_FROM
-    msg["To"] = EMAIL_TO
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-        s.starttls()
-        s.login(SMTP_USER, SMTP_PASS)
-        s.send_message(msg)
+    """Send email with proper error handling and validation."""
+    try:
+        # Validate email configuration
+        if not all([SMTP_HOST, SMTP_USER, SMTP_PASS, EMAIL_FROM, EMAIL_TO]):
+            logger.error("Email configuration incomplete. Check SMTP_HOST, SMTP_USER, SMTP_PASS, EMAIL_FROM, EMAIL_TO environment variables.")
+            return False
+        
+        # Validate email addresses
+        if not validate_email(EMAIL_FROM):
+            logger.error(f"Invalid sender email address: {EMAIL_FROM}")
+            return False
+            
+        if not validate_email(EMAIL_TO):
+            logger.error(f"Invalid recipient email address: {EMAIL_TO}")
+            return False
+        
+        # Create message
+        msg = MIMEText(body, "plain", "utf-8")
+        msg["Subject"] = subject
+        msg["From"] = EMAIL_FROM
+        msg["To"] = EMAIL_TO
+        msg["Date"] = format_datetime(get_utc_timestamp())
+        
+        # Send email
+        logger.info(f"Sending email to {EMAIL_TO}: {subject}")
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+            s.starttls()
+            s.login(SMTP_USER, SMTP_PASS)
+            s.send_message(msg)
+        
+        logger.info("Email sent successfully")
+        return True
+        
+    except smtplib.SMTPAuthenticationError as e:
+        logger.error(f"SMTP authentication failed: {str(e)}")
+        return False
+    except smtplib.SMTPRecipientsRefused as e:
+        logger.error(f"SMTP recipients refused: {str(e)}")
+        return False
+    except smtplib.SMTPException as e:
+        logger.error(f"SMTP error occurred: {str(e)}")
+        return False
+    except Exception as e:
+        logger.error(f"Unexpected error sending email: {str(e)}")
+        return False
 
 
 # ==== Main ====
 if __name__ == "__main__":
-    memory = load_memory()
-    raw = fetch_sources()
-    kept, skipped = filter_chunks(raw)
-    if not kept:
-        kept = [c for c in raw if "error" not in c][:2]
-
-    if USE_OPENAI:
-        analysis = summarize_with_openai(kept, memory)
-    else:
-        prev = [i for e in memory for i in e.get("next_plan", [])]
-        analysis = summarize_simple(kept, prev)
-
-    # glossary
-    combined = " ".join(c.get("text", "") for c in kept)[:12000]
-    terms = extract_terms(combined, 10)
-    if terms and USE_OPENAI:
-        gloss = [
-            g.strip()
-            for g in define_with_openai(terms, combined).splitlines()
-            if g.strip()
-        ]
-    elif terms:
-        gloss = [
-            f"{t}: (definition pending — no model key set)" for t in terms
-        ]  # fallback
-    else:
-        gloss = []
-
-    # robotics idea (double gate)
-    robotics_enabled = bool(ROBOTICS_POLICY.get("enabled")) and os.getenv(
-        "ROBOTICS_ENABLE", "0"
-    ).lower() in {"1", "true", "yes"}
-    robotics_section = (
-        robotics_brainstorm(kept, ROBOTICS_POLICY, USE_OPENAI)
-        if robotics_enabled
-        else "(disabled)"
-    )
-
-    # self-repair status (call robot_core if running)
     try:
-        diag = requests.post(
-            os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/diagnose",
-            timeout=3,
-        ).json()
-        plan = requests.post(
-            os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/repair/plan",
-            timeout=5,
-        ).json()
-        self_repair = f"Diagnostic: {'OK' if diag.get('ok') else 'Issues found'}; Steps: {len(plan.get('steps',[]))}; Approval required: {plan.get('requires_approval', True)}"
+        logger.info("Starting Lyra learning process")
+        
+        # Load memory and fetch sources
+        logger.info("Loading memory and fetching sources")
+        memory = load_memory()
+        raw = fetch_sources()
+        kept, skipped = filter_chunks(raw)
+        
+        logger.info(f"Fetched {len(raw)} sources, kept {len(kept)}, skipped {len(skipped)}")
+        
+        if not kept:
+            logger.warning("No sources kept after filtering, using first 2 raw sources")
+            kept = [c for c in raw if "error" not in c][:2]
+
+        # Analysis phase
+        logger.info("Analyzing sources")
+        if USE_OPENAI:
+            analysis = summarize_with_openai(kept, memory)
+        else:
+            prev = [i for e in memory for i in e.get("next_plan", [])]
+            analysis = summarize_simple(kept, prev)
+
+        # Glossary generation
+        logger.info("Generating glossary")
+        combined = " ".join(c.get("text", "") for c in kept)[:12000]
+        terms = extract_terms(combined, 10)
+        if terms and USE_OPENAI:
+            try:
+                gloss = [
+                    g.strip()
+                    for g in define_with_openai(terms, combined).splitlines()
+                    if g.strip()
+                ]
+            except Exception as e:
+                logger.warning(f"Failed to generate glossary with OpenAI: {str(e)}")
+                gloss = [f"{t}: (definition unavailable)" for t in terms]
+        elif terms:
+            gloss = [
+                f"{t}: (definition pending — no model key set)" for t in terms
+            ]  # fallback
+        else:
+            gloss = []
+
+        # Robotics brainstorming (double gate)
+        logger.info("Processing robotics sandbox")
+        robotics_enabled = bool(ROBOTICS_POLICY.get("enabled")) and os.getenv(
+            "ROBOTICS_ENABLE", "0"
+        ).lower() in {"1", "true", "yes"}
+        
+        if robotics_enabled:
+            try:
+                robotics_section = robotics_brainstorm(kept, ROBOTICS_POLICY, USE_OPENAI)
+            except Exception as e:
+                logger.warning(f"Robotics brainstorm failed: {str(e)}")
+                robotics_section = "(robotics brainstorm failed)"
+        else:
+            robotics_section = "(disabled)"
+
+        # Self-repair status (call robot_core if running)
+        logger.info("Checking self-repair status")
+        try:
+            diag = requests.post(
+                os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/diagnose",
+                timeout=3,
+            ).json()
+            plan = requests.post(
+                os.getenv("ROBOT_CORE_URL", "http://localhost:8088") + "/robot/repair/plan",
+                timeout=5,
+            ).json()
+            self_repair = f"Diagnostic: {'OK' if diag.get('ok') else 'Issues found'}; Steps: {len(plan.get('steps',[]))}; Approval required: {plan.get('requires_approval', True)}"
+        except Exception as e:
+            logger.info(f"Robot core not reachable: {str(e)}")
+            self_repair = f"(robot_core not reachable: {e})"
+
+        # Create learning entry
+        logger.info("Creating learning entry")
+        entry = {
+            "date": get_utc_date_string(),
+            "timestamp": get_utc_timestamp().isoformat(),
+            "summary": analysis["summary"],
+            "insights": analysis["insights"],
+            "next_plan": analysis["next_plan"],
+            "glossary": gloss[:12],
+            "sources_kept": kept,
+            "sources_skipped": skipped,
+            "robotics_sandbox": robotics_section,
+            "self_repair_status": self_repair,
+        }
+        
+        memory.append(entry)
+        
+        # Save memory with error handling
+        try:
+            save_memory(memory)
+            logger.info("Memory saved successfully")
+        except Exception as e:
+            logger.error(f"Failed to save memory: {str(e)}")
+            raise
+
+        # Generate audit reports
+        logger.info("Generating audit reports")
+        try:
+            safety_audit = (
+                "\n".join(read_last_lines("data/robot_audit.log", 20)) or "(none)"
+            )
+        except Exception as e:
+            logger.warning(f"Failed to read safety audit: {str(e)}")
+            safety_audit = "(audit log unavailable)"
+            
+        admin_summary = summarize_admin_mode_events()
+        pitches_summary = summarize_pitch_history()
+
+        # Send email report
+        logger.info("Sending email report")
+        body = make_email_body(entry, safety_audit, admin_summary, pitches_summary)
+        
+        if send_email("Lyra Daily Learning Update", body):
+            logger.info("Learning process completed successfully")
+            print("✅ Learning process completed successfully. Email sent; memory updated.")
+        else:
+            logger.warning("Email sending failed, but learning process completed")
+            print("⚠️ Learning process completed but email sending failed. Memory updated.")
+            
+    except KeyboardInterrupt:
+        logger.info("Learning process interrupted by user")
+        print("⏹️ Learning process interrupted by user")
     except Exception as e:
-        self_repair = f"(robot_core not reachable: {e})"
-
-    entry = {
-        "date": dt.datetime.utcnow().strftime("%Y-%m-%d"),
-        "summary": analysis["summary"],
-        "insights": analysis["insights"],
-        "next_plan": analysis["next_plan"],
-        "glossary": gloss[:12],
-        "sources_kept": kept,
-        "sources_skipped": skipped,
-        "robotics_sandbox": robotics_section,
-        "self_repair_status": self_repair,
-    }
-    memory.append(entry)
-    save_memory(memory)
-
-    # safety audit tail
-    try:
-        safety_audit = (
-            "\n".join(read_last_lines("data/robot_audit.log", 20)) or "(none)"
-        )
-    except:
-        safety_audit = "(audit log unavailable)"
-    admin_summary = summarize_admin_mode_events()
-    pitches_summary = summarize_pitch_history()
-
-    body = make_email_body(entry, safety_audit, admin_summary, pitches_summary)
-    send_email("Lyra Daily Learning Update", body)
-    print("Email sent; memory updated.")
+        logger.error(f"Learning process failed: {str(e)}", exc_info=True)
+        print(f"❌ Learning process failed: {str(e)}")
+        raise
