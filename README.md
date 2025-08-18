@@ -65,3 +65,44 @@ Run it with:
 ```bash
 python passive_income_bot.py
 ```
+
+## Deployment
+
+This repository supports deployment on multiple platforms with the following configurations:
+
+### Railway Deployment
+
+The repository includes Railway configuration files for deployment:
+
+- **Root-level**: `railway.json` - General configuration for Python applications
+- **Individual apps**: 
+  - `apps/companion_api/railway.json` - Node.js API configuration  
+  - `apps/companion_web/railway.json` - Next.js frontend configuration
+
+Railway will automatically detect the Python runtime from `runtime.txt` and install dependencies from `requirements.txt`.
+
+### Vercel Deployment  
+
+For Vercel deployment, use the configured `vercel.json` which supports:
+
+- Multiple Python entry points (main app, API gateway, companion API)
+- Automatic routing to appropriate services
+- Python 3.11 runtime specification
+
+**Individual apps can also be deployed separately:**
+- Deploy `apps/companion_web` as a Next.js application 
+- See `apps/companion_web/README.md` for specific Vercel deployment instructions
+
+### Dependencies
+
+The repository includes comprehensive dependency management:
+
+- **Python**: `requirements.txt` includes all dependencies across the project
+- **Node.js**: Individual `package.json` files for each app
+- **Monorepo**: Root `package.json` supports workspace commands
+
+### Health Checks
+
+Health check endpoints are available for deployment monitoring:
+- `/health` - General health status
+- `/ready` - Readiness checks for deployment platforms
