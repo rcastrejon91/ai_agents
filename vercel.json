@@ -1,12 +1,43 @@
 {
   "version": 2,
+  "functions": {
+    "api/*.py": {
+      "runtime": "@vercel/python"
+    }
+  },
   "builds": [
-    { "src": "lyra/backend/app.py", "use": "@vercel/python" },
-    { "src": "lyra/frontend/index.html", "use": "@vercel/static" },
-    { "src": "lyra/frontend/dashboard.html", "use": "@vercel/static" }
+    {
+      "src": "lyra_app/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api_gateway.py", 
+      "use": "@vercel/python"
+    },
+    {
+      "src": "apps/companion_api/main.py",
+      "use": "@vercel/python"
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "lyra/backend/app.py" },
-    { "src": "/(.*)", "dest": "lyra/frontend/$1" }
-  ]
+    {
+      "src": "/api/gateway/(.*)",
+      "dest": "/api_gateway.py"
+    },
+    {
+      "src": "/api/companion/(.*)",
+      "dest": "/apps/companion_api/main.py"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/lyra_app/app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/lyra_app/app.py"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.11"
+  }
 }
