@@ -4,7 +4,6 @@ import path from "path";
 import {
   sanitizeInput,
   logSecurityEvent,
-  setSecurityHeaders,
 } from "../../../../lib/security";
 import { logger } from "../../../../lib/logger";
 
@@ -77,23 +76,37 @@ function logAdminEvent(evt: Record<string, any>) {
 }
 
 export async function GET(req: NextRequest) {
-  // Set security headers
+  // Set security headers and return response
   const response = ok(CURRENT);
-  setSecurityHeaders(response);
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+  );
   return response;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
-
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
     if (!checkRateLimit(ip, 5, 300000)) {
       // 5 attempts per 5 minutes
       logSecurityEvent("admin_rate_limit", { ip }, "WARNING");
-      return bad("Too many attempts. Please try again later.", 429);
+      const response = bad("Too many attempts. Please try again later.", 429);
+      // Set security headers
+      response.headers.set("X-Content-Type-Options", "nosniff");
+      response.headers.set("X-Frame-Options", "DENY");
+      response.headers.set("X-XSS-Protection", "1; mode=block");
+      response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+      response.headers.set(
+        "Content-Security-Policy",
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+      );
+      return response;
     }
 
     let body: any = {};
@@ -175,9 +188,29 @@ export async function POST(req: NextRequest) {
       ip,
     });
 
-    return ok(CURRENT);
+    const response = ok(CURRENT);
+    // Set security headers
+    response.headers.set("X-Content-Type-Options", "nosniff");
+    response.headers.set("X-Frame-Options", "DENY");
+    response.headers.set("X-XSS-Protection", "1; mode=block");
+    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+    );
+    return response;
   } catch (error) {
     logger.error("Admin mode POST error", { error });
-    return bad("Internal server error", 500);
+    const response = bad("Internal server error", 500);
+    // Set security headers
+    response.headers.set("X-Content-Type-Options", "nosniff");
+    response.headers.set("X-Frame-Options", "DENY");
+    response.headers.set("X-XSS-Protection", "1; mode=block");
+    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+    );
+    return response;
   }
 }

@@ -18,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       history: { type: "array" },
     });
 
-    const message = body.message || "";
+    const message = String(body.message || "");
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
     if (!message) {
@@ -65,7 +65,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${key}`,
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
           model: LYRA_MODEL,
