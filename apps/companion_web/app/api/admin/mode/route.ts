@@ -85,15 +85,14 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
-
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
     if (!checkRateLimit(ip, 5, 300000)) {
       // 5 attempts per 5 minutes
       logSecurityEvent("admin_rate_limit", { ip }, "WARNING");
-      return bad("Too many attempts. Please try again later.", 429);
+      const response = bad("Too many attempts. Please try again later.", 429);
+      setSecurityHeaders(response);
+      return response;
     }
 
     let body: any = {};
@@ -106,12 +105,16 @@ export async function POST(req: NextRequest) {
           { ip, size: text.length },
           "WARNING",
         );
-        return bad("Request body too large");
+        const response = bad("Request body too large");
+        setSecurityHeaders(response);
+        return response;
       }
       body = JSON.parse(text);
     } catch (err) {
       logger.error("Failed to parse admin mode body", { error: err, ip });
-      return bad("Invalid JSON");
+      const response = bad("Invalid JSON");
+      setSecurityHeaders(response);
+      return response;
     }
 
     // Sanitize inputs
@@ -135,7 +138,9 @@ export async function POST(req: NextRequest) {
         { ip, personality },
         "WARNING",
       );
-      return bad("Invalid personality");
+      const response = bad("Invalid personality");
+      setSecurityHeaders(response);
+      return response;
     }
 
     const envPass = (process.env.ADMIN_PASSPHRASE || "").trim().toLowerCase();
@@ -143,7 +148,9 @@ export async function POST(req: NextRequest) {
 
     if (!envPass && !envPin) {
       logger.error("No admin credentials configured");
-      return bad("Admin access not configured", 503);
+      const response = bad("Admin access not configured", 503);
+      setSecurityHeaders(response);
+      return response;
     }
 
     const used = passphrase ? "passphrase" : pin ? "pin" : "unknown";
@@ -154,7 +161,9 @@ export async function POST(req: NextRequest) {
     if (!authed) {
       logAdminEvent({ type: "auth_failed", used, ip });
       logSecurityEvent("admin_auth_failed", { ip, used }, "CRITICAL");
-      return bad("Unauthorized", 401);
+      const response = bad("Unauthorized", 401);
+      setSecurityHeaders(response);
+      return response;
     }
 
     const before = { ...CURRENT };
@@ -175,9 +184,13 @@ export async function POST(req: NextRequest) {
       ip,
     });
 
-    return ok(CURRENT);
+    const response = ok(CURRENT);
+    setSecurityHeaders(response);
+    return response;
   } catch (error) {
     logger.error("Admin mode POST error", { error });
-    return bad("Internal server error", 500);
+    const response = bad("Internal server error", 500);
+    setSecurityHeaders(response);
+    return response;
   }
 }
