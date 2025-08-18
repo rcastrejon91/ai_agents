@@ -47,7 +47,7 @@ safety:
     default_level: "observe"
 
 robotics:
-  enabled: false
+  enabled: true
   self_repair_enabled: false
   approve_required: true
   focus:
@@ -67,3 +67,20 @@ robotics:
   actuator_limits:
     max_torque_Nm: 2.0
     max_speed_mps: 0.5
+  sandbox_limits:
+    operating_area:
+      max_radius_m: 50
+      require_geofence: true
+    session_limits:
+      max_duration_minutes: 30
+      max_operations_per_session: 10
+      cooldown_between_sessions_minutes: 15
+    monitoring:
+      log_all_actions: true
+      video_recording_required: true
+      real_time_telemetry: true
+      alert_on_anomalies: true
+    safety_boundaries:
+      emergency_stop_required: true
+      human_supervisor_required: true
+      backup_systems_active: true
