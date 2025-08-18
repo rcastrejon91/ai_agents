@@ -1,0 +1,18 @@
+:root {
+  --primary: #4caf50;
+  --secondary: #2196f3;
+  --background: #ffffff;
+  --text: #212121;
+  --error: #f44336;
+  
+  --spacing-xs: 4px;
+  --spacing-sm: 8px; 
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,12 @@
+{% macro header(title) %}
+<header class="app-header">
+  <h1>{{ title }}</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if session.authenticated %}
+      <a href="{{ url_for('admin') }}">Admin</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+  </nav>
+</header>
+{% endmacro %}
