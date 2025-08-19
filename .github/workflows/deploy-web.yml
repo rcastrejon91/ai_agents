@@ -2,12 +2,12 @@ name: Deploy Web
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - "apps/companion_web/**"
       - ".github/workflows/deploy-web.yml"
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
       - "apps/companion_web/**"
 
