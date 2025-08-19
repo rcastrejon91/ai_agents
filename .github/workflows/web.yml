@@ -2,7 +2,7 @@ name: Deploy Web
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: apps/companion_web   # your web app path
+        working-directory: apps/companion_web # your web app path
 
     steps:
       - name: Checkout

@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write   # allows this workflow to push the file
+  contents: write # allows this workflow to push the file
 
 jobs:
   write:

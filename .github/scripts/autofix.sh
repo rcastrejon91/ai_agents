@@ -110,14 +110,18 @@ run_js_formatters() {
     fi
     
     log "🔧 Running ESLint with fixes..."
-    npx --yes eslint . --ext .js,.ts,.jsx,.tsx --fix || {
+    if npx --yes eslint . --ext .js,.ts,.jsx,.tsx --fix 2>/dev/null; then
+        log "✅ ESLint completed successfully"
+    else
         log "⚠️  ESLint encountered some issues, but continuing..."
-    }
+    fi
     
     log "💅 Running Prettier..."
-    npx --yes prettier . --write || {
+    if npx --yes prettier . --write 2>/dev/null; then
+        log "✅ Prettier completed successfully"
+    else
         log "⚠️  Prettier encountered some issues, but continuing..."
-    }
+    fi
     
     log "✅ JavaScript/TypeScript formatting complete"
 }

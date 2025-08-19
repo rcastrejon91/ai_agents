@@ -1,7 +1,7 @@
 name: Lyra Daily Learning
 on:
   schedule:
-    - cron: "0 15 * * *"        # 3 PM UTC
+    - cron: "0 15 * * *" # 3 PM UTC
   workflow_dispatch:
 
 permissions:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: '3.10' }
+        with: { python-version: "3.10" }
       - name: Install deps
         run: pip install requests beautifulsoup4 pyyaml openai
       - name: Run Lyra learning
@@ -22,7 +22,7 @@ jobs:
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          EMAIL_TO:   ${{ secrets.EMAIL_TO }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           OPENAI_API_KEY: ${{ secrets.LYRA_TAVI_KEY }}
         run: python lyra_learning.py
