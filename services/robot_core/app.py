@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 
 from .repair_planner import diagnose, plan_repair
-from .robot_policy import load_policy
+from .robot_policy import load_policy, update_self_repair_setting
 from .safety_guard import PrimeDirective
 from .telemetry_store import load_telemetry, save_telemetry
 
@@ -16,6 +16,11 @@ guard = PrimeDirective()
 
 class TelemetryReq(BaseModel):
     payload: dict
+
+
+class SelfRepairToggleReq(BaseModel):
+    enabled: bool
+    approval_token: str
 
 
 def _gate(action: str, ctx: dict):
@@ -56,6 +61,41 @@ async def approve(request: Request):
     with open("data/repair_plan.json", "w", encoding="utf-8") as f:
         json.dump(plan, f, ensure_ascii=False, indent=2)
     return {"ok": True, "plan_written": True}
+
+
+@app.post("/robot/self-repair/toggle")
+async def toggle_self_repair(req: SelfRepairToggleReq):
+    """Toggle self-repair feature while maintaining safety requirements."""
+    # Verify authorization token
+    if req.approval_token != APPROVAL_TOKEN:
+        return {"ok": False, "error": "unauthorized"}
+    
+    # Update the self-repair setting
+    try:
+        success = update_self_repair_setting(req.enabled)
+        if success:
+            # Get updated policy to return current state
+            policy = load_policy()
+            return {
+                "ok": True, 
+                "self_repair_enabled": policy["self_repair_enabled"],
+                "approve_required": policy["approve_required"]  # Always show this is maintained
+            }
+        else:
+            return {"ok": False, "error": "failed_to_update_setting"}
+    except Exception as e:
+        return {"ok": False, "error": f"internal_error: {str(e)}"}
+
+
+@app.get("/robot/self-repair/status")
+def get_self_repair_status():
+    """Get current self-repair status without requiring authorization."""
+    policy = load_policy()
+    return {
+        "ok": True,
+        "self_repair_enabled": policy["self_repair_enabled"],
+        "approve_required": policy["approve_required"]
+    }
 
 
 @app.post("/robot/act/retreat")

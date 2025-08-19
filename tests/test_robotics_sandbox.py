@@ -165,9 +165,168 @@ def test_config_file_fallback():
         importlib.reload(services.robot_core.robot_policy)
 
 
+def test_self_repair_toggle_functionality():
+    """Test that the self-repair toggle function works correctly and maintains safety."""
+    import tempfile
+    import os
+    
+    # Create a temporary config file for testing
+    temp_dir = tempfile.mkdtemp()
+    test_config = os.path.join(temp_dir, "test_topics.yml")
+    
+    # Store original env var
+    original_file = os.environ.get("TOPIC_CONFIG_FILE")
+    
+    try:
+        # Set up test config
+        os.environ["TOPIC_CONFIG_FILE"] = test_config
+        
+        # Create initial config with robotics enabled but self-repair disabled
+        initial_config = {
+            "robotics": {
+                "enabled": True,
+                "self_repair_enabled": False,
+                "approve_required": True,
+            }
+        }
+        
+        import yaml
+        with open(test_config, "w") as f:
+            yaml.safe_dump(initial_config, f)
+        
+        # Reload module to pick up test config
+        import importlib
+        import services.robot_core.robot_policy
+        importlib.reload(services.robot_core.robot_policy)
+        
+        from services.robot_core.robot_policy import load_policy, update_self_repair_setting
+        
+        # Test initial state
+        policy = load_policy()
+        assert policy["enabled"] is True, "Robotics should be enabled for test"
+        assert policy["self_repair_enabled"] is False, "Self-repair should start disabled"
+        assert policy["approve_required"] is True, "Approval should be required"
+        
+        # Test enabling self-repair
+        result = update_self_repair_setting(True)
+        assert result is True, "Update should succeed"
+        
+        updated_policy = load_policy()
+        assert updated_policy["self_repair_enabled"] is True, "Self-repair should be enabled"
+        assert updated_policy["approve_required"] is True, "Approval requirement must be maintained"
+        
+        # Test disabling self-repair
+        result = update_self_repair_setting(False)
+        assert result is True, "Update should succeed"
+        
+        disabled_policy = load_policy()
+        assert disabled_policy["self_repair_enabled"] is False, "Self-repair should be disabled"
+        assert disabled_policy["approve_required"] is True, "Approval requirement must be maintained"
+        
+        # Verify the config file was updated correctly
+        with open(test_config, "r") as f:
+            saved_config = yaml.safe_load(f)
+        
+        assert saved_config["robotics"]["self_repair_enabled"] is False, "Config file should be updated"
+        assert saved_config["robotics"]["approve_required"] is True, "Approval should still be required in config"
+        
+        print("✅ Self-repair toggle tests passed!")
+        
+    finally:
+        # Clean up
+        if os.path.exists(test_config):
+            os.unlink(test_config)
+        if os.path.exists(temp_dir):
+            os.rmdir(temp_dir)
+            
+        # Restore original environment
+        if original_file:
+            os.environ["TOPIC_CONFIG_FILE"] = original_file
+        elif "TOPIC_CONFIG_FILE" in os.environ:
+            del os.environ["TOPIC_CONFIG_FILE"]
+        
+        # Reload module to restore original state
+        import importlib
+        import services.robot_core.robot_policy
+        importlib.reload(services.robot_core.robot_policy)
+
+
+def test_self_repair_safety_constraints():
+    """Test that self-repair toggle maintains all safety constraints."""
+    import tempfile
+    import os
+    
+    # Create a temporary config file for testing
+    temp_dir = tempfile.mkdtemp()
+    test_config = os.path.join(temp_dir, "test_topics.yml")
+    
+    # Store original env var
+    original_file = os.environ.get("TOPIC_CONFIG_FILE")
+    
+    try:
+        # Set up test config
+        os.environ["TOPIC_CONFIG_FILE"] = test_config
+        
+        # Create config without approve_required to test that it gets added
+        initial_config = {
+            "robotics": {
+                "enabled": True,
+                "self_repair_enabled": False,
+                # Note: intentionally missing approve_required
+            }
+        }
+        
+        import yaml
+        with open(test_config, "w") as f:
+            yaml.safe_dump(initial_config, f)
+        
+        # Reload module to pick up test config
+        import importlib
+        import services.robot_core.robot_policy
+        importlib.reload(services.robot_core.robot_policy)
+        
+        from services.robot_core.robot_policy import update_self_repair_setting, load_policy
+        
+        # Test that enabling self-repair also ensures approve_required is set
+        result = update_self_repair_setting(True)
+        assert result is True, "Update should succeed"
+        
+        # Verify both the live policy and saved config have approve_required
+        policy = load_policy()
+        assert policy["approve_required"] is True, "Approval must be required in live policy"
+        
+        with open(test_config, "r") as f:
+            saved_config = yaml.safe_load(f)
+        
+        assert saved_config["robotics"]["approve_required"] is True, "Approval must be required in saved config"
+        assert saved_config["robotics"]["self_repair_enabled"] is True, "Self-repair should be enabled in config"
+        
+        print("✅ Self-repair safety constraint tests passed!")
+        
+    finally:
+        # Clean up
+        if os.path.exists(test_config):
+            os.unlink(test_config)
+        if os.path.exists(temp_dir):
+            os.rmdir(temp_dir)
+            
+        # Restore original environment
+        if original_file:
+            os.environ["TOPIC_CONFIG_FILE"] = original_file
+        elif "TOPIC_CONFIG_FILE" in os.environ:
+            del os.environ["TOPIC_CONFIG_FILE"]
+        
+        # Reload module to restore original state
+        import importlib
+        import services.robot_core.robot_policy
+        importlib.reload(services.robot_core.robot_policy)
+
+
 if __name__ == "__main__":
     test_robotics_sandbox_enabled()
     test_sandbox_limits_configuration()
     test_environment_variable_override()
     test_config_file_fallback()
+    test_self_repair_toggle_functionality()
+    test_self_repair_safety_constraints()
     print("✅ All robotics sandbox tests passed!")
