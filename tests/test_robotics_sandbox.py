@@ -103,32 +103,45 @@ def test_sandbox_limits_configuration():
 
 def test_environment_variable_override():
     """Test that environment variables can still override settings."""
-    # Test enabling via environment variable
-    os.environ["ROBOTICS_ENABLE"] = "true"
-    policy = load_policy()
-    assert policy["enabled"] is True, "Environment variable should enable robotics"
+    # Store original values for cleanup
+    original_robotics_enable = os.environ.get("ROBOTICS_ENABLE")
+    original_robotics_repair_enable = os.environ.get("ROBOTICS_REPAIR_ENABLE")
+    
+    try:
+        # Test enabling via environment variable
+        os.environ["ROBOTICS_ENABLE"] = "true"
+        policy = load_policy()
+        assert policy["enabled"] is True, "Environment variable should enable robotics"
 
-    # Test that self-repair remains disabled even with env var
-    os.environ["ROBOTICS_REPAIR_ENABLE"] = "true"
-    policy = load_policy()
-    assert (
-        policy["self_repair_enabled"] is True
-    ), "Environment variable should enable self-repair"
-
-    # Clean up environment
-    if "ROBOTICS_ENABLE" in os.environ:
-        del os.environ["ROBOTICS_ENABLE"]
-    if "ROBOTICS_REPAIR_ENABLE" in os.environ:
-        del os.environ["ROBOTICS_REPAIR_ENABLE"]
+        # Test that self-repair can be enabled with env var
+        os.environ["ROBOTICS_REPAIR_ENABLE"] = "true"
+        policy = load_policy()
+        assert (
+            policy["self_repair_enabled"] is True
+        ), "Environment variable should enable self-repair"
+        
+    finally:
+        # Clean up environment variables
+        if original_robotics_enable is not None:
+            os.environ["ROBOTICS_ENABLE"] = original_robotics_enable
+        elif "ROBOTICS_ENABLE" in os.environ:
+            del os.environ["ROBOTICS_ENABLE"]
+            
+        if original_robotics_repair_enable is not None:
+            os.environ["ROBOTICS_REPAIR_ENABLE"] = original_robotics_repair_enable
+        elif "ROBOTICS_REPAIR_ENABLE" in os.environ:
+            del os.environ["ROBOTICS_REPAIR_ENABLE"]
 
 
 def test_config_file_fallback():
     """Test that policy loads with default values if config file is missing."""
-    # Temporarily point to non-existent config file
+    # Store original value for cleanup
     original_file = os.environ.get("TOPIC_CONFIG_FILE")
-    os.environ["TOPIC_CONFIG_FILE"] = "/nonexistent/topics.yml"
-
+    
     try:
+        # Temporarily point to non-existent config file
+        os.environ["TOPIC_CONFIG_FILE"] = "/nonexistent/topics.yml"
+
         # Reload the module to pick up the new environment variable
         import importlib
 
@@ -152,7 +165,7 @@ def test_config_file_fallback():
 
     finally:
         # Restore original config file
-        if original_file:
+        if original_file is not None:
             os.environ["TOPIC_CONFIG_FILE"] = original_file
         elif "TOPIC_CONFIG_FILE" in os.environ:
             del os.environ["TOPIC_CONFIG_FILE"]

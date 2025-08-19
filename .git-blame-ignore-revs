@@ -1,0 +1,5 @@
+# This file contains commit SHAs that should be ignored by git blame
+# These are typically formatting changes, file moves, or cleanup commits
+# that don't contain substantive code changes
+
+# Remove Python cache files from git tracking
