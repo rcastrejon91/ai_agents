@@ -1,4 +1,4 @@
-const ADMIN_API_URL = window.BACKEND_URL || "http://localhost:5000";
+const ADMIN_API_URL = window.location.hostname === "localhost" ? (window.BACKEND_URL || "http://localhost:5000") : "/api/lyra";
 
 document.getElementById("getReportBtn").addEventListener("click", () => {
   fetch(`${ADMIN_API_URL}/daily_report`)

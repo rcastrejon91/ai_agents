@@ -1,4 +1,4 @@
-const LYRA_API_URL = "http://localhost:5000";
+const LYRA_API_URL = window.location.hostname === "localhost" ? "http://localhost:5000" : "/api/lyra";
 let isMuted = false;
 let currentMood = "neutral";
 
