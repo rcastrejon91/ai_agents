@@ -1,0 +1,3 @@
+[2025-08-19 00:20:55,320] INFO in <string>: Testing logging implementation for robotics sandbox
+[2025-08-19 00:20:55,337] INFO in robot_policy: Robotics policy validation passed
+[2025-08-19 00:20:55,337] INFO in <string>: Policy validation completed, robotics enabled: True
