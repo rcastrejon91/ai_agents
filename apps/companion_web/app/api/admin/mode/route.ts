@@ -4,7 +4,6 @@ import path from "path";
 import {
   sanitizeInput,
   logSecurityEvent,
-  setSecurityHeaders,
 } from "../../../../lib/security";
 import { logger } from "../../../../lib/logger";
 
@@ -51,11 +50,23 @@ function checkRateLimit(
 }
 
 function ok(data: any) {
-  return NextResponse.json({ ok: true, ...data });
+  const response = NextResponse.json({ ok: true, ...data });
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';");
+  return response;
 }
 
 function bad(msg: string, status: number = 400) {
-  return NextResponse.json({ ok: false, error: msg }, { status });
+  const response = NextResponse.json({ ok: false, error: msg }, { status });
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';");
+  return response;
 }
 
 function logAdminEvent(evt: Record<string, any>) {
@@ -79,14 +90,16 @@ function logAdminEvent(evt: Record<string, any>) {
 export async function GET(req: NextRequest) {
   // Set security headers
   const response = ok(CURRENT);
-  setSecurityHeaders(response);
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';");
   return response;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
 
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";

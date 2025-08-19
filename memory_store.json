@@ -52,5 +52,59 @@
         "session_id": "14f82bd7aa514c70849a7ba86351f138"
       }
     }
+  ],
+  "95b789cbff344932bef58ab84c46803d": [
+    {
+      "timestamp": "2025-08-19T01:02:17.856281",
+      "input": {
+        "session_id": "95b789cbff344932bef58ab84c46803d",
+        "revenue": 100,
+        "expenses": 50
+      },
+      "response": {
+        "profit": 50.0,
+        "session_id": "95b789cbff344932bef58ab84c46803d"
+      }
+    },
+    {
+      "timestamp": "2025-08-19T01:02:17.856544",
+      "input": {
+        "session_id": "95b789cbff344932bef58ab84c46803d",
+        "revenue": 200,
+        "expenses": 125
+      },
+      "response": {
+        "profit": 75.0,
+        "session_id": "95b789cbff344932bef58ab84c46803d"
+      }
+    },
+    {
+      "timestamp": "2025-08-19T01:02:17.856852",
+      "input": {
+        "session_id": "95b789cbff344932bef58ab84c46803d",
+        "metrics": {
+          "timeOnPage": 120,
+          "pageViews": 3,
+          "timeOfDay": 14,
+          "dayOfWeek": 2,
+          "location": 5,
+          "deviceType": 3,
+          "returningVisitor": 1
+        }
+      },
+      "response": {
+        "price": 37.99,
+        "metrics": {
+          "timeOnPage": 120,
+          "pageViews": 3,
+          "timeOfDay": 14,
+          "dayOfWeek": 2,
+          "location": 5,
+          "deviceType": 3,
+          "returningVisitor": 1
+        },
+        "session_id": "95b789cbff344932bef58ab84c46803d"
+      }
+    }
   ]
 }

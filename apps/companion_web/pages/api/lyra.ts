@@ -18,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       history: { type: "array" },
     });
 
-    const message = body.message || "";
+    const message = String(body.message || "");
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
     if (!message) {
@@ -50,6 +50,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Health ping: allows ?ping=1 check without burning tokens
     if (req.query.ping) {
       return res.status(200).json({ reply: "pong", model: "demo", tools });
+    }
+
+    // Get OpenAI API key
+    const key = process.env.OPENAI_API_KEY;
+    if (!key) {
+      logger.error("OPENAI_API_KEY not configured");
+      return res.status(500).json({ error: "API not configured" });
     }
 
     // Call OpenAI

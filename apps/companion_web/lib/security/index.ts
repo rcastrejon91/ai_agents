@@ -98,8 +98,8 @@ export function sanitizeInput(
 
   // Remove potentially dangerous HTML/script content
   sanitized = sanitized
-    .replace(/<script[^>]*>.*?<\/script>/gis, "")
-    .replace(/<iframe[^>]*>.*?<\/iframe>/gis, "")
+    .replace(/<script[^>]*>.*?<\/script>/gi, "")
+    .replace(/<iframe[^>]*>.*?<\/iframe>/gi, "")
     .replace(/javascript:/gi, "")
     .replace(/vbscript:/gi, "")
     .replace(/on\w+\s*=/gi, "");
