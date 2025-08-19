@@ -6,6 +6,33 @@ This document describes the safety measures and configuration implemented for th
 
 The robotics sandbox has been enabled in the Lyra bot system while maintaining strict safety controls and implementing additional sandbox-specific boundaries to ensure safe operation.
 
+## Recent Safety Enhancements
+
+The robotics sandbox now includes comprehensive safety validation and monitoring:
+
+### 1. Configuration Validation
+
+All robotics policy configurations are automatically validated before being applied:
+
+- **Required Safety Parameters**: Ensures `approve_required`, `banned_terms`, `materials_whitelist`, and `actuator_limits` are present
+- **Parameter Validation**: Validates that actuator limits are positive numbers and safety lists are properly formatted
+- **Critical Safety Check**: Ensures `approve_required` is always `True` when robotics is enabled
+- **Automatic Disable**: Robotics is automatically disabled if any validation checks fail
+
+### 2. Environment Variable Safety
+
+Enhanced safety checks for environment variable overrides:
+
+- **Dangerous Combination Detection**: Warns when both `ROBOTICS_ENABLE` and `ROBOTICS_REPAIR_ENABLE` are set
+- **Self-Repair Safety**: Prevents self-repair from being enabled without robotics being enabled
+- **Comprehensive Logging**: All environment variable overrides are logged with appropriate warning levels
+
+### 3. Improved Error Handling
+
+- **Meaningful Error Messages**: Replaced bare `except` clauses with specific exception handling
+- **Fallback Behavior**: System gracefully falls back to safe defaults when configuration loading fails
+- **Comprehensive Logging**: All errors and warnings are properly logged to `data/lyra_learning.log`
+
 ## Configuration Changes
 
 ### Primary Configuration (topics.yml)
