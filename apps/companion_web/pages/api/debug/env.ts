@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 // Temporary endpoint to verify environment wiring and network access.
 export default async function handler(
   _req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   const key = process.env.OPENAI_API_KEY;
   const hasKey = !!key;

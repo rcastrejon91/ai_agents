@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   if (!id || !decision)
     return NextResponse.json(
       { ok: false, error: "missing id/decision" },
-      { status: 400 },
+      { status: 400 }
     );
   const file = path.join(process.cwd(), "data", "pitches.json");
   const log = path.join(process.cwd(), "data", "pitches.log");

@@ -30,7 +30,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const sanitizedHistory = history
       .filter(
         (item: any) =>
-          item && typeof item === "object" && item.role && item.content,
+          item && typeof item === "object" && item.role && item.content
       )
       .map((item: any) => ({
         role: ["user", "assistant"].includes(item.role) ? item.role : "user",
@@ -78,7 +78,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             { role: "user", content: message },
           ],
         }),
-      },
+      }
     );
 
     if (!openaiRes.ok) {
@@ -100,7 +100,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const reply: string | undefined =
       data?.choices?.[0]?.message?.content?.trim();
     const safeReply = scrubSecrets(
-      reply ?? "I'm not sure what to say, but I'm here!",
+      reply ?? "I'm not sure what to say, but I'm here!"
     );
 
     logger.info("Successful OpenAI response", {

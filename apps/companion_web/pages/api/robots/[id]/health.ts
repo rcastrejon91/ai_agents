@@ -3,7 +3,7 @@ import { getRobot } from "../../../../lib/robots";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   const { id } = req.query;
   const r = getRobot(String(id));

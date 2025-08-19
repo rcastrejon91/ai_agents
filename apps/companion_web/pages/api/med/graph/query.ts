@@ -4,12 +4,12 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -41,7 +41,7 @@ export default async function handler(
       .from("kg_edges_view")
       .select("*")
       .or(
-        `src_id.in.(${anchorIds.join(",")}),dst_id.in.(${anchorIds.join(",")})`,
+        `src_id.in.(${anchorIds.join(",")}),dst_id.in.(${anchorIds.join(",")})`
       )
       .eq("status", "approved")
       .limit(200);
@@ -58,7 +58,7 @@ export default async function handler(
     const evSrc = e?.evidence?.source_url;
     const ev = evSrc ? `[evidence: ${evSrc}]` : "";
     lines.push(
-      `${e.src.kind}:${e.src.name} --${e.rel}--> ${e.dst.kind}:${e.dst.name}${ev}`,
+      `${e.src.kind}:${e.src.name} --${e.rel}--> ${e.dst.kind}:${e.dst.name}${ev}`
     );
   }
 

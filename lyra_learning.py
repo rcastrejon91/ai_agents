@@ -109,7 +109,7 @@ def load_topic_cfg():
     global ALLOW_TOPICS, DENY_TOPICS, BLOCK_WORDS, SAFETY, ROBOTICS_POLICY
     if os.path.exists(TOPIC_CONFIG_FILE):
         try:
-            cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, "r", encoding="utf-8")) or {}
+            cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, encoding="utf-8")) or {}
             ALLOW_TOPICS = cfg.get("allow_topics", ALLOW_TOPICS)
             DENY_TOPICS = cfg.get("deny_topics", DENY_TOPICS)
             BLOCK_WORDS = cfg.get("block_words", BLOCK_WORDS)
@@ -127,7 +127,7 @@ def load_memory():
     if not os.path.exists(MEM_PATH):
         return []
     try:
-        return json.load(open(MEM_PATH, "r", encoding="utf-8"))
+        return json.load(open(MEM_PATH, encoding="utf-8"))
     except:
         return []
 
@@ -339,7 +339,7 @@ def robotics_brainstorm(kept, policy, use_openai):
 # ==== Email + telemetry helpers ====
 def read_last_lines(path, n=20):
     try:
-        return open(path, "r", encoding="utf-8").read().splitlines()[-n:]
+        return open(path, encoding="utf-8").read().splitlines()[-n:]
     except:
         return []
 

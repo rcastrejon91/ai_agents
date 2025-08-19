@@ -17,7 +17,7 @@ const DynamicAdminVoiceGate = dynamic(
     loading: () => (
       <div style={{ opacity: 0.5 }}>Loading voice controls...</div>
     ),
-  },
+  }
 );
 
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [opsLog, setOpsLog] = useState<{ t: number; msg: string }[]>([]);
   const [lastAssistantTools, setLastAssistantTools] = useState<string[] | null>(
-    null,
+    null
   );
   const [currentTools, setCurrentTools] = useState<string[] | null>(null);
 
@@ -88,7 +88,7 @@ export default function Home() {
             msg: `Answer via /api/answer • sources:${data.sources?.length || 0} • model:gpt-4o-mini`,
           },
           ...l,
-        ].slice(0, 50),
+        ].slice(0, 50)
       );
       return true;
     } catch (e) {
@@ -134,7 +134,7 @@ export default function Home() {
             msg: `Answer via /api/lyra${data.tools ? " • tools:" + data.tools.join("+") : ""}`,
           },
           ...l,
-        ].slice(0, 50),
+        ].slice(0, 50)
       );
     } catch (e) {
       console.error("sendPlain error", e);
@@ -152,7 +152,7 @@ export default function Home() {
 
   function isActionText(text: string) {
     return /(uber|ride|lyft|transfer|move.*funds|send.*money|trip.*mexico|book.*mexico|airbnb|tiktok|instagram|facebook|call.*store|place.*order|setup.*website|deploy.*site)/i.test(
-      text,
+      text
     );
   }
 
@@ -188,8 +188,8 @@ export default function Home() {
           setOpsLog((l) =>
             [{ t: Date.now(), msg: "Action requires consent" }, ...l].slice(
               0,
-              50,
-            ),
+              50
+            )
           );
           handled = true;
         } else if (data.status === "ok") {
@@ -203,7 +203,7 @@ export default function Home() {
             },
           ]);
           setOpsLog((l) =>
-            [{ t: Date.now(), msg: "Action executed" }, ...l].slice(0, 50),
+            [{ t: Date.now(), msg: "Action executed" }, ...l].slice(0, 50)
           );
           handled = true;
         } else if (data.status === "needs_scopes") {
@@ -362,7 +362,7 @@ export default function Home() {
                 <ToolChips tools={"tools" in m ? m.tools : undefined} />
               )}
             </div>
-          ),
+          )
         )}
         {busy && (
           <div style={{ opacity: 0.6, marginTop: 8 }}>Lyra is typing…</div>

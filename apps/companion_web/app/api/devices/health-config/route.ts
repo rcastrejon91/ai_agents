@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   if (!device_id)
     return NextResponse.json(
       { ok: false, error: "device_id required" },
-      { status: 400 },
+      { status: 400 }
     );
   update(device_id, { health_url });
   return NextResponse.json({ ok: true });

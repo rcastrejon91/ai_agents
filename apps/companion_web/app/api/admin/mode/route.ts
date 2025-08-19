@@ -26,7 +26,7 @@ const rateLimitStore: { [key: string]: { count: number; resetTime: number } } =
 function checkRateLimit(
   identifier: string,
   max: number = 5,
-  windowMs: number = 300000,
+  windowMs: number = 300000
 ): boolean {
   const now = Date.now();
 
@@ -69,7 +69,7 @@ function logAdminEvent(evt: Record<string, any>) {
         timestamp: new Date().toISOString(),
         ...evt,
       }) + "\n",
-      "utf-8",
+      "utf-8"
     );
   } catch (err) {
     logger.error("Failed to log admin event", { error: err });
@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
         logSecurityEvent(
           "admin_body_too_large",
           { ip, size: text.length },
-          "WARNING",
+          "WARNING"
         );
         return bad("Request body too large");
       }
@@ -133,7 +133,7 @@ export async function POST(req: NextRequest) {
       logSecurityEvent(
         "admin_invalid_personality",
         { ip, personality },
-        "WARNING",
+        "WARNING"
       );
       return bad("Invalid personality");
     }

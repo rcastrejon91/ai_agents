@@ -14,7 +14,7 @@ CORS(app)
 def speak():
     data = request.get_json(force=True)
     text = data.get("text", "")
-    mood = data.get("mood", "neutral")
+    data.get("mood", "neutral")
     tts = gTTS(text)
     audio_bytes = io.BytesIO()
     tts.write_to_fp(audio_bytes)

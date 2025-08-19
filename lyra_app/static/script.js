@@ -8,7 +8,9 @@ function appendMessage(sender, message) {
 }
 
 async function lyraSpeak(text, mood = currentMood) {
-  if (isMuted) return;
+  if (isMuted) {
+    return;
+  }
   const res = await fetch(`${LYRA_API_URL}/speak`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -20,15 +22,21 @@ async function lyraSpeak(text, mood = currentMood) {
 }
 
 function autoDetectMood(message) {
-  if (message.includes("sad")) currentMood = "calm";
-  else if (message.includes("excited")) currentMood = "cheerful";
-  else currentMood = "neutral";
+  if (message.includes("sad")) {
+    currentMood = "calm";
+  } else if (message.includes("excited")) {
+    currentMood = "cheerful";
+  } else {
+    currentMood = "neutral";
+  }
 }
 
 document.getElementById("sendBtn").addEventListener("click", async () => {
   const input = document.getElementById("chatInput");
   const text = input.value.trim();
-  if (!text) return;
+  if (!text) {
+    return;
+  }
   appendMessage("You", text);
   autoDetectMood(text);
   appendMessage("Lyra", text); // Placeholder until backend GPT hooked

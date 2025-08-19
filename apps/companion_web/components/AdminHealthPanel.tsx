@@ -43,7 +43,7 @@ export default function AdminHealthPanel() {
       }),
     }).then((r) => r.json());
     setLog((l) =>
-      [`Dispatched: ${JSON.stringify(r?.task || r)}`, ...l].slice(0, 20),
+      [`Dispatched: ${JSON.stringify(r?.task || r)}`, ...l].slice(0, 20)
     );
     refresh();
   }

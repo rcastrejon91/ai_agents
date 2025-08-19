@@ -19,12 +19,15 @@ function walk(dir) {
       if (
         p.includes(`${path.sep}api${path.sep}`) ||
         p.endsWith(`${path.sep}api`)
-      )
-        continue; // skip API routes
+      ) {
+        continue;
+      } // skip API routes
       walk(p);
     } else if (/\.(tsx?|jsx?)$/.test(e.name)) {
       // Ignore type-only or non-page helpers by convention
-      if (e.name.endsWith(".d.ts")) continue;
+      if (e.name.endsWith(".d.ts")) {
+        continue;
+      }
 
       const src = fs.readFileSync(p, "utf8");
       const isPage = !p.includes(`${path.sep}api${path.sep}`);

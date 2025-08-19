@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   _req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   const key = process.env.OPENAI_API_KEY;
   if (!key)

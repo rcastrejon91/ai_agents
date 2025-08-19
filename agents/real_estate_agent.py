@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 from core.base_agent import BaseAIAgent
 
@@ -14,5 +14,5 @@ class RealEstateAgent(BaseAIAgent):
     def setup_routes(self) -> None:
         pass
 
-    async def process_task(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process_task(self, input_data: dict[str, Any]) -> dict[str, Any]:
         return {"message": "Real estate agent functionality not yet implemented"}

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import random
-from typing import Any, Dict
+from typing import Any
 
 from analytics import analytics_store
 from core.base_agent import BaseAIAgent
@@ -17,7 +17,7 @@ class PricingAgent(BaseAIAgent):
         # No custom FastAPI routes for this example
         pass
 
-    async def process_task(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process_task(self, input_data: dict[str, Any]) -> dict[str, Any]:
         session_id = str(input_data.get("session_id", "default"))
 
         if "metrics" in input_data:
@@ -27,7 +27,7 @@ class PricingAgent(BaseAIAgent):
         price = self._calculate_price(metrics)
         return {"price": price, "metrics": metrics}
 
-    def _dummy_metrics(self) -> Dict[str, Any]:
+    def _dummy_metrics(self) -> dict[str, Any]:
         return {
             "timeOnPage": random.randint(0, 300),
             "pageViews": random.randint(1, 5),
@@ -38,8 +38,7 @@ class PricingAgent(BaseAIAgent):
             "returningVisitor": random.randint(0, 1),
         }
 
-    def _calculate_price(self, metrics: Dict[str, Any]) -> float:
-        base_price = 29.99
+    def _calculate_price(self, metrics: dict[str, Any]) -> float:
         max_price = 49.99
         min_price = 19.99
         factors = {

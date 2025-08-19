@@ -50,13 +50,13 @@ log_request_info(app)
 # Add CSRF token to template context
 @app.context_processor
 def inject_csrf_token():
-    return dict(csrf_token=generate_csrf_token)
+    return {"csrf_token": generate_csrf_token}
 
 
 # Helper function for admin auth
 def check_admin_session():
     """Check if admin is properly authenticated."""
-    return session.get("admin_authenticated") == True
+    return session.get("admin_authenticated")
 
 
 # Custom admin auth decorator

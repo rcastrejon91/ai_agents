@@ -9,7 +9,9 @@ function appendMessage(sender, message) {
 
 // --- TEXT TO SPEECH ---
 async function lyraSpeak(text, mood = currentMood) {
-  if (isMuted) return;
+  if (isMuted) {
+    return;
+  }
   const res = await fetch(`${LYRA_API_URL}/speak`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -41,9 +43,13 @@ function setMood(mood) {
 
 // --- AUTO MOOD DETECTION ---
 function autoDetectMood(message) {
-  if (message.includes("sad")) currentMood = "calm";
-  else if (message.includes("excited")) currentMood = "cheerful";
-  else currentMood = "neutral";
+  if (message.includes("sad")) {
+    currentMood = "calm";
+  } else if (message.includes("excited")) {
+    currentMood = "cheerful";
+  } else {
+    currentMood = "neutral";
+  }
 }
 
 document.getElementById("sendBtn").addEventListener("click", async () => {

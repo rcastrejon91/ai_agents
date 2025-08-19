@@ -5,13 +5,13 @@ const supa =
   process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
     ? createClient(
         process.env.SUPABASE_URL,
-        process.env.SUPABASE_SERVICE_ROLE_KEY,
+        process.env.SUPABASE_SERVICE_ROLE_KEY
       )
     : null;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   const auth = req.headers.authorization || "";
   if (!auth || auth !== `Bearer ${process.env.GUARDIAN_INGEST_TOKEN}`) {

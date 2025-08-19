@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const sb = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
+  process.env.SUPABASE_ANON_KEY!
 );
 
 async function mail(subject: string, html: string) {
@@ -24,7 +24,7 @@ async function mail(subject: string, html: string) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.headers["x-cron-key"] !== process.env.RESEARCH_CRON_SECRET)
     return res.status(401).json({ error: "unauthorized" });

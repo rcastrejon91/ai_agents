@@ -14,4 +14,4 @@ def save_telemetry(payload: dict):
 def load_telemetry():
     if not os.path.exists(PATH):
         return {"components": [], "updated_at": 0}
-    return json.load(open(PATH, "r", encoding="utf-8"))
+    return json.load(open(PATH, encoding="utf-8"))

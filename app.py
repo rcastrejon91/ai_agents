@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 # Template context
 @app.context_processor
 def inject_csrf_token():
-    return dict(csrf_token=generate_csrf_token())
+    return {"csrf_token": generate_csrf_token()}
 
 
 # Error handlers

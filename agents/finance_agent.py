@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 from core.base_agent import BaseAIAgent
 
@@ -15,7 +15,7 @@ class FinanceAgent(BaseAIAgent):
         # This example agent does not expose its own API routes yet.
         pass
 
-    async def process_task(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process_task(self, input_data: dict[str, Any]) -> dict[str, Any]:
         revenue = float(input_data.get("revenue", 0))
         expenses = float(input_data.get("expenses", 0))
         profit = revenue - expenses

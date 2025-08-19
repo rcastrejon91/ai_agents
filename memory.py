@@ -4,7 +4,7 @@ import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 
 class Memory:
@@ -25,7 +25,7 @@ class Memory:
         )
         self.conn.commit()
 
-    def record(self, agent: str, input_data: Dict[str, Any], output: Any) -> None:
+    def record(self, agent: str, input_data: dict[str, Any], output: Any) -> None:
         self.conn.execute(
             "INSERT INTO history (timestamp, agent, input, output) VALUES (?,?,?,?)",
             (
@@ -37,7 +37,7 @@ class Memory:
         )
         self.conn.commit()
 
-    def fetch_all(self) -> List[Tuple[str, str, str, str]]:
+    def fetch_all(self) -> list[tuple[str, str, str, str]]:
         cur = self.conn.execute(
             "SELECT timestamp, agent, input, output FROM history ORDER BY id DESC"
         )
@@ -54,7 +54,7 @@ class MemoryManager:
         self.path = base_path
         if self.path.exists():
             try:
-                self.store: Dict[str, List[Dict[str, Any]]] = json.loads(
+                self.store: dict[str, list[dict[str, Any]]] = json.loads(
                     self.path.read_text(encoding="utf-8") or "{}"
                 )
             except json.JSONDecodeError:
@@ -76,10 +76,10 @@ class MemoryManager:
         self.store.setdefault(session_id, []).append(entry)
         self._persist()
 
-    def recall(self, session_id: str) -> List[Dict[str, Any]]:
+    def recall(self, session_id: str) -> list[dict[str, Any]]:
         """Return the conversation history for a session."""
         return self.store.get(session_id, [])
 
-    def fetch_all(self) -> Dict[str, List[Dict[str, Any]]]:
+    def fetch_all(self) -> dict[str, list[dict[str, Any]]]:
         """Return the entire memory store."""
         return self.store

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 
 class InnerFocusEngine:
@@ -19,8 +19,8 @@ class InnerFocusEngine:
     def __init__(
         self, state_path: str | Path = "focus_state.json", autoload: bool = True
     ) -> None:
-        self.focus_stream: List[Dict[str, Any]] = []
-        self.priority_index: Dict[str, float] = {}
+        self.focus_stream: list[dict[str, Any]] = []
+        self.priority_index: dict[str, float] = {}
         self.state_path = Path(state_path)
         if autoload:
             self.load_focus()

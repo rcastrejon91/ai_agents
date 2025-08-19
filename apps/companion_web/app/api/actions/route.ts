@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   if (!intent)
     return NextResponse.json(
       { status: "error", error: "missing_intent" },
-      { status: 400 },
+      { status: 400 }
     );
 
   // 1) plan
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     if (!ok)
       return NextResponse.json(
         { status: "error", error: "auth_failed" },
-        { status: 401 },
+        { status: 401 }
       );
   }
 

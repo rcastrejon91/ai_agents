@@ -59,7 +59,7 @@ export const tools: Record<string, Tool> = {
   },
   async reverse({ lat = "", lon = "" }) {
     const d = await j(
-      `/api/free/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`,
+      `/api/free/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`
     );
     return {
       ok: true,
@@ -70,7 +70,7 @@ export const tools: Record<string, Tool> = {
   },
   async weather({ lat = "", lon = "" }) {
     const d = await j(
-      `/api/free/weather?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`,
+      `/api/free/weather?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`
     );
     const t = d?.hourly?.temperature_2m?.[0];
     return {

@@ -1,0 +1,59 @@
+[tool.ruff]
+# Ruff configuration
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+# Enable specific rule categories
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings  
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+
+# Ignore specific rules that are too strict for this project
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+# Allow fixes for these categories
+fixable = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore imports organization in __init__.py files
+"__init__.py" = ["F401"]
+# Allow unused variables in test files
+"**/test_*.py" = ["F841"]
+"**/tests/*.py" = ["F841"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["lyra", "agents", "services"]
+skip_glob = ["**/migrations/*", "**/venv/*", "**/node_modules/*"]

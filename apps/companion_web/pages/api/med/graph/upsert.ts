@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE!,
+  process.env.SUPABASE_SERVICE_ROLE!
 );
 
 type NodeIn = {
@@ -25,7 +25,7 @@ type EdgeIn = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });

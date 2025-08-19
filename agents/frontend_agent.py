@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import random
 import uuid
-from typing import Any, Dict, Optional
+from typing import Any
 
 from agents.scene_context import SceneContextManager
 from dream_world_sim import DreamWorldSim
@@ -30,7 +30,7 @@ class EmotionEngine:
         "upset",
     }
 
-    def analyze(self, text: str) -> Dict[str, Any]:
+    def analyze(self, text: str) -> dict[str, Any]:
         tokens = text.lower().split()
         pos = sum(1 for t in tokens if t in self.POSITIVE_WORDS)
         neg = sum(1 for t in tokens if t in self.NEGATIVE_WORDS)
@@ -44,8 +44,8 @@ class QuantumLogicEngine:
     PATHS = ("symbolic", "chaotic", "emotional", "logical")
 
     def process(
-        self, text: str, emotion: Dict[str, Any], metadata: Dict[str, Any]
-    ) -> Dict[str, Any]:
+        self, text: str, emotion: dict[str, Any], metadata: dict[str, Any]
+    ) -> dict[str, Any]:
         """Select a reasoning path based on input emotion."""
         if emotion.get("polarity", 0) > 1:
             path = "logical"
@@ -70,8 +70,8 @@ class FrontendAgent:
     def generate_response(
         self,
         text: str,
-        logic: Dict[str, Any],
-        context: Optional[Dict[str, Any]] = None,
+        logic: dict[str, Any],
+        context: dict[str, Any] | None = None,
     ) -> str:
         """Return a rudimentary response based on the chosen logic path,
         optionally enriched with scene context."""
@@ -94,7 +94,7 @@ class FrontendAgent:
             )
         return base
 
-    async def handle(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def handle(self, input_data: dict[str, Any]) -> dict[str, Any]:
         session_id = input_data.get("session_id") or uuid.uuid4().hex
         text = input_data.get("text", "")
         metadata = {

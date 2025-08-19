@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const w = await fetch(
-      "https://en.wikipedia.org/api/rest_v1/feed/featured/2025/01/01",
+      "https://en.wikipedia.org/api/rest_v1/feed/featured/2025/01/01"
     ).then((r) => r.json());
     w?.tfa?.content_urls?.desktop?.page &&
       bucket.items.push({

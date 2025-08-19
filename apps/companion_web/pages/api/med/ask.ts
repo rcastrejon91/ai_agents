@@ -13,7 +13,7 @@ const MIN_CONF = 0.72;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
@@ -114,14 +114,14 @@ async function searchPubMed(q: string): Promise<Doc[]> {
   // E-utilities: esearch + esummary
   try {
     const idsResp = await fetch(
-      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`,
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=5&retmode=json&term=${encodeURIComponent(q)}`
     );
     const idsJson = await idsResp.json();
     const ids: string[] = idsJson.esearchresult?.idlist ?? [];
     const idStr = ids.join(",");
     if (!idStr) return [];
     const sumResp = await fetch(
-      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`,
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=${idStr}`
     );
     const sum = await sumResp.json();
     const result: Doc[] = [];

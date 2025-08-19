@@ -87,7 +87,7 @@ function getClientIdentifier(req: NextApiRequest): string {
  */
 export function sanitizeInput(
   input: unknown,
-  maxLength: number = 1000,
+  maxLength: number = 1000
 ): string {
   if (typeof input !== "string") {
     return "";
@@ -137,7 +137,7 @@ export function setSecurityHeaders(res: NextApiResponse): void {
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
   );
 }
 
@@ -147,7 +147,7 @@ export function setSecurityHeaders(res: NextApiResponse): void {
 export function logSecurityEvent(
   type: string,
   details: Record<string, any>,
-  level: "INFO" | "WARNING" | "ERROR" | "CRITICAL" = "WARNING",
+  level: "INFO" | "WARNING" | "ERROR" | "CRITICAL" = "WARNING"
 ): void {
   const logEntry = {
     timestamp: new Date().toISOString(),
@@ -164,7 +164,7 @@ export function logSecurityEvent(
  */
 export function withSecurity(
   handler: (req: NextApiRequest, res: NextApiResponse) => Promise<void> | void,
-  config: SecurityConfig = {},
+  config: SecurityConfig = {}
 ) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     try {
@@ -230,7 +230,7 @@ export function withSecurity(
           error: error instanceof Error ? error.message : "Unknown error",
           url: req.url,
         },
-        "ERROR",
+        "ERROR"
       );
 
       if (!res.headersSent) {
@@ -249,7 +249,7 @@ export function generateCSRFToken(): string {
 
 export function validateCSRFToken(
   token: string,
-  sessionToken: string,
+  sessionToken: string
 ): boolean {
   return token === sessionToken;
 }
@@ -261,7 +261,7 @@ export function sanitizeApiBody<T extends Record<string, any>>(
   body: any,
   schema: {
     [K in keyof T]: { type: string; maxLength?: number; required?: boolean };
-  },
+  }
 ): Partial<T> {
   if (!body || typeof body !== "object") {
     return {};
@@ -283,7 +283,7 @@ export function sanitizeApiBody<T extends Record<string, any>>(
       if (config.type === "string") {
         sanitized[key as keyof T] = sanitizeInput(
           value,
-          config.maxLength,
+          config.maxLength
         ) as any;
       } else if (config.type === "number") {
         const num = Number(value);

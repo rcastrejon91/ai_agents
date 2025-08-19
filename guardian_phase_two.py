@@ -8,7 +8,6 @@ Includes optional utilities for dream syncing, reality detection, and astral shi
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass
@@ -50,7 +49,7 @@ class CodexLore:
     """Record lore entries as the system evolves."""
 
     def __init__(self) -> None:
-        self.entries: List[dict[str, str]] = []
+        self.entries: list[dict[str, str]] = []
 
     def add_entry(self, title: str, content: str) -> str:
         self.entries.append({"title": title, "content": content})

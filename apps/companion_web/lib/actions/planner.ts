@@ -17,7 +17,7 @@ type Plan = { summary: string; steps: Step[]; estimate?: { usd?: number } };
 
 export async function planFromIntent(
   intent: string,
-  params: Record<string, any>,
+  params: Record<string, any>
 ): Promise<Plan> {
   const t = intent.toLowerCase();
 

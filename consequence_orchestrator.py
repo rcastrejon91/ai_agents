@@ -7,7 +7,7 @@ tracks resulting outcomes.
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 from world_state_engine import simulate_consequence_pathways, trigger_world_event
 
@@ -15,7 +15,7 @@ from world_state_engine import simulate_consequence_pathways, trigger_world_even
 class ConsequenceOrchestrator:
     """Coordinate environmental consequences."""
 
-    def apply_environmental_consequences(self, behavior: str) -> Dict[str, Any]:
+    def apply_environmental_consequences(self, behavior: str) -> dict[str, Any]:
         """Trigger a world event and return updated state."""
         trigger_world_event(behavior)
         return simulate_consequence_pathways()

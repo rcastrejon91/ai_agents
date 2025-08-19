@@ -101,7 +101,7 @@ def load_policy():
 
     if os.path.exists(TOPIC_CONFIG_FILE):
         try:
-            cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, "r", encoding="utf-8")) or {}
+            cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, encoding="utf-8")) or {}
             rob = cfg.get("robotics", {})
             p.update(
                 {

@@ -43,7 +43,7 @@ log_request_info(app)
 # Add CSRF token to template context
 @app.context_processor
 def inject_csrf_token():
-    return dict(csrf_token=generate_csrf_token)
+    return {"csrf_token": generate_csrf_token}
 
 
 # ====== Minimal in-browser chat UI at "/" ======

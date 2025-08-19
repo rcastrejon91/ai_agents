@@ -3,7 +3,7 @@ import { sb } from "../curate/_supabase";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (
     process.env.NODE_ENV !== "test" &&

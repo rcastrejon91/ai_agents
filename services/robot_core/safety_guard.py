@@ -26,7 +26,7 @@ FORCEFUL = {"strike", "shove", "tase", "pepper_spray", "weapon_mount", "lock_byp
 def _load_cfg():
     cfg = {}
     if os.path.exists(TOPIC_CONFIG_FILE):
-        cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, "r", encoding="utf-8")) or {}
+        cfg = yaml.safe_load(open(TOPIC_CONFIG_FILE, encoding="utf-8")) or {}
     return cfg.get("safety", {})
 
 

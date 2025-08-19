@@ -4,7 +4,7 @@ import asyncio
 import json
 import logging
 import uuid
-from typing import Any, Dict
+from typing import Any
 
 from agents import (
     FinanceAgent,
@@ -35,7 +35,7 @@ class AgentController:
 
             self.memory = MemoryManager()
 
-    async def route(self, agent_name: str, input_data: Dict[str, Any]) -> Any:
+    async def route(self, agent_name: str, input_data: dict[str, Any]) -> Any:
         agent = self.agents.get(agent_name)
         if agent is None:
             self.logger.error("Unknown agent requested: %s", agent_name)
@@ -63,7 +63,7 @@ class AgentController:
             self.logger.exception("Agent %s failed to process task", agent_name)
             raise
 
-    def available_agents(self) -> Dict[str, str]:
+    def available_agents(self) -> dict[str, str]:
         return {name: agent.industry for name, agent in self.agents.items()}
 
 

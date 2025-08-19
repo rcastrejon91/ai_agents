@@ -6,7 +6,7 @@ export const config = { api: { bodyParser: false } };
 
 const sb = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
+  process.env.SUPABASE_ANON_KEY!
 );
 
 async function log(task_id: string, phase: string, payload: any) {
@@ -21,13 +21,13 @@ async function searchBundle(query: string) {
   await Promise.all([
     (async () => {
       wiki = await safeFetchJSON(
-        `/api/free/wiki?q=${encodeURIComponent(query)}`,
+        `/api/free/wiki?q=${encodeURIComponent(query)}`
       );
     })(),
     (async () => {
       try {
         arxiv = await safeFetchJSON(
-          `/api/free/arxiv?q=${encodeURIComponent(query)}`,
+          `/api/free/arxiv?q=${encodeURIComponent(query)}`
         );
       } catch (err) {
         console.error("arXiv fetch failed", err);
@@ -114,14 +114,14 @@ async function applySafeChanges(task_id: string, proposals: any[]) {
           json[p.key] = p.value;
           return json;
         },
-        `config: set ${p.key}`,
+        `config: set ${p.key}`
       );
       openedPRs.push(pr);
     } else if (p.type === "prompt" && p.file) {
       const pr = await openPrReplaceText(
         p.file,
         p.value,
-        `prompt: refresh ${p.file}`,
+        `prompt: refresh ${p.file}`
       );
       openedPRs.push(pr);
     } else {
@@ -135,7 +135,7 @@ async function applySafeChanges(task_id: string, proposals: any[]) {
 async function openPrWithPatch(
   path: string,
   patcher: (json: any) => any,
-  title: string,
+  title: string
 ) {
   const gh = (u: string, init: any = {}) =>
     fetch(`https://api.github.com${u}`, {
@@ -150,7 +150,7 @@ async function openPrWithPatch(
   const repo = process.env.REPO_FULL_NAME!;
   // read current
   const f = await gh(
-    `/repos/${repo}/contents/${encodeURIComponent(path)}`,
+    `/repos/${repo}/contents/${encodeURIComponent(path)}`
   ).then((r) => r.json());
   const content = Buffer.from(f.content, "base64").toString("utf8");
   const json = JSON.parse(content);
@@ -159,7 +159,7 @@ async function openPrWithPatch(
   // create branch from default
   const base = await gh(`/repos/${repo}`).then((r) => r.json());
   const ref = await gh(
-    `/repos/${repo}/git/ref/heads/${base.default_branch}`,
+    `/repos/${repo}/git/ref/heads/${base.default_branch}`
   ).then((r) => r.json());
   await gh(`/repos/${repo}/git/refs`, {
     method: "POST",
@@ -173,12 +173,12 @@ async function openPrWithPatch(
       body: JSON.stringify({
         message: title,
         content: Buffer.from(JSON.stringify(updated, null, 2)).toString(
-          "base64",
+          "base64"
         ),
         sha: f.sha,
         branch,
       }),
-    },
+    }
   );
   // open PR
   const pr = await gh(`/repos/${repo}/pulls`, {
@@ -206,13 +206,13 @@ async function openPrReplaceText(path: string, newText: string, title: string) {
 
   const repo = process.env.REPO_FULL_NAME!;
   const f = await gh(
-    `/repos/${repo}/contents/${encodeURIComponent(path)}`,
+    `/repos/${repo}/contents/${encodeURIComponent(path)}`
   ).then((r) => r.json());
   const content = Buffer.from(f.content, "base64").toString("utf8");
   const branch = `research/${Date.now()}`;
   const base = await gh(`/repos/${repo}`).then((r) => r.json());
   const ref = await gh(
-    `/repos/${repo}/git/ref/heads/${base.default_branch}`,
+    `/repos/${repo}/git/ref/heads/${base.default_branch}`
   ).then((r) => r.json());
   await gh(`/repos/${repo}/git/refs`, {
     method: "POST",
@@ -228,7 +228,7 @@ async function openPrReplaceText(path: string, newText: string, title: string) {
         sha: f.sha,
         branch,
       }),
-    },
+    }
   );
   const pr = await gh(`/repos/${repo}/pulls`, {
     method: "POST",
@@ -244,7 +244,7 @@ async function openPrReplaceText(path: string, newText: string, title: string) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
     if (req.headers["x-cron-key"] !== process.env.RESEARCH_CRON_SECRET)

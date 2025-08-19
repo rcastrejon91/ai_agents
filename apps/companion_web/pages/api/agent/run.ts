@@ -33,7 +33,7 @@ function heuristicPlan(q: string): Step[] {
     add(
       "weather",
       { lat: "{{plan.1.data.lat}}", lon: "{{plan.1.data.lon}}" },
-      "Use geocoded coords",
+      "Use geocoded coords"
     ); // templated fill
   }
   if (/\b(wiki|what is|who is|explain|latest)\b/.test(lower)) {
@@ -90,7 +90,7 @@ function fillTemplates(args: Record<string, string>, ctx: Record<string, any>) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<RunReport | any>,
+  res: NextApiResponse<RunReport | any>
 ) {
   try {
     if (req.method !== "POST") return res.status(405).end();

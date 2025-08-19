@@ -1,7 +1,7 @@
 export async function safeFetchJSON(
   url: string,
   headers: Record<string, string> = {},
-  ms = 12000,
+  ms = 12000
 ) {
   const ctrl = new AbortController();
   const to = setTimeout(() => ctrl.abort(), ms);

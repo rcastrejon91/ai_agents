@@ -25,12 +25,28 @@ jobs:
         with:
           node-version: 20
 
-      - name: ESLint + Prettier
+      - name: Install Node dependencies
         if: ${{ hashFiles('**/package.json') != '' }}
         run: |
           npm ci || npm install
-          npx --yes eslint . --ext .js,.ts --fix || true
-          npx --yes prettier . --write || true
+
+      - name: ESLint (JavaScript only)
+        if: ${{ hashFiles('**/package.json') != '' }}
+        run: |
+          echo "Running ESLint..."
+          npx eslint . --ext .js,.mjs --fix || {
+            echo "ESLint found issues that couldn't be fixed"
+            npx eslint . --ext .js,.mjs || true
+          }
+
+      - name: Prettier
+        if: ${{ hashFiles('**/package.json') != '' }}
+        run: |
+          echo "Running Prettier..."
+          npx prettier . --write --log-level=error || {
+            echo "Prettier encountered errors"
+            exit 0
+          }
 
       # ---------- Python ----------
       - name: Setup Python
@@ -39,14 +55,38 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Ruff + Black + isort
+      - name: Install Python tools
         if: ${{ hashFiles('**/*.py') != '' }}
         run: |
           python -m pip install --upgrade pip
-          pip install ruff black isort || true
-          ruff check . --fix || true
-          isort . || true
-          black . || true
+          pip install ruff black isort
+
+      - name: Ruff
+        if: ${{ hashFiles('**/*.py') != '' }}
+        run: |
+          echo "Running Ruff..."
+          ruff check . --fix --unsafe-fixes || {
+            echo "Ruff found issues that couldn't be fixed"
+            ruff check . || true
+          }
+
+      - name: isort
+        if: ${{ hashFiles('**/*.py') != '' }}
+        run: |
+          echo "Running isort..."
+          isort . || {
+            echo "isort encountered errors"
+            exit 0
+          }
+
+      - name: Black
+        if: ${{ hashFiles('**/*.py') != '' }}
+        run: |
+          echo "Running Black..."
+          black . || {
+            echo "Black encountered errors"
+            exit 0
+          }
 
       # ---------- Commit fixes directly to main (never commit workflow files) ----------
       - name: Commit & push to main
@@ -57,13 +97,20 @@ jobs:
           git restore --staged .github/workflows || true
           # nothing to commit? exit cleanly
           if git diff --cached --quiet; then
-            echo "No changes to commit 🎉"
+            echo "✅ No changes to commit - code is already formatted!"
             exit 0
           fi
+          # show what we're about to commit
+          echo "📝 Changes to commit:"
+          git diff --cached --stat
           # make sure we can push fast-forward
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git rebase origin/main || true
+          git rebase origin/main || {
+            echo "❌ Rebase failed - manual intervention required"
+            exit 1
+          }
           git commit -m "chore: autofix (ESLint/Prettier, Ruff/Black/isort)"
           git push origin HEAD:main
+          echo "✅ Code formatting fixes applied successfully!"
