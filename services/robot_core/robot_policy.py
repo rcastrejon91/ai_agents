@@ -69,6 +69,7 @@ def load_policy():
     # Validate sandbox_limits if present
     if "sandbox_limits" in p and not _validate_sandbox_limits(p["sandbox_limits"]):
         logging.error("Invalid sandbox_limits configuration detected. Removing for safety.")
-        del p["sandbox_limits"]
+        logging.error("Invalid sandbox_limits configuration detected. Replacing with default safe values.")
+        p["sandbox_limits"] = SANDBOX_LIMITS_DEFAULT.copy()
     
     return p
