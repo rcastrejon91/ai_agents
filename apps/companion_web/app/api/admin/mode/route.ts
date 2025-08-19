@@ -77,17 +77,21 @@ function logAdminEvent(evt: Record<string, any>) {
 }
 
 export async function GET(req: NextRequest) {
-  // Set security headers
-  const response = ok(CURRENT);
-  setSecurityHeaders(response);
+  // Return response with security headers
+  const response = NextResponse.json(CURRENT, {
+    headers: {
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1; mode=block",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+    },
+  });
   return response;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
-
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
     if (!checkRateLimit(ip, 5, 300000)) {

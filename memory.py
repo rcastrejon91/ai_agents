@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
@@ -29,7 +29,7 @@ class Memory:
         self.conn.execute(
             "INSERT INTO history (timestamp, agent, input, output) VALUES (?,?,?,?)",
             (
-                datetime.utcnow().isoformat(),
+                datetime.now(timezone.utc).isoformat(),
                 agent,
                 json.dumps(input_data),
                 json.dumps(output),
@@ -69,7 +69,7 @@ class MemoryManager:
     def log(self, session_id: str, user_input: Any, response: Any) -> None:
         """Append a conversation turn to a session."""
         entry = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "input": user_input,
             "response": response,
         }

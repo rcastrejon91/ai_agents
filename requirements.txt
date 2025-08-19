@@ -3,3 +3,7 @@ gunicorn
 openai
 redis
 uuid
+uvicorn
+fastapi
+apscheduler
+pytest
