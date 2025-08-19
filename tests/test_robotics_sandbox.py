@@ -103,23 +103,48 @@ def test_sandbox_limits_configuration():
 
 def test_environment_variable_override():
     """Test that environment variables can still override settings."""
-    # Test enabling via environment variable
-    os.environ["ROBOTICS_ENABLE"] = "true"
-    policy = load_policy()
-    assert policy["enabled"] is True, "Environment variable should enable robotics"
+    # Store original values
+    original_enable = os.environ.get("ROBOTICS_ENABLE")
+    original_repair = os.environ.get("ROBOTICS_REPAIR_ENABLE")
+    
+    try:
+        # Test enabling via environment variable
+        os.environ["ROBOTICS_ENABLE"] = "true"
+        policy = load_policy()
+        assert policy["enabled"] is True, "Environment variable should enable robotics"
 
-    # Test that self-repair remains disabled even with env var
-    os.environ["ROBOTICS_REPAIR_ENABLE"] = "true"
-    policy = load_policy()
-    assert (
-        policy["self_repair_enabled"] is True
-    ), "Environment variable should enable self-repair"
-
-    # Clean up environment
-    if "ROBOTICS_ENABLE" in os.environ:
-        del os.environ["ROBOTICS_ENABLE"]
-    if "ROBOTICS_REPAIR_ENABLE" in os.environ:
+        # Test that self-repair remains disabled even with env var
+        os.environ["ROBOTICS_REPAIR_ENABLE"] = "true"
+        policy = load_policy()
+        assert (
+            policy["self_repair_enabled"] is True
+        ), "Environment variable should enable self-repair"
+        
+        # Verify that self-repair is disabled by default when env var is not set
         del os.environ["ROBOTICS_REPAIR_ENABLE"]
+        policy = load_policy()
+        assert (
+            policy["self_repair_enabled"] is False
+        ), "Self-repair should be disabled by default"
+
+    finally:
+        # Always restore original environment state
+        if original_enable is not None:
+            os.environ["ROBOTICS_ENABLE"] = original_enable
+        elif "ROBOTICS_ENABLE" in os.environ:
+            del os.environ["ROBOTICS_ENABLE"]
+            
+        if original_repair is not None:
+            os.environ["ROBOTICS_REPAIR_ENABLE"] = original_repair
+        elif "ROBOTICS_REPAIR_ENABLE" in os.environ:
+            del os.environ["ROBOTICS_REPAIR_ENABLE"]
+        
+        # Verify environment variables are properly reset
+        final_policy = load_policy()
+        if original_enable is None:
+            assert final_policy["enabled"] is True, "Environment should be properly restored (enabled from config)"
+        if original_repair is None:
+            assert final_policy["self_repair_enabled"] is False, "Environment should be properly restored (repair disabled)"
 
 
 def test_config_file_fallback():
