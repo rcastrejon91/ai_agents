@@ -15,7 +15,7 @@ export async function unlockAudio() {
 
 export async function speak(
   text: string,
-  opts?: { voice?: string; volume?: number },
+  opts?: { voice?: string; volume?: number }
 ) {
   const r = await fetch("/api/tts", {
     method: "POST",

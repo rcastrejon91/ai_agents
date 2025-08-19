@@ -11,7 +11,7 @@ import path from "path";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "method_not_allowed" });
@@ -37,13 +37,13 @@ export default async function handler(
     "server",
     "legal",
     "templates",
-    `${type}.md`,
+    `${type}.md`
   );
   if (!fs.existsSync(tplPath))
     return res.status(400).json({ error: "unknown_template" });
   let template = fs.readFileSync(tplPath, "utf8");
   const placeholders = Array.from(template.matchAll(/{{(.*?)}}/g)).map(
-    (m) => m[1],
+    (m) => m[1]
   );
   const checklist: string[] = [];
   const allFacts: Record<string, string> = {

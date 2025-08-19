@@ -51,7 +51,7 @@ export async function middleware(req: NextRequest) {
       "style-src 'self' 'unsafe-inline'",
       "connect-src 'self' https:",
       "frame-ancestors 'none'",
-    ].join("; "),
+    ].join("; ")
   );
   return res;
 }

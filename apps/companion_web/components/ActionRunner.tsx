@@ -58,7 +58,7 @@ export default function ActionRunner({ query }: { query: string }) {
             for (const part of parts) v = v?.[part];
             return v ?? "";
           }),
-        ]),
+        ])
       );
 
       const tool = tools[step.tool];

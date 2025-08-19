@@ -15,7 +15,7 @@ const DATA_FILE = path.join(
   "server",
   "admin",
   "webauthn",
-  "credentials.json",
+  "credentials.json"
 );
 
 function load(): Record<string, CredentialRecord[]> {
@@ -49,7 +49,7 @@ export function addForUser(email: string, rec: CredentialRecord): void {
 export function updateCounter(
   email: string,
   credentialId: string,
-  counter: number,
+  counter: number
 ): void {
   const db = load();
   const arr = db[email] || [];

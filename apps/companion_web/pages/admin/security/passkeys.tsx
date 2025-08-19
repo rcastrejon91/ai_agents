@@ -8,7 +8,7 @@ export default function Passkeys() {
   const load = async () => {
     if (!email) return;
     const res = await fetch(
-      `/api/admin/webauthn/credentials?email=${encodeURIComponent(email)}`,
+      `/api/admin/webauthn/credentials?email=${encodeURIComponent(email)}`
     );
     if (res.ok) setDevices(await res.json());
   };
@@ -19,7 +19,7 @@ export default function Passkeys() {
 
   const registerDevice = async () => {
     const resp = await fetch(
-      `/api/admin/webauthn/register-options?email=${encodeURIComponent(email)}`,
+      `/api/admin/webauthn/register-options?email=${encodeURIComponent(email)}`
     );
     const opts = await resp.json();
     const att = await startRegistration(opts);
@@ -36,7 +36,7 @@ export default function Passkeys() {
       `/api/admin/webauthn/credentials?email=${encodeURIComponent(email)}&id=${encodeURIComponent(id)}`,
       {
         method: "DELETE",
-      },
+      }
     );
     load();
   };

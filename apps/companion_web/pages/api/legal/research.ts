@@ -10,7 +10,7 @@ import {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "method_not_allowed" });
@@ -48,7 +48,7 @@ export default async function handler(
   }));
   console.log(
     "[LEGAL_AUDIT] research",
-    redact(JSON.stringify({ query, role })),
+    redact(JSON.stringify({ query, role }))
   );
   return res.status(200).json({ summary, citations });
 }

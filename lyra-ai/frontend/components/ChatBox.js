@@ -28,7 +28,7 @@ export default function ChatBox({ muted }) {
         voice.lang.startsWith("en") &&
         (voice.name.includes("Google") ||
           voice.name.includes("Microsoft") ||
-          voice.default),
+          voice.default)
     );
     if (preferredVoice) {
       utterance.voice = preferredVoice;

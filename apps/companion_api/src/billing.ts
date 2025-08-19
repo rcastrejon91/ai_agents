@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 async function grantPlan(
   customerId: string,
   plan: "free" | "pro",
-  ageToken?: string,
+  ageToken?: string
 ) {
   console.log("Grant plan:", { customerId, plan, ageToken });
 }
@@ -23,7 +23,7 @@ router.post("/stripe/webhook", (req, res) => {
     const event = stripe.webhooks.constructEvent(
       (req as any).body,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET!,
+      process.env.STRIPE_WEBHOOK_SECRET!
     );
 
     switch (event.type) {

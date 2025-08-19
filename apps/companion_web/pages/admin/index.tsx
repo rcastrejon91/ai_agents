@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 const AdminHealthPanel = dynamic(
   () => import("../../components/AdminHealthPanel"),
-  { ssr: false },
+  { ssr: false }
 );
 
 export default function AdminPage() {

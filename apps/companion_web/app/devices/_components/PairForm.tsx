@@ -6,7 +6,7 @@ export default function PairForm({ onPaired }: { onPaired: () => void }) {
   const [name, setName] = useState("My Device");
   const [model, setModel] = useState("generic");
   const [result, setResult] = useState<{ id: string; secret: string } | null>(
-    null,
+    null
   );
   const [busy, setBusy] = useState(false);
 

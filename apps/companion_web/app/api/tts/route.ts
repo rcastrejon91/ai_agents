@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     }
     return new Response(
       JSON.stringify({ ok: false, error: "tts_failed", detail: err }),
-      { status: 500 },
+      { status: 500 }
     );
   }
 

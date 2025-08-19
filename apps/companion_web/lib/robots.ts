@@ -99,7 +99,7 @@ function tickRobot(r: Robot) {
           }
           r.taskId = undefined;
         },
-        1000 + rnd(1200),
+        1000 + rnd(1200)
       );
     } else {
       r.pose.x += (dx / dist) * step + (Math.random() - 0.5) * 0.05;
@@ -125,7 +125,7 @@ export function setWaypoint(name: string, x: number, y: number, zone: string) {
 
 export function goto(
   id: string,
-  waypoint: string,
+  waypoint: string
 ): { accepted: boolean; eta_s: number } {
   const r = robots[id];
   const wp = waypoints[waypoint];
@@ -140,7 +140,7 @@ export function scheduleTask(task: Task) {
   tasks[task.id] = task;
   // naive assign to first idle runner
   const runner = Object.values(robots).find(
-    (r) => r.type === "runner" && r.status === "idle",
+    (r) => r.type === "runner" && r.status === "idle"
   );
   if (runner) {
     task.status = "assigned";

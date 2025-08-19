@@ -19,7 +19,7 @@ export default function AdminVoiceGate() {
         setVoicesLoaded(true);
         console.log(
           "Available voices:",
-          voices.map((v) => v.name),
+          voices.map((v) => v.name)
         );
       }
     };
@@ -52,7 +52,7 @@ export default function AdminVoiceGate() {
       if (!armed && text.includes(PHRASE)) {
         setArmed(true);
         speak(
-          "Admin wake phrase recognized. Say enable admin or disable admin.",
+          "Admin wake phrase recognized. Say enable admin or disable admin."
         );
         return;
       }
@@ -64,7 +64,7 @@ export default function AdminVoiceGate() {
             body: JSON.stringify({ passphrase: PHRASE, admin: true }),
           });
           speak(
-            "Admin Mode enabled. Say a personality: Chill, Sassy, Sage, Gremlin, Guardian, or Gamer.",
+            "Admin Mode enabled. Say a personality: Chill, Sassy, Sage, Gremlin, Guardian, or Gamer."
           );
         } else if (text.includes("disable admin")) {
           await fetch("/api/admin/mode", {
@@ -122,7 +122,7 @@ export default function AdminVoiceGate() {
         voice.lang.startsWith("en") &&
         (voice.name.includes("Google") ||
           voice.name.includes("Microsoft") ||
-          voice.default),
+          voice.default)
     );
     if (preferredVoice) {
       u.voice = preferredVoice;

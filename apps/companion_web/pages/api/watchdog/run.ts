@@ -4,7 +4,7 @@ import { applyPolicy } from "../../../server/watchdog/apply";
 import { put } from "../../../server/watchdog/rulesStore";
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if ((req.headers["x-admin-key"] || "") !== (process.env.ADMIN_DASH_KEY || ""))
     return res.status(401).json({ error: "unauthorized" });

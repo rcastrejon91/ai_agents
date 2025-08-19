@@ -6,13 +6,13 @@ const supa =
   process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
     ? createClient(
         process.env.SUPABASE_URL,
-        process.env.SUPABASE_SERVICE_ROLE_KEY,
+        process.env.SUPABASE_SERVICE_ROLE_KEY
       )
     : null;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
@@ -43,7 +43,7 @@ export default async function handler(
 
   if (
     ["waf_block", "rate_limit_block", "honeytoken_triggered"].includes(
-      record.event,
+      record.event
     )
   ) {
     await alertWebhook(record.event, record);

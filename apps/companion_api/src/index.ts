@@ -22,7 +22,7 @@ const app = express();
 const corsOptions = {
   origin: function (
     origin: string | undefined,
-    callback: (err: Error | null, allow?: boolean) => void,
+    callback: (err: Error | null, allow?: boolean) => void
   ) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
@@ -89,7 +89,7 @@ app.use((req, res, next) => {
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader(
     "Permissions-Policy",
-    "geolocation=(), microphone=(), camera=()",
+    "geolocation=(), microphone=(), camera=()"
   );
 
   next();
@@ -104,7 +104,7 @@ const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 const validateChatInput = (
   req: express.Request,
   res: express.Response,
-  next: express.NextFunction,
+  next: express.NextFunction
 ) => {
   const { message } = req.body || {};
 
@@ -182,7 +182,7 @@ app.post("/chat", validateChatInput, async (req, res) => {
 app.post(
   "/stripe/webhook",
   express.raw({ type: "application/json" }),
-  (req, res, next) => next(),
+  (req, res, next) => next()
 );
 app.use(billingRouter);
 
@@ -192,6 +192,6 @@ app.listen(PORT, () => {
   console.log(`📝 Environment: ${envConfig.NODE_ENV}`);
   console.log(`🔒 CORS origins: ${JSON.stringify(appConfig.cors.origin)}`);
   console.log(
-    `⏱️  Rate limit: ${appConfig.rateLimit.maxRequests} requests per ${appConfig.rateLimit.windowMs / 1000 / 60} minutes`,
+    `⏱️  Rate limit: ${appConfig.rateLimit.maxRequests} requests per ${appConfig.rateLimit.windowMs / 1000 / 60} minutes`
   );
 });

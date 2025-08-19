@@ -15,12 +15,12 @@ async function getJSON(url: string, headers: any = {}) {
 
 async function wiki(q: string) {
   const s = await getJSON(
-    `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=${encodeURIComponent(q)}`,
+    `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=${encodeURIComponent(q)}`
   );
   const top = s?.query?.search?.[0];
   if (!top?.title) return null;
   const sum = await getJSON(
-    `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(top.title)}`,
+    `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(top.title)}`
   );
   return {
     title: sum?.title || top.title,
@@ -34,17 +34,15 @@ async function wiki(q: string) {
 async function hn(q: string) {
   // quick & dirty: take top stories and filter by query in title
   const ids: number[] = await getJSON(
-    "https://hacker-news.firebaseio.com/v0/topstories.json",
+    "https://hacker-news.firebaseio.com/v0/topstories.json"
   );
   const items = await Promise.all(
     ids
       .slice(0, 50)
       .map(
         async (id) =>
-          await getJSON(
-            `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-          ),
-      ),
+          await getJSON(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+      )
   );
   return items
     .filter((i: any) => i?.title?.toLowerCase().includes(q.toLowerCase()))
@@ -70,7 +68,7 @@ async function rssTech() {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
     if (req.method !== "POST") return res.status(405).end();

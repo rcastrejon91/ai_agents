@@ -16,7 +16,7 @@ export default function AdminLogin() {
 
   const loginPasskey = async () => {
     const optsRes = await fetch(
-      `/api/admin/webauthn/auth-options?username=${encodeURIComponent(username)}`,
+      `/api/admin/webauthn/auth-options?username=${encodeURIComponent(username)}`
     );
     if (!optsRes.ok) return;
     const opts = await optsRes.json();

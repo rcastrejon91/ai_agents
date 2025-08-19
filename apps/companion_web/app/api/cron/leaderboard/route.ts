@@ -6,7 +6,7 @@ async function topScores(
   supa: any,
   game = "module-battle",
   days = 1,
-  limit = 10,
+  limit = 10
 ) {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
   const { data, error } = await supa
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
 
   if (!list.length) {
     await discordPost(
-      `📊 ${period === "weekly" ? "Weekly" : "Daily"} leaderboard for **${game}**: No scores yet.`,
+      `📊 ${period === "weekly" ? "Weekly" : "Daily"} leaderboard for **${game}**: No scores yet.`
     );
     return NextResponse.json({ ok: true, posted: 0 });
   }
@@ -38,11 +38,11 @@ export async function GET(req: NextRequest) {
   const lines = list
     .map(
       (r: any, i: number) =>
-        `#${i + 1} — **${r.score}** pts  ·  ${new Date(r.created_at).toLocaleDateString()}`,
+        `#${i + 1} — **${r.score}** pts  ·  ${new Date(r.created_at).toLocaleDateString()}`
     )
     .join("\n");
   await discordPost(
-    `📊 ${period === "weekly" ? "Weekly" : "Daily"} leaderboard — **${game}**\n${lines}`,
+    `📊 ${period === "weekly" ? "Weekly" : "Daily"} leaderboard — **${game}**\n${lines}`
   );
 
   return NextResponse.json({ ok: true, posted: list.length });
