@@ -16,28 +16,30 @@ No more of that. Straight up, no fluff. Here’s your final full README with the
 
 ---
 
-  🧹 |Ψ⟩
-  ||      The Quantum Repo Janitor
-  ||      Sweeping in all possible states
- /__\     until observed in main.
-(____)    "Code is both linted & unlinted 
-           until I collapse the PR."
+🧹 |Ψ⟩
+|| The Quantum Repo Janitor
+|| Sweeping in all possible states
+/**\ until observed in main.
+(\_\_**) "Code is both linted & unlinted
+until I collapse the PR."
 
 ---
 
 ## 🧹 Repo Janitor
+
 Your friendly automation bot that keeps this repo sparkling:
 
-- ✨ **Prettier + ESLint** for JavaScript/TypeScript  
-- 🐍 **Ruff + Black + isort** for Python  
-- 📦 Normalizes every `package.json`  
-- 🤖 Opens PRs with fixes so you just click **Merge**  
+- ✨ **Prettier + ESLint** for JavaScript/TypeScript
+- 🐍 **Ruff + Black + isort** for Python
+- 📦 Normalizes every `package.json`
+- 🤖 Opens PRs with fixes so you just click **Merge**
 
-> 💬 Motto: *“I sweep so you can sleep.”*
+> 💬 Motto: _“I sweep so you can sleep.”_
 
 ---
 
 ## 🎉 Human Behind the Curtain
+
 <p align="center">
   Built with chaos, curiosity & coffee by <br/>
   <b>Ricky Castrejon</b> ✨<br/>
@@ -47,17 +49,19 @@ Your friendly automation bot that keeps this repo sparkling:
 ---
 
 ## 🌟 Fun Fact (Quantum Edition)
-Ricky once joked:  
-> *“My repo janitor exists in a quantum superposition — it’s both sweeping and merging PRs until I observe the logs.”* ⚛️🧹  
-  
+
+Ricky once joked:
+
+> _“My repo janitor exists in a quantum superposition — it’s both sweeping and merging PRs until I observe the logs.”_ ⚛️🧹
+
 ---
 
 ## Bonus Flex (Graffiti Banner)
 
-██████╗ ██╗ ██████╗██╗  ██╗██╗   ██╗
+██████╗ ██╗ ██████╗██╗ ██╗██╗ ██╗
 ██╔══██╗██║██╔════╝██║ ██╔╝╚██╗ ██╔╝
-██████╔╝██║██║     █████╔╝  ╚████╔╝
-██╔═══╝ ██║██║     ██╔═██╗   ╚██╔╝
-██║     ██║╚██████╗██║  ██╗   ██║
-╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝
+██████╔╝██║██║ █████╔╝ ╚████╔╝
+██╔═══╝ ██║██║ ██╔═██╗ ╚██╔╝
+██║ ██║╚██████╗██║ ██╗ ██║
+╚═╝ ╚═╝ ╚═════╝╚═╝ ╚═╝ ╚═╝
 🧹 Ricky Castrejon & code-sidekick: autofix-bot 🧹
