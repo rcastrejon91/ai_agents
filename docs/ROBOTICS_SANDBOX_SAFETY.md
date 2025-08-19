@@ -116,6 +116,70 @@ The system supports environment variable overrides:
 - `ROBOTICS_ENABLE`: Can enable/disable robotics functionality
 - `ROBOTICS_REPAIR_ENABLE`: Can enable self-repair (use with extreme caution)
 
+## Self-Repair Toggle Feature
+
+### Overview
+
+A user-friendly toggle button has been implemented to allow dynamic control of the self-repair feature while maintaining all safety requirements. This feature provides operational flexibility while ensuring human oversight remains mandatory.
+
+### UI Component
+
+The self-repair toggle is available in the robotics control panel (`/admin`) and provides:
+
+- **Real-time Status Display**: Shows current self-repair enabled/disabled state
+- **Safety Indicator**: Always displays that human approval is required
+- **Secure Toggle**: Requires approval token for any changes
+- **Visual Feedback**: Clear color coding and status updates
+
+### API Endpoints
+
+Two new endpoints support the toggle functionality:
+
+1. **GET `/robot/self-repair/status`**
+   - Returns current self-repair and approval status
+   - No authentication required for status checks
+   - Used for real-time status updates
+
+2. **POST `/robot/self-repair/toggle`**
+   - Updates the self-repair setting
+   - Requires approval token for authentication
+   - Maintains `approve_required: true` setting
+
+### Safety Guarantees
+
+The toggle feature maintains all critical safety measures:
+
+1. **Human Approval Immutable**: The `approve_required` setting cannot be disabled via the toggle
+2. **Token-Based Security**: All changes require valid approval token
+3. **Persistent Configuration**: Changes are saved to `topics.yml` for consistency
+4. **Audit Trail**: All toggle operations are logged
+5. **Fail-Safe Design**: System defaults to self-repair disabled
+
+### Usage Guidelines
+
+#### When to Enable Self-Repair
+
+- Routine maintenance operations in controlled environments
+- Testing scenarios with full human supervision
+- Recovery operations where manual intervention is limited
+
+#### When to Keep Self-Repair Disabled (Default)
+
+- Production operations
+- Unsupervised operation periods
+- High-risk environments
+- When in doubt about safety conditions
+
+### Technical Implementation
+
+The toggle operates by:
+
+1. **Frontend Component**: `SelfRepairToggle.tsx` provides the user interface
+2. **API Layer**: Next.js routes proxy requests to robot core service
+3. **Policy Update**: `update_self_repair_setting()` function modifies configuration
+4. **Persistence**: Changes are written to `topics.yml` configuration file
+5. **Live Reload**: Policy changes take effect immediately without restart
+
 ## Verification and Testing
 
 ### Automated Tests
@@ -126,6 +190,8 @@ Comprehensive test suite in `tests/test_robotics_sandbox.py` verifies:
 - Proper configuration of sandbox limits
 - Environment variable override functionality
 - Fallback behavior when configuration is missing
+- **Self-repair toggle functionality**
+- **Safety constraint maintenance during toggle operations**
 
 ### Manual Verification
 

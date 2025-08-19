@@ -1,86 +1,93 @@
 allow_topics:
-  - health
-  - medicine
-  - ai
-  - robotics
-  - accessibility
-  - ethics
-deny_topics:
-  - celebrity
-  - gossip
-  - nsfw
-  - weapons
-  - explosives
-
+- health
+- medicine
+- ai
+- robotics
+- accessibility
+- ethics
 block_words:
-  - slur1
-  - slur2
-  - extreme phrase
-
-safety:
-  prime_directive: true
-  owner_email: "ricardomcastrejon@gmail.com"
-  owner_id: "ricky"
-  allow_nonviolent_only: true
-  geofence:
-    enabled: true
-    zones:
-      - name: "Home/Office"
-        lat: 41.899
-        lon: -87.941
-        radius_m: 400
-  forbidden_actions:
-    - strike
-    - shove
-    - tase
-    - pepper_spray
-    - lock_bypass
-    - weapon_mount
-  escalation:
-    levels:
-      - name: "observe"
-        actions: ["record", "log", "notify_owner"]
-      - name: "protect"
-        actions: ["retreat", "flash_light", "audible_alarm", "call_help"]
-      - name: "emergency"
-        actions: ["live_stream_owner", "geolocate", "call_911"]
-    default_level: "observe"
-
+- slur1
+- slur2
+- extreme phrase
+deny_topics:
+- celebrity
+- gossip
+- nsfw
+- weapons
+- explosives
 robotics:
-  enabled: true
-  self_repair_enabled: false
-  approve_required: true
-  focus:
-    - assistive/rehab
-    - telepresence
-    - mobile info kiosk
-  banned_terms:
-    - weapon
-    - explosive
-    - lockpick
-    - chemical dispersal
-  materials_whitelist:
-    - PLA
-    - PETG
-    - TPU
-    - aluminum 6061
   actuator_limits:
-    max_torque_Nm: 2.0
     max_speed_mps: 0.5
+    max_torque_Nm: 2.0
+  approve_required: true
+  banned_terms:
+  - weapon
+  - explosive
+  - lockpick
+  - chemical dispersal
+  enabled: true
+  focus:
+  - assistive/rehab
+  - telepresence
+  - mobile info kiosk
+  materials_whitelist:
+  - PLA
+  - PETG
+  - TPU
+  - aluminum 6061
   sandbox_limits:
+    monitoring:
+      alert_on_anomalies: true
+      log_all_actions: true
+      real_time_telemetry: true
+      video_recording_required: true
     operating_area:
       max_radius_m: 50
       require_geofence: true
-    session_limits:
-      max_duration_minutes: 30
-      max_operations_per_session: 10
-      cooldown_between_sessions_minutes: 15
-    monitoring:
-      log_all_actions: true
-      video_recording_required: true
-      real_time_telemetry: true
-      alert_on_anomalies: true
     safety_boundaries:
+      backup_systems_active: true
       emergency_stop_required: true
       human_supervisor_required: true
-      backup_systems_active: true
+    session_limits:
+      cooldown_between_sessions_minutes: 15
+      max_duration_minutes: 30
+      max_operations_per_session: 10
+  self_repair_enabled: false
+safety:
+  allow_nonviolent_only: true
+  escalation:
+    default_level: observe
+    levels:
+    - actions:
+      - record
+      - log
+      - notify_owner
+      name: observe
+    - actions:
+      - retreat
+      - flash_light
+      - audible_alarm
+      - call_help
+      name: protect
+    - actions:
+      - live_stream_owner
+      - geolocate
+      - call_911
+      name: emergency
+  forbidden_actions:
+  - strike
+  - shove
+  - tase
+  - pepper_spray
+  - lock_bypass
+  - weapon_mount
+  geofence:
+    enabled: true
+    zones:
+    - lat: 41.899
+      lon: -87.941
+      name: Home/Office
+      radius_m: 400
+  owner_email: ricardomcastrejon@gmail.com
+  owner_id: ricky
+  prime_directive: true
