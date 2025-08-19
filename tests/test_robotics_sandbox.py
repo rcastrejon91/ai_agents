@@ -1,10 +1,11 @@
 import os
 import sys
+import logging
 
 # Ensure project root is on sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from services.robot_core.robot_policy import load_policy
+from services.robot_core.robot_policy import load_policy, validate_policy_config, check_environment_safety
 
 
 def test_robotics_sandbox_enabled():
@@ -165,9 +166,76 @@ def test_config_file_fallback():
         importlib.reload(services.robot_core.robot_policy)
 
 
+def test_configuration_validation():
+    """Test that configuration validation works properly."""
+    # Test valid configuration
+    valid_config = {
+        "enabled": True,
+        "approve_required": True,
+        "banned_terms": ["weapon", "explosive"],
+        "materials_whitelist": ["PLA", "PETG"],
+        "actuator_limits": {"max_torque_Nm": 2.0, "max_speed_mps": 0.5}
+    }
+    
+    errors = validate_policy_config(valid_config)
+    assert len(errors) == 0, f"Valid configuration should not have errors: {errors}"
+    
+    # Test invalid configuration - missing approve_required
+    invalid_config = valid_config.copy()
+    invalid_config["approve_required"] = False
+    
+    errors = validate_policy_config(invalid_config)
+    assert len(errors) > 0, "Should have validation errors when approve_required is False"
+    assert any("approve_required must be True" in error for error in errors), "Should specifically flag approve_required issue"
+    
+    # Test missing required parameter
+    incomplete_config = {"enabled": True}
+    errors = validate_policy_config(incomplete_config)
+    assert len(errors) > 0, "Should have errors for missing required parameters"
+
+
+def test_environment_safety_checks():
+    """Test that environment variable safety checks work."""
+    # Clean environment first
+    env_vars_to_clean = ["ROBOTICS_ENABLE", "ROBOTICS_REPAIR_ENABLE"]
+    original_values = {}
+    for var in env_vars_to_clean:
+        original_values[var] = os.environ.get(var)
+        if var in os.environ:
+            del os.environ[var]
+    
+    try:
+        # Test normal case - no warnings
+        warnings = check_environment_safety()
+        assert len(warnings) == 0, "No warnings expected when no env vars set"
+        
+        # Test dangerous combination
+        os.environ["ROBOTICS_ENABLE"] = "true"
+        os.environ["ROBOTICS_REPAIR_ENABLE"] = "true"
+        
+        warnings = check_environment_safety()
+        assert len(warnings) > 0, "Should have warnings when both env vars are set"
+        assert any("autonomous operation" in warning for warning in warnings), "Should warn about autonomous operation"
+        
+        # Test repair without robotics
+        del os.environ["ROBOTICS_ENABLE"]
+        warnings = check_environment_safety()
+        assert len(warnings) > 0, "Should have warnings when repair is set without robotics"
+        
+    finally:
+        # Restore original environment
+        for var, value in original_values.items():
+            if value is not None:
+                os.environ[var] = value
+            elif var in os.environ:
+                del os.environ[var]
+
+
 if __name__ == "__main__":
     test_robotics_sandbox_enabled()
     test_sandbox_limits_configuration()
     test_environment_variable_override()
     test_config_file_fallback()
+    test_configuration_validation()
+    test_environment_safety_checks()
     print("✅ All robotics sandbox tests passed!")

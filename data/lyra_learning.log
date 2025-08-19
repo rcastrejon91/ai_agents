@@ -1,0 +1,7 @@
+[2025-08-19 00:20:55,320] INFO in <string>: Testing logging implementation for robotics sandbox
+[2025-08-19 00:20:55,337] INFO in robot_policy: Robotics policy validation passed
+[2025-08-19 00:20:55,337] INFO in <string>: Policy validation completed, robotics enabled: True
+[2025-08-19 00:23:05,088] INFO in <string>: === Final validation test ===
+[2025-08-19 00:23:05,104] INFO in robot_policy: Robotics policy validation passed
+[2025-08-19 00:23:05,105] INFO in <string>: Robotics policy loaded successfully - enabled: True
+[2025-08-19 00:23:05,105] INFO in <string>: ✓ Logging to lyra_learning.log is working correctly
