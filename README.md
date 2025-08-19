@@ -1,67 +1,63 @@
-# ai_agents
+🤣🤣 you caught me slipping again — my bad, Ricky! I really did sneak “picky” back in there like an annoying linter yelling at you for spaces.
 
-# Real-Time Video Generation with AAPT
+No more of that. Straight up, no fluff. Here’s your final full README with the bot named cleanly as autofix-bot.
 
-This repository provides a starting point for building a real-time AI video generation pipeline using **AAPT** (autoregressive adversarial post-training). The goal is to combine transformer models with a variational autoencoder (VAE) to generate videos from text prompts or images with minimal latency.
+⸻
 
-### Folder Structure
+📄 README.md
 
-- `model/` - Code for the transformer, VAE, and related components.
-- `train/` - Training loops implementing student-forcing and other strategies.
-- `inference/` - Scripts and utilities for running the model to produce videos.
-- `configs/` - YAML configuration files (resolution, attention window, etc.).
-- `utils/` - Helper functions for logging, decoding, and more.
+# AI Agents
 
-This project is currently a scaffold and will evolve as development progresses. Contributions are welcome!
+<p align="center">
+  <a href="https://github.com/rcastrejon91/ai_agents/actions/workflows/autofix.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/rcastrejon91/ai_agents/autofix.yml?label=⚛️%20Quantum%20Janitor&logo=github" alt="Quantum Janitor"/>
+  </a>
+</p>
 
-## AITaskFlo
+---
 
-This repository also includes **AITaskFlo**, an example automation system built with multiple intelligent agents. Each agent can process specialized tasks such as finance calculations, legal clause extraction, retail inventory suggestions, and dynamic product pricing. A FastAPI gateway exposes a simple HTTP interface.
+  🧹 |Ψ⟩
+  ||      The Quantum Repo Janitor
+  ||      Sweeping in all possible states
+ /__\     until observed in main.
+(____)    "Code is both linted & unlinted 
+           until I collapse the PR."
 
-### Agent Memory
+---
 
-`AITaskFlo` ships with a lightweight JSON memory layer that records each
-request and response per session. The controller generates a session ID
-when one is not supplied. Inspect stored history or run a quick demo via:
+## 🧹 Repo Janitor
+Your friendly automation bot that keeps this repo sparkling:
 
-```bash
-python controller.py --test-memory
-```
+- ✨ **Prettier + ESLint** for JavaScript/TypeScript  
+- 🐍 **Ruff + Black + isort** for Python  
+- 📦 Normalizes every `package.json`  
+- 🤖 Opens PRs with fixes so you just click **Merge**  
 
-### Visualizing Session Activity
+> 💬 Motto: *“I sweep so you can sleep.”*
 
-The Streamlit dashboard now includes a simple bar chart that displays how many
-records are stored for each session. Launch `app.py` to explore agent interactions
-and view session counts at a glance.
+---
 
-### Reactive World State
+## 🎉 Human Behind the Curtain
+<p align="center">
+  Built with chaos, curiosity & coffee by <br/>
+  <b>Ricky Castrejon</b> ✨<br/>
+  <i>With his code-sidekick: <code>autofix-bot</code></i>
+</p>
 
-The system now includes a lightweight world state engine that mutates the
-environment in response to agent emotion and memory. Check out
-`world_state_engine.py`, `timeline_branching.py`, and
-`consequence_orchestrator.py` for simple examples of how feelings can reshape
-the simulated surroundings.
+---
 
-### Dynamic Pricing Agent
+## 🌟 Fun Fact (Quantum Edition)
+Ricky once joked:  
+> *“My repo janitor exists in a quantum superposition — it’s both sweeping and merging PRs until I observe the logs.”* ⚛️🧹  
+  
+---
 
-A new `PricingAgent` demonstrates a dynamic pricing algorithm that adjusts
-product prices using real-time analytics. Provide user engagement metrics to the
-agent and receive a calculated price in response:
+## Bonus Flex (Graffiti Banner)
 
-```bash
-python controller.py --test-memory  # optional memory test
-# Example call via the controller (pseudo-code)
-# await controller.route("pricing", {"session_id": "123", "metrics": {...}})
-```
-
-### Passive Income Bot
-
-`passive_income_bot.py` runs the `PricingAgent` on a loop with example metrics
-and stores the recommended prices in `pricing_log.json`. This simple automation
-shows how dynamic pricing could keep working for you even while you sleep.
-
-Run it with:
-
-```bash
-python passive_income_bot.py
-```
+██████╗ ██╗ ██████╗██╗  ██╗██╗   ██╗
+██╔══██╗██║██╔════╝██║ ██╔╝╚██╗ ██╔╝
+██████╔╝██║██║     █████╔╝  ╚████╔╝
+██╔═══╝ ██║██║     ██╔═██╗   ╚██╔╝
+██║     ██║╚██████╗██║  ██╗   ██║
+╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝
+🧹 Ricky Castrejon & code-sidekick: autofix-bot 🧹
