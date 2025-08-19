@@ -1,0 +1,7 @@
+# .git-blame-ignore-revs
+# This file contains a list of commits that should be ignored by git blame
+# To use this file, run: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Remove Python cache files from repository
+# Date: 2024
+# Reason: Cleanup of binary cache files that should not be tracked in version control
