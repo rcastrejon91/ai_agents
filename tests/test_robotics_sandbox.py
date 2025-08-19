@@ -121,7 +121,7 @@ def test_environment_variable_override():
         ), "Environment variable should enable self-repair"
         
         # Verify that self-repair is disabled by default when env var is not set
-        del os.environ["ROBOTICS_REPAIR_ENABLE"]
+        os.environ.pop("ROBOTICS_REPAIR_ENABLE", None)
         policy = load_policy()
         assert (
             policy["self_repair_enabled"] is False
