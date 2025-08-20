@@ -1,22 +1,8 @@
-from __future__ import annotations
-
-from typing import Any, Dict
-
-from core.base_agent import BaseAIAgent
+from agents.base import BaseAgent
 
 
-class FinanceAgent(BaseAIAgent):
-    """Simple finance agent that calculates profit or loss."""
+class FinanceAgent(BaseAgent):
+    name = "finance"
 
-    def __init__(self) -> None:
-        super().__init__(industry="finance", port=8001)
-
-    def setup_routes(self) -> None:
-        # This example agent does not expose its own API routes yet.
-        pass
-
-    async def process_task(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
-        revenue = float(input_data.get("revenue", 0))
-        expenses = float(input_data.get("expenses", 0))
-        profit = revenue - expenses
-        return {"profit": profit}
+    def handle(self, message: str) -> str:
+        return f"[FinanceAgent] (demo) Analyzing: {message}"
