@@ -2,7 +2,7 @@ import json
 import logging
 import traceback
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from flask import request
 
@@ -10,7 +10,7 @@ from flask import request
 class CustomJSONFormatter(logging.Formatter):
     def format(self, record):
         log_record = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "level": record.levelname,
             "message": record.getMessage(),
             "module": record.module,

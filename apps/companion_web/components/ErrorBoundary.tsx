@@ -41,8 +41,25 @@ export class ErrorBoundary extends React.Component<
       extra: {
         errorInfo,
         component: this.props.componentName,
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString(),
       },
+      tags: {
+        errorBoundary: this.props.componentName || 'unknown',
+        section: 'frontend'
+      }
     });
+
+    // Report to custom analytics if available
+    if (window.analytics && typeof window.analytics.track === 'function') {
+      window.analytics.track('Error Boundary Triggered', {
+        error: error.message,
+        component: this.props.componentName,
+        stack: error.stack,
+        url: window.location.href
+      });
+    }
   }
 
   resetError = () => {
@@ -65,15 +82,38 @@ export class ErrorBoundary extends React.Component<
         <div className="error-container">
           <h2>Something went wrong</h2>
           <p>{this.state.error?.message}</p>
-          <details style={{ whiteSpace: "pre-wrap" }}>
+          <details style={{ whiteSpace: "pre-wrap", marginTop: "8px" }}>
+            <summary>Technical Details</summary>
             {this.state.errorInfo?.componentStack}
           </details>
-          <button
-            onClick={() => window.location.reload()}
-            className="retry-button"
-          >
-            Retry
-          </button>
+          <div style={{ marginTop: "16px", display: "flex", gap: "8px", justifyContent: "center" }}>
+            <button
+              onClick={this.resetError}
+              style={{
+                padding: "8px 16px",
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Try Again
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                padding: "8px 16px",
+                backgroundColor: "#6c757d",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Reload Page
+            </button>
+          </div>
         </div>
       );
     }
