@@ -1,8 +1,8 @@
-import os
-import sys
 import importlib
-import traceback
+import os
 import platform
+import sys
+import traceback
 
 
 def ok(label):
@@ -22,7 +22,7 @@ for mod in ["flask", "flask_cors", "gpt4all"]:
     try:
         importlib.import_module(mod.replace("flask_cors", "flask_cors"))
         ok(f"import {mod}")
-    except Exception as e:
+    except Exception:
         bad(f"import {mod}", traceback.format_exc())
 
 # 2) package init files
@@ -45,10 +45,8 @@ else:
 
 # 4) import orchestrator
 try:
-    from lyra_core.lyra_ai import LyraAI
     ok("import lyra_core.lyra_ai:LyraAI")
-except Exception as e:
+except Exception:
     bad("import lyra_core.lyra_ai", traceback.format_exc())
 
 print("=== Done ===")
-

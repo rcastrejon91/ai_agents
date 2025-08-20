@@ -1,7 +1,7 @@
-from lyra_core.world_state_engine import WorldStateEngine
-from lyra_core.scene_soul_driver import SceneSoulDriver
+from lyra_core.guardian_phase_two import AstralShield, Guardian
 from lyra_core.inner_focus_engine import InnerFocusEngine
-from lyra_core.guardian_phase_two import Guardian, AstralShield
+from lyra_core.scene_soul_driver import SceneSoulDriver
+from lyra_core.world_state_engine import WorldStateEngine
 from manager import AgentManager
 
 
@@ -82,4 +82,3 @@ class LyraAI:
         reply = self._delegate_or_answer(message)
         self.world.add_event({"type": "reply", "text": reply})
         return reply
-
