@@ -13,3 +13,5 @@ lyra-ai/frontend/.next/
 # Python cache files
 __pycache__/
 *.pyc
+*.log
+frontend_memory.json

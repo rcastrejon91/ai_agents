@@ -23,9 +23,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const body = sanitizeApiBody(req.body || {}, {
       message: { type: "string", maxLength: 2000, required: true },
       history: { type: "array" },
-    });
+    }) as { message?: string; history?: any[] };
 
-    const message = body.message || "";
+    const message = String(body.message || "");
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
     if (!message) {
