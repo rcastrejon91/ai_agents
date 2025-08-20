@@ -1,5 +1,3 @@
 flask
-gunicorn
-openai
-redis
-uuid
+flask-cors
+gpt4all
