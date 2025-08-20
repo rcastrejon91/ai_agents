@@ -5,7 +5,29 @@ from typing import Tuple, Dict
 
 
 class AAPTVAE(nn.Module):
-    """Variational Autoencoder for AAPT video generation."""
+    """Variational Autoencoder for AAPT video generation.
+    
+    This VAE implements the standard variational autoencoder architecture with:
+    - Multi-layer encoder that outputs mean and log-variance of latent distribution
+    - Reparameterization trick for differentiable sampling
+    - Multi-layer decoder for reconstruction
+    - Combined reconstruction and KL divergence loss
+    
+    The architecture is flexible and can handle different input dimensions.
+    Default configuration is optimized for 512-dimensional inputs (e.g., flattened
+    image patches or encoded video features).
+    
+    Args:
+        input_dim: Dimension of input data (default: 512)
+        latent_dim: Dimension of latent space (default: 256) 
+        hidden_dim: Dimension of hidden layers (default: 400)
+        
+    Example:
+        >>> vae = AAPTVAE(input_dim=512, latent_dim=256)
+        >>> x = torch.randn(batch_size, 512)
+        >>> reconstruction, mu, logvar = vae.forward(x)
+        >>> loss_dict = vae.loss_function(reconstruction, x, mu, logvar)
+    """
 
     def __init__(self, input_dim: int = 512, latent_dim: int = 256, hidden_dim: int = 400):
         super().__init__()
