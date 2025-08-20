@@ -1,0 +1,36 @@
+{
+  "1c4e1a97419b413c94f8600b1e1b90b6": [
+    {
+      "timestamp": "2025-08-20T12:54:37.981291",
+      "input": {
+        "text": "cold but full of love"
+      },
+      "response": {
+        "session_id": "1c4e1a97419b413c94f8600b1e1b90b6",
+        "emotion": {
+          "positive": 1,
+          "negative": 0,
+          "polarity": 1
+        },
+        "logic": {
+          "path": "chaotic",
+          "summary": "Processed via chaotic path"
+        },
+        "dream": {
+          "vision": "Envisioning peaceful resolution of cold but full of love.",
+          "loop": "Reflection on cold but full of love repeats gently."
+        },
+        "guardian": {
+          "status": "clear",
+          "message": "All clear."
+        },
+        "context": {
+          "time": "dusk",
+          "emotion": "enchanted",
+          "surroundings": "frozen temple"
+        },
+        "response": "In this enchanted dusk within frozen temple, evol fo lluf tub dloc"
+      }
+    }
+  ]
+}
