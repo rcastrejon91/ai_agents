@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+
 from lyra_core.lyra_ai import LyraAI
 
 app = Flask(__name__)
@@ -14,12 +15,14 @@ def chat():
     emotion = data.get("emotion")
     env = data.get("env") or {}
     reply = lyra.respond(msg, emotion=emotion, env=env)
-    return jsonify({
-        "response": reply,
-        "world": lyra.world.summary(),
-        "scene": lyra.scene.current,
-        "focus": lyra.focus.top(),
-    })
+    return jsonify(
+        {
+            "response": reply,
+            "world": lyra.world.summary(),
+            "scene": lyra.scene.current,
+            "focus": lyra.focus.top(),
+        }
+    )
 
 
 if __name__ == "__main__":

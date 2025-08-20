@@ -1,4 +1,4 @@
-from robot_core.robot_policy import is_command_safe, banned_terms
+from robot_core.robot_policy import banned_terms
 
 
 class Guardian:

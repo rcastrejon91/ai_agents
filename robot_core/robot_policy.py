@@ -1,4 +1,12 @@
-BANNED = {"self_destruct", "disable_sandbox", "override_guardian", "weapon", "explosive", "tase", "pepper spray"}
+BANNED = {
+    "self_destruct",
+    "disable_sandbox",
+    "override_guardian",
+    "weapon",
+    "explosive",
+    "tase",
+    "pepper spray",
+}
 
 
 def banned_terms():
