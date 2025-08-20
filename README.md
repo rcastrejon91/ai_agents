@@ -1,5 +1,9 @@
 # AI Agents
 
+[![GitHub Stars](https://img.shields.io/github/stars/rcastrejon91/ai_agents?style=social)](https://github.com/rcastrejon91/ai_agents/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/rcastrejon91/ai_agents?style=social)](https://github.com/rcastrejon91/ai_agents/network/members)
+[![GitHub License](https://img.shields.io/github/license/rcastrejon91/ai_agents)](https://github.com/rcastrejon91/ai_agents/blob/main/LICENSE)
+
 This repository contains a collection of AI agents designed to perform various tasks. The agents are built using Python and can be easily customized to suit your needs.
 
 ## Features
