@@ -12,6 +12,7 @@ import logging
 import time
 import urllib.request
 from dataclasses import dataclass
+from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
 from typing import Any, Callable, Dict, List, Optional
 
@@ -176,15 +177,17 @@ class LaunchManager:
 
     def schedule_launch(
         self, bot_name: str, delay_seconds: int, *args, **kwargs
-    ) -> None:
+    ) -> Any:
         """Schedule a bot to launch after a delay (in seconds)."""
-        self.scheduler.add_job(
+        run_date = datetime.now() + timedelta(seconds=delay_seconds)
+        job = self.scheduler.add_job(
             self.launch,
             trigger="date",
-            run_date=time.time() + delay_seconds,
+            run_date=run_date,
             args=(bot_name,),
             kwargs={"trigger": "schedule", **kwargs},
         )
+        return job
 
 
 # Example usage placeholders (to be removed or replaced in production)
