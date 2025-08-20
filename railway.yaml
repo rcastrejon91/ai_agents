@@ -5,18 +5,34 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - REDIS_URL=${REDIS_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - LOG_LEVEL=info
+      - SECURITY_ENABLED=true
+      - RATE_LIMIT_ENABLED=true
+      - CORS_ENABLED=true
     healthcheck:
       path: /health
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 40s
     resources:
       cpu: 1x
       memory: 512MB
     auto_deploy: true
+    restart: always
+    networks:
+      - internal
+    volumes:
+      - app_logs:/app/logs
+    deploy:
+      strategy: rolling
+      max_replicas: 3
+      min_replicas: 1
 
   redis:
-    image: redis:6
+    image: redis:7-alpine
     ports:
       - "6379:6379"
     volumes:
@@ -26,3 +42,39 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 10s
+    resources:
+      cpu: 0.5x
+      memory: 256MB
+    networks:
+      - internal
+    command: redis-server --maxmemory 200mb --maxmemory-policy allkeys-lru
+
+  monitoring:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  redis_data:
+    driver: local
+  app_logs:
+    driver: local
+  prometheus_data:
+    driver: local
