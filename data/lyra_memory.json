@@ -376,5 +376,49 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9f7f2d58a0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-22",
+    "timestamp": "2025-08-22T15:25:04.150104+00:00",
+    "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Pastel Pink Lobsters: (definition pending — no model key set)",
+      "Goofy-Looking Squid Among: (definition pending — no model key set)",
+      "Deep-Sea Oddities Discovered: (definition pending — no model key set)",
+      "Ocean Abyss Researchers: (definition pending — no model key set)",
+      "Ashley Balzer Vigil: (definition pending — no model key set)",
+      "This Asteroid Hits: (definition pending — no model key set)",
+      "Moon: (definition pending — no model key set)",
+      "Watch: (definition pending — no model key set)",
+      "Shooting Stars: (definition pending — no model key set)",
+      "Stricken Satellites Phil: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Pastel Pink Lobsters, Goofy-Looking Squid Among Deep-Sea Oddities Discovered in Ocean Abyss Researchers spied a wild array of life, including dozens of suspected new species, in an underwater gorge Ashley Balzer Vigil If This Asteroid Hits the Moon, Watch for Shooting Stars and Stricken Satellites Phil Plait Carbon Dioxide Defines Our Terrifying, Exhilarating World—and Always Has Lee Billings Controversial Quantum-Computing Paper Gets a Hefty Correction Dan Garisto, Nature magazine Science Quiz: Martian Builders and Billiard Balls"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Israel says \"there is no famine in Gaza\" after the IPC reports more than 500,000 people in the Strip are facing \"starvation, destitution and death\". A UN-backed body says more than half a million people across Gaza are facing \"starvation, destitution and death\". Sama Ansari Pour is on a mission to experience culture, cuisine and history from around the world. It is the older Menendez's turn to make his request for freedom after the brothers spent decades in prison for killing their parents in 1989. The LAPD allege the singer \"charged\" at them and was placed under arrest on suspicion of battery. A UN-backed body says more than half a million people across Gaza are facing \"starvation, destitution and death\". Agents and police vehicles have been seen at Bolton's home in the Washington DC suburb of Bethesda, Maryland. Kaja Kallas' warning comes as Donald Trump sets a two-week period to assess peace talks between Moscow and Kyiv. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Sama Ansari Pour is on a mission to experience culture, cuisine and history from around the world.",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd2f60a56f0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
