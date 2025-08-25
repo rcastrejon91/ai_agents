@@ -13,13 +13,16 @@ class SceneSoulDriver:
         else:
             self.current = {"mood": "neutral", "imagery": "subtle mist"}
         return self.current
+
+
 """Scene Soul Driver for emotional scene management."""
+
 
 class SceneSoulDriver:
     def __init__(self):
         self.current = "neutral"
         self.scene_history = []
-    
+
     def match_scene_to_emotion(self, emotion: str):
         """Match scene to the given emotion."""
         self.current = emotion

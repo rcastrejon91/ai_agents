@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Guardian:
     """Basic guardian for text scanning."""
 

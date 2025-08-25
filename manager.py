@@ -10,12 +10,15 @@ class AgentManager:
         if not agent:
             return f"❌ Unknown agent '{agent_name}'"
         return agent.handle(message)
+
+
 """Agent Manager for handling agent dispatch."""
+
 
 class AgentManager:
     def __init__(self):
         self.agents = {}
-    
+
     def dispatch(self, agent_name: str, query: str) -> str:
         """Dispatch a query to the specified agent."""
         # Simple routing logic
