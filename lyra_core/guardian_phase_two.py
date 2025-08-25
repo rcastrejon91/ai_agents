@@ -1,15 +1,23 @@
-from robot_core.robot_policy import banned_terms
-
+from typing import List
 
 class Guardian:
-    def scan_text(self, text: str):
-        # block banned terms early
-        for term in banned_terms():
-            if term in text.lower():
-                return f"⚠️ Blocked by Guardian: '{term}' is not allowed."
+    """Basic guardian for text scanning."""
+
+    def __init__(self):
+        self.active = True
+
+    def scan_text(self, text: str) -> str:
+        """Scan text for threats."""
+        threat_words = ["hack", "attack", "destroy", "kill"]
+        if any(word in text.lower() for word in threat_words):
+            return "⚠️ Potentially harmful content detected. Please rephrase."
         return None
 
-
 class AstralShield:
-    def emergency_stop(self):
-        return "🛑 AstralShield: Emergency stop engaged."
+    """Emergency protection system."""
+
+    def emergency_stop(self) -> str:
+        """Trigger emergency stop."""
+        return "🛡️ AstralShield activated - Emergency stop triggered"
+
+class CodexLore:

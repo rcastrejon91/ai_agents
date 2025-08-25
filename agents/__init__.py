@@ -11,3 +11,4 @@ REGISTRY = {
     "retail": RetailAgent,
     "concierge": ConciergeAgent,
 }
+"""Agent Modules"""
