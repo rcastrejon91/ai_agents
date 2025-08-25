@@ -506,5 +506,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f185a700820>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-25",
+    "timestamp": "2025-08-25T15:26:47.587320+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Quentin Sommerville: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Family: (definition pending — no model key set)",
+      "Erin Patterson: (definition pending — no model key set)",
+      "The Israeli: (definition pending — no model key set)",
+      "Nasser Hospital: (definition pending — no model key set)",
+      "Donald Trump: (definition pending — no model key set)",
+      "Over: (definition pending — no model key set)",
+      "Russian: (definition pending — no model key set)",
+      "Vietnam: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The Israeli military says it carried out a strike in the area of Nasser Hospital and it \"regrets any harm to uninvolved individuals and does not target journalists\". Quentin Sommerville follows volunteers carrying out evacuations in eastern Ukraine as drone attacks rage. Family members of the three people Erin Patterson murdered with toxic mushrooms have confronted her in court. Donald Trump declared some cartels to be terrorist organisations. So why are the victims of cartels in hiding? Over the past three years, Russian state-backed news channel RT has expanded its international presence. Quentin Sommerville follows volunteers carrying out evacuations in eastern Ukraine as drone attacks rage. It comes less than a year after Vietnam was hit by Typhoon Yagi, which killed 300 people. Kilmar Abrego Garcia is taken into custody in Baltimore as his lawyers say he may be sent to Uganda. She had finished working on the \"intimate\" and \"heartbreaking\" book before she took her own life in April, her publisher says. Family members of the three people Erin Patterson murdered with toxic mushrooms have confronted her in court."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "How You Search the Internet Can Reinforce Your Beliefs—Without You Realizing It Users’ Internet search questions can strengthen echo chambers, even on factual topics, but there are simple ways to lessen the effect Simon Makin Truth, Romance and the Divine: How AI Chatbots May Fuel Psychotic Thinking Conor Feehly Scientific American Celebrates 180 Years with Stories of Scientific U-turns Rachel Feltman, Jeffery DelViscio, Alex Sugiura The Brain’s Map of the Body Is Surprisingly Stable—Even after a Limb Is Lost Katie Kavanagh, Nature magazine Easy Sudoku: August 25, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa14fc50d90>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
