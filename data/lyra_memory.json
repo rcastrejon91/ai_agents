@@ -2,8 +2,12 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -39,8 +43,12 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -74,7 +82,9 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"
@@ -114,7 +124,9 @@
   {
     "date": "2025-08-16",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -155,7 +167,9 @@
   {
     "date": "2025-08-17",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -195,7 +209,9 @@
     "date": "2025-08-18",
     "timestamp": "2025-08-18T15:29:38.452670+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -235,7 +251,9 @@
     "date": "2025-08-19",
     "timestamp": "2025-08-19T15:26:53.580129+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -275,7 +293,9 @@
     "date": "2025-08-20",
     "timestamp": "2025-08-20T15:27:18.572511+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -317,7 +337,9 @@
     "date": "2025-08-21",
     "timestamp": "2025-08-21T15:26:52.151868+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -359,7 +381,9 @@
     "date": "2025-08-22",
     "timestamp": "2025-08-22T15:25:04.150104+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -401,7 +425,9 @@
     "date": "2025-08-23",
     "timestamp": "2025-08-23T15:22:04.594964+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -443,7 +469,9 @@
     "date": "2025-08-24",
     "timestamp": "2025-08-24T15:22:52.134064+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -483,7 +511,9 @@
     "date": "2025-08-25",
     "timestamp": "2025-08-25T15:26:47.587320+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -518,5 +548,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa14fc50d90>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-26",
+    "timestamp": "2025-08-26T15:26:13.651321+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Trump: (definition pending — no model key set)",
+      "Cook: (definition pending — no model key set)",
+      "The Royal Family: (definition pending — no model key set)",
+      "Meghan: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Monday: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Netanyahu: (definition pending — no model key set)",
+      "Arizona: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "At least 20 people, including five journalists, were reportedly killed in Monday's strikes, which Israel's Netanyahu called a \"tragic mishap\". Cook says the US president \"has no authority to do so\" in defiance of Trump's escalatory move against the central bank. The Royal Family don't get a mention in part two of Meghan's TV show, nor does the rift within it. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The wall of dust known as a haboob was propelled by thunderstorm winds through parts of Arizona's Pinal County. Cook says the US president \"has no authority to do so\" in defiance of Trump's escalatory move against the central bank. Federal Reserve Governor Lisa Cook says Trump has no authority to fire her after he ordered her removal. BBC investigation finds US victim's images are traded globally by an operator based in Indonesia. Australian police say a \"heavily armed\" male suspect escaped into the bush after the shooting in Victoria state. The Royal Family don't get a mention in part two of Meghan's TV show, nor does the rift within it."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "New Instrument Checks on Proxima Centauri’s Planets Fresh results from near-infrared instruments foretell a bright future for finding life elsewhere in the Milky Way Ivan Farkas Human Case of Flesh-Eating Screwworms Detected In U.S. Madhusree Mukerjee Microplastics Could Be Turning Bacteria into Drug-Resistant Superbugs Marta Zaraska Scientific American Celebrates 180 Years with Stories of Scientific U-turns Rachel Feltman, Jeffery DelViscio, Alex Sugiura Wordology: Tuesday, August 26, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9031c50f10>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
