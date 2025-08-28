@@ -634,5 +634,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f50e27f8c40>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-08-28",
+    "timestamp": "2025-08-28T15:25:30.495701+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russia: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "North Korea: (definition pending — no model key set)",
+      "China: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Lawyers: (definition pending — no model key set)",
+      "Susan Monarez: (definition pending — no model key set)",
+      "Centers: (definition pending — no model key set)",
+      "Disease Control: (definition pending — no model key set)",
+      "Prevention: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The UK summoned Russia's ambassador over the attacks, which killed four children and damaged diplomatic buildings. The leaders of North Korea and Russia will attend China's military parade next week - a win for Xi. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Lawyers for Dr Susan Monarez say only the president can remove her from her job running the US Centers for Disease Control and Prevention. Tokyo authorities say they released the AI-generated video to raise awareness and help people prepare for disaster - but how likely is Mt Fuji to actually erupt? The leaders of North Korea and Russia will attend China's military parade next week - a win for Xi. One young boy says he was protected from gunfire in a church by a friend who lay on top of him and was shot. Another 17 people were injured in Wednesday's attack, which unfolded as children attended a worship service. The president has accused Cook of mortgage fraud, and cited constitutional power that he says allows him to fire governors. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "These Succulents Glow in the Dark—And They’re Gorgeous Houseplants become rechargeable night-lights after injection with tiny phosphor particles Katherine Bourzac, Nature magazine New Cell Transplant for Type 1 Diabetes Sidesteps Need for Immunosuppressants Humberto Basilio Can You Get a COVID Vaccine This Year? Here’s What We Know Meghan Bartels Is New Orleans Safer Now Than When Hurricane Katrina Hit 20 Years Ago? Mark Fischetti Expert Sudoku: August 28, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fafbedc8fa0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
