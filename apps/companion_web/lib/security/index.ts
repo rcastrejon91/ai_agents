@@ -3,6 +3,7 @@
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { getSession } from "next-auth/react";
 
 export interface SecurityConfig {
@@ -98,8 +99,8 @@ export function sanitizeInput(
 
   // Remove potentially dangerous HTML/script content
   sanitized = sanitized
-    .replace(/<script[^>]*>.*?<\/script>/gis, "")
-    .replace(/<iframe[^>]*>.*?<\/iframe>/gis, "")
+    .replace(/<script[^>]*>.*?<\/script>/gi, "")
+    .replace(/<iframe[^>]*>.*?<\/iframe>/gi, "")
     .replace(/javascript:/gi, "")
     .replace(/vbscript:/gi, "")
     .replace(/on\w+\s*=/gi, "");
@@ -130,15 +131,26 @@ export function validateEmail(email: string): boolean {
 /**
  * Security headers middleware
  */
-export function setSecurityHeaders(res: NextApiResponse): void {
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("X-Frame-Options", "DENY");
-  res.setHeader("X-XSS-Protection", "1; mode=block");
-  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
-  );
+export function setSecurityHeaders(res: NextApiResponse | NextResponse): void {
+  const headers = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "X-XSS-Protection": "1; mode=block",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+  };
+
+  if (res instanceof NextResponse) {
+    // App Router NextResponse
+    Object.entries(headers).forEach(([key, value]) => {
+      res.headers.set(key, value);
+    });
+  } else {
+    // Pages Router NextApiResponse
+    Object.entries(headers).forEach(([key, value]) => {
+      res.setHeader(key, value);
+    });
+  }
 }
 
 /**

@@ -12,13 +12,20 @@ const LYRA_MODEL = "gpt-4o-mini";
 // Minimal Lyra API route that validates env wiring and proxies to OpenAI.
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    // Get OpenAI API key
+    const key = process.env.OPENAI_API_KEY;
+    if (!key) {
+      logger.error("OpenAI API key not configured");
+      return res.status(500).json({ error: "API key not configured" });
+    }
+
     // Validate and sanitize request body
     const body = sanitizeApiBody(req.body || {}, {
       message: { type: "string", maxLength: 2000, required: true },
       history: { type: "array" },
     });
 
-    const message = body.message || "";
+    const message = String(body.message || "");
     const history = Array.isArray(body.history) ? body.history.slice(-10) : []; // Limit history
 
     if (!message) {

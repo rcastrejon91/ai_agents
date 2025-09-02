@@ -77,16 +77,15 @@ function logAdminEvent(evt: Record<string, any>) {
 }
 
 export async function GET(req: NextRequest) {
-  // Set security headers
+  // Create response first
   const response = ok(CURRENT);
+  // Set security headers
   setSecurityHeaders(response);
   return response;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    // Set security headers
-    setSecurityHeaders(NextResponse);
 
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
@@ -175,7 +174,9 @@ export async function POST(req: NextRequest) {
       ip,
     });
 
-    return ok(CURRENT);
+    const response = ok(CURRENT);
+    setSecurityHeaders(response);
+    return response;
   } catch (error) {
     logger.error("Admin mode POST error", { error });
     return bad("Internal server error", 500);
