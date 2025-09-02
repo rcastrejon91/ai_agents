@@ -86,7 +86,6 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-
     // Rate limiting
     const ip = req.ip || req.headers.get("x-forwarded-for") || "unknown";
     if (!checkRateLimit(ip, 5, 300000)) {
