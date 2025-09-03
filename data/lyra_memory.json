@@ -2,8 +2,12 @@
   {
     "date": "2025-08-13",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "Mediators: (definition pending — no model key set)",
       "Israel: (definition pending — no model key set)",
@@ -39,8 +43,12 @@
   {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
-    "next_plan": ["Deep-dive one allow-listed source"],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source"
+    ],
     "glossary": [
       "The Russian: (definition pending — no model key set)",
       "American: (definition pending — no model key set)",
@@ -74,7 +82,9 @@
   {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source"
@@ -114,7 +124,9 @@
   {
     "date": "2025-08-16",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -155,7 +167,9 @@
   {
     "date": "2025-08-17",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -195,7 +209,9 @@
     "date": "2025-08-18",
     "timestamp": "2025-08-18T15:29:38.452670+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -235,7 +251,9 @@
     "date": "2025-08-19",
     "timestamp": "2025-08-19T15:26:53.580129+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -275,7 +293,9 @@
     "date": "2025-08-20",
     "timestamp": "2025-08-20T15:27:18.572511+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -317,7 +337,9 @@
     "date": "2025-08-21",
     "timestamp": "2025-08-21T15:26:52.151868+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -359,7 +381,9 @@
     "date": "2025-08-22",
     "timestamp": "2025-08-22T15:25:04.150104+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -401,7 +425,9 @@
     "date": "2025-08-23",
     "timestamp": "2025-08-23T15:22:04.594964+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -443,7 +469,9 @@
     "date": "2025-08-24",
     "timestamp": "2025-08-24T15:22:52.134064+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -483,7 +511,9 @@
     "date": "2025-08-25",
     "timestamp": "2025-08-25T15:26:47.587320+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -523,7 +553,9 @@
     "date": "2025-08-26",
     "timestamp": "2025-08-26T15:26:13.651321+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -565,7 +597,9 @@
     "date": "2025-08-27",
     "timestamp": "2025-08-27T15:25:39.508619+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -605,7 +639,9 @@
     "date": "2025-08-28",
     "timestamp": "2025-08-28T15:25:30.495701+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -647,7 +683,9 @@
     "date": "2025-08-29",
     "timestamp": "2025-08-29T15:22:31.934874+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -687,7 +725,9 @@
     "date": "2025-08-30",
     "timestamp": "2025-08-30T15:21:21.012230+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -729,7 +769,9 @@
     "date": "2025-08-31",
     "timestamp": "2025-08-31T15:22:04.511361+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -769,7 +811,9 @@
     "date": "2025-09-01",
     "timestamp": "2025-09-01T15:24:09.033608+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -809,7 +853,9 @@
     "date": "2025-09-02",
     "timestamp": "2025-09-02T15:26:54.600432+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": ["Basic ingestion only (no model key set)."],
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -844,5 +890,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f2a56224220>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-03",
+    "timestamp": "2025-09-03T15:25:33.261129+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Beijing: (definition pending — no model key set)",
+      "Western: (definition pending — no model key set)",
+      "Wearing: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "President: (definition pending — no model key set)",
+      "President Donald Trump: (definition pending — no model key set)",
+      "National Guard: (definition pending — no model key set)",
+      "Chicago: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Washington: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "President Xi shows off his power and influence in an open challenge to US supremacy and the world order. Beijing has unveiled a range of military hardware in a show of might to Western powers. Wearing pink and wielding broomsticks, people are protesting against police abuses and wasteful government spending. The fast-fashion giant launches an investigation after an image with the likeness of the accused murderer appeared on its website. President Donald Trump says he will send the National Guard to Chicago to help fight crime but has not specified when that could occur. Beijing has unveiled a range of military hardware in a show of might to Western powers. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The event in Washington DC is being organised by two US politicians, who want more files to be released. The search giant is not being broken up -so how much will it be affected by the remedies a judge has instead ordered? Wearing pink and wielding broomsticks, people are protesting against police abuses and wasteful government spending."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Spouses Tend to Share Psychiatric Disorders, Massive Study Finds Spouses often share psychiatric diagnoses, according to an analysis of almost 15 million people in three countries Mohana Basu, Nature magazine A Cosmic Void May Be Skewing Our Understanding of the Universe Paul M. Sutter How to Read Hurricane Maps and Avoid Common Mistakes Rachel Feltman, Andrea Thompson, Fonda Mwangi, Alex Sugiura A Giant Map Shows How DNA Changes as We Age Chris Simms, Nature magazine Hard Sudoku: September 3, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f450343d990>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
