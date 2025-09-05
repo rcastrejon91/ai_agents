@@ -1,1 +1,1 @@
-web: node dist/index.js
+web: uvicorn ai_agents.apps.companion_api.main:app --host 0.0.0.0 --port=${PORT:-5000}
