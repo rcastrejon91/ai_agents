@@ -3,7 +3,7 @@ services:
     dockerfile: Dockerfile
     env:
       - NODE_ENV=production
-      - PORT=3000
+      - PORT=5000   # Flask is listening here, matches app.py
       - REDIS_URL=${REDIS_URL}
     healthcheck:
       path: /health
