@@ -3,19 +3,19 @@ services:
     dockerfile: Dockerfile
     env:
       - NODE_ENV=production
-      - PORT=5000   # Flask app binds here
+      - PORT=5000 # Flask app binds here
       - REDIS_URL=${REDIS_URL}
     healthcheck:
       path: /health
       interval: 30s
-      timeout: 100s   # from old railway.json
+      timeout: 100s # from old railway.json
       retries: 3
     resources:
       cpu: 1x
       memory: 512MB
     auto_deploy: true
     restart_policy:
-      type: ON_FAILURE   # from old railway.json
+      type: ON_FAILURE # from old railway.json
       max_retries: 10
 
   redis:
