@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true
+    "target": "ES2022",            // Compile TS into modern JS (ES2022)
+    "module": "ESNext",            // Use modern ES module system
+    "moduleResolution": "Bundler", // Optimized for bundlers (like Vite, Webpack, etc.)
+    "outDir": "dist",              // Compiled files go into the dist/ folder
+    "esModuleInterop": true,       // Better support for default imports from CommonJS
+    "strict": true,                // Enable strict type checks (catches bugs early)
+    "skipLibCheck": true           // Skip type checks for node_modules (faster builds)
   },
-  "include": ["src"]
+  "include": ["src"]               // Only compile code from the src/ folder
 }
