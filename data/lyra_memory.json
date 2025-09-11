@@ -1232,5 +1232,45 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbf2983e680>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-11",
+    "timestamp": "2025-09-11T15:23:04.212878+00:00",
+    "summary": "Fetched sources:\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Latest: (definition pending — no model key set)",
+      "Amazon Apps Biotech: (definition pending — no model key set)",
+      "Health Climate Cloud: (definition pending — no model key set)",
+      "Computing Commerce Crypto: (definition pending — no model key set)",
+      "Enterprise: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Authorities say they have footage of the suspect, but are not releasing it yet. A \"high-powered\" rifle has been found in woods near the scene. Charlie Kirk's killing is another episode of gun violence in America and the latest in a line of recent political violence. The curious case of why the UK has fallen out of love with once-beloved 'chop and chat' food shows. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Earlier this month, Chinese nationals working with Nasa suddenly found themselves denied access. Charlie Kirk's killing is another episode of gun violence in America and the latest in a line of recent political violence. The conservative activist and influential Trump ally was shot and killed while speaking at Utah Valley University. The Foreign Office says he was fired \"in light of additional information\", a day after the UK prime minister backed him in the Commons. The king and his son have met in person for the first time since February 2024 - but the clues a reunion was nearing have been there, writes senior royal correspondent Daniela Relph. The curious case of why the UK has fallen out of love with once-beloved 'chop and chat' food shows.",
+        "reason": "not in allow list"
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Early Experiments Show Fast-Acting Antidote Targets Carbon Monoxide Poisoning A study in mice and on human blood uses a new protein to snag carbon monoxide before it latches onto blood cells Sara Novak Your Name Could Orbit the Moon with NASA’s Artemis II Clara Moskowitz New Black Hole Measurements Show More Ways Stephen Hawking and Albert Einstein Were Right Clara Moskowitz This Rock May Hold Proof of Life on Mars Humberto Basilio Expert Sudoku: September 11, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff1c48a9480>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
