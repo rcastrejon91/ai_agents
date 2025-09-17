@@ -1482,5 +1482,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa36d2e90f0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-17",
+    "timestamp": "2025-09-17T15:25:02.394159+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "BBC: (definition pending — no model key set)",
+      "President Trump: (definition pending — no model key set)",
+      "King: (definition pending — no model key set)",
+      "Queen: (definition pending — no model key set)",
+      "Windsor Castle: (definition pending — no model key set)",
+      "Gen: (definition pending — no model key set)",
+      "Nepal: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Red Arrows: (definition pending — no model key set)",
+      "The Federal Reserve: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The sombre moment comes ahead of more state visit events, including a military ceremony, Red Arrows flypast and a lavish state banquet. President Trump greeted by the King and Queen and other senior royals at Windsor Castle. Gen Z protesters in Nepal tell the BBC of their pride and heartbreak after last week's momentous protests. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The Federal Reserve is expected to make its first cut to interest rates since 2024. President Trump greeted by the King and Queen and other senior royals at Windsor Castle. Watch live as the former head of the US Centers for Disease Control and Prevention speaks to a Senate hearing. \"You're joking, right????\" the roommate responds in one message after the alleged gunman tells him he did it, according to court documents. Israel says its aim is to defeat up to 3,000 Hamas fighters who remain there, but the offensive has drawn international condemnation. Gen Z protesters in Nepal tell the BBC of their pride and heartbreak after last week's momentous protests."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "The Past Three Summers Were the Three Hottest on Record Climate-fueled heat has caused thousands of excess deaths over the past three summers, which were the three hottest on record Andrea Thompson New Fossils Could Help Solve Long-standing Mystery of Bird Migration Lauren N. Wilson, Daniel T. Ksepka The Secret Lives of Dead Trees Stephen Ornes Global Landslide Risk Rises as the Planet Warms Jen Schwartz Hard Sudoku: September 17, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff52f1cc400>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
