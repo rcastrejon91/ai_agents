@@ -1610,5 +1610,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1a04f44dc0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-20",
+    "timestamp": "2025-09-20T15:20:53.765188+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russia: (definition pending — no model key set)",
+      "Estonian: (definition pending — no model key set)",
+      "Nato: (definition pending — no model key set)",
+      "Harjit Kaur: (definition pending — no model key set)",
+      "Nature: (definition pending — no model key set)",
+      "Here: (definition pending — no model key set)",
+      "President Zelensky: (definition pending — no model key set)",
+      "Moscow: (definition pending — no model key set)",
+      "Ukrainian: (definition pending — no model key set)",
+      "The Texas: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "President Zelensky says Moscow seeks to \"intimidate civilians\", while Russia reports four deaths in a Ukrainian strike. Russia denies jets entered Estonian airspace in the same month as its drones violated the airspace of two other Nato members. Harjit Kaur, a 73-year-old who unsuccessfully applied for asylum, was arrested by immigration authorities last week. The Texas senator affected a mobster accent to criticise how ABC was pressed to take action on the late-night host. Watch live coverage and follow text and radio commentary as England face France in the semi-finals at Ashton Gate in Bristol. Russia denies jets entered Estonian airspace in the same month as its drones violated the airspace of two other Nato members. Travellers report multi-hour waits for some airlines as disruption also hits Brussels and Berlin. \"Train Americans,\" the US commerce secretary told big companies, some of which have relied on foreign high-skilled workers for years. BBC News hears from women dismayed by hanging tissue left behind after rapid weight loss. Harjit Kaur, a 73-year-old who unsuccessfully applied for asylum, was arrested by immigration authorities last week."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Tipsy Bats and Perfect Pasta Win Ig Nobel Prizes for Weird Science Research Winners of the annual Ig Nobel awards include the science of tipsy bats and the physics of cacio e pepe Chris Simms, Nature magazine New AI Tool Predicts Which of 1,000 Diseases Someone May Develop in 20 Years Gemma Conroy, Nature magazine Here’s What Happened at RFK, Jr.’s Overhauled Vaccine Panel Meeting Meghan Bartels, Andrea Tamayo Writing in Your Books Is Good for Your Brain—Here’s Why Brianne Kane Math Puzzle: A Plane Circle"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f57dd90d150>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
