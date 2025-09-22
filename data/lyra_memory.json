@@ -1694,5 +1694,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc0d347a2f0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-22",
+    "timestamp": "2025-09-22T15:26:03.411860+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Both: (definition pending — no model key set)",
+      "Prince Andrew: (definition pending — no model key set)",
+      "Officials: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Canada: (definition pending — no model key set)",
+      "Australia: (definition pending — no model key set)",
+      "Sunday: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "President Duma Boko: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The UK, Canada and Australia announced their formal recognition on Sunday, which Israel said amounted to a \"huge reward to terrorism\". Both charities say it would be inappropriate for the former wife of Prince Andrew to continue as a patron. Officials are investigating the firm after the display drew backlash for its potential environmental impact. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. President Duma Boko congratulates the men's 4x400m relay team for winning gold at the World Athletic Championships. Both charities say it would be inappropriate for the former wife of Prince Andrew to continue as a patron. The BBC spoke to Americans who travelled to Arizona to attend the late conservative activist's memorial service. Some studies have suggested an association between the two, but experts say there is no causal relationship. India may adapt, but the US risks losing skilled workers who have helped build the Silicon Valley and hospitals. Officials are investigating the firm after the display drew backlash for its potential environmental impact."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "San Francisco Rattled by Predawn Earthquake The San Francisco Bay Area was rattled early this morning by a magnitude 4.3 earthquake along the Hayward fault line Meghan Bartels Deep-Earth Diamonds Reveal ‘Almost Impossible’ Chemistry Stephanie Pappas Vaccine Policy Shift, Brain Changes in Athletes and Ants That Harness Another Species’ DNA Rachel Feltman, Lauren J. Young, Fonda Mwangi, Alex Sugiura The Sordid Mystery of a Somalian Meteorite Smuggled into China Dan Vergano Easy Sudoku: September 22, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f39cf528ee0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
