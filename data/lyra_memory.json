@@ -1820,5 +1820,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f85dd981150>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-25",
+    "timestamp": "2025-09-25T15:26:15.600026+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russian: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "But: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Nicolas Sarkozy: (definition pending — no model key set)",
+      "Democrats: (definition pending — no model key set)",
+      "The Turkish: (definition pending — no model key set)",
+      "Liudmila Zavada: (definition pending — no model key set)",
+      "July: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Nicolas Sarkozy, president from 2007-12, was found guilty of criminal conspiracy but cleared of other charges. But the defence minister says there is no evidence of Russian involvement after the latest incident. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The warning came after Trump refused a meeting with Democrats seeking healthcare funding in budget negotiations. The coffee chain is restructuring to save money by closing its worst performing stores. But the defence minister says there is no evidence of Russian involvement after the latest incident. The Turkish president seeks to reach deals spanning defence to energy worth tens of billions of US dollars during the visit, reports suggest. Russian citizen Liudmila Zavada, 31, was found dead in July 2005 by a road in the northeastern Spain. Startups and smaller firms could bear the brunt of Trump's new H-1B visa fee, and some fear it could thwart US innovation. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Cow Udders Could Brew Up Dangerous New Bird Flu Strains Cells in cow udders could act as a site for human flu and bird flu viruses to swap genes and generate dangerous novel strains Chris Simms Good Conversations Don’t Require Everybody to Agree, Neuroscience Shows Emily Falk Trump Team Backs Unproven Autism Drug, Sparking Scientific Concern Heidi Ledford, Nature magazine Infections of Drug-Resistant ‘Nightmare Bacteria’ Are Surging in Hospitals Lauren J. Young Expert Sudoku: September 25, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9b2ab18f70>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
