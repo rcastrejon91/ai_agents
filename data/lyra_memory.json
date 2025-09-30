@@ -2030,5 +2030,45 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f66ffae0b20>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-09-30",
+    "timestamp": "2025-09-30T15:23:02.124991+00:00",
+    "summary": "Fetched sources:\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Latest: (definition pending — no model key set)",
+      "Amazon Apps Biotech: (definition pending — no model key set)",
+      "Health Climate Cloud: (definition pending — no model key set)",
+      "Computing Commerce Crypto: (definition pending — no model key set)",
+      "Enterprise: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The US President says \"it's going to be a very sad end\" if Hamas rejects the deal - Qatar says the group are studying the proposal. Trump is asking the Israeli PM to risk his government but dangling the prospect of a historic legacy, writes Lucy Williamson. The A-List couple share two children and have been married since 2006. The deal is part of US President Donald Trump's crackdown on immigration in the US. Combs, who was convicted in July of transportation to engage in prostitution, will be sentenced later this week. Trump is asking the Israeli PM to risk his government but dangling the prospect of a historic legacy, writes Lucy Williamson. The defence secretary outlined his vision for the Pentagon, which includes implementing “high and gender-neutral” physical fitness standards. For many women, the internet was their last resource. An internet shutdown threatens to end this. US government funding will cut off at midnight unless the Republican Party can agree with Democrats on a way forward. The A-List couple share two children and have been married since 2006.",
+        "reason": "not in allow list"
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "NASA’s First-Ever Alien-Hunting Space Telescope Could Enlighten Our New Dark Age The Habitable Worlds Observatory is poised to tell us whether Earth-like planets are common—if it can get off the ground Nadia Drake, Lee Billings Rock Art Discovery Reveals Unknown Arabian Nomads from 12,000 Years Ago Martin J. Kernan Can China’s Emissions Plan Change the World’s Climate Future? You Xiaoying, Nature magazine Mildly Menacing Mating Calls Lead to Discovery of New Gecko Species Ashley Balzer Vigil Medium Sudoku: September 30, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe07372be50>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
