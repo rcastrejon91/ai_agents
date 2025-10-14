@@ -2626,5 +2626,49 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f65ed389480>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-10-14",
+    "timestamp": "2025-10-14T15:27:16.019778+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "BBC: (definition pending — no model key set)",
+      "Tom Bateman: (definition pending — no model key set)",
+      "Republicans: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "IDF: (definition pending — no model key set)",
+      "Hamas: (definition pending — no model key set)",
+      "Monday: (definition pending — no model key set)",
+      "Bipin Joshi: (definition pending — no model key set)",
+      "Guy Illouz: (definition pending — no model key set)",
+      "The BBC: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "It comes as the IDF names two of the four deceased hostages handed over by Hamas on Monday as Bipin Joshi and Guy Illouz. The US president's single-day tour was a victory lap rather than an exercise in setting out detail, writes the BBC's Tom Bateman. The cost of health insurance could double for millions of people, which could hurt Republicans. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The BBC’s Michelle Fleury looks at what to expect from the gathering of top bankers and finance ministers. The US president's single-day tour was a victory lap rather than an exercise in setting out detail, writes the BBC's Tom Bateman. MPs have voted to impeach President Andry Rajoelina, who has reportedly fled the country following anti-government protests. Customers worry about missing parcels as shipping companies struggle to handle a flood of packages facing new customs and tariff rules. Ahead of Milei's visit to the White House - amid protests and anger on the streets back at home - Ione Wells unravels the paradox that Argentina's president has created The cost of health insurance could double for millions of people, which could hurt Republicans."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Mysterious Rocks Could Rewrite Evolution of Complex Life Controversial evidence hints that complex life might have emerged hundreds of millions of years earlier than previously thought—and possibly more than once Asher Elbein New DNA Search Engine Brings Order to Biology’s Big Data Elie Dolgin, Nature magazine The Slippery Slope of Ethical Collapse—And How Courage Can Reverse It Elizabeth Svoboda Immigration Has Shaped the Lives and Careers of 30 Percent of Recent Nobel Prize Scientists Jenna Ahart, Nature magazine Medium Sudoku: October 14, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3a397ffa30>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
