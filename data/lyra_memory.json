@@ -2712,5 +2712,45 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb84b4fa260>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-10-16",
+    "timestamp": "2025-10-16T15:26:38.035121+00:00",
+    "summary": "Fetched sources:\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Latest: (definition pending — no model key set)",
+      "Amazon Apps Biotech: (definition pending — no model key set)",
+      "Health Climate Cloud: (definition pending — no model key set)",
+      "Computing Commerce Crypto: (definition pending — no model key set)",
+      "Enterprise: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "After Hamas handed over two dead Israeli hostages overnight, Israel returns 30 dead Palestinians - a ratio agreed in the first phase of the peace deal. Trump would not be drawn on whether the CIA was seeking to topple Maduro. Footage released by the Turkish city of Kayseri's transport operator shows the last-minute rescue. In an unusual race, a young Democratic socialist is leading an establishment politician by a wide margin. Virginia Giuffre, who took her life earlier this year, gives her account of meeting Prince Andrew. Trump would not be drawn on whether the CIA was seeking to topple Maduro. Activists say the unprecedented round-up could be the beginning of a wider crackdown on China's underground churches. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The destruction and hunger that Sudan's war has brought leaves parents with some impossible choices. Footage released by the Turkish city of Kayseri's transport operator shows the last-minute rescue.",
+        "reason": "not in allow list"
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "A Classic Graphic Reveals Nature’s Most Efficient Traveler A famous graphic, now updated, compares locomotion in the animal kingdom Allison Parshall, DTAN Studio A Mathematical Paradox Shows How Combining Losing Strategies Can Create a Win Manon Bischoff How Exercise Helps Treat Cancer Lydia Denworth Can We Bury Enough Wood to Slow Climate Change? Syris Valentine Expert Sudoku: October 16, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb4114a5e70>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
