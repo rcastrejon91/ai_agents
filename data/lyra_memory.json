@@ -3010,5 +3010,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f15f214e020>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-10-23",
+    "timestamp": "2025-10-23T15:26:25.637722+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russia: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Rosneft: (definition pending — no model key set)",
+      "Lukoil: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Australia: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Portland Trail Blazers: (definition pending — no model key set)",
+      "Chauncey Billups: (definition pending — no model key set)",
+      "Miami Heat: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Portland Trail Blazers coach Chauncey Billups and Miami Heat player Terry Rozier have been charged in an alleged gambling probe, according to the BBC's partner CBS News. The US has announced new sanctions on Rosneft and Lukoil, Russia's two largest oil companies, over continued fighting in Ukraine. The island off mainland Australia experiences the event every summer, when around 50 million crabs scuttle down from their homes to the beach to lay eggs. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The pair join a service in the Vatican's Sistine Chapel in a symbolic display of unity between the Catholic Church and the Church of England. The US has announced new sanctions on Rosneft and Lukoil, Russia's two largest oil companies, over continued fighting in Ukraine. The BBC's Russia editor says Trump's decision to call of his Putin talks and impose oil sanctions will not go down well in Moscow. The US Secretary of State says such a step would threaten Washington's plan to end the conflict in Gaza. There was no holding back as the three leading candidates for mayor met in a final push to win votes. The island off mainland Australia experiences the event every summer, when around 50 million crabs scuttle down from their homes to the beach to lay eggs."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Watch These Parasitic Worms Use Static Electricity as a Tractor Beam For microscopic worms, physical laws we seldom notice take on life-or-death importance Cody Cottier How the World’s Most Famous Code Was Cracked Jack Murtagh Earth Is Getting Darker, Which Could Accelerate Global Warming Ryan Green Google Explores Quantum Chaos on Its Most Powerful Quantum Computer Chip Dan Garisto Expert Sudoku: October 23, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f70e104e050>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
