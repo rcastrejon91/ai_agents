@@ -3096,5 +3096,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee0a035c60>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-10-25",
+    "timestamp": "2025-10-25T15:21:46.907138+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Trump: (definition pending — no model key set)",
+      "NASA: (definition pending — no model key set)",
+      "Struggling: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Jinping: (definition pending — no model key set)",
+      "Vladimir Putin: (definition pending — no model key set)",
+      "White House The: (definition pending — no model key set)",
+      "White House Around: (definition pending — no model key set)",
+      "Gazans: (definition pending — no model key set)",
+      "Zhi Dong Zhang: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Struggling to broker a peace deal in Ukraine, Trump hopes Xi Jinping could influence Vladimir Putin. The former US vice-president made her strongest suggestion to date she will make another bid for the White House The deployment marks a major escalation in what the US says is a campaign against drug traffickers, which Trump warns will include \"land action\". As the shutdown continues with no deal in sight, some federal employees are going without pay. Trump is under fire from ranchers, who say his ideas to lower prices address \"symptoms not the problems\". The former US vice-president made her strongest suggestion to date she will make another bid for the White House Around 15,000 Gazans are waiting for urgent medical treatment, according to the UN. Zhi Dong Zhang, known as Brother Wang, was attempting to flee to Russia with false papers when his plot unravelled. Addison Barger smashes the first grand slam by a pinch-hitter in World Series history as the Toronto Blue Jays thrash the LA Dodgers 11-4 in game one. The deployment marks a major escalation in what the US says is a campaign against drug traffickers, which Trump warns will include \"land action\"."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "NASA’s Moon Race Looks like a Losing Bet Former NASA officials warn that the U.S. looks poised to lose its self-declared race to beat China to the moon Dan Vergano Napoleon’s Defeat in Russia Was Aided by Two Surprising Deadly Diseases Andrea Tamayo Why Pregnant People Are Left Out of Drug Safety Studies Rachel Feltman, Tanya Lewis, Fonda Mwangi, Alex Sugiura FDA Warns People Not to Eat Recalled Eggs Contaminated with Salmonella Tanya Lewis Math Puzzle: Diplomatic Gift-Giver"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6d6bfd14e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
