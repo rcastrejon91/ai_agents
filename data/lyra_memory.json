@@ -3138,5 +3138,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6d6bfd14e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-10-26",
+    "timestamp": "2025-10-26T15:22:07.515583+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Trump: (definition pending — no model key set)",
+      "Yoshinobu Yamamoto: (definition pending — no model key set)",
+      "Los Angeles Dodgers: (definition pending — no model key set)",
+      "Toronto Blue Jays: (definition pending — no model key set)",
+      "World Series: (definition pending — no model key set)",
+      "Four: (definition pending — no model key set)",
+      "Hadush Kebatu: (definition pending — no model key set)",
+      "London: (definition pending — no model key set)",
+      "Essex: (definition pending — no model key set)",
+      "Syrian: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Four thieves broke into the world's most-visited museum in broad daylight, stealing eight items worth €88m (£76m; $102m). Trump has announced he's adding 10% to his current levies on one of the biggest US trading partners. Yoshinobu Yamamoto throws a complete game as the Los Angeles Dodgers beat the Toronto Blue Jays 5-1 to draw level at 1-1 in the best-of-seven World Series. Hadush Kebatu is arrested in north London, two days after being mistakenly released from an Essex jail. Syrian refugees in Turkey allege they were taken advantage of when they were desperate for help. Trump has announced he's adding 10% to his current levies on one of the biggest US trading partners. The former vice-president tells the BBC she is not sure whether it was “grace or recklessness” that stopped her speaking up. US trade secretary says the two will sign a deal on TikTok, while hinting at agreement on rare earths and tariffs. The story of a dramatic and heroic rescue that has captured the public imagination in Ukraine. Yoshinobu Yamamoto throws a complete game as the Los Angeles Dodgers beat the Toronto Blue Jays 5-1 to draw level at 1-1 in the best-of-seven World Series."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "error": "403 Client Error: Forbidden for url: https://www.scientificamerican.com/",
+        "reason": "fetch error: 403 Client Error: Forbidden for url: https://www.scientificamerican.com/"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f010a192f80>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
