@@ -3778,5 +3778,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f2691d24e20>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-10",
+    "timestamp": "2025-11-10T15:28:27.941130+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Red Fort: (definition pending — no model key set)",
+      "Indian: (definition pending — no model key set)",
+      "French: (definition pending — no model key set)",
+      "October: (definition pending — no model key set)",
+      "Libyan: (definition pending — no model key set)",
+      "Muammar Gaddafi: (definition pending — no model key set)",
+      "White House: (definition pending — no model key set)",
+      "Mark Meadows: (definition pending — no model key set)",
+      "The Democratic: (definition pending — no model key set)",
+      "The BBC: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The deal paves the way for the government to reopen but the agreement still needs to clear more vote hurdles. The blast happened near the Red Fort metro station in a densely populated area of the Indian capital. The former French president was jailed in October for conspiring to fund his election campaign with money from late Libyan dictator Muammar Gaddafi. He also pardons his former White House chief of staff, Mark Meadows in a proclamation vowing to \"end a grave national injustice\". The Democratic defections broke a weeks-long deadlock amid the longest ever US shutdown. The BBC says it will respond \"in due course\" to the letter from the US president. Parts of El Paso that were once teeming with migrants now lay largely silent as border crossings hit a 50-year low. Atletico Ottawa win the North Star Cup with an \"icicle kick\" lighting up a match that was repeatedly stopped to clear snow from the pitch. As the two nations vie for key materials, the US has regained the lead in foreign direct investments in African countries. Key takeaways after a Senate breakthrough heralds a possible end in sight to the longest shutdown in US history."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why Do Only Some People with Schizophrenia Hear Voices? New research aims to tease out what exactly is happening in the brains of people with schizophrenia who have auditory hallucinations Hannah Seo Scientists See ‘Eureka’ Moments in Mathematicians’ Chalkboard Writings Matthew Hutson What Food Texture Teaches Us about Perception, Culture and Language Rachel Feltman, Kendra Pierre-Louis, Fonda Mwangi, Alex Sugiura, Jeffery DelViscio Rubin Observatory Discovers Surprise ‘Tail’ on Iconic Galaxy Jenna Ahart, Nature magazine Easy Sudoku: November 10, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faccbdd5fc0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
