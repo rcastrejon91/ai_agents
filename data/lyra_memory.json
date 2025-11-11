@@ -3820,5 +3820,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faccbdd5fc0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-11",
+    "timestamp": "2025-11-11T15:27:56.482244+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Qian Zhimin: (definition pending — no model key set)",
+      "Chinese: (definition pending — no model key set)",
+      "Senate: (definition pending — no model key set)",
+      "House: (definition pending — no model key set)",
+      "Mohsin Naqvi: (definition pending — no model key set)",
+      "Catherine Connolly: (definition pending — no model key set)",
+      "Michael: (definition pending — no model key set)",
+      "Higgins: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Friday: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The spending plan may have passed the Senate, but it's not yet a done deal in the House. Mohsin Naqvi says the bomber tried to gain entry to a court complex but was unable to get inside. Qian Zhimin bought cryptocurrency using funds stolen from thousands of Chinese pensioners, say police. Catherine Connolly takes over the role from Michael D Higgins, whose 14-year term ended at midnight. Trump says he will file legal action by Friday, seeking $1bn, if the BBC does not apologise and \"appropriately compensate\" him. The Queen and the Princess of Wales have joined services to mark Armistice Day in the UK. Eyewitnesses describe what they saw after the blast near the Red Fort in the Indian capital. Despite having worked with sharks for 30 years, Mexican Mauricio Hoyos never thought he would encounter one so close up. She is resuming her role in Wicked as the Good Witch of the North with Cynthia Erivo back as Elphaba. Qian Zhimin bought cryptocurrency using funds stolen from thousands of Chinese pensioners, say police."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "The World’s Largest Wind Turbine Will Smash Previous Records A planned supersized floating wind turbine with two spinning heads will generate nearly double the amount of energy as the current record-holder You Xiaoying Canada Just Lost Its Measles-Free Status. The U.S. Could Soon Follow Humberto Basilio The Slop Cycle—How Every Media Revolution Breeds Rubbish and Art Deni Ellis Béchard FDA Strips Health Risk Warnings from Menopause Hormone Therapy Tanya Lewis, Lauren J. Young Medium Sudoku: November 11, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f54571d17b0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
