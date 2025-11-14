@@ -3948,5 +3948,47 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f164ea61720>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-14",
+    "timestamp": "2025-11-14T15:23:40.661003+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Six: (definition pending — no model key set)",
+      "Kyiv: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Russia: (definition pending — no model key set)",
+      "Black Sea: (definition pending — no model key set)",
+      "The BBC: (definition pending — no model key set)",
+      "James Landale: (definition pending — no model key set)",
+      "Swiss: (definition pending — no model key set)",
+      "Washington: (definition pending — no model key set)",
+      "Oval Office: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Six people are killed in Kyiv, and Ukraine targets one of Russia's biggest oil ports on the Black Sea coast. The BBC's James Landale reports from the east of the capital where a drone struck a multi-storey residential building. Swiss ministers have had \"very positive\" talks in Washington, but a private business visit to the Oval Office may have made all the difference. Los Angeles Dodgers superstar Shohei Ohtani wins baseball's Most Valuable Player for the third year in a row, and the fourth time overall. Lawyers for the US president have threatened to sue the corporation for $1bn (£759m). October marked the 10th month of decreased Canadian travel to the US, with many staying away over political and trade tensions. Johnson Wen rushed at the actress in Singapore, during the Asia-Pacific premiere of Wicked: For Good. Charvet Drucker was photographing a pod of orcas when a seal boarded her boat to escape the hunt. Advertisers are using AI to personalise adverts but not everyone agrees that's a good idea. The picture shows the king at his Sandringham estate in Norfolk, holding a shepherd's crook."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "We Had a Name for ‘Galaxies’ before We Knew They Existed Centuries before other galaxies were known to exist, astronomers called them “spiral nebulas.” Today the defunct term still sparks confusion Phil Plait Raccoons Are Showing Early Signs of Domestication Marina Wang Global Study Reveals Best Cities for Walking and Cycling Jesse Greenspan Are Turkeys at Risk of Bird Flu This Thanksgiving? Meghan Bartels Killer Sudoku: November 14, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f719d64da50>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
