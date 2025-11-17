@@ -4074,5 +4074,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc839151600>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-17",
+    "timestamp": "2025-11-17T15:28:49.590437+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Sheikh Hasina: (definition pending — no model key set)",
+      "YouTuber Jake Paul: (definition pending — no model key set)",
+      "Anthony Joshua: (definition pending — no model key set)",
+      "December: (definition pending — no model key set)",
+      "Canada: (definition pending — no model key set)",
+      "New: (definition pending — no model key set)",
+      "Iraq: (definition pending — no model key set)",
+      "Serial: (definition pending — no model key set)",
+      "Johnson Wen: (definition pending — no model key set)",
+      "Three: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The former prime minister was tried by a special tribunal after 1,400 died during a crackdown on unrest in 2024. Sheikh Hasina is credited for the country's economic progress but also accused of authoritarianism. YouTuber Jake Paul will fight ex-world heavyweight champion Anthony Joshua in a professional bout in December. The rift between two provinces at odds over a proposed pipeline is straining Canada's unity as it seeks to become an energy superpower. New evidence raises doubts about the longest US war crimes investigation of the Iraq war and how US forces are held to account. \"We have nothing to hide,\" the US president writes after previously resisting publishing the documents. \"Serial intruder\" Johnson Wen was given nine days in jail for being a public nuisance. Three peregrine falcon chicks, stars of the \"Nestflix\" livestream, have finally taken their first flights above the Melbourne city skyline. It's tempting to tell your child they can't hang out with a friend, but that often won't solve the problem. How do you police the world's biggest tropical rainforest? Indigenous people have set up their own unarmed guard."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "How to Send a Message to Future Civilizations When written knowledge is more ephemeral than ever, how can we pass on what’s important? Adam Rogers Does the Universe Keep Secrets? Inside the Black Hole Information Paradox Clara Moskowitz The Human Network behind a Digital Time Capsule Kendra Pierre-Louis, David M. Ewalt, Jeffery DelViscio, Fonda Mwangi, Alex Sugiura How Influential People Map Their Social World Oriel FeldmanHall Easy Sudoku: November 17, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd5bc9a0df0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
