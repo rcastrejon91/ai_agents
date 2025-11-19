@@ -4160,5 +4160,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb7ea0f9570>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-19",
+    "timestamp": "2025-11-19T15:27:13.518592+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Two: (definition pending — no model key set)",
+      "Ternopil: (definition pending — no model key set)",
+      "One: (definition pending — no model key set)",
+      "Once: (definition pending — no model key set)",
+      "CIA: (definition pending — no model key set)",
+      "Curacao: (definition pending — no model key set)",
+      "World Cup: (definition pending — no model key set)",
+      "Steve McClaren: (definition pending — no model key set)",
+      "Jamaica: (definition pending — no model key set)",
+      "Epstein: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Two blocks of flats were attacked in the western city of Ternopil. One was almost destroyed. Once the US president signs the measure, the justice department will have 30 days to release the materials. The US president's claims that the crown prince \"knew nothing\" contradict the CIA's own assessment. Curacao have become the smallest nation to qualify for the World Cup after drawing with Steve McClaren's Jamaica. The former US treasury secretary has faced a backlash over frequent messages to Epstein. John Healey says he has updated the Navy's rules for tracking the vessel after the \"dangerous\" move. Lebanese-French musician Omar Harfouch is one of two judges who resigned days before the finals in Thailand. The portrait of Austrian heiress Elisabeth Lederer was looted by the Nazis and almost destroyed. A new study looks at how the mouth-on-mouth smooch came into being, and concludes that Neanderthals also kissed. The votes in Congress to release more files came after the president faced pressure from within his own party."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Postpartum Depression Gets a Fast-Acting Fix Deep emotional distress after birth kills many mothers. A new kind of drug offers better, faster treatment Marla Broadfoot These Birds Learned to Tweet Like R2-D2. Listen to the Uncanny Results Kate Graham-Shaw How to Keep Your Gut Happy This Holiday Season Kendra Pierre-Louis, Fonda Mwangi, Alex Sugiura, Jeffery DelViscio Is Melatonin Safe? Experts Explain the Potential Risks—And the Benefits Lori Youmshajekian Hard Sudoku: November 19, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdce3e89d20>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
