@@ -4202,5 +4202,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdce3e89d20>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-20",
+    "timestamp": "2025-11-20T15:31:24.833136+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russia: (definition pending — no model key set)",
+      "Ukrainian: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Telegram: (definition pending — no model key set)",
+      "Mandani: (definition pending — no model key set)",
+      "New York: (definition pending — no model key set)",
+      "Java Island: (definition pending — no model key set)",
+      "Mount Semeru: (definition pending — no model key set)",
+      "Justice Department: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "It comes after reports the US and Russia have prepared a 28-point peace plan, allegedly with major concessions from Ukraine. Russia is using Telegram to recruit Ukrainian children and teenagers to carry out sabotage and bombings according to the Ukrainian government. Trump has framed Mandani as a dangerous \"communist\", while the New York mayor has said he will take on Trump. Java Island’s tallest mountain, a volcano called Mount Semeru, has spewed tall plumes of ash clouds that engulfed bridges and the surrounding countryside. The bill gives the US Justice Department 30 days to release all the files in a searchable format. Ari Gisell told her boyfriend she liked the tyres on their car, instigating the carjacking that killed three surfers in Mexico last year. The US rapper claims she is \"not a Broadway act\" as she kicks off her Ma Vie World Tour. The court blocked La Pascaline, a 400-year-old calculating machine, from being exported from France. Soldiers from more than 20 countries, diplomats and aid workers are based at the Civil-Military Coordination Centre (CMCC). In a new political age, some companies have been accused of keeping quiet about climate pledges."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Kissing May Have Evolved 21.5 Million Years Ago Humans and their ancestors have likely been kissing for a very long time Stephanie Pappas JWST May Have Seen the First Stars in the Universe Humberto Basilio RFK, Jr., Says Peanut Allergies May Be Tied to Aluminum in Vaccines and Pesticides. Here's What the Science Says Tanya Lewis NASA’s Latest Images Bring Interstellar Comet 3I/ATLAS Into View Meghan Bartels Expert Sudoku: November 20, 2025",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdce5ef9a80>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
