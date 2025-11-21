@@ -4246,5 +4246,47 @@
     ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdce5ef9a80>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-21",
+    "timestamp": "2025-11-21T15:23:09.402566+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Moscow: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Meanwhile: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Several: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Hamas: (definition pending — no model key set)",
+      "Gaza: (definition pending — no model key set)",
+      "COP30: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Meanwhile, Moscow says it is yet to receive anything official from the US on the peace plan. The US is working to a quick timetable to push through the deal, which appears to heavily reflect many of Moscow's demands. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. US officials say the rules will stop \"destructive ideologies\" but others argue it is redefining human rights principles for Trump's goals. Several groups - some of them backed by Israel - are ranged against Hamas in Gaza, with complex and overlapping ties. A row over fossil fuels has broken out at COP30 but this is also likely to be a negotiating tactic. A male teacher \"got the whole brunt\" of the attack and some children were hit with bear spray. A scandal-filled pageant season ends with the crowning of a new Miss Universe in Bangkok, Thailand. The US has justified its air and naval campaign as necessary to fight drug smuggling into the US. The world-first law aims to reduce the \"risks\" children face online - but it's received pushback."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Alien Comets Swarm around Other Stars Comets don’t just orbit our sun. “Exocomets” are common around other stars in the galaxy, too Phil Plait Nanocosmos Shows Nature’s Invisible Art Kendra Pierre-Louis, Jeffery DelViscio New Research Shows How AI Could Transform Math, Physics, Cancer Research, and More Deni Ellis Béchard Illegal Wildlife Trade Tied to Drugs, Arms, and Human Trafficking Rachel Nuwer Killer Sudoku: November 21, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f8649c35c60>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
