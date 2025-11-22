@@ -4288,5 +4288,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f8649c35c60>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-22",
+    "timestamp": "2025-11-22T15:07:14.872970+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "BBC: (definition pending — no model key set)",
+      "Russia: (definition pending — no model key set)",
+      "Here: (definition pending — no model key set)",
+      "Leaders: (definition pending — no model key set)",
+      "Europe: (definition pending — no model key set)",
+      "Canada: (definition pending — no model key set)",
+      "Japan: (definition pending — no model key set)",
+      "The Danish: (definition pending — no model key set)",
+      "Greenlandic: (definition pending — no model key set)",
+      "Iranians: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Leaders from Europe, Canada and Japan say the plan needs \"additional work\" but includes elements \"essential for a just and lasting peace\". A falling out with the US president erupted amid her relentless calls to release documents on the late paedophile. The Danish government has banned the use of parental competency tests on Greenlandic families after decades of criticism. Iranians who have converted to Christianity and had their asylum claims rejected speak to the BBC. A conclusion is set to be made in Belém, Brazil, at the end of days of negotiations between delegations from nearly 200 countries. It was billed as potentially the political showdown of the year - instead, both men gave one another praise. The kidnapping comes amid a surge of attacks by armed groups in the African nation. Celebs including Charlie XCX swear by them. But what are polynucleotides and do they work? Russia and Ukraine may be about to enter a period of intense diplomacy, writes the BBC's Russia editor. Putin's envoy finds himself under the spotlight over a draft peace plan that emerged after he spent days with Steve Witkoff in Miami."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "5 Charts Show Climate Progress as Paris Agreement Turns 10 The 2015 Paris Agreement forged a path for the world to stave off the worst climate change scenarios. Here’s where we stand 10 years later Meghan Bartels Do Brain-Decoding Devices Threaten People's Privacy? Liam Drew, Nature magazine Mars Sample That May Contain Evidence of Life Might Never Come Home Jonathan O'Callaghan Heart Rate Irregularity Sounds Bad, but Here’s Why You Want a Bit of It Lydia Denworth Math Puzzle: The Doughnut-Shaped Chess Board"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f64f38f5090>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
