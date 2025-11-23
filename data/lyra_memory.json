@@ -4330,5 +4330,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f64f38f5090>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-23",
+    "timestamp": "2025-11-23T15:07:05.889987+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Ukraine: (definition pending — no model key set)",
+      "November: (definition pending — no model key set)",
+      "Russia: (definition pending — no model key set)",
+      "Zelensky: (definition pending — no model key set)",
+      "Kyiv: (definition pending — no model key set)",
+      "Land: (definition pending — no model key set)",
+      "Pokrovsk: (definition pending — no model key set)",
+      "Zena Cardman: (definition pending — no model key set)",
+      "International Space Station: (definition pending — no model key set)",
+      "Aonishiki: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Ukraine's allies have expressed concern that the plan favours Russia, but Zelensky says Kyiv's interests could be included. Land drones are increasingly the only means of transporting supplies to the embattled city of Pokrovsk. Zena Cardman captured the footage of the display from the International Space Station on 17 November. Aonishiki wins the November sumo tournament in Japan and becomes the first person from Ukraine to claim an elite-level sumo championship. While the US escalates a military threat in nearby waters, Venezuelans say the real enemy of the people is a sharp rise in food prices. Aishat Baimuradova fled her home this year in the hope of living the way she wanted, but she was then found dead in her rented flat. Ripped-off customers are hunting for Miles Hart after he sold hundreds of Glastonbury tickets and vanished. The actress and singer has not commented on the incident, but appeared visibly shaken by it. The authorities in landlocked Ethiopia have ratcheted up rhetoric over access to an Eritrean port. Greene's tenure in Congress may be ending, but her involvement in US political life may not be over."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Can Digital Ghosts Help Us Heal? What can AI “griefbots” do for those in mourning? David Berreby Do Brain-Decoding Devices Threaten People's Privacy? Liam Drew, Nature magazine Personalized mRNA Vaccines Will Revolutionize Cancer Treatment—If Funding Cuts Don’t Doom Them Rowan Moore Gerety Will We Run Out of Rare Earth Elements? Clara Moskowitz, Studio Terp Cover Art Jigsaw: October 1930"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f961175d7e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
