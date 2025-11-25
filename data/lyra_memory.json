@@ -4414,5 +4414,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1833159a80>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-25",
+    "timestamp": "2025-11-25T15:08:49.640458+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Trump: (definition pending — no model key set)",
+      "Russian: (definition pending — no model key set)",
+      "Abu Dhabi: (definition pending — no model key set)",
+      "Brain: (definition pending — no model key set)",
+      "President Donald Trump: (definition pending — no model key set)",
+      "Comey: (definition pending — no model key set)",
+      "James: (definition pending — no model key set)",
+      "Oxfordshire: (definition pending — no model key set)",
+      "Buddhist: (definition pending — no model key set)",
+      "Rivals: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "It comes as US and Russian officials are set to hold talks in Abu Dhabi. Brain scans on thousands of people reveal the dramatic shifts the brain goes through between birth and death. President Donald Trump has repeatedly called for the prosecution of Comey and James, declaring them \"guilty as hell\". A 39-year-old man is arrested after the huge pile of rubbish was found in Oxfordshire. The general manager of a Buddhist temple was startled to see her \"opening her eyes\" as the coffin opened, AP news agency says. Rivals, based on the Jilly Cooper novel, won best drama while Ludwig won the best comedy award. The former Trump ally has decided to end her time in Congress early after a public fallout with the president. The vehicle was travelling along Ohio’s I-70, with the dramatic collision occurring in Columbus last Thursday. Marven's mother and sister could be sent back to gang-ravaged Haiti as a US protection scheme ends. Dozens of pro-Trump accounts are being accused of misleading followers after the social media site began showing user locations."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "First Human Dies of Rare H5N5 Bird Flu Strain. Here’s What You Need to Know H5N1 bird flu has been circulating in U.S. wildlife since late 2021 but has caused only one human fatality. Now a different type of bird flu has also caused a death Meghan Bartels This Fossil Is Rewriting the Story of How Plants Spread across the Planet Taylor Mitchell Brown Is the U.S. in Store for Another Brutal Flu Season? Lauren J. Young Psychedelics and Immortality Take Center Stage at MAHA Summit Max Kozlov, Nature magazine Medium Sudoku: November 25, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff79c1a0040>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
