@@ -4456,5 +4456,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff79c1a0040>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-26",
+    "timestamp": "2025-11-26T15:07:34.496387+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Trump: (definition pending — no model key set)",
+      "Rachel Reeves: (definition pending — no model key set)",
+      "Tennessee: (definition pending — no model key set)",
+      "Democratic: (definition pending — no model key set)",
+      "Republican: (definition pending — no model key set)",
+      "They: (definition pending — no model key set)",
+      "Lux: (definition pending — no model key set)",
+      "Its: (definition pending — no model key set)",
+      "Seasonal: (definition pending — no model key set)",
+      "Saving Room: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The fire has engulfed a number of buildings, with flames spreading on bamboo scaffolding. At least one firefighter is among the dead. At least 13 people have been killed in the huge blaze,  but what caused it is still unclear. The six lawmakers say that they will not be intimidated by the Trump administration. The victim was reading her phone while riding on a train when the man allegedly doused her with gasoline. The US president said he had not heard the audio, but that it sounded like \"standard\" negotiations. Rachel Reeves has unveiled tax rises and an end to the two-child benefit cap - the opposition leader calls it a \"total humiliation\". In a Tennessee district the president won by 22% last year, a Democratic upset could prompt Republican panic. They argue the law - which will block users under 16 from having social media accounts - is unconstitutional. The singer's latest, Lux, has got us talking about classical music. Its popularity might surprise you. Seasonal hiring is poised to drop to its lowest level since 2008, a sign of caution among US businesses in the face of tariffs and consumer angst."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "‘Saving Room’ for a Big Thanksgiving Dinner Can Be Bad for Gut Health Skipping meals before a big holiday feast probably isn’t the best idea for gut health, experts say. Here’s how to prevent overeating on an empty stomach—and tips for if you do Lauren J. Young U.S. Launches Apollo-Style Mission to Harness AI and Big Data for Scientific Discovery Deni Ellis Béchard Is This Our First AI Thanksgiving? Deni Ellis Béchard How Wild Turkeys Made a Comeback from Near Extinction Kendra Pierre-Louis, Fonda Mwangi, Alex Sugiura Hard Sudoku: November 26, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb49bca1ae0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
