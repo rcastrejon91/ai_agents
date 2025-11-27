@@ -4498,5 +4498,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb49bca1ae0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-27",
+    "timestamp": "2025-11-27T15:08:07.654162+00:00",
+    "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Which Pie Gives: (definition pending — no model key set)",
+      "You: (definition pending — no model key set)",
+      "Biggest Sugar Rush: (definition pending — no model key set)",
+      "Pecan: (definition pending — no model key set)",
+      "Apple: (definition pending — no model key set)",
+      "Pumpkin: (definition pending — no model key set)",
+      "Scientific American: (definition pending — no model key set)",
+      "Thanksgiving: (definition pending — no model key set)",
+      "Tanya Lewis China: (definition pending — no model key set)",
+      "Giant Underground Neutrino: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Which Pie Gives You the Biggest Sugar Rush: Pecan, Apple or Pumpkin? Scientific American asked experts which type of Thanksgiving pie spikes blood sugar the most—and how to eat healthier while still enjoying the holidays Tanya Lewis China’s Giant Underground Neutrino Observatory Just Released Its First Results—And They’re Promising Jeanna Bryner How Wild Turkeys Made a Comeback from Near Extinction Kendra Pierre-Louis, Fonda Mwangi, Alex Sugiura ‘Saving Room’ for a Big Thanksgiving Dinner Can Be Bad for Gut Health Lauren J. Young Expert Sudoku: November 27, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Officials also reveal the Afghan suspect, Rahmanullah Lakanwal, drove across the country from Washington state before the attack. Three construction company executives have been arrested on suspicion of manslaughter after flammable materials were found on the tower blocks. The affected carriers ceased flying to Venezuela after the US warned of heightened military activity. From 10 December, social media firms must ensure Australians aged under 16 cannot have accounts. Footage geolocated by BBC Verify show the blaze taking hold in Wang Cheong House. The Pope makes his first foreign trip to Turkey and says a third world war is being \"fought piecemeal\". \"The only way to avoid danger is to prepare for it,\" says President Emmanuel Macron. Winter storm alerts and hazardous weather outlooks have been issued for parts of the US ahead of the Thanksgiving holiday. Argentina hopes that an oil and gas boom can benefit the whole country. Many critics give the return of the show glowing reviews - although others say it's past its prime.",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f99aaef9930>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
