@@ -4584,5 +4584,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb85398cb80>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-11-29",
+    "timestamp": "2025-11-29T15:07:21.780751+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Donald Trump: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "Andriy Yermak: (definition pending — no model key set)",
+      "Follow: (definition pending — no model key set)",
+      "Qatar Grand Prix: (definition pending — no model key set)",
+      "Juan Orlando: (definition pending — no model key set)",
+      "Around: (definition pending — no model key set)",
+      "Anthony Albanese: (definition pending — no model key set)",
+      "Jodie Haydon: (definition pending — no model key set)",
+      "Valentine: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The directive comes hours after Donald Trump said the US will pause migration from \"third-world countries\". A widening corruption scandal forced Ukraine's second most powerful person, Andriy Yermak, to resign. Follow live text updates and listen to radio commentary from the Qatar Grand Prix sprint race and qualifying. Juan Orlando Hernández was sentenced in the US to 45 years behind bars for conspiring to smuggle cocaine. The overnight attack kills at least three and injures dozens more. The late sex offender maintained contact with wealthy and influential people even after his first conviction. Around 6,000 planes were affected after an issue that could corrupt data was discovered. Anthony Albanese weds Jodie Haydon, after the couple became engaged on Valentine's Day last year. As the last flames are extinguished, many are now asking who is to blame for the deadly blaze. Footage geolocated by BBC Verify show the blaze taking hold in Wang Cheong House."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Could Symbolic AI Unlock Human-like Intelligence? Combining newer neural networks with older AI systems could be the secret to building an AI to match or surpass human intelligence Nicola Jones, Nature magazine The Incredible, Unlikely Story of How Cats Became Our Pets Meghan Bartels NASA Recruits Mars Perseverance Rover to Monitor Sun’s Activity Claire Cameron Here’s How to Get High-Resolution Views of Other Stars Phil Plait Math Puzzle: The Ancient City"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7f1d3a6da0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
   }
 ]
