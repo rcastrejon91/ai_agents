@@ -1,7 +1,8 @@
 export default function MicButton({ sendMessage }) {
   const startListening = () => {
-    const recognition = new (window.SpeechRecognition ||
-      window.webkitSpeechRecognition)();
+    const recognition = new (
+      window.SpeechRecognition || window.webkitSpeechRecognition
+    )();
     recognition.lang = "en-US";
     recognition.start();
     recognition.onresult = (event) => {
