@@ -4,11 +4,13 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm --workspace apps/companion_api run dev\" \"npm --workspace apps/companion_web run dev\"",
+    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
+    "dev:agents": "python \"Controller Script\" --start",
+    "dev:gateway": "python api_gateway.py",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:agents\" \"npm run dev:gateway\"",
     "check:pages": "node scripts/check-pages-default-export.mjs apps/companion_web/pages",
-    "build": "npm run check:pages && npm --workspace apps/companion_web run build && npm --workspace apps/companion_api run build",
-    "lint": "npm --workspaces run lint",
-    "test": "npm --workspaces run test"
+    "build": "npm run check:pages && next build",
+    "start:agents": "bash \"Startup Script\""
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
