@@ -4,8 +4,13 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
+    "dev": "concurrently \"npm --workspace apps/companion_api run dev\" \"npm --workspace apps/companion_web run dev\"",
     "check:pages": "node scripts/check-pages-default-export.mjs apps/companion_web/pages",
-    "build": "npm run check:pages && next build"
+    "build": "npm run check:pages && npm --workspace apps/companion_web run build && npm --workspace apps/companion_api run build",
+    "lint": "npm --workspaces run lint",
+    "test": "npm --workspaces run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
