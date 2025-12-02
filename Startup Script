@@ -1,0 +1,37 @@
+#!/bin/bash
+# start.sh
+
+# Start agents in background
+echo "Starting agents..."
+python controller.py --start &
+AGENTS_PID=$!
+
+# Wait for agents to start
+sleep 5
+
+# Register agents with registry
+echo "Registering agents..."
+python controller.py --register
+
+# Start gateway
+echo "Starting gateway..."
+python gateway.py &
+GATEWAY_PID=$!
+
+# Function to handle cleanup
+function cleanup {
+  echo "Stopping all processes..."
+  kill $AGENTS_PID
+  kill $GATEWAY_PID
+  echo "Done"
+  exit 0
+}
+
+# Register cleanup function for SIGINT
+trap cleanup SIGINT
+
+# Keep script running
+echo "All systems running. Press Ctrl+C to stop."
+while true; do
+  sleep 1
+done
