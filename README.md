@@ -22,3 +22,4 @@ To install the agents, clone this repository and install the required dependenci
 git clone https://github.com/rcastrejon91/ai_agents.git
 cd ai_agents
 pip install -r requirements.txt
+```
