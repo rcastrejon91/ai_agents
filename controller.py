@@ -7,7 +7,7 @@ import json
 import logging
 import os
 import sys
-from typing import Dict, Any, List
+from typing import Any, Dict
 
 # Configure logging
 logging.basicConfig(
@@ -20,31 +20,34 @@ logger = logging.getLogger("controller")
 try:
     from core.agent_registry import agent_registry
 except ImportError:
-    logger.error("Could not import agent_registry. Make sure core/agent_registry.py exists.")
+    logger.error(
+        "Could not import agent_registry. Make sure core/agent_registry.py exists."
+    )
+
     # Create a simple stub for testing
     class AgentRegistryStub:
         async def call_agent(self, agent_id, request_data):
             return {"error": "Agent registry not available"}
-        
+
         def register_agent(self, agent_id, host, port):
             logger.info(f"Would register agent {agent_id} at {host}:{port}")
             return True
-            
+
         def get_agent(self, agent_id):
             return None
-            
+
         def list_agents(self):
             return []
-    
+
     agent_registry = AgentRegistryStub()
 
 
 class AgentController:
     """Controller for managing and routing requests to agents."""
-    
+
     def __init__(self) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
-    
+
     def register_agents(self) -> None:
         """Register all agents with the registry."""
         agent_configs = [
@@ -55,7 +58,7 @@ class AgentController:
             {"id": "healthcare-agent", "host": "localhost", "port": 8005},
             {"id": "real-estate-agent", "host": "localhost", "port": 8006},
         ]
-        
+
         for config in agent_configs:
             success = agent_registry.register_agent(
                 config["id"], config["host"], config["port"]
@@ -64,8 +67,10 @@ class AgentController:
                 self.logger.info(f"Registered agent: {config['id']}")
             else:
                 self.logger.warning(f"Failed to register agent: {config['id']}")
-    
-    async def route(self, agent_id: str, request_data: Dict[str, Any]) -> Dict[str, Any]:
+
+    async def route(
+        self, agent_id: str, request_data: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Route a request to the specified agent."""
         return await agent_registry.call_agent(agent_id, request_data)
 
@@ -73,7 +78,7 @@ class AgentController:
 async def start_agents():
     """Start all agents in separate processes."""
     import subprocess
-    
+
     agent_modules = [
         "agents/finance_agent.py",
         "agents/legal_agent.py",
@@ -82,7 +87,7 @@ async def start_agents():
         "agents/healthcare_agent.py",
         "agents/real_estate_agent.py",
     ]
-    
+
     processes = []
     for module in agent_modules:
         if os.path.exists(module):
@@ -91,7 +96,7 @@ async def start_agents():
             logger.info(f"Started agent: {module}")
         else:
             logger.warning(f"Agent module not found: {module}")
-    
+
     return processes
 
 
@@ -99,24 +104,27 @@ async def test_agents():
     """Test all registered agents."""
     controller = AgentController()
     controller.register_agents()
-    
+
     # Test pricing agent
     try:
-        pricing_result = await controller.route("pricing-agent", {
-            "query": "Calculate price",
-            "parameters": {
-                "session_id": "test-session",
-                "metrics": {
-                    "timeOnPage": 120,
-                    "pageViews": 3,
-                    "timeOfDay": 14,
-                    "dayOfWeek": 2,
-                    "location": 5,
-                    "deviceType": 3,
-                    "returningVisitor": 1,
-                }
-            }
-        })
+        pricing_result = await controller.route(
+            "pricing-agent",
+            {
+                "query": "Calculate price",
+                "parameters": {
+                    "session_id": "test-session",
+                    "metrics": {
+                        "timeOnPage": 120,
+                        "pageViews": 3,
+                        "timeOfDay": 14,
+                        "dayOfWeek": 2,
+                        "location": 5,
+                        "deviceType": 3,
+                        "returningVisitor": 1,
+                    },
+                },
+            },
+        )
         print(f"Pricing Agent Result: {json.dumps(pricing_result, indent=2)}")
     except Exception as e:
         print(f"Error testing pricing agent: {str(e)}")
@@ -127,9 +135,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AI Agent Controller")
     parser.add_argument("--start", action="store_true", help="Start all agents")
     parser.add_argument("--test", action="store_true", help="Test all agents")
-    parser.add_argument("--register", action="store_true", help="Register agents with registry")
+    parser.add_argument(
+        "--register", action="store_true", help="Register agents with registry"
+    )
     args = parser.parse_args()
-    
+
     # Run the appropriate action
     if args.start:
         processes = asyncio.run(start_agents())
