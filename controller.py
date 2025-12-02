@@ -1,107 +1,156 @@
-from __future__ import annotations
+#!/usr/bin/env python3
+# Controller Script - Manages AI agent operations
 
+import argparse
 import asyncio
 import json
 import logging
-import uuid
-from typing import Any, Dict
+import os
+import sys
+from typing import Dict, Any, List
 
-from agents import (
-    FinanceAgent,
-    HealthcareAgent,
-    LegalAgent,
-    PricingAgent,
-    RealEstateAgent,
-    RetailAgent,
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
+logger = logging.getLogger("controller")
+
+# Try to import from core directory
+try:
+    from core.agent_registry import agent_registry
+except ImportError:
+    logger.error("Could not import agent_registry. Make sure core/agent_registry.py exists.")
+    # Create a simple stub for testing
+    class AgentRegistryStub:
+        async def call_agent(self, agent_id, request_data):
+            return {"error": "Agent registry not available"}
+        
+        def register_agent(self, agent_id, host, port):
+            logger.info(f"Would register agent {agent_id} at {host}:{port}")
+            return True
+            
+        def get_agent(self, agent_id):
+            return None
+            
+        def list_agents(self):
+            return []
+    
+    agent_registry = AgentRegistryStub()
 
 
 class AgentController:
-    """Routes requests to the appropriate agent."""
-
-    def __init__(self, enable_memory: bool = False) -> None:
-        self.agents = {
-            "finance": FinanceAgent(),
-            "legal": LegalAgent(),
-            "retail": RetailAgent(),
-            "healthcare": HealthcareAgent(),
-            "real_estate": RealEstateAgent(),
-            "pricing": PricingAgent(),
-        }
+    """Controller for managing and routing requests to agents."""
+    
+    def __init__(self) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
-        self.memory = None
-        if enable_memory:
-            from memory import MemoryManager
-
-            self.memory = MemoryManager()
-
-    async def route(self, agent_name: str, input_data: Dict[str, Any]) -> Any:
-        agent = self.agents.get(agent_name)
-        if agent is None:
-            self.logger.error("Unknown agent requested: %s", agent_name)
-            raise ValueError(f"Unknown agent '{agent_name}'")
-        if not isinstance(input_data, dict):
-            self.logger.error("Input data for %s must be a dictionary", agent_name)
-            raise ValueError("Input data must be a dictionary")
-        try:
-            session_id = input_data.get("session_id")
-            if not session_id:
-                session_id = uuid.uuid4().hex
-
-            full_input = dict(input_data)
-            full_input.setdefault("session_id", session_id)
-
-            result = await agent.process_task(full_input)
-            self.logger.info("Agent %s processed task", agent_name)
-            if isinstance(result, dict):
-                result.setdefault("session_id", session_id)
-            if self.memory:
-                # persist complete turn history
-                self.memory.log(session_id, full_input, result)
-            return result
-        except Exception:
-            self.logger.exception("Agent %s failed to process task", agent_name)
-            raise
-
-    def available_agents(self) -> Dict[str, str]:
-        return {name: agent.industry for name, agent in self.agents.items()}
+    
+    def register_agents(self) -> None:
+        """Register all agents with the registry."""
+        agent_configs = [
+            {"id": "finance-agent", "host": "localhost", "port": 8001},
+            {"id": "legal-agent", "host": "localhost", "port": 8002},
+            {"id": "retail-agent", "host": "localhost", "port": 8003},
+            {"id": "pricing-agent", "host": "localhost", "port": 8004},
+            {"id": "healthcare-agent", "host": "localhost", "port": 8005},
+            {"id": "real-estate-agent", "host": "localhost", "port": 8006},
+        ]
+        
+        for config in agent_configs:
+            success = agent_registry.register_agent(
+                config["id"], config["host"], config["port"]
+            )
+            if success:
+                self.logger.info(f"Registered agent: {config['id']}")
+            else:
+                self.logger.warning(f"Failed to register agent: {config['id']}")
+    
+    async def route(self, agent_id: str, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Route a request to the specified agent."""
+        return await agent_registry.call_agent(agent_id, request_data)
 
 
-async def _memory_test() -> None:
-    """Simple in-process test for the memory manager."""
-    ctrl = AgentController(enable_memory=True)
-    session_id = uuid.uuid4().hex
-    await ctrl.route(
-        "finance", {"session_id": session_id, "revenue": 100, "expenses": 50}
-    )
-    await ctrl.route(
-        "finance", {"session_id": session_id, "revenue": 200, "expenses": 125}
-    )
-    await ctrl.route(
-        "pricing",
-        {
-            "session_id": session_id,
-            "metrics": {
-                "timeOnPage": 120,
-                "pageViews": 3,
-                "timeOfDay": 14,
-                "dayOfWeek": 2,
-                "location": 5,
-                "deviceType": 3,
-                "returningVisitor": 1,
-            },
-        },
-    )
-    history = ctrl.memory.recall(session_id) if ctrl.memory else []
-    print(json.dumps(history, indent=2))
+async def start_agents():
+    """Start all agents in separate processes."""
+    import subprocess
+    
+    agent_modules = [
+        "agents/finance_agent.py",
+        "agents/legal_agent.py",
+        "agents/retail_agent.py",
+        "agents/pricing_agent.py",
+        "agents/healthcare_agent.py",
+        "agents/real_estate_agent.py",
+    ]
+    
+    processes = []
+    for module in agent_modules:
+        if os.path.exists(module):
+            process = subprocess.Popen([sys.executable, module])
+            processes.append((module, process))
+            logger.info(f"Started agent: {module}")
+        else:
+            logger.warning(f"Agent module not found: {module}")
+    
+    return processes
+
+
+async def test_agents():
+    """Test all registered agents."""
+    controller = AgentController()
+    controller.register_agents()
+    
+    # Test pricing agent
+    try:
+        pricing_result = await controller.route("pricing-agent", {
+            "query": "Calculate price",
+            "parameters": {
+                "session_id": "test-session",
+                "metrics": {
+                    "timeOnPage": 120,
+                    "pageViews": 3,
+                    "timeOfDay": 14,
+                    "dayOfWeek": 2,
+                    "location": 5,
+                    "deviceType": 3,
+                    "returningVisitor": 1,
+                }
+            }
+        })
+        print(f"Pricing Agent Result: {json.dumps(pricing_result, indent=2)}")
+    except Exception as e:
+        print(f"Error testing pricing agent: {str(e)}")
 
 
 if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description="Agent Controller")
-    parser.add_argument("--test-memory", action="store_true", help="run memory test")
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="AI Agent Controller")
+    parser.add_argument("--start", action="store_true", help="Start all agents")
+    parser.add_argument("--test", action="store_true", help="Test all agents")
+    parser.add_argument("--register", action="store_true", help="Register agents with registry")
     args = parser.parse_args()
-
-    if args.test_memory:
-        asyncio.run(_memory_test())
+    
+    # Run the appropriate action
+    if args.start:
+        processes = asyncio.run(start_agents())
+        try:
+            # Keep the main process running
+            print("Agents started. Press Ctrl+C to stop.")
+            while True:
+                asyncio.run(asyncio.sleep(1))
+        except KeyboardInterrupt:
+            # Terminate all agent processes on Ctrl+C
+            print("\nStopping all agents...")
+            for module, process in processes:
+                print(f"Stopping {module}...")
+                process.terminate()
+            print("All agents stopped")
+    elif args.test:
+        asyncio.run(test_agents())
+    elif args.register:
+        controller = AgentController()
+        controller.register_agents()
+        print("Agents registered")
+    else:
+        print("No action specified. Use --start, --test, or --register")
+        parser.print_help()
