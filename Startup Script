@@ -1,37 +1,64 @@
 #!/bin/bash
-# start.sh
+# Startup Script - Launches the AI agent ecosystem
+
+# Ensure script exits on error
+set -e
+
+echo "Starting AI Agent Ecosystem..."
+
+# Check if Python is installed
+if ! command -v python3 &> /dev/null; then
+    echo "Error: Python 3 is required but not installed."
+    exit 1
+fi
+
+# Check if required files exist
+if [ ! -f "Controller Script" ]; then
+    echo "Error: Controller Script not found."
+    exit 1
+fi
+
+# Make controller executable (will be ignored on GitHub but will work when cloned)
+chmod +x "Controller Script" 2>/dev/null || true
 
 # Start agents in background
 echo "Starting agents..."
-python controller.py --start &
+python3 "Controller Script" --start &
 AGENTS_PID=$!
 
 # Wait for agents to start
+echo "Waiting for agents to initialize..."
 sleep 5
 
 # Register agents with registry
 echo "Registering agents..."
-python controller.py --register
+python3 "Controller Script" --register
 
-# Start gateway
-echo "Starting gateway..."
-python gateway.py &
-GATEWAY_PID=$!
+# Check if API gateway exists
+if [ -f "api_gateway.py" ]; then
+    echo "Starting API gateway..."
+    python3 api_gateway.py &
+    GATEWAY_PID=$!
+else
+    echo "Warning: api_gateway.py not found, skipping gateway startup."
+fi
 
 # Function to handle cleanup
 function cleanup {
   echo "Stopping all processes..."
-  kill $AGENTS_PID
-  kill $GATEWAY_PID
+  kill $AGENTS_PID 2>/dev/null || true
+  if [ ! -z "$GATEWAY_PID" ]; then
+    kill $GATEWAY_PID 2>/dev/null || true
+  fi
   echo "Done"
   exit 0
 }
 
-# Register cleanup function for SIGINT
-trap cleanup SIGINT
+# Register cleanup function for SIGINT and SIGTERM
+trap cleanup SIGINT SIGTERM
 
 # Keep script running
-echo "All systems running. Press Ctrl+C to stop."
+echo "AI Agent Ecosystem running. Press Ctrl+C to stop."
 while true; do
   sleep 1
 done
