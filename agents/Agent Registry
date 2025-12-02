@@ -1,0 +1,84 @@
+# core/agent_registry.py
+import logging
+import requests
+from typing import Dict, List, Optional, Any
+import json
+import os
+
+class AgentRegistry:
+    """Registry for managing and discovering AI agents."""
+    
+    _instance = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(AgentRegistry, cls).__new__(cls)
+            cls._instance._agents = {}
+            cls._instance.logger = logging.getLogger(cls.__name__)
+        return cls._instance
+    
+    def register_agent(self, agent_id: str, host: str, port: int) -> bool:
+        """Register an agent with the registry."""
+        endpoint = f"http://{host}:{port}"
+        
+        # Check if agent is accessible
+        try:
+            response = requests.get(f"{endpoint}/info", timeout=5)
+            agent_info = response.json()
+            
+            self._agents[agent_id] = {
+                "id": agent_id,
+                "endpoint": endpoint,
+                "info": agent_info
+            }
+            
+            self.logger.info(f"Registered agent: {agent_id} at {endpoint}")
+            return True
+        except Exception as e:
+            self.logger.error(f"Failed to register agent {agent_id}: {str(e)}")
+            return False
+    
+    def get_agent(self, agent_id: str) -> Optional[Dict]:
+        """Get agent information by ID."""
+        return self._agents.get(agent_id)
+    
+    def list_agents(self) -> List[Dict]:
+        """List all registered agents."""
+        return list(self._agents.values())
+    
+    async def call_agent(self, agent_id: str, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Call an agent with the given request data."""
+        agent = self.get_agent(agent_id)
+        if not agent:
+            raise ValueError(f"Agent not found: {agent_id}")
+        
+        # Ensure we have a query field
+        if "query" not in request_data:
+            request_data["query"] = ""
+        
+        try:
+            response = requests.post(
+                f"{agent['endpoint']}/process",
+                json=request_data,
+                timeout=30
+            )
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            self.logger.error(f"Error calling agent {agent_id}: {str(e)}")
+            raise RuntimeError(f"Failed to process request with agent {agent_id}")
+    
+    def save_registry(self, filepath: str = "agent_registry.json"):
+        """Save the registry to a file."""
+        with open(filepath, "w") as f:
+            json.dump(self._agents, f, indent=2)
+    
+    def load_registry(self, filepath: str = "agent_registry.json"):
+        """Load the registry from a file."""
+        if os.path.exists(filepath):
+            with open(filepath, "r") as f:
+                self._agents = json.load(f)
+
+
+# Create a singleton instance
+agent_registry = AgentRegistry()
