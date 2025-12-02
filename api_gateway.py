@@ -2,11 +2,10 @@
 # api_gateway.py - API Gateway for AI Agents
 
 import logging
-from typing import Dict, Any
 
+import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
 
 # Configure logging
 logging.basicConfig(
@@ -19,25 +18,26 @@ logger = logging.getLogger("gateway")
 try:
     from core.agent_registry import agent_registry
 except ImportError:
-    logger.error("Could not import agent_registry. Make sure core/agent_registry.py exists.")
+    logger.error(
+        "Could not import agent_registry. Make sure core/agent_registry.py exists."
+    )
+
     # Create a simple stub for testing
     class AgentRegistryStub:
         async def call_agent(self, agent_id, request_data):
             return {"error": "Agent registry not available"}
-        
+
         def get_agent(self, agent_id):
             return None
-            
+
         def list_agents(self):
             return []
-    
+
     agent_registry = AgentRegistryStub()
 
 # Create FastAPI app
 app = FastAPI(
-    title="AI Agents Gateway",
-    description="API Gateway for AI Agents",
-    version="1.0.0"
+    title="AI Agents Gateway", description="API Gateway for AI Agents", version="1.0.0"
 )
 
 # Add CORS middleware
