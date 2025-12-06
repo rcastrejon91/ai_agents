@@ -4882,5 +4882,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7efe96b24be0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
+  },
+  {
+    "date": "2025-12-06",
+    "timestamp": "2025-12-06T15:07:06.330963+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "World Cup: (definition pending — no model key set)",
+      "President Zelensky: (definition pending — no model key set)",
+      "Kyiv: (definition pending — no model key set)",
+      "Take Back Power: (definition pending — no model key set)",
+      "Both: (definition pending — no model key set)",
+      "October: (definition pending — no model key set)",
+      "Designer Nerida Hansen: (definition pending — no model key set)",
+      "Gunmen: (definition pending — no model key set)",
+      "Pretoria: (definition pending — no model key set)",
+      "Hollywood: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "President Zelensky says an attack on a rail hub near Kyiv was \"meaningless from a military point of view\". The group Take Back Power says its members poured custard and apple crumble on the display. Both sides accuse the other of starting the overnight fighting and breaching a fragile ceasefire agreed in October. Designer Nerida Hansen admits failing customers who ordered textiles worth thousands of dollars from her businesses. Gunmen stormed a hostel near Pretoria and opened fire, killing 11 people including a three-year-old. It might seem like a simple merger deal, but it's got all the ingredients of a Hollywood drama. Thomas Markle is reported to be seriously ill in hospital in the Philippines. YMCA, Donald Trump and Kylian Mbappe v Erling Haaland - BBC Sport runs through the best bits from the World Cup draw. The 2026 World Cup draw has been made which means the countdown to the tournament is on - but who are the favourites to win the coveted trophy? At a viewing party in Philadelphia, dozens of football fans from around the world watched as the group stage draw unfolded."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why Are ADHD Rates On the Rise? More than 1 in 10 children in the U.S. have ADHD, fueling debate over the condition and how to treat it Helen Pearson, Nature magazine Scientific American ’s Best Nonfiction of 2025 Brianne Kane Daniel H. Wilson on Finding a Native Take on Traditional Alien Invasion Stories Brianne Kane China’s First Reusable Rocket Fails, but the Race Is Just Beginning Andrew Jones Math Puzzle: An Unknown Dimension"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
