@@ -5092,5 +5092,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2025-12-11",
+    "timestamp": "2025-12-11T15:09:28.355489+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Venezuela: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Washington: (definition pending — no model key set)",
+      "Maduro: (definition pending — no model key set)",
+      "Canada: (definition pending — no model key set)",
+      "United States: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Corina Machado: (definition pending — no model key set)",
+      "Norway: (definition pending — no model key set)",
+      "Nvidia: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The move is a sharp escalation in Washington's pressure campaign against Nicolás Maduro's government. US forces have seized an oil tanker off the coast of Venezuela. An atmospheric river has caused torrential rain to parts of Canada and the United States. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. María Corina Machado, who has been threatened by her home country's government, speaks about her secret journey to Norway. Nvidia boss Jensen Huang is among the influential tech figures that adorn one of the two covers. Footage shows the skydiver stuck on the wing before cutting himself free and continuing with dive. Co-star Josh Hutcherson is also set to resume his role as Peeta in prequel Sunrise on the Reaping. The US seizure of a crude oil ship is the latest in a series of escalations in the Trump administration's pressure campaign on Venezuela. We look at what is behind the deployment of a large US military force to within striking distance of Venezuela."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Satirical Art Exhibit Takes on Tech Titans and Our AI Future Billionaire-headed machines lampoon tech power and the way our images quietly become fuel for AI Deni Ellis Béchard Uterine Fibroids Significantly Raise Risk of Heart Disease Claire Cameron Teen AI Chatbot Use Surges, Raising Mental Health Concerns Eric Sullivan People Are Using TikTok to Sell Endangered Animals to Eat Sam Meadows Expert Sudoku: December 11, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
