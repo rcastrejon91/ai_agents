@@ -5134,5 +5134,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2025-12-12",
+    "timestamp": "2025-12-12T15:09:13.442637+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Latest: (definition pending — no model key set)",
+      "The Russian: (definition pending — no model key set)",
+      "Russia: (definition pending — no model key set)",
+      "Belgium: (definition pending — no model key set)",
+      "Euroclear: (definition pending — no model key set)",
+      "Russian: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)",
+      "After: (definition pending — no model key set)",
+      "Friday: (definition pending — no model key set)",
+      "California: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The Russian ambassador is summoned over a cyber attack on air traffic control and attempted electoral interference. Russia's central bank says it is suing Belgium's Euroclear in court following an EU bid to use Russian assets to aid Ukraine. After his release, he was ordered to check in with immigration authorities on Friday morning but a judge blocked them from re-detaining him. California's governor Gavin Newsom issued a strongly-worded statement in response to the executive order. The man who led the operation says María Corina Machado crossed “very rough seas” in “pitch-black darkness”. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Trump's powers to pardon are only applicable to federal convictions - not the state level charges Peters was jailed for. The $1bn deal will let fans generate videos and images of more than 200 Disney characters on ChatGPT and Sora. A carcass thought to belong to a Tapanuli orangutan, the world's rarest ape, has alarmed conservationists. The BBC asked people in Toronto and DC if they think an Australian-style, under-16 social media ban would work in Canada and the US."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "error": "403 Client Error: Forbidden for url: https://www.scientificamerican.com/",
+        "reason": "fetch error: 403 Client Error: Forbidden for url: https://www.scientificamerican.com/"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
