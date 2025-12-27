@@ -5772,5 +5772,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2025-12-27",
+    "timestamp": "2025-12-27T15:07:26.003644+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Thousands: (definition pending — no model key set)",
+      "Ukrainian: (definition pending — no model key set)",
+      "Russian: (definition pending — no model key set)",
+      "Heavy: (definition pending — no model key set)",
+      "New York: (definition pending — no model key set)",
+      "Connecticut: (definition pending — no model key set)",
+      "Habit: (definition pending — no model key set)",
+      "Japan: (definition pending — no model key set)",
+      "Almost: (definition pending — no model key set)",
+      "Christmas Day: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Thousands are without power and heating in the Ukrainian capital following a heavy Russian bombardment. Heavy snow is expected in New York and southern Connecticut during one of the busiest travel weekends of the year. Habit stacking and the language to avoid - five ways to make realistic resolutions you stick to this year. A further 26 people are injured in the crash on a highway in central Japan, police say. Almost one million people were displaced when hostilities resumed earlier this month after the first truce broke. A search operation was launched after three men and a woman went missing on Christmas Day. Nine years after her husband disappeared, Susanna Liew had a stunning legal win in one of Malaysia's biggest mysteries. Some say AI is ruining social media, but others see its potential to democratise who gains fame online. From fashion diplomacy in the US to a transparent raincoat, the late Queen's style was a powerful formula. The leaders of Guinea and the Central African Republic aim to consolidate power after Sunday's polls."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why Active Rest Is Important During the Holidays Sleep is often the first thing that many people associate with rest, but humans also require restorative downtime when awake Stacy Shaw, The Conversation US 12 of the Best Interviews Scientific American Did in 2025—on AI, Headaches, and More Brianne Kane What’s the Most Distant Galaxy? And Why Does It Matter? Phil Plait Seven Feel-Good Science Stories to Restore Your Faith in 2025 Katie Kavanagh, Nature magazine Math Puzzle: Count the Signs"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
