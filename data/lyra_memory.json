@@ -5814,5 +5814,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2025-12-28",
+    "timestamp": "2025-12-28T15:07:46.792277+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "French: (definition pending — no model key set)",
+      "There: (definition pending — no model key set)",
+      "Honduras: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Thousands: (definition pending — no model key set)",
+      "Finland: (definition pending — no model key set)",
+      "Sweden: (definition pending — no model key set)",
+      "Norway: (definition pending — no model key set)",
+      "Western: (definition pending — no model key set)",
+      "Putin: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The 91-year-old revolutionised French cinema in the 1950s, but became increasingly controversial in her later years. The cocktail of kittenish charm and continental sensuality who swept away the cinematic cobwebs of the 1950s. There's been a surge in remittances going back to Honduras amid Trump's immigration crackdown. Thousands of homes in parts of Finland, Sweden and Norway have been left without power. The pair are expected to discuss territorial concessions and security guarantees during the negotiations. Western sanctions have failed to turn the uber-rich into opponents, and Putin's policies have turned them into silent backers. We look ahead to 20 notable films to watch for in 2026, from Oscar hopefuls to potential blockbusters. BBC Sport looks at the key questions going into the divisive Battle of the Sexes-style match between Aryna Sabalenka and Nick Kyrgios on Sunday. The French actress redefined cinematic allure, captivating the world before championing animal rights. A mysterious force called Dark Energy might be changing, in a way that challenges our current understanding of the nature of time and space."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Seven Feel-Good Science Stories to Restore Your Faith in 2025 Immense progress in gene editing, drug discovery and conservation are just some of the reasons to be cheerful about 2025 Katie Kavanagh, Nature magazine 6 Otherworldly Deep-Sea Images from 2025 Andrea Thompson What’s the Most Distant Galaxy? And Why Does It Matter? Phil Plait Why Active Rest Is Important During the Holidays Stacy Shaw, The Conversation US Cover Art Jigsaw: April 1925"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
