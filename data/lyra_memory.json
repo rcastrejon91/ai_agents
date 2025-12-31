@@ -5940,5 +5940,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2025-12-31",
+    "timestamp": "2025-12-31T15:08:17.405119+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Russia: (definition pending — no model key set)",
+      "Our: (definition pending — no model key set)",
+      "Australia: (definition pending — no model key set)",
+      "Bondi Beach: (definition pending — no model key set)",
+      "Thousands: (definition pending — no model key set)",
+      "Sydney Harbour: (definition pending — no model key set)",
+      "The BBC: (definition pending — no model key set)",
+      "Toronto: (definition pending — no model key set)",
+      "Montreal: (definition pending — no model key set)",
+      "Ukraine: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Our correspondent in Australia says the joy was tempered by sadness following the Bondi Beach attack earlier this month. Thousands of officers are deployed around Sydney Harbour and across the city, with some carrying high-grade weapons as part of heightened security measures. The BBC spoke to people in Toronto and Montreal to find out what they’re optimistic about heading into the new year. It comes after Russia claimed Ukraine had attempted to launch a drone strike on one of Putin's residences. The daughter of Jimmy Lai tells the BBC that her father's health is deteriorating in prison. Whitlock was known for his notably elongated, profane catchphrase, which he used on The Wire and in films. A train driver died and at least 40 people were injured in the crash on the single-track line to Machu Picchu. Pope Francis, Ozzy Osbourne and Diane Keaton are among those who died this year. Two of the main sticking points involve territory and the fate of Europe's biggest nuclear plant, which is currently occupied by Russia. It's been a roller coaster year for the stock market, but the S&P 500 is set to end 2025 up about 17%, the third straight year of double-digit gains."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Colliding Spiral Galaxies Captured in Sparkling Detail Astronomers combined data from NASA’s JWST and Chandra X-ray Observatory to create a stunning new image of two merging spiral galaxies Claire Cameron Whooping Cough Deaths Rise in U.S. as Surge in Infections Continues Meghan Bartels Unpacking the Mystery of Squirting: What Science Really Says Rachel Feltman, Fonda Mwangi, Naeem Amarsy, Alex Sugiura, Jeffery DelViscio Here’s What to Get Excited about in Space in 2026 Lee Billings Hard Sudoku: December 31, 2025"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
