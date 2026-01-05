@@ -6150,5 +6150,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-01-05",
+    "timestamp": "2026-01-05T15:09:51.406156+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Venezuelan: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Latest: (definition pending — no model key set)",
+      "Cilia Flores: (definition pending — no model key set)",
+      "Paris: (definition pending — no model key set)",
+      "French: (definition pending — no model key set)",
+      "Follow: (definition pending — no model key set)",
+      "Ruben Amorim: (definition pending — no model key set)",
+      "Manchester United: (definition pending — no model key set)",
+      "Republicans: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The former Venezuelan leader is due at court, alongside his wife Cilia Flores, charged with various drugs and weapons offences. The deposed Venezuelan president and his wife appeared in handcuffs as they were escorted by armed officers. A Paris court found them guilty of \"malicious\" bullying towards the wife of the French president. Follow live updates as Ruben Amorim is sacked as Manchester United manager, with the club planning to appoint a caretaker for the rest of the season. Republicans in Miami tell the BBC they back the Venezuela move and don't see parallels with Iraq . The US president has repeatedly said he wants the island to become a part of the US. Jessie Buckley won best actress and Adolescence also scooped four awards on the night in California. A total of 81,796 stuffed toys hit the ice rink in a moment of \"sweet, cuddly mayhem\" at an American Hockey League game. Cuba's president said military and intelligence operatives were providing protection to captured leader Nicolás Maduro. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why Does Life Keep Evolving These Geometric Patterns? A global catalog shows how creatures across the tree of life balance rigidity with flexibility in remarkably consistent ways Anirban Mukhopadhyay Here’s What to Get Excited about in Space in 2026 Lee Billings Want to Make Your Resolution Stick This Year? Behavioral Science Has the Answers Kendra Pierre-Louis, Sushmita Pathak, Fonda Mwangi Earliest Human Ancestor May Have Walked on Two Legs Cody Cottier Easy Sudoku: January 5, 2026",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
