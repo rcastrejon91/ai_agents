@@ -6534,5 +6534,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-01-14",
+    "timestamp": "2026-01-14T15:32:10.457315+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Officials: (definition pending — no model key set)",
+      "Donald Trump: (definition pending — no model key set)",
+      "Iran: (definition pending — no model key set)",
+      "Relatives: (definition pending — no model key set)",
+      "BBC Persian: (definition pending — no model key set)",
+      "Wednesday: (definition pending — no model key set)",
+      "Beijing: (definition pending — no model key set)",
+      "China: (definition pending — no model key set)",
+      "Vice-President: (definition pending — no model key set)",
+      "Vance: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Officials say it is a \"precautionary measure\" and comes as Donald Trump weighs up whether to take action against Iran. Relatives of an arrested protester tell BBC Persian he is due to be executed on Wednesday, as the death toll from demonstrations reportedly exceeds 2,400. Beijing reported the largest-ever trade surplus at $1.19tn as China diversified its trade. A US state department official did not confirm the identities or number of prisoners released, but called the move \"an important step in the right direction\". US Vice-President JD Vance is about to host the Danish and Greenlandic foreign ministers at the White House to discuss the territory's future. Sixty-four people were left injured, including a one-year-old and an 85-year-old. Residents of Ukraine's capital talk about their difficulties keeping warm and enduring power outages, as Russian attacks deepen the energy crisis. Correspondent Jonathan Head says the 'devastating' accident is an enormous setback for Thailand's efforts to modernise its infrastructure. The regime's opponents will hope for more pressure to accelerate the process, writes the BBC's international editor. An Iranian security official says 2,000 people have been killed so far after a crackdown on weeks of anti-government protests."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "T. rex Never Stopped Growing, Dinosaur Bone Study Suggests New clues hidden inside T. rex bones suggest that the carnivore lived longer lives than we thought Cody Cottier How CDC’s Vaccine Rollback Will Affect Winter Respiratory Virus Season Meghan Bartels How Seed Oils Became Controversial—And What the Science Really Says Kendra Pierre-Louis, Sushmita Pathak, Alex Sugiura 2025 Wasn’t the Hottest Year on Record. Earth Is Still Barreling to the Climate Brink Andrea Thompson Hard Sudoku: January 14, 2026",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
