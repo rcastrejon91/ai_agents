@@ -7004,5 +7004,49 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-01-25",
+    "timestamp": "2026-01-25T15:07:43.143024+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Alex Pretti: (definition pending — no model key set)",
+      "Federal: (definition pending — no model key set)",
+      "Minnesota: (definition pending — no model key set)",
+      "Sir Mark: (definition pending — no model key set)",
+      "India: (definition pending — no model key set)",
+      "Many: (definition pending — no model key set)",
+      "Bystander: (definition pending — no model key set)",
+      "The Greater Manchester: (definition pending — no model key set)",
+      "Sir Keir Starmer: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Federal authorities claim Alex Pretti was a \"domestic terrorist\" although Minnesota’s governor has criticised their account as “nonsense”. He has been described as an avid outdoorsman who loved mountain biking. Sir Mark covered some of the defining moments in India's history in a career that spanned decades. Many parties were banned and there was no voting in about half the country which is gripped by fear and civil war. Bystander footage has captured the seconds before the killing of 37-year-old Alex Pretti. The Greater Manchester mayor is seen as a potential leadership challenger to Sir Keir Starmer. With economic stagnation and extremes of inequality comes corrosion of trust in democratic institutions. So Trump may be a symptom, not a cause, of what Carney called a \"rupture\" with the post-WW2 order. Alex Honnold has become the first person to climb the Taiwanese building alone without safety equipment. Protesters chanted Alex Pretti's name after he became the second person this month to be shot dead by federal agents in Minneapolis. Federal and state authorities have offered conflicting versions of what happened in the moments leading to the shooting."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Largest-ever ‘superposition’ supersizes Schrödinger’s cat A record-breaking experiment shows that a cluster of thousands of atoms can act like a wave as well as a particle Elizabeth Gibney, Nature magazine The scientific quest to explore the hidden complexity of ice Meghan Bartels How math can reveal lottery fraud Manon Bischoff Snow? Ice? How to make sense of winter storm forecasts Andrea Thompson Cover Art Jigsaw: September 1999",
+        "reason": "not in allow list"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
