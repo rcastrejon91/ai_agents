@@ -7090,5 +7090,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-01-27",
+    "timestamp": "2026-01-27T15:14:06.435933+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Menopause: (definition pending — no model key set)",
+      "Jackie Flynn Mogensen: (definition pending — no model key set)",
+      "Minnesota: (definition pending — no model key set)",
+      "ICE Todd Lyons: (definition pending — no model key set)",
+      "The White House: (definition pending — no model key set)",
+      "Alex Pretti: (definition pending — no model key set)",
+      "Republicans: (definition pending — no model key set)",
+      "Defendants: (definition pending — no model key set)",
+      "Meta: (definition pending — no model key set)",
+      "Instagram: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "A Minnesota judge has ordered acting head of ICE Todd Lyons to answer allegations of violating court orders. The White House has shifted how it talks about Alex Pretti's killing as more Republicans express concern over the deadly encounter. Menopause is linked to a loss of grey matter in regions involved with memory and emotion, study suggests. Defendants include Meta, which owns Instagram and Facebook, TikTok's owner ByteDance and YouTube parent Google. The US federal agency says it will not play an immigration role at February's event in Milan-Cortina. The long-awaited deal comes as both Delhi and Brussels contend with economic and geopolitical pressure from the US. Zhang Youxia had been seen as a close ally of China's leader, Xi Jinping. Several people have died as sub-zero temperatures and heavy snow disrupt roads and knock out power across a number of states. Protesters spent the evening banging drums and chanting outside the hotel where immigration official Gregory Bovino is reportedly staying, the BBC's Tom Bateman reports. The BBC's Ana Faguy speaks to residents in the state after the second fatal shooting by federal immigration officers."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Menopause linked to changes in brain’s gray matter, new study shows Brain changes during menopause could help explain why some people experience neurological symptoms such as anxiety, depression and memory problems Jackie Flynn Mogensen From anxious Weimaraners to aggressive Chihuahuas: What science can tell us about dog breeds Humberto Basilio, Miriam Quick, Jen Christiansen, Lee Lotor Scientist who helped eradicate smallpox dies at age 89 Jackie Flynn Mogensen Back from the dead, a black hole is erupting after a 100-million-year hiatus K. R. Callaway Medium Sudoku: January 27, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
