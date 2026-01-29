@@ -7174,5 +7174,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-01-29",
+    "timestamp": "2026-01-29T15:16:33.425649+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "BBC: (definition pending — no model key set)",
+      "Tom Homan: (definition pending — no model key set)",
+      "Frank Gardner: (definition pending — no model key set)",
+      "Iran: (definition pending — no model key set)",
+      "Democrats: (definition pending — no model key set)",
+      "Department: (definition pending — no model key set)",
+      "Homeland Security: (definition pending — no model key set)",
+      "Philippines: (definition pending — no model key set)",
+      "China: (definition pending — no model key set)",
+      "Ming: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Tom Homan has been deployed after two people were shot dead by federal agents in the city in less than a month. From regime change to retaliation, the BBC's Frank Gardner outlines possible outcomes of US strikes on Iran. Democrats are pushing to remove funding for the Department of Homeland Security unless new measures are implemented. A mayor in the Philippines has survived a rocket launcher attack on his vehicle in broad daylight. China executes 11 members of the Ming family that ran scam centres in Myanmar, state media report. Pierre Poilievre is expected to win a leadership review, but faces questions over his popularity with the wider public. He is one of the most decorated coaches in NFL history, but his snub from the Pro Football Hall of Fame adds to a growing list of defeats. Bridgerton is back, with Francesca on the hunt for sex tips and Benedict finally meeting his match. The four questions you should ask before deciding whether to stay friends or go no contact. BBC analysis editor Ros Atkins looks at why tensions have been running so high in the city - and how we got here."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Psychiatrists plan to overhaul the mental health bible—and change how we define ‘disorder’ The American Psychiatric Association has announced big upcoming changes to psychiatry’s big book of mental disorders, the DSM Allison Parshall Heathrow dropped its 100-ml liquids rule. This scanner tech made it possible Eric Sullivan To safely navigate icy sidewalks, walk like a penguin Meghan Bartels Like staying up late? You may be putting yourself at risk of heart problems Jackie Flynn Mogensen Expert Sudoku: January 29, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
