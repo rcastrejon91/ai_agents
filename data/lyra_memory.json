@@ -7934,5 +7934,45 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-02-16",
+    "timestamp": "2026-02-16T15:20:10.272220+00:00",
+    "summary": "Fetched sources:\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Latest: (definition pending — no model key set)",
+      "Amazon Apps Biotech: (definition pending — no model key set)",
+      "Health Climate Cloud: (definition pending — no model key set)",
+      "Computing Commerce Crypto: (definition pending — no model key set)",
+      "Enterprise: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The FBI says it recovered a DNA sample from the glove, which was found in a field a few miles from Guthrie's home. On the second anniversary of his death, Lyudmila Navalnaya says her son did not \"simply die in prison\". Robert Corfield, who admitted abusing a child to the BBC, was a minister in a shadowy church known as The Truth. Former US President Barack Obama says he has seen no evidence extra-terrestrials have made contact with Earth. European nations are asking whether traditional alliances can suffice, or whether they should be diversifying The two women were helped by police after being forced to run from a mob in the city of Bnei Brak. It's been quite the few days in the Cortina Curling Stadium during a Winter Olympics that has delivered intrigue and excitement both on and off the field of play. A Lakshmi goddess shrine at Bangkok shopping mall has become a place where young people come to pray for love. Austrian ski jumper Daniel Tschofenig is disqualified from the men's large hill individual event for wearing oversized boots. It's been quite the few days in the Cortina Curling Stadium during a Winter Olympics that has delivered intrigue and excitement both on and off the field of play.",
+        "reason": "not in allow list"
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Celebrate the Year of the Horse with equine science According to the Chinese zodiac, 2026 is the Year of the Horse—so saddle up for some equine science Meghan Bartels Astronomers spot one of the largest spinning structures in the universe Humberto Basilio Trump guts climate policy, polar vortex disrupts winter, and Olympic ‘Penisgate’ rumors fly Kendra Pierre-Louis, Andrea Thompson, Sushmita Pathak, Alex Sugiura AI just got its toughest math test yet. The results are mixed Joseph Howlett Easy Sudoku: February 16, 2026",
+        "reason": "deny-topic"
+      }
+    ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
