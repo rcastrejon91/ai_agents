@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Lyra: Chat + Voice (robust)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0b0b0c; color: #e8e8ea; margin: 0; }
+    header { padding: 16px 20px; border-bottom: 1px solid #222; }
+    h2 { margin: 0 0 6px; }
+    #chat { height: 48vh; overflow-y: auto; padding: 16px 20px; }
+    .line { margin: 6px 0; }
+    .user { color: #7cf07c; }
+    .bot { color: #83b5ff; }
+    #controls { padding: 12px 20px; position: sticky; bottom: 0; background: #0b0b0c; border-top: 1px solid #222; display: grid; gap: 8px; grid-template-columns: 1fr auto auto auto auto; }
+    input { padding: 10px; border-radius: 8px; border: 1px solid #333; background: #141416; color: #e8e8ea; }
+    button { padding: 10px 12px; border-radius: 8px; border: 1px solid #333; background: #15161a; color: #e8e8ea; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    #log { padding: 10px 20px 18px; font-size: 12px; color: #a8a8ad; }
+    .ok { color: #75fa7b } .warn { color: #ffd166 } .err { color: #ff6b6b }
+  </style>
+  <script defer src="https://js.puter.com/v2/"></script>
+</head>
+<body>
+  <header>
+    <h2>Lyra</h2>
+    <div id="status" class="warn">Initializing…</div>
+  </header>
+
+  <div id="chat"></div>
+
+  <div id="controls">
+    <input id="userInput" type="text" placeholder="Type a message…" />
+    <button id="btnSend">Send</button>
+    <button id="btnMic">🎤 Speak</button>
+    <button id="btnMute">🔊 Mute</button>
+    <button id="btnUnlock">🔓 Audio</button>
+  </div>
+
+  <div id="log"></div>
+
+<script>
+/* --------------- Logging --------------- */
+const chatEl = document.getElementById('chat');
+const inputEl = document.getElementById('userInput');
+const statusEl = document.getElementById('status');
+const logEl = document.getElementById('log');
+const btnSend = document.getElementById('btnSend');
+const btnMic = document.getElementById('btnMic');
+const btnMute = document.getElementById('btnMute');
+const btnUnlock = document.getElementById('btnUnlock');
+
+function log(line, cls='') {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.textContent = line;
+  logEl.appendChild(d);
+  logEl.scrollTop = logEl.scrollHeight;
+  console.log(line);
+}
+
+function addLine(role, text) {
+  const d = document.createElement('div');
+  d.className = 'line ' + role;
+  d.textContent = (role === 'user' ? 'You: ' : 'Lyra: ') + text;
+  chatEl.appendChild(d);
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+/* --------------- Audio / TTS --------------- */
+let audioCtx, isMuted = false, voicesReady = false;
+
+async function unlockAudio() {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+    // touch audio
+    const b = audioCtx.createBuffer(1, 1, 22050);
+    const src = audioCtx.createBufferSource();
+    src.buffer = b; src.connect(audioCtx.destination); src.start(0);
+    log('Audio unlocked ✅', 'ok');
+    statusEl.textContent = 'Audio ready';
+  } catch (e) {
+    log('Audio unlock failed: ' + e.message, 'err');
+  }
+}
+
+function loadVoices() {
+  const list = window.speechSynthesis?.getVoices?.() || [];
+  voicesReady = list.length > 0;
+  if (voicesReady) log(`Voices loaded (${list.length}) ✅`, 'ok');
+}
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+  setTimeout(loadVoices, 500);
+}
+
+function speak(text) {
+  if (!text || isMuted) return;
+  if (!('speechSynthesis' in window)) { log('speechSynthesis not supported', 'warn'); return; }
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const list = window.speechSynthesis.getVoices();
+    const en = list.find(v => /^en[-_]/i.test(v.lang)) || list[0];
+    if (en) u.voice = en;
+    u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
+    u.onstart = () => log('TTS start', 'ok');
+    u.onend = () => log('TTS end', 'ok');
+    u.onerror = e => log('TTS error: ' + (e.error || 'unknown'), 'err');
+    window.speechSynthesis.speak(u);
+  } catch (e) {
+    log('speak() exception: ' + e.message, 'err');
+  }
+}
+
+/* --------------- Mic (browser-limited) --------------- */
+function micSupported() {
+  return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+function startMic() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert("Speech recognition not supported on this browser (hi iOS)." ); return; }
+  const recog = new SR();
+  recog.lang = 'en-US'; recog.interimResults = false; recog.maxAlternatives = 1;
+  recog.onresult = e => {
+    const t = e.results[0][0].transcript;
+    inputEl.value = t;
+    ask(); // send it
+  };
+  recog.onerror = e => alert("Mic error: " + (e.error || 'unknown'));
+  recog.start();
+}
+
+/* --------------- Chat backends --------------- */
+let usePuter = false;
+
+async function initPuter() {
+  // Puter may be slow to boot—just detect presence
+  if (window.Puter && window.Puter.GPT4o) {
+    usePuter = true;
+    log('Puter.js available ✅ Using keyless mode.', 'ok');
+    statusEl.textContent = 'Online via Puter';
+  } else {
+    log('Puter.js not available, will use /chat backend if present.', 'warn');
+    statusEl.textContent = 'Awaiting backend';
+  }
+}
+initPuter();
+
+async function ask(fromMic) {
+  const userText = fromMic || inputEl.value.trim();
+  if (!userText) return;
+  addLine('user', userText);
+  inputEl.value = '';
+
+  // Minimal in-memory history
+  window.__hist = window.__hist || [
+    { role: "system", content: "You are Lyra, a warm, concise AI assistant. Keep answers short and speakable." }
+  ];
+  window.__hist.push({ role: "user", content: userText });
+
+  try {
+    let reply = '';
+    if (usePuter) {
+      const gpt = new window.Puter.GPT4o();
+      reply = await gpt.ask(window.__hist);
+    } else {
+      // Fallback to your own safe backend (Node/Express) at POST /chat
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userText })
+      });
+      if (!res.ok) {
+        const body = await res.text().catch(()=> '');
+        throw new Error(`HTTP ${res.status} ${res.statusText} ${body ? '— '+body : ''}`);
+      }
+      const data = await res.json();
+      reply = data.text || data.message || data.choices?.[0]?.message?.content || '';
+    }
+
+    if (!reply) throw new Error('Empty reply');
+    addLine('bot', reply);
+    window.__hist.push({ role: "assistant", content: reply });
+    speak(reply);
+  } catch (err) {
+    log('Chat error: ' + err.message, 'err');
+    addLine('bot', 'Error: ' + err.message);
+  }
+}
+
+/* --------------- UI wiring --------------- */
+btnSend.addEventListener('click', ask);
+inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
+
+btnMute.addEventListener('click', () => {
+  isMuted = !isMuted;
+  btnMute.textContent = isMuted ? '🔇 Muted' : '🔊 Mute';
+  if (isMuted) window.speechSynthesis?.cancel?.();
+});
+
+btnUnlock.addEventListener('click', unlockAudio);
+btnMic.addEventListener('click', startMic);
+
+// Initial capability hints
+if (!micSupported()) {
+  btnMic.disabled = true;
+  btnMic.title = 'Mic not supported in this browser (iOS Safari/Chrome lack Web Speech Recognition).';
+  log('Mic: unsupported on this device/browser.', 'warn');
+} else {
+  log('Mic: supported ✅', 'ok');
+}
+if (!('speechSynthesis' in window)) {
+  log('TTS: not supported in this browser.', 'warn');
+  statusEl.textContent = 'TTS unavailable';
+} else {
+  statusEl.textContent = 'Ready (tap 🔓 Audio on iOS; ringer ON)';
+}
+</script>
+</body>
+</html>
