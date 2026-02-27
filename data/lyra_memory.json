@@ -8400,5 +8400,47 @@
     "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-02-27",
+    "timestamp": "2026-02-27T15:20:09.192157+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Epstein: (definition pending — no model key set)",
+      "Netflix: (definition pending — no model key set)",
+      "Paramount: (definition pending — no model key set)",
+      "REGISTER NOW: (definition pending — no model key set)",
+      "Pakistan: (definition pending — no model key set)",
+      "October: (definition pending — no model key set)",
+      "Hillary Clinton: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Will: (definition pending — no model key set)",
+      "Cuban Revolution: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The latest attacks by Pakistan follow months of clashes between the two countries. despite agreeing to a fragile ceasefire in October. The two sides have different versions of how and why the deadly dispute began. It comes a day after Hillary Clinton told the same committee she \"had no idea\" about Epstein's crimes. Netflix's decision to back down from the bidding war clears the path for Paramount to win the takeover battle. The US embassy in Israel has also told some non-emergency staff they can leave the country if they wish. Will a worsening internal crisis create the conditions for the Cuban Revolution to unravel from within? Olympic victor Brady Tkachuk distances himself from the AI-enhanced video - \"those words would never come out of my mouth\". Documents in the Epstein files reveal how Maxwell nurtured the connection between the two men after Clinton left the White House. Paramount beats Netflix to the major deal, pleasing figures in DC and LA alike, the BBC's culture and media editor writes. The family of the late US civil rights activist met thousands of mourners who came to the Rainbow PUSH Headquarters in Chicago to pay their respects."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "180 years after disappearing, a tortoise returns to its Galápagos home The release of 158 specially bred Floreana giant tortoises is a win for both the animal and its long-lost island ecosystem Rachel Nuwer Head-to-head trial pitting Eli Lilly’s oral GLP-1 against oral semaglutide underscores efficacy of weight-loss pills Lauren J. Young 17-year-old cracks the code on poacher tracking Melissa Hobson, Fonda Mwangi, Alex Sugiura, Kendra Pierre-Louis AI-powered smart goggles are helping novice scientists perform like experts Deni Ellis Béchard Today’s Killer Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Save up to $680 on your pass with Super Early Bird rates. REGISTER NOW . Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
 ]
