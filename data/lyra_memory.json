@@ -1,46 +1,5 @@
 [
   {
-    "date": "2025-08-13",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Mediators: (definition pending — no model key set)",
-      "Israel: (definition pending — no model key set)",
-      "Video: (definition pending — no model key set)",
-      "Latest: (definition pending — no model key set)",
-      "Ukraine: (definition pending — no model key set)",
-      "European: (definition pending — no model key set)",
-      "Trump-Putin: (definition pending — no model key set)",
-      "Friday: (definition pending — no model key set)",
-      "Armoured: (definition pending — no model key set)",
-      "Tuesday: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "Ukraine's president says European leaders were united in \"one voice towards one mission\" as they spoke ahead of a Trump-Putin summit on Friday. Mediators say a deal can be pushed through in the weeks before Israel's planned expansion of the war. Video shows mangled train cars piled on top of each other on the tracks, as emergency crews attended the scene Armoured vehicles were spotted at urban centres and tourist sites around the US capital on Tuesday evening. Meltwater is escaping from a basin that is dammed by a glacier - prompting fears of a deluge in state capital Juneau. Mediators say a deal can be pushed through in the weeks before Israel's planned expansion of the war. At least three people have died and dozens more have been inured in Spain, Turkey and Albania. Bodhana Sivanandan, from Harrow, also became the youngest female player to beat a grandmaster. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Video shows mangled train cars piled on top of each other on the tracks, as emergency crews attended the scene"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "This Hormone-Free Pill Could Finally Expand Birth Control Options for Men A new hormone-free birth control pill that reversibly stops sperm production has passed its first safety trial in humans, offering hope for more reversible contraceptive options. Rachel Feltman, Hannah Seo, Fonda Mwangi, Alex Sugiura Spellements: Wednesday, August 13, 2025 Emma R. Hasson These Spiders Puke Up Toxic Digestive Fluid to Marinate Their Prey Alive Gennaro Tomma The Math Trick Hidden in Your Credit Card Number Jack Murtagh Trump Order Gives Political Appointees Vast Powers over Research Grants",
-        "reason": "not in allow list"
-      }
-    ],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3ce125ea10>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-14",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
     "insights": [
@@ -8479,6 +8438,48 @@
       {
         "url": "https://techcrunch.com/",
         "text": "Save up to $680 on your pass with Super Early Bird rates. REGISTER NOW . Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-01",
+    "timestamp": "2026-03-01T15:08:59.457752+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iran: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Tehran: (definition pending — no model key set)",
+      "Revolutionary Guards: (definition pending — no model key set)",
+      "USS Abraham Lincoln: (definition pending — no model key set)",
+      "Tel Aviv: (definition pending — no model key set)",
+      "Dubai: (definition pending — no model key set)",
+      "Doha: (definition pending — no model key set)",
+      "Bahrain: (definition pending — no model key set)",
+      "Several: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Iran's Revolutionary Guards is reported to have targeted the USS Abraham Lincoln, as strikes are reported in Tel Aviv, Dubai, Doha and Bahrain's capital. A piece of crucial intelligence arrived just hours before the attack on a compound in central Tehran. Several deaths are reported across the Middle East as Tehran retaliates for massive strikes by the US and Israel. Israel and the US have launched strikes across Iran, with Iran retaliating with strikes across the region. Iran has blamed the US and Israel for the strike; the US is looking into reports of the incident, while the IDF says it is \"not aware\" of operations in the area. US President Donald Trump has described the operation as \"massive and ongoing\". The excess of politicians' children was front and centre of the anger that drove protests that toppled the government last year. What we know so far about the US-Israeli strikes against Iran and what might come next. The singer won four awards, including best artist and album, as the Brits headed to Manchester. A 2021 policy update requires users to share data with Meta for ads purposes to continue using the app."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Interstellar Comet 3I/ATLAS captured speeding through the solar system by Jupiter-bound spacecraft This mysterious interstellar visitor is on a whirlwind journey through our solar system Jackie Flynn Mogensen Why mathematicians hate Good Will Hunting Manon Bischoff ‘Super agers’ with great memory have more young brain cells Mariana Lenharo, Nature magazine Eerie brainlike nebula captured in stunning new JWST images Claire Cameron Cover Art Jigsaw: March 1931"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
       }
     ],
     "sources_skipped": [],
