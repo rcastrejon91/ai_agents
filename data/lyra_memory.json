@@ -1,44 +1,5 @@
 [
   {
-    "date": "2025-08-14",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "The Russian: (definition pending — no model key set)",
-      "American: (definition pending — no model key set)",
-      "CCTV: (definition pending — no model key set)",
-      "Ukrainian: (definition pending — no model key set)",
-      "Russian: (definition pending — no model key set)",
-      "Belgorod: (definition pending — no model key set)",
-      "Vyacheslav Gladkov: (definition pending — no model key set)",
-      "Telegram: (definition pending — no model key set)",
-      "Friday: (definition pending — no model key set)",
-      "Alaska: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "The US president says if Friday’s summit in Alaska is a “good meeting” he will call Zelensky to arrange a second meeting. The Russian leader senses a chance for more international recognition, while his American counterpart hopes to play peacemaker. CCTV captured the moment a car was hit by a Ukrainian drone in the Russian city of Belgorod, governor Vyacheslav Gladkov said in his official Telegram channel. The document, signed by Hernán Cortés in 1527, is thought to have been taken over three decades ago. The first lady's lawyer has demanded that Joe Biden's son retract claims he made about how she met her husband. The Russian leader senses a chance for more international recognition, while his American counterpart hopes to play peacemaker. Far-right Israeli minister Bezalel Smotrich announced approval for 3,401 new homes in the controversial E1 area project in the occupied West Bank. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The pop superstar gives a rare insight into their life together and reveals details of her new album. CCTV captured the moment a car was hit by a Ukrainian drone in the Russian city of Belgorod, governor Vyacheslav Gladkov said in his official Telegram channel."
-      },
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "New Brain Device Is First to Read Out Inner Speech A new brain prosthesis can read out inner thoughts in real time, helping people with ALS and brain stem stroke communicate fast and comfortably Emma R. Hasson Wordology: Thursday, August 14, 2025 Sarah Lewin Frasier Why ChatGPT Shouldn’t Be Your Therapist Allison Parshall Entirely New Species of Human Ancestor Discovered Kate Wong Why Glacial Lake Outbursts like the One in Alaska May Happen More Often"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f63e3d08520>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-15",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
     "insights": [
@@ -8476,6 +8437,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "Interstellar Comet 3I/ATLAS captured speeding through the solar system by Jupiter-bound spacecraft This mysterious interstellar visitor is on a whirlwind journey through our solar system Jackie Flynn Mogensen Why mathematicians hate Good Will Hunting Manon Bischoff ‘Super agers’ with great memory have more young brain cells Mariana Lenharo, Nature magazine Eerie brainlike nebula captured in stunning new JWST images Claire Cameron Cover Art Jigsaw: March 1931"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-02",
+    "timestamp": "2026-03-02T15:20:31.897171+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iran: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Cyprus: (definition pending — no model key set)",
+      "American: (definition pending — no model key set)",
+      "Meanwhile: (definition pending — no model key set)",
+      "Sunday: (definition pending — no model key set)",
+      "Kuwaiti: (definition pending — no model key set)",
+      "Centcom: (definition pending — no model key set)",
+      "People: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The US defense secretary says American attacks on Iran will not lead to \"endless war\". Meanwhile in Cyprus, two drones were intercepted near a UK base, after an earlier attack on Sunday. The planes were \"mistakenly shot down by Kuwaiti air defences\", but all crew survived, Centcom says. People in Iran tell the BBC they hear explosions day and night, as the US and Israel continue striking the country for a third day. Hundreds rallied in cities across the US to celebrate Khamenei's death, but not everyone was rejoicing. Lebanon's health ministry says 31 people were killed by Israeli strikes, while there are no reports of casualties in Israel. Iran has carried out strikes against Israel, across the Gulf and against a British base in Cyprus in retaliation. A host of deals, including one to supply India with uranium, is unveiled as Mark Carney meets Narendra Modi in Delhi. Two people were killed and 14 injured, with the suspected gunman, identified by some media outlets, also shot dead. Discussions over what measures to implement to protect children's wellbeing will last for three months. Argentina captain Lionel Messi is hauled to the ground by a pitch invader during Inter Miami's friendly in Puerto Rico."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why mathematicians hate Good Will Hunting This Oscar-winning classic set a surprisingly simple mathematical challenge Manon Bischoff He built the ultimate test for humanoid robots, and they beat it in months Deni Ellis Béchard Women’s heart health worsens, NASA announces Artemis update, researchers solve reindeer antler mystery Kendra Pierre-Louis, Sushmita Pathak, Alex Sugiura ‘Super agers’ with great memory have more young brain cells Mariana Lenharo, Nature magazine Today’s Easy Sudoku"
       },
       {
         "url": "https://techcrunch.com/",
