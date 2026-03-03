@@ -1,47 +1,5 @@
 [
   {
-    "date": "2025-08-15",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Ukraine: (definition pending — no model key set)",
-      "The BBC: (definition pending — no model key set)",
-      "Russia: (definition pending — no model key set)",
-      "The DEA: (definition pending — no model key set)",
-      "Terry Cole: (definition pending — no model key set)",
-      "Bondi: (definition pending — no model key set)",
-      "Latest: (definition pending — no model key set)",
-      "Alaska: (definition pending — no model key set)",
-      "Zelensky: (definition pending — no model key set)",
-      "America: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "As both presidents head to Alaska, Ukraine's Zelensky says \"we are counting on America\". The BBC’s US and Russia correspondents outline the leaders' different approaches to the high stakes summit on the Ukraine war. The DEA head, Terry Cole, would assume \"all the powers and duties\" of DC police chief, Bondi said. What the president sees on his journey out of Washington DC helps explain this week's push to clean up the capital. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. The BBC’s US and Russia correspondents outline the leaders' different approaches to the high stakes summit on the Ukraine war. Left uninvited to key talks, many Ukrainians look on with a mix of fatigue and mistrust. Video shows Itamar Ben Gvir telling the most prominent Palestinian prisoner Marwan Barghouti \"you will not win\". Jeremy Bowen travelled through Israel to hear views from all sides - from protesters in 'psychological despair' over Gaza, to those who feel an overwhelming sense that their country's actions are justified. The DEA head, Terry Cole, would assume \"all the powers and duties\" of DC police chief, Bondi said."
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "Here’s Why Rabbits Are Sprouting Tentacle Horns Rabbits spotted with hornlike growths on their face in northern Colorado are doing better than they look Stephanie Pappas The Internet Is Making Us Fluent in Algospeak Allison Parshall Wordology: Friday, August 15, 2025 Sarah Lewin Frasier Sam Kean’s New Book Dinner with King Tut Explores the Wild World of Experimental Archaeology Rachel Feltman, Fonda Mwangi, Alex Sugiura One Year after Scientific American ’s First Issue, the Solar System Grew by a Planet",
-        "reason": "not in allow list"
-      }
-    ],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f4cf17294e0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-16",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
     "insights": [
@@ -8479,6 +8437,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "Why mathematicians hate Good Will Hunting This Oscar-winning classic set a surprisingly simple mathematical challenge Manon Bischoff He built the ultimate test for humanoid robots, and they beat it in months Deni Ellis Béchard Women’s heart health worsens, NASA announces Artemis update, researchers solve reindeer antler mystery Kendra Pierre-Louis, Sushmita Pathak, Alex Sugiura ‘Super agers’ with great memory have more young brain cells Mariana Lenharo, Nature magazine Today’s Easy Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-03",
+    "timestamp": "2026-03-03T15:23:47.713155+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Americans: (definition pending — no model key set)",
+      "Dhahran: (definition pending — no model key set)",
+      "Saudi: (definition pending — no model key set)",
+      "Aramco: (definition pending — no model key set)",
+      "Elsewhere: (definition pending — no model key set)",
+      "Cyprus: (definition pending — no model key set)",
+      "European: (definition pending — no model key set)",
+      "Iranian: (definition pending — no model key set)",
+      "Sunday: (definition pending — no model key set)",
+      "State Department: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The US consulate in Dhahran - where Saudi oil giant Aramco is based - urges people to shelter. Elsewhere, the UK deploys \"a significant level of defensive capability\" to Cyprus. European nations say they want to work better together but are finding it hard to do so The US defence secretary confirms a US military base was hit by an Iranian missile on Sunday. The US State Department says Americans should \"depart now via commercial means\" as strikes continue. His supporters in one Texas town hail his actions in the Middle East - though some comments suggest seeds of trouble. Ukraine fears what soaring oil prices and a shortage in air defences could mean for them. Nemesio Oseguera led the feared Jalisco New Generation Cartel until his death as a result of a firefight in February. Chief Executive Sam Altman said the group would prohibit the use of its systems to spy on Americans. Authorities gave no explanation for the ousters but they come as purges of military top brass pick up pace. Medical aid groups have described the scale of casualties as alarming as people seek treatment."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Are prime numbers hiding inside black holes? The strange case for prime numbers at the heart of physics Lyndie Chiou A salt battery could make EVs more winterproof—if it holds up on the road You Xiaoying U.S.’s and Israel’s war with Iran leaves uranium stockpiles uncertain Dan Vergano This musician built an AI clone of her voice so anyone can sing as her Deni Ellis Béchard Today’s Medium Sudoku"
       },
       {
         "url": "https://techcrunch.com/",
