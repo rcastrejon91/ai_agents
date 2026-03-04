@@ -1,48 +1,5 @@
 [
   {
-    "date": "2025-08-16",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Alaska: (definition pending — no model key set)",
-      "Trump: (definition pending — no model key set)",
-      "Ukrainians: (definition pending — no model key set)",
-      "Putin: (definition pending — no model key set)",
-      "Pakistan: (definition pending — no model key set)",
-      "Khyber Pakhtunkhwa: (definition pending — no model key set)",
-      "After: (definition pending — no model key set)",
-      "Ukraine: (definition pending — no model key set)",
-      "The French: (definition pending — no model key set)",
-      "Ilan Halimi: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "After leaving Alaska, Trump says he would prefer to \"go directly to a peace agreement\" to end the war in Ukraine, rather than a temporary ceasefire. In the absence of a deal, Ukrainians focused on the optics of Putin's visit to Trump in Alaska. The majority of deaths were recorded in Pakistan's mountainous Khyber Pakhtunkhwa area. The airline says the strike will disrupt travel plans for around 130,000 passengers a day. The French president said the felling of the tree honouring Ilan Halimi was \"an attempt to kill him a second time\". In the absence of a deal, Ukrainians focused on the optics of Putin's visit to Trump in Alaska. Can the world's largest economy skirt damage from tariffs? The city had asked a judge to block Attorney General Bondi's order that put in place an \"emergency police commissioner\". Prosecutors accuse LaToya Cantrell of conspiring with her protection cop to pay him for personal liasons. The majority of deaths were recorded in Pakistan's mountainous Khyber Pakhtunkhwa area."
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [
-      {
-        "url": "https://www.scientificamerican.com/",
-        "error": "HTTPSConnectionPool(host='www.scientificamerican.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f92c90f6c20>, 'Connection to www.scientificamerican.com timed out. (connect timeout=12)'))",
-        "reason": "fetch error: HTTPSConnectionPool(host='www.scientificamerican.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f92c90f6c20>, 'Connection to www.scientificamerican.com timed out. (connect timeout=12)'))"
-      }
-    ],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f92c8e1a350>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-17",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
     "insights": [
@@ -8479,6 +8436,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "Are prime numbers hiding inside black holes? The strange case for prime numbers at the heart of physics Lyndie Chiou A salt battery could make EVs more winterproof—if it holds up on the road You Xiaoying U.S.’s and Israel’s war with Iran leaves uranium stockpiles uncertain Dan Vergano This musician built an AI clone of her voice so anyone can sing as her Deni Ellis Béchard Today’s Medium Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-04",
+    "timestamp": "2026-03-04T15:19:07.162920+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "BBC: (definition pending — no model key set)",
+      "Iran: (definition pending — no model key set)",
+      "Jackie Flynn Mogensen: (definition pending — no model key set)",
+      "Iris Dena: (definition pending — no model key set)",
+      "Sri Lankan: (definition pending — no model key set)",
+      "Analysis: (definition pending — no model key set)",
+      "Ros Atkins: (definition pending — no model key set)",
+      "President Donald Trump: (definition pending — no model key set)",
+      "US-Israeli: (definition pending — no model key set)",
+      "Iranian: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "It's thought around 180 people were on board the Iris Dena - 32 were rescued, and Sri Lankan authorities say 80 bodies have been found so far. BBC's Analysis editor Ros Atkins looks at the mixed messaging given by President Donald Trump's administration for its actions in Iran. US-Israeli strikes have destroyed at least 11 Iranian naval vessels, images reviewed by BBC Verify show. The BBC's Lyse Doucet explores who may be Iran's next leader - and how the US-Israel offensive could impact this process. Retaliatory Iranian strikes on Gulf states have tarnished their image as safe and prosperous, writes the BBC's Barbara Plett-Usher. Four of the six - ranging in age from 20 to 42 - have been named after the drone strike in Kuwait. Contests in the southern state are signalling which way the Republicans and Democrats are heading. The Met Police suspect three men of assisting Chinese intelligence services in the UK. The party's founder Nikos Mihaloliakos and other officials are again found guilty, almost six years after an original trial. \"I love you so much,\" Victoria says, two months after her son posted about the family breakdown."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Will El Niño return in 2026? Here’s what we know so far Weather events like El Niño can be notoriously hard to predict, but this year could mark its return Jackie Flynn Mogensen This may be the oldest ‘butthole’ imprint on Earth Taylor Mitchell Brown Stunning photos reveal the ‘blood moon’ total lunar eclipse Jackie Flynn Mogensen Fecal transplants from old mice boost fertility in younger ones Claire Cameron Today’s Hard Sudoku"
       },
       {
         "url": "https://techcrunch.com/",
