@@ -1,47 +1,5 @@
 [
   {
-    "date": "2025-08-19",
-    "timestamp": "2025-08-19T15:26:53.580129+00:00",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Ukraine: (definition pending — no model key set)",
-      "President Zelensky: (definition pending — no model key set)",
-      "Oval Office: (definition pending — no model key set)",
-      "Donald Trump: (definition pending — no model key set)",
-      "The American-British: (definition pending — no model key set)",
-      "Qatar: (definition pending — no model key set)",
-      "Russia: (definition pending — no model key set)",
-      "Vladimir Putin: (definition pending — no model key set)",
-      "About: (definition pending — no model key set)",
-      "Saturday: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "The US president says Russia's Vladimir Putin would face a \"rough situation\" if he doesn't co-operate in the peace process. Ukraine's President Zelensky managed to avoid another disastrous Oval Office meeting with Donald Trump. The American-British dual-national is one of five people who were charged with supplying ketamine to the actor. Qatar says it is \"almost identical\" to a US proposal for a 60-day truce, during which around half of 50 hostages would be released. The 24-year-old shares the impact of her ordeal on a flight from Qatar and being refused compensation. Ukraine's President Zelensky managed to avoid another disastrous Oval Office meeting with Donald Trump. About 10,000 cabin crew walked out on Saturday in a protest over pay, but mediated talks led to a breakthrough. Poilievre is projected to win a by-election after losing his seat in another riding in April's general election. The landmark 113-year-old wooden building is at risk from subsidence and will be moved 5km on giant rolling platforms. The American-British dual-national is one of five people who were charged with supplying ketamine to the actor."
-      },
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "Can Peanut Allergies Be Cured? Remarkable new treatments can free millions of kids and adults from the deadly threat of peanut allergy, tackling one of our fastest-growing medical problems Maryn McKenna How Your Brain’s Nightly Cleanse Keeps It Healthy Lydia Denworth Plastics Started as a Sustainability Solution. What Went Wrong? Jen Schwartz NASA's Juno Mission Leaves Stunning Legacy of Science at Jupiter Robin George Andrews Medium Sudoku: August 19, 2025"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f078664e170>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-20",
     "timestamp": "2025-08-20T15:27:18.572511+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
@@ -8479,6 +8437,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "Koalas show how species can bounce back from genetic bottlenecks Scientists have discovered a potential path out of devastating genetic bottlenecks that could help these Australian animals, as well as many other vulnerable and endangered species Meghan Bartels Tylenol orders in pregnant people plummeted after Trump falsely linked the medicine to autism Sara Novak People who know more about AI art find it less ethical Ionela Bara IBM scientists unveil the first ever “half-Möbius” molecule, with the help of quantum computing Joseph Howlett Today’s Killer Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-07",
+    "timestamp": "2026-03-07T15:08:51.546438+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iran: (definition pending — no model key set)",
+      "Jackie Flynn Mogensen: (definition pending — no model key set)",
+      "President Masoud Pezeshkian: (definition pending — no model key set)",
+      "UAE: (definition pending — no model key set)",
+      "Video: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Ordinary Iranians: (definition pending — no model key set)",
+      "Seyed Ali Mousavi: (definition pending — no model key set)",
+      "Laura Kuenssberg Iran: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "President Masoud Pezeshkian says Iran won't attack first - but the UAE says it has intercepted 15 ballistic missiles today. Video filmed by a witness and verified by the BBC shows a drone crashing close to the airport. Ordinary Iranians reflect on seven days of conflict and where they see their country going next. Seyed Ali Mousavi tells Laura Kuenssberg Iran's response depends on the actions of the US and Israel. The US-Israel war with Iran is being monetised by online creators with AI-generated misinformation. The sinking of an Iranian ship by the US near Sri Lanka brings the conflict uncomfortably close to India. A23a used to be twice the size of Greater London, but it's spectacularly disintegrated over the past year. Ukraine has embarked on a programme to deploy armed robots on the battlefield against Russian forces. Ukraine President Volodymyr Zelensky says other people - including children - are injured as rescuers continue to search through rubble. In an interview, the Oscar-nominee danced into some online controversy after claiming no one cares about ballet and opera."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "The surprising science behind why daylight saving time is good for wildlife You might have a love-hate relationship with daylight saving time, but research shows that urban wildlife may stand to benefit Jackie Flynn Mogensen How to ‘spring forward’ for daylight saving time without leaving your body and brain behind Matt Fuchs NASA changed an asteroid’s orbital path around the sun, a first for humankind Jackie Flynn Mogensen Hey ChatGPT, write me a fictional paper: these LLMs are willing to commit academic fraud Elizabeth Gibney, Nature magazine Math Puzzle: Tricky calculation"
       },
       {
         "url": "https://techcrunch.com/",
