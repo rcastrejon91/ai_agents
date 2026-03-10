@@ -1,49 +1,5 @@
 [
   {
-    "date": "2025-08-22",
-    "timestamp": "2025-08-22T15:25:04.150104+00:00",
-    "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Pastel Pink Lobsters: (definition pending — no model key set)",
-      "Goofy-Looking Squid Among: (definition pending — no model key set)",
-      "Deep-Sea Oddities Discovered: (definition pending — no model key set)",
-      "Ocean Abyss Researchers: (definition pending — no model key set)",
-      "Ashley Balzer Vigil: (definition pending — no model key set)",
-      "This Asteroid Hits: (definition pending — no model key set)",
-      "Moon: (definition pending — no model key set)",
-      "Watch: (definition pending — no model key set)",
-      "Shooting Stars: (definition pending — no model key set)",
-      "Stricken Satellites Phil: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "Pastel Pink Lobsters, Goofy-Looking Squid Among Deep-Sea Oddities Discovered in Ocean Abyss Researchers spied a wild array of life, including dozens of suspected new species, in an underwater gorge Ashley Balzer Vigil If This Asteroid Hits the Moon, Watch for Shooting Stars and Stricken Satellites Phil Plait Carbon Dioxide Defines Our Terrifying, Exhilarating World—and Always Has Lee Billings Controversial Quantum-Computing Paper Gets a Hefty Correction Dan Garisto, Nature magazine Science Quiz: Martian Builders and Billiard Balls"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "Israel says \"there is no famine in Gaza\" after the IPC reports more than 500,000 people in the Strip are facing \"starvation, destitution and death\". A UN-backed body says more than half a million people across Gaza are facing \"starvation, destitution and death\". Sama Ansari Pour is on a mission to experience culture, cuisine and history from around the world. It is the older Menendez's turn to make his request for freedom after the brothers spent decades in prison for killing their parents in 1989. The LAPD allege the singer \"charged\" at them and was placed under arrest on suspicion of battery. A UN-backed body says more than half a million people across Gaza are facing \"starvation, destitution and death\". Agents and police vehicles have been seen at Bolton's home in the Washington DC suburb of Bethesda, Maryland. Kaja Kallas' warning comes as Donald Trump sets a two-week period to assess peace talks between Moscow and Kyiv. Latest updates from the BBC's specialists in fact-checking, verifying video and tackling disinformation. Sama Ansari Pour is on a mission to experience culture, cuisine and history from around the world.",
-        "reason": "not in allow list"
-      }
-    ],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd2f60a56f0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-23",
     "timestamp": "2025-08-23T15:22:04.594964+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
@@ -8484,6 +8440,48 @@
         "reason": "not in allow list"
       }
     ],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-10",
+    "timestamp": "2026-03-10T15:26:14.230110+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iranian: (definition pending — no model key set)",
+      "China: (definition pending — no model key set)",
+      "They: (definition pending — no model key set)",
+      "Iran: (definition pending — no model key set)",
+      "Meanwhile: (definition pending — no model key set)",
+      "Donald Trump: (definition pending — no model key set)",
+      "Concern: (definition pending — no model key set)",
+      "Chalamet: (definition pending — no model key set)",
+      "Norwegian: (definition pending — no model key set)",
+      "Oslo: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "\"They hit hard last night,\" one person in Iran tells us. Meanwhile, an Iranian official warns Donald Trump to be careful he doesn't get \"eliminated\". Concern has grown for team after one critic called them \"wartime traitors\" for failing to salute during the Iranian anthem. Is the backlash against Timothée Chalamet about more than his views on ballet and opera? It comes as Norwegian police investigate an explosion that occurred outside the US embassy in Oslo on Sunday. President Aoun outlines a path towards \"permanent security and stability\", as Israeli strikes targeting Hezbollah continue. The shadow of Greene, who resigned from Congress after a rift with the president, looms large over a crowded contest. The family alleges the firm knew the perpetrator was planning a \"mass casualty event\" but failed to contact the authorities. An unusually wet autumn hit one of the hottest places on Earth, soaking long-dormant wildflower seeds and washing off their protective coatings to trigger the riot of colour. The US president has tried to soothe nerves over oil and markets, but his comments still lack clarity, writes Anthony Zurcher. The US president's comments lead to a drop in crude costs and a rebound in shares."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Is this where China’s astronauts will land on the moon? An obscure lunar region called Rimae Bode is emerging as a high-priority landing site for China’s first crewed moon mission Lee Billings Stand Up for Science protests spread to more than 50 cities Dan Vergano AI techniques speed up forensic analysis of crucial crime scene larvae Rohini Subrahmanyam Taking a multivitamin could slow some signs of aging, new study suggests Jackie Flynn Mogensen Today’s Medium Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Founder Summit 2026 in Boston: Don’t miss ticket savings of up to $300. Register Now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce"
+      }
+    ],
+    "sources_skipped": [],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
