@@ -1,0 +1,18 @@
+{
+  "polite_request": [
+    {
+      "message": "can you explain this condition in detail?",
+      "timestamp": "2026-03-14T09:45:58.402358"
+    },
+    {
+      "message": "thank you, that was very helpful!",
+      "timestamp": "2026-03-14T09:45:58.403844"
+    }
+  ],
+  "question": [
+    {
+      "message": "what are the treatment options?",
+      "timestamp": "2026-03-14T09:45:58.405656"
+    }
+  ]
+}

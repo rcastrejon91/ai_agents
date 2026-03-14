@@ -1,16 +1,20 @@
-# app.py
+﻿# app.py
 
 import asyncio
 import os
+import sys
 from datetime import datetime
+
+# Fix import paths
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import Flask, jsonify, render_template_string, request
 
 # ✨ NEW: Import Lyra Orchestrator
 from core.lyra_orchestrator import LyraOrchestrator
 
-# Import security middleware
-from middleware.auth import (
+# Import security middleware from lyra_app's own middleware
+from lyra_app.middleware.auth import (
     generate_csrf_token,
     log_security_event,
     rate_limited,
@@ -18,12 +22,11 @@ from middleware.auth import (
     sanitize_input,
     secure_session_config,
 )
-from middleware.error_handlers import (
+from lyra_app.middleware.error_handlers import (
     log_request_info,
     register_error_handlers,
     setup_logging,
 )
-
 # ====== Config ======
 OWNER_NAME = "Ricky"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -45,8 +48,8 @@ register_error_handlers(app)
 setup_logging(app)
 log_request_info(app)
 
-# ✨ NEW: Initialize Lyra with multi-perspective intelligence
-print("🧠 Initializing Lyra Orchestrator...")
+# âœ¨ NEW: Initialize Lyra with multi-perspective intelligence
+print("ðŸ§  Initializing Lyra Orchestrator...")
 lyra = LyraOrchestrator(
     config={
         "perspective_weights": {
@@ -60,7 +63,7 @@ lyra = LyraOrchestrator(
         "owner_name": OWNER_NAME,
     }
 )
-print("✅ Lyra ready with 6-perspective intelligence")
+print("âœ… Lyra ready with 6-perspective intelligence")
 
 
 # Add CSRF token to template context
@@ -76,7 +79,7 @@ HTML = """
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>🧠 Lyra - Multi-Perspective AI</title>
+  <title>ðŸ§  Lyra - Multi-Perspective AI</title>
   <style>
     body { background:#0b1220; color:#e6ecff; font-family: Inter, system-ui, sans-serif; margin:0; }
     header { 
@@ -154,20 +157,20 @@ HTML = """
 <body>
   <header>
     <span class="ok" id="health"></span>
-    <strong style="margin-left:6px">🧠 Lyra</strong>
-    <span class="small">— Multi-Perspective AI</span>
+    <strong style="margin-left:6px">ðŸ§  Lyra</strong>
+    <span class="small">â€” Multi-Perspective AI</span>
     <div class="perspectives">
-      <span class="perspective-badge" title="Pragmatist">🎯</span>
-      <span class="perspective-badge" title="Visionary">🚀</span>
-      <span class="perspective-badge" title="Analyst">📊</span>
-      <span class="perspective-badge" title="Creator">🎨</span>
-      <span class="perspective-badge" title="Rebel">⚡</span>
-      <span class="perspective-badge" title="Empath">💚</span>
+      <span class="perspective-badge" title="Pragmatist">ðŸŽ¯</span>
+      <span class="perspective-badge" title="Visionary">ðŸš€</span>
+      <span class="perspective-badge" title="Analyst">ðŸ“Š</span>
+      <span class="perspective-badge" title="Creator">ðŸŽ¨</span>
+      <span class="perspective-badge" title="Rebel">âš¡</span>
+      <span class="perspective-badge" title="Empath">ðŸ’š</span>
     </div>
   </header>
   <main>
     <div class="mode-indicator">
-      💭 <strong>Multi-Perspective Mode Active</strong> — Every response is synthesized from 6 different perspectives
+      ðŸ’­ <strong>Multi-Perspective Mode Active</strong> â€” Every response is synthesized from 6 different perspectives
     </div>
     <div id="chat"></div>
     <form id="f">
@@ -175,7 +178,7 @@ HTML = """
       <textarea id="t" placeholder="Ask me anything... I'll consider it from multiple angles"></textarea>
       <button type="submit">Send</button>
     </form>
-    <p class="small">🧠 Powered by Lyra's multi-perspective intelligence + OpenAI</p>
+    <p class="small">ðŸ§  Powered by Lyra's multi-perspective intelligence + OpenAI</p>
   </main>
 <script>
 const chat = document.getElementById('chat');
@@ -208,7 +211,7 @@ const showThinking = () => {
   const d = document.createElement('div');
   d.className = 'thinking';
   d.id = 'thinking';
-  d.textContent = '💭 Consulting all perspectives...';
+  d.textContent = 'ðŸ’­ Consulting all perspectives...';
   chat.appendChild(d);
   window.scrollTo(0, document.body.scrollHeight);
 };
@@ -251,11 +254,11 @@ f.addEventListener('submit', async (e) => {
       push('assistant', data.reply, data.lyra_metadata);
       history.push({role:'assistant', content:data.reply});
     } else {
-      push('assistant', '⚠️ ' + (data.detail || data.error || 'Upstream error'));
+      push('assistant', 'âš ï¸ ' + (data.detail || data.error || 'Upstream error'));
     }
   } catch (err) {
     hideThinking();
-    push('assistant', '⚠️ Network error. Please try again.');
+    push('assistant', 'âš ï¸ Network error. Please try again.');
   }
 });
 
@@ -334,7 +337,7 @@ def lyra_chat():
             )
 
     try:
-        # ✨ NEW: Run Lyra's multi-perspective analysis
+        # âœ¨ NEW: Run Lyra's multi-perspective analysis
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         lyra_analysis = loop.run_until_complete(
@@ -347,7 +350,7 @@ def lyra_chat():
             f"You are Lyra, a warm, supportive AI companion with multi-perspective intelligence. "
             f"Keep replies concise, kind, and practical. No explicit content. "
             f"\n\n"
-            f"🧠 INTERNAL ANALYSIS:\n"
+            f"ðŸ§  INTERNAL ANALYSIS:\n"
             f"Intent: {lyra_analysis.get('intent', 'general')}\n"
             f"Approach: {lyra_analysis.get('approach', 'balanced')}\n"
             f"Lead Perspective: {lyra_analysis.get('dominant_perspective', 'Balanced')}\n"
@@ -391,7 +394,7 @@ def lyra_chat():
         return jsonify(error="upstream", detail="Unable to process request"), 500
 
 
-# ✨ NEW: Lyra status endpoint
+# âœ¨ NEW: Lyra status endpoint
 @app.route("/api/lyra/status")
 def lyra_status():
     """Get Lyra's current multi-perspective status"""
@@ -399,7 +402,7 @@ def lyra_status():
     return jsonify(status)
 
 
-# ✨ NEW: Adjust perspective weights
+# âœ¨ NEW: Adjust perspective weights
 @app.route("/api/lyra/perspectives", methods=["POST"])
 @require_csrf
 @rate_limited(max_requests=5, window_seconds=60)
@@ -476,14 +479,15 @@ if __name__ == "__main__":
     # Local dev run: python app.py
     port = int(os.getenv("PORT", "8080"))
     print(f"\n{'='*60}")
-    print("🧠 LYRA AI - Multi-Perspective Orchestrator")
+    print("ðŸ§  LYRA AI - Multi-Perspective Orchestrator")
     print(f"{'='*60}")
-    print(f"🚀 Server starting on port {port}")
+    print(f"ðŸš€ Server starting on port {port}")
     print(
-        "💭 6 perspectives active: Pragmatist, Visionary, Analyst, Creator, Rebel, Empath"
+        "ðŸ’­ 6 perspectives active: Pragmatist, Visionary, Analyst, Creator, Rebel, Empath"
     )
-    print("🔒 Security middleware: Active")
-    print(f"📡 API: http://localhost:{port}")
+    print("ðŸ”’ Security middleware: Active")
+    print(f"ðŸ“¡ API: http://localhost:{port}")
     print(f"{'='*60}\n")
 
     app.run(host="0.0.0.0", port=port, debug=True)
+

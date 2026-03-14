@@ -1,0 +1,162 @@
+{
+  "patterns": {
+    "hi": {
+      "response": "Hello! I'm your Medical AI assistant. How can I help you today?",
+      "timestamp": "2026-03-14T10:05:55.407353",
+      "count": 2,
+      "confidence": 0.5
+    },
+    "i need information about cancer research": {
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "timestamp": "2026-03-14T10:06:10.759079",
+      "count": 1
+    },
+    "infusion": {
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "timestamp": "2026-03-14T10:06:20.576770",
+      "count": 1
+    },
+    "bone cancers": {
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "timestamp": "2026-03-14T10:06:30.592662",
+      "count": 1
+    },
+    "help i've fallen and can't get up!": {
+      "response": "I provide general health info on: symptoms, diet, exercise, sleep, stress management, and wellness tips. (Not a substitute for professional medical advice)",
+      "timestamp": "2026-03-14T10:06:48.140073",
+      "count": 1
+    },
+    "ineed help with ndes": {
+      "response": "ML-Powered Medical Agent: symptoms, conditions, diet, exercise, sleep, stress, wellness. I improve with each interaction! (Not medical advice)",
+      "timestamp": "2026-03-14T10:21:42.449830",
+      "count": 1,
+      "confidence": 0.5
+    },
+    "conditons": {
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:21:56.652845",
+      "count": 1,
+      "confidence": 0.5
+    },
+    "death": {
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:22:07.515496",
+      "count": 1,
+      "confidence": 0.5
+    },
+    "caners": {
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:22:13.397330",
+      "count": 1,
+      "confidence": 0.5
+    },
+    "cancers": {
+      "response": "Complex disease with many types. Early detection key. Treatment: surgery, chemo, radiation, immunotherapy. Consult oncologist.",
+      "timestamp": "2026-03-14T10:22:16.996824",
+      "count": 1,
+      "confidence": 0.5
+    }
+  },
+  "responses": {},
+  "context": [
+    {
+      "message": "hi",
+      "response": "Hello! I'm your Medical AI assistant. How can I help you today?",
+      "time": "2026-03-14T10:05:55.407369"
+    },
+    {
+      "message": "i need information about cancer research",
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "time": "2026-03-14T10:06:10.759099"
+    },
+    {
+      "message": "infusion",
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "time": "2026-03-14T10:06:20.576786"
+    },
+    {
+      "message": "bone cancers",
+      "response": "I provide general health information. For specific medical concerns, please consult a healthcare professional. What health topic interests you?",
+      "time": "2026-03-14T10:06:30.592680"
+    },
+    {
+      "message": "help i've fallen and can't get up!",
+      "response": "I provide general health info on: symptoms, diet, exercise, sleep, stress management, and wellness tips. (Not a substitute for professional medical advice)",
+      "time": "2026-03-14T10:06:48.140089"
+    },
+    {
+      "message": "hi",
+      "response": "Hello! I'm your Medical AI assistant powered by machine learning. How can I help you today?",
+      "time": "2026-03-14T10:21:24.905094",
+      "confidence": 0.5
+    },
+    {
+      "message": "ineed help with ndes",
+      "response": "ML-Powered Medical Agent: symptoms, conditions, diet, exercise, sleep, stress, wellness. I improve with each interaction! (Not medical advice)",
+      "time": "2026-03-14T10:21:42.449846",
+      "confidence": 0.5
+    },
+    {
+      "message": "conditons",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "time": "2026-03-14T10:21:56.652880",
+      "confidence": 0.5
+    },
+    {
+      "message": "death",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "time": "2026-03-14T10:22:07.515516",
+      "confidence": 0.5
+    },
+    {
+      "message": "caners",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "time": "2026-03-14T10:22:13.397369",
+      "confidence": 0.5
+    },
+    {
+      "message": "cancers",
+      "response": "Complex disease with many types. Early detection key. Treatment: surgery, chemo, radiation, immunotherapy. Consult oncologist.",
+      "time": "2026-03-14T10:22:16.996843",
+      "confidence": 0.5
+    }
+  ],
+  "learned_pairs": [
+    {
+      "message": "hi",
+      "response": "Hello! I'm your Medical AI assistant powered by machine learning. How can I help you today?",
+      "timestamp": "2026-03-14T10:21:24.905069",
+      "confidence": 0.5
+    },
+    {
+      "message": "ineed help with ndes",
+      "response": "ML-Powered Medical Agent: symptoms, conditions, diet, exercise, sleep, stress, wellness. I improve with each interaction! (Not medical advice)",
+      "timestamp": "2026-03-14T10:21:42.449839",
+      "confidence": 0.5
+    },
+    {
+      "message": "conditons",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:21:56.652869",
+      "confidence": 0.5
+    },
+    {
+      "message": "death",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:22:07.515509",
+      "confidence": 0.5
+    },
+    {
+      "message": "caners",
+      "response": "I provide ML-enhanced health information. For specific medical concerns, consult healthcare professionals. What health topic?",
+      "timestamp": "2026-03-14T10:22:13.397362",
+      "confidence": 0.5
+    },
+    {
+      "message": "cancers",
+      "response": "Complex disease with many types. Early detection key. Treatment: surgery, chemo, radiation, immunotherapy. Consult oncologist.",
+      "timestamp": "2026-03-14T10:22:16.996837",
+      "confidence": 0.5
+    }
+  ]
+}

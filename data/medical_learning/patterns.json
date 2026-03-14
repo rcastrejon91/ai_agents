@@ -1,0 +1,14 @@
+{
+  "question": [
+    {
+      "message": "what are the symptoms of flu?",
+      "timestamp": "2026-03-14T09:49:30.554521"
+    }
+  ],
+  "polite_request": [
+    {
+      "message": "please explain in detail",
+      "timestamp": "2026-03-14T09:49:30.556101"
+    }
+  ]
+}

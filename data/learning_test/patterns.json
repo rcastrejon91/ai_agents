@@ -1,0 +1,18 @@
+{
+  "polite_request": [
+    {
+      "message": "can you help me understand this medical condition?",
+      "timestamp": "2026-03-14T09:44:23.001743"
+    },
+    {
+      "message": "thank you! that was very helpful and detailed.",
+      "timestamp": "2026-03-14T09:44:23.004804"
+    }
+  ],
+  "question": [
+    {
+      "message": "what are my legal rights in this contract?",
+      "timestamp": "2026-03-14T09:44:23.003446"
+    }
+  ]
+}

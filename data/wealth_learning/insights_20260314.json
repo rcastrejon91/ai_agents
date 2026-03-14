@@ -1,0 +1,49 @@
+[
+  {
+    "patterns": [
+      "polite_request"
+    ],
+    "topics": [
+      "general"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T10:02:22.744603"
+  },
+  {
+    "patterns": [],
+    "topics": [
+      "general"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T10:02:28.689120"
+  },
+  {
+    "patterns": [],
+    "topics": [
+      "general"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T10:02:33.554355"
+  },
+  {
+    "patterns": [],
+    "topics": [
+      "general"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T10:02:44.081482"
+  },
+  {
+    "patterns": [],
+    "topics": [
+      "general"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T10:02:46.488485"
+  }
+]

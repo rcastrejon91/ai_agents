@@ -1,0 +1,37 @@
+[
+  {
+    "patterns": [
+      "polite_request"
+    ],
+    "topics": [
+      "medical"
+    ],
+    "sentiment": "neutral",
+    "preferences": {
+      "response_length": "detailed"
+    },
+    "timestamp": "2026-03-14T09:45:58.402311"
+  },
+  {
+    "patterns": [
+      "polite_request"
+    ],
+    "topics": [
+      "medical"
+    ],
+    "sentiment": "positive",
+    "preferences": {},
+    "timestamp": "2026-03-14T09:45:58.403811"
+  },
+  {
+    "patterns": [
+      "question"
+    ],
+    "topics": [
+      "medical"
+    ],
+    "sentiment": "neutral",
+    "preferences": {},
+    "timestamp": "2026-03-14T09:45:58.405638"
+  }
+]
