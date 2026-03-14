@@ -1,14 +1,16 @@
-﻿import sys
-import os
+﻿import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def home():
-    return '''
+    return """
     <!DOCTYPE html>
     <html>
     <head>
@@ -46,23 +48,23 @@ def home():
         </div>
     </body>
     </html>
-    '''
+    """
 
-@app.route('/api/chat', methods=['POST'])
+
+@app.route("/api/chat", methods=["POST"])
 def chat():
     data = request.json
-    message = data.get('message', '')
-    return jsonify({
-        'response': f'Lyra received: {message}',
-        'agent': 'tech',
-        'status': 'success'
-    })
+    message = data.get("message", "")
+    return jsonify(
+        {"response": f"Lyra received: {message}", "agent": "tech", "status": "success"}
+    )
+
 
 if __name__ == "__main__":
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("🧠 LYRA AI DASHBOARD STARTING...")
-    print("="*60)
+    print("=" * 60)
     print("📱 Dashboard: http://localhost:5001")
     print("🌐 API: http://localhost:5001/api/chat")
-    print("="*60 + "\n")
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    print("=" * 60 + "\n")
+    app.run(host="0.0.0.0", port=5001, debug=True)
