@@ -5,34 +5,27 @@ on:
   push:
     branches: [ main ]
 
+# Cancel any in-progress run when a new push happens
+concurrency:
+  group: autofix-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   autofix:
     runs-on: ubuntu-latest
+    # Skip if this is already an autofix commit to prevent infinite loop
+    if: "!contains(github.event.head_commit.message, 'chore: autofix')"
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      # ---------- JS / TS ----------
-      - name: Setup Node
-        if: ${{ hashFiles('**/package.json') != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: ESLint + Prettier
-        if: ${{ hashFiles('**/package.json') != '' }}
-        run: |
-          npm ci || npm install
-          npx --yes eslint . --ext .js,.ts --fix || true
-          npx --yes prettier . --write || true
-
-      # ---------- Python ----------
       - name: Setup Python
         if: ${{ hashFiles('**/*.py') != '' }}
         uses: actions/setup-python@v5
@@ -42,28 +35,21 @@ jobs:
       - name: Ruff + Black + isort
         if: ${{ hashFiles('**/*.py') != '' }}
         run: |
-          python -m pip install --upgrade pip
-          pip install ruff black isort || true
-          ruff check . --fix || true
-          isort . || true
-          black . || true
+          pip install ruff black isort --quiet
+          ruff check . --fix --ignore E501 || true
+          isort . --profile black || true
+          black . --quiet || true
 
-      # ---------- Commit fixes directly to main (never commit workflow files) ----------
-      - name: Commit & push to main
+      - name: Commit & push fixes
         run: |
-          set -e
           git add -A
-          # don't try to commit workflow files (GitHub blocks this)
           git restore --staged .github/workflows || true
-          # nothing to commit? exit cleanly
           if git diff --cached --quiet; then
-            echo "No changes to commit 🎉"
+            echo "Nothing to fix"
             exit 0
           fi
-          # make sure we can push fast-forward
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git rebase origin/main || true
+          git pull --rebase origin main
           git commit -m "chore: autofix (ESLint/Prettier, Ruff/Black/isort)"
           git push origin HEAD:main
