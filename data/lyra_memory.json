@@ -3,9 +3,7 @@
     "date": "2025-08-26",
     "timestamp": "2025-08-26T15:26:13.651321+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -47,9 +45,7 @@
     "date": "2025-08-27",
     "timestamp": "2025-08-27T15:25:39.508619+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -89,9 +85,7 @@
     "date": "2025-08-28",
     "timestamp": "2025-08-28T15:25:30.495701+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -133,9 +127,7 @@
     "date": "2025-08-29",
     "timestamp": "2025-08-29T15:22:31.934874+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -175,9 +167,7 @@
     "date": "2025-08-30",
     "timestamp": "2025-08-30T15:21:21.012230+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -219,9 +209,7 @@
     "date": "2025-08-31",
     "timestamp": "2025-08-31T15:22:04.511361+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -261,9 +249,7 @@
     "date": "2025-09-01",
     "timestamp": "2025-09-01T15:24:09.033608+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -303,9 +289,7 @@
     "date": "2025-09-02",
     "timestamp": "2025-09-02T15:26:54.600432+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -345,9 +329,7 @@
     "date": "2025-09-03",
     "timestamp": "2025-09-03T15:25:33.261129+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -389,9 +371,7 @@
     "date": "2025-09-04",
     "timestamp": "2025-09-04T15:25:00.340429+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -431,9 +411,7 @@
     "date": "2025-09-05",
     "timestamp": "2025-09-05T15:24:31.283374+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -473,9 +451,7 @@
     "date": "2025-09-06",
     "timestamp": "2025-09-06T15:20:03.909867+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -517,9 +493,7 @@
     "date": "2025-09-07",
     "timestamp": "2025-09-07T15:20:17.320196+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -559,9 +533,7 @@
     "date": "2025-09-08",
     "timestamp": "2025-09-08T15:25:33.531667+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -601,9 +573,7 @@
     "date": "2025-09-09",
     "timestamp": "2025-09-09T15:26:41.476896+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -643,9 +613,7 @@
     "date": "2025-09-10",
     "timestamp": "2025-09-10T15:24:48.371390+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -687,9 +655,7 @@
     "date": "2025-09-11",
     "timestamp": "2025-09-11T15:23:04.212878+00:00",
     "summary": "Fetched sources:\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -727,9 +693,7 @@
     "date": "2025-09-12",
     "timestamp": "2025-09-12T15:23:11.698890+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -769,9 +733,7 @@
     "date": "2025-09-13",
     "timestamp": "2025-09-13T15:19:21.506339+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -811,9 +773,7 @@
     "date": "2025-09-14",
     "timestamp": "2025-09-14T15:20:35.660883+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -853,9 +813,7 @@
     "date": "2025-09-15",
     "timestamp": "2025-09-15T15:26:08.134530+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -895,9 +853,7 @@
     "date": "2025-09-16",
     "timestamp": "2025-09-16T15:26:17.977111+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -937,9 +893,7 @@
     "date": "2025-09-17",
     "timestamp": "2025-09-17T15:25:02.394159+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -981,9 +935,7 @@
     "date": "2025-09-18",
     "timestamp": "2025-09-18T15:25:55.652195+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1023,9 +975,7 @@
     "date": "2025-09-19",
     "timestamp": "2025-09-19T15:24:20.491312+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1065,9 +1015,7 @@
     "date": "2025-09-20",
     "timestamp": "2025-09-20T15:20:53.765188+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1107,9 +1055,7 @@
     "date": "2025-09-21",
     "timestamp": "2025-09-21T15:21:18.294059+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1149,9 +1095,7 @@
     "date": "2025-09-22",
     "timestamp": "2025-09-22T15:26:03.411860+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1191,9 +1135,7 @@
     "date": "2025-09-23",
     "timestamp": "2025-09-23T15:25:34.572916+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1233,9 +1175,7 @@
     "date": "2025-09-24",
     "timestamp": "2025-09-24T15:25:31.903484+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1275,9 +1215,7 @@
     "date": "2025-09-25",
     "timestamp": "2025-09-25T15:26:15.600026+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1317,9 +1255,7 @@
     "date": "2025-09-26",
     "timestamp": "2025-09-26T15:24:52.264303+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1359,9 +1295,7 @@
     "date": "2025-09-27",
     "timestamp": "2025-09-27T15:20:24.714342+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1401,9 +1335,7 @@
     "date": "2025-09-28",
     "timestamp": "2025-09-28T15:19:49.978053+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1443,9 +1375,7 @@
     "date": "2025-09-29",
     "timestamp": "2025-09-29T15:25:11.734403+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1485,9 +1415,7 @@
     "date": "2025-09-30",
     "timestamp": "2025-09-30T15:23:02.124991+00:00",
     "summary": "Fetched sources:\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1525,9 +1453,7 @@
     "date": "2025-10-01",
     "timestamp": "2025-10-01T15:25:17.683559+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1567,9 +1493,7 @@
     "date": "2025-10-02",
     "timestamp": "2025-10-02T15:24:59.659933+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1609,9 +1533,7 @@
     "date": "2025-10-03",
     "timestamp": "2025-10-03T15:23:51.561061+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1651,9 +1573,7 @@
     "date": "2025-10-04",
     "timestamp": "2025-10-04T15:20:18.846598+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1693,9 +1613,7 @@
     "date": "2025-10-05",
     "timestamp": "2025-10-05T15:20:37.035140+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1737,9 +1655,7 @@
     "date": "2025-10-06",
     "timestamp": "2025-10-06T15:25:15.145487+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1779,9 +1695,7 @@
     "date": "2025-10-07",
     "timestamp": "2025-10-07T15:26:50.378820+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1823,9 +1737,7 @@
     "date": "2025-10-08",
     "timestamp": "2025-10-08T15:26:19.700233+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1865,9 +1777,7 @@
     "date": "2025-10-09",
     "timestamp": "2025-10-09T15:35:36.849209+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1907,9 +1817,7 @@
     "date": "2025-10-10",
     "timestamp": "2025-10-10T15:23:51.061251+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1951,9 +1859,7 @@
     "date": "2025-10-11",
     "timestamp": "2025-10-11T15:20:25.883645+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -1995,9 +1901,7 @@
     "date": "2025-10-12",
     "timestamp": "2025-10-12T15:21:10.486564+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2037,9 +1941,7 @@
     "date": "2025-10-13",
     "timestamp": "2025-10-13T15:25:00.819060+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2081,9 +1983,7 @@
     "date": "2025-10-14",
     "timestamp": "2025-10-14T15:27:16.019778+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2125,9 +2025,7 @@
     "date": "2025-10-15",
     "timestamp": "2025-10-15T15:24:13.761113+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2167,9 +2065,7 @@
     "date": "2025-10-16",
     "timestamp": "2025-10-16T15:26:38.035121+00:00",
     "summary": "Fetched sources:\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2207,9 +2103,7 @@
     "date": "2025-10-17",
     "timestamp": "2025-10-17T15:25:00.078560+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2249,9 +2143,7 @@
     "date": "2025-10-18",
     "timestamp": "2025-10-18T15:21:19.874281+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2293,9 +2185,7 @@
     "date": "2025-10-19",
     "timestamp": "2025-10-19T15:21:40.761218+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2337,9 +2227,7 @@
     "date": "2025-10-20",
     "timestamp": "2025-10-20T15:25:35.125487+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2381,9 +2269,7 @@
     "date": "2025-10-21",
     "timestamp": "2025-10-21T15:25:23.006768+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2423,9 +2309,7 @@
     "date": "2025-10-22",
     "timestamp": "2025-10-22T15:26:47.285705+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2465,9 +2349,7 @@
     "date": "2025-10-23",
     "timestamp": "2025-10-23T15:26:25.637722+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2509,9 +2391,7 @@
     "date": "2025-10-24",
     "timestamp": "2025-10-24T15:26:40.028242+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2551,9 +2431,7 @@
     "date": "2025-10-25",
     "timestamp": "2025-10-25T15:21:46.907138+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2593,9 +2471,7 @@
     "date": "2025-10-26",
     "timestamp": "2025-10-26T15:22:07.515583+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2637,9 +2513,7 @@
     "date": "2025-10-27",
     "timestamp": "2025-10-27T15:26:23.307535+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2679,9 +2553,7 @@
     "date": "2025-10-28",
     "timestamp": "2025-10-28T15:28:19.266410+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2721,9 +2593,7 @@
     "date": "2025-10-29",
     "timestamp": "2025-10-29T15:28:42.690050+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2763,9 +2633,7 @@
     "date": "2025-10-30",
     "timestamp": "2025-10-30T15:28:51.970405+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2807,9 +2675,7 @@
     "date": "2025-10-31",
     "timestamp": "2025-10-31T15:25:07.640766+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2849,9 +2715,7 @@
     "date": "2025-11-01",
     "timestamp": "2025-11-01T15:21:01.817238+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2891,9 +2755,7 @@
     "date": "2025-11-02",
     "timestamp": "2025-11-02T15:22:19.039162+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2933,9 +2795,7 @@
     "date": "2025-11-03",
     "timestamp": "2025-11-03T15:26:48.036734+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -2977,9 +2837,7 @@
     "date": "2025-11-04",
     "timestamp": "2025-11-04T15:28:29.499989+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3021,9 +2879,7 @@
     "date": "2025-11-05",
     "timestamp": "2025-11-05T15:26:03.681853+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3065,9 +2921,7 @@
     "date": "2025-11-06",
     "timestamp": "2025-11-06T15:28:38.214089+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3107,9 +2961,7 @@
     "date": "2025-11-07",
     "timestamp": "2025-11-07T15:26:07.430192+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3149,9 +3001,7 @@
     "date": "2025-11-08",
     "timestamp": "2025-11-08T15:22:32.477391+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3191,9 +3041,7 @@
     "date": "2025-11-09",
     "timestamp": "2025-11-09T15:22:15.151374+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3233,9 +3081,7 @@
     "date": "2025-11-10",
     "timestamp": "2025-11-10T15:28:27.941130+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3275,9 +3121,7 @@
     "date": "2025-11-11",
     "timestamp": "2025-11-11T15:27:56.482244+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3317,9 +3161,7 @@
     "date": "2025-11-12",
     "timestamp": "2025-11-12T15:29:18.443567+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3359,9 +3201,7 @@
     "date": "2025-11-13",
     "timestamp": "2025-11-13T15:27:32.623070+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3403,9 +3243,7 @@
     "date": "2025-11-14",
     "timestamp": "2025-11-14T15:23:40.661003+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3445,9 +3283,7 @@
     "date": "2025-11-15",
     "timestamp": "2025-11-15T15:22:50.070792+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3487,9 +3323,7 @@
     "date": "2025-11-16",
     "timestamp": "2025-11-16T15:22:39.938569+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3529,9 +3363,7 @@
     "date": "2025-11-17",
     "timestamp": "2025-11-17T15:28:49.590437+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3573,9 +3405,7 @@
     "date": "2025-11-18",
     "timestamp": "2025-11-18T15:29:08.812424+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3615,9 +3445,7 @@
     "date": "2025-11-19",
     "timestamp": "2025-11-19T15:27:13.518592+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3657,9 +3485,7 @@
     "date": "2025-11-20",
     "timestamp": "2025-11-20T15:31:24.833136+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3701,9 +3527,7 @@
     "date": "2025-11-21",
     "timestamp": "2025-11-21T15:23:09.402566+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3743,9 +3567,7 @@
     "date": "2025-11-22",
     "timestamp": "2025-11-22T15:07:14.872970+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3785,9 +3607,7 @@
     "date": "2025-11-23",
     "timestamp": "2025-11-23T15:07:05.889987+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3827,9 +3647,7 @@
     "date": "2025-11-24",
     "timestamp": "2025-11-24T15:09:03.766409+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3869,9 +3687,7 @@
     "date": "2025-11-25",
     "timestamp": "2025-11-25T15:08:49.640458+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3911,9 +3727,7 @@
     "date": "2025-11-26",
     "timestamp": "2025-11-26T15:07:34.496387+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3953,9 +3767,7 @@
     "date": "2025-11-27",
     "timestamp": "2025-11-27T15:08:07.654162+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -3997,9 +3809,7 @@
     "date": "2025-11-28",
     "timestamp": "2025-11-28T15:07:53.890451+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4039,9 +3849,7 @@
     "date": "2025-11-29",
     "timestamp": "2025-11-29T15:07:21.780751+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4081,9 +3889,7 @@
     "date": "2025-11-30",
     "timestamp": "2025-11-30T15:07:15.788255+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4123,9 +3929,7 @@
     "date": "2025-12-01",
     "timestamp": "2025-12-01T15:08:45.366787+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4165,9 +3969,7 @@
     "date": "2025-12-02",
     "timestamp": "2025-12-02T15:09:03.973439+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4209,9 +4011,7 @@
     "date": "2025-12-03",
     "timestamp": "2025-12-03T15:09:09.637407+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4253,9 +4053,7 @@
     "date": "2025-12-04",
     "timestamp": "2025-12-04T15:09:46.273146+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4295,9 +4093,7 @@
     "date": "2025-12-05",
     "timestamp": "2025-12-05T15:08:38.888965+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4337,9 +4133,7 @@
     "date": "2025-12-06",
     "timestamp": "2025-12-06T15:07:06.330963+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4379,9 +4173,7 @@
     "date": "2025-12-07",
     "timestamp": "2025-12-07T15:06:54.311034+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4421,9 +4213,7 @@
     "date": "2025-12-08",
     "timestamp": "2025-12-08T15:08:53.564376+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4463,9 +4253,7 @@
     "date": "2025-12-09",
     "timestamp": "2025-12-09T15:09:32.343985+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4505,9 +4293,7 @@
     "date": "2025-12-10",
     "timestamp": "2025-12-10T15:10:09.400267+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4547,9 +4333,7 @@
     "date": "2025-12-11",
     "timestamp": "2025-12-11T15:09:28.355489+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4589,9 +4373,7 @@
     "date": "2025-12-12",
     "timestamp": "2025-12-12T15:09:13.442637+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4633,9 +4415,7 @@
     "date": "2025-12-13",
     "timestamp": "2025-12-13T15:07:27.616342+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4677,9 +4457,7 @@
     "date": "2025-12-14",
     "timestamp": "2025-12-14T15:07:42.841308+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4719,9 +4497,7 @@
     "date": "2025-12-15",
     "timestamp": "2025-12-15T15:11:15.335451+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4763,9 +4539,7 @@
     "date": "2025-12-16",
     "timestamp": "2025-12-16T15:09:53.266769+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4805,9 +4579,7 @@
     "date": "2025-12-17",
     "timestamp": "2025-12-17T15:09:16.303482+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4847,9 +4619,7 @@
     "date": "2025-12-18",
     "timestamp": "2025-12-18T15:09:11.837417+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4889,9 +4659,7 @@
     "date": "2025-12-19",
     "timestamp": "2025-12-19T15:08:41.150718+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4931,9 +4699,7 @@
     "date": "2025-12-20",
     "timestamp": "2025-12-20T15:07:24.497133+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -4973,9 +4739,7 @@
     "date": "2025-12-21",
     "timestamp": "2025-12-21T15:07:34.524037+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5015,9 +4779,7 @@
     "date": "2025-12-22",
     "timestamp": "2025-12-22T15:08:31.285355+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5057,9 +4819,7 @@
     "date": "2025-12-23",
     "timestamp": "2025-12-23T15:08:35.068513+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5099,9 +4859,7 @@
     "date": "2025-12-24",
     "timestamp": "2025-12-24T15:08:40.882749+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5141,9 +4899,7 @@
     "date": "2025-12-25",
     "timestamp": "2025-12-25T15:07:56.649503+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5185,9 +4941,7 @@
     "date": "2025-12-26",
     "timestamp": "2025-12-26T15:08:07.707085+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5227,9 +4981,7 @@
     "date": "2025-12-27",
     "timestamp": "2025-12-27T15:07:26.003644+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5269,9 +5021,7 @@
     "date": "2025-12-28",
     "timestamp": "2025-12-28T15:07:46.792277+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5311,9 +5061,7 @@
     "date": "2025-12-29",
     "timestamp": "2025-12-29T15:08:38.363650+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5353,9 +5101,7 @@
     "date": "2025-12-30",
     "timestamp": "2025-12-30T15:08:44.411726+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5395,9 +5141,7 @@
     "date": "2025-12-31",
     "timestamp": "2025-12-31T15:08:17.405119+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5437,9 +5181,7 @@
     "date": "2026-01-01",
     "timestamp": "2026-01-01T15:08:07.657070+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5479,9 +5221,7 @@
     "date": "2026-01-02",
     "timestamp": "2026-01-02T15:08:26.212919+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5521,9 +5261,7 @@
     "date": "2026-01-03",
     "timestamp": "2026-01-03T15:07:36.902806+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5563,9 +5301,7 @@
     "date": "2026-01-04",
     "timestamp": "2026-01-04T15:07:33.452482+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5605,9 +5341,7 @@
     "date": "2026-01-05",
     "timestamp": "2026-01-05T15:09:51.406156+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5649,9 +5383,7 @@
     "date": "2026-01-06",
     "timestamp": "2026-01-06T15:08:58.411532+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5691,9 +5423,7 @@
     "date": "2026-01-07",
     "timestamp": "2026-01-07T15:09:49.510183+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5735,9 +5465,7 @@
     "date": "2026-01-08",
     "timestamp": "2026-01-08T15:33:09.007502+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5777,9 +5505,7 @@
     "date": "2026-01-09",
     "timestamp": "2026-01-09T15:31:09.750885+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5821,9 +5547,7 @@
     "date": "2026-01-10",
     "timestamp": "2026-01-10T15:25:48.494366+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5863,9 +5587,7 @@
     "date": "2026-01-11",
     "timestamp": "2026-01-11T15:26:26.991704+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5905,9 +5627,7 @@
     "date": "2026-01-12",
     "timestamp": "2026-01-12T15:33:08.375408+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5947,9 +5667,7 @@
     "date": "2026-01-13",
     "timestamp": "2026-01-13T15:33:29.254784+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -5989,9 +5707,7 @@
     "date": "2026-01-14",
     "timestamp": "2026-01-14T15:32:10.457315+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6033,9 +5749,7 @@
     "date": "2026-01-15",
     "timestamp": "2026-01-15T15:10:20.307267+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6075,9 +5789,7 @@
     "date": "2026-01-16",
     "timestamp": "2026-01-16T15:09:46.457307+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6117,9 +5829,7 @@
     "date": "2026-01-17",
     "timestamp": "2026-01-17T15:07:48.313648+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6159,9 +5869,7 @@
     "date": "2026-01-18",
     "timestamp": "2026-01-18T15:07:19.527186+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6203,9 +5911,7 @@
     "date": "2026-01-19",
     "timestamp": "2026-01-19T15:11:04.848177+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6247,9 +5953,7 @@
     "date": "2026-01-20",
     "timestamp": "2026-01-20T15:13:30.210937+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6289,9 +5993,7 @@
     "date": "2026-01-21",
     "timestamp": "2026-01-21T15:13:16.575812+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6331,9 +6033,7 @@
     "date": "2026-01-22",
     "timestamp": "2026-01-22T15:13:05.292176+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6375,9 +6075,7 @@
     "date": "2026-01-23",
     "timestamp": "2026-01-23T15:10:48.235948+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6417,9 +6115,7 @@
     "date": "2026-01-24",
     "timestamp": "2026-01-24T15:07:40.529014+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6459,9 +6155,7 @@
     "date": "2026-01-25",
     "timestamp": "2026-01-25T15:07:43.143024+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6503,9 +6197,7 @@
     "date": "2026-01-26",
     "timestamp": "2026-01-26T15:12:24.667692+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6545,9 +6237,7 @@
     "date": "2026-01-27",
     "timestamp": "2026-01-27T15:14:06.435933+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6587,9 +6277,7 @@
     "date": "2026-01-28",
     "timestamp": "2026-01-28T15:14:05.422351+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6629,9 +6317,7 @@
     "date": "2026-01-29",
     "timestamp": "2026-01-29T15:16:33.425649+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6671,9 +6357,7 @@
     "date": "2026-01-30",
     "timestamp": "2026-01-30T15:15:55.057644+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6713,9 +6397,7 @@
     "date": "2026-01-31",
     "timestamp": "2026-01-31T15:08:44.966071+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6755,9 +6437,7 @@
     "date": "2026-02-01",
     "timestamp": "2026-02-01T15:09:53.316810+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6797,9 +6477,7 @@
     "date": "2026-02-02",
     "timestamp": "2026-02-02T15:20:36.289415+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6839,9 +6517,7 @@
     "date": "2026-02-03",
     "timestamp": "2026-02-03T15:22:37.267875+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6881,9 +6557,7 @@
     "date": "2026-02-04",
     "timestamp": "2026-02-04T15:20:52.686246+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6923,9 +6597,7 @@
     "date": "2026-02-05",
     "timestamp": "2026-02-05T15:19:32.931626+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -6965,9 +6637,7 @@
     "date": "2026-02-06",
     "timestamp": "2026-02-06T15:20:20.577862+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7007,9 +6677,7 @@
     "date": "2026-02-07",
     "timestamp": "2026-02-07T15:09:54.226875+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7049,9 +6717,7 @@
     "date": "2026-02-08",
     "timestamp": "2026-02-08T15:10:45.654354+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7091,9 +6757,7 @@
     "date": "2026-02-09",
     "timestamp": "2026-02-09T15:25:54.427247+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7133,9 +6797,7 @@
     "date": "2026-02-10",
     "timestamp": "2026-02-10T15:32:02.713203+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7175,9 +6837,7 @@
     "date": "2026-02-11",
     "timestamp": "2026-02-11T15:27:01.393268+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7217,9 +6877,7 @@
     "date": "2026-02-12",
     "timestamp": "2026-02-12T15:23:44.413694+00:00",
     "summary": "Fetched sources:\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7261,9 +6919,7 @@
     "date": "2026-02-13",
     "timestamp": "2026-02-13T15:21:02.646998+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7303,9 +6959,7 @@
     "date": "2026-02-14",
     "timestamp": "2026-02-14T15:10:20.690992+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7347,9 +7001,7 @@
     "date": "2026-02-15",
     "timestamp": "2026-02-15T15:10:15.824507+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7389,9 +7041,7 @@
     "date": "2026-02-16",
     "timestamp": "2026-02-16T15:20:10.272220+00:00",
     "summary": "Fetched sources:\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7429,9 +7079,7 @@
     "date": "2026-02-18",
     "timestamp": "2026-02-18T15:24:01.455987+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7471,9 +7119,7 @@
     "date": "2026-02-19",
     "timestamp": "2026-02-19T15:21:11.557057+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7513,9 +7159,7 @@
     "date": "2026-02-20",
     "timestamp": "2026-02-20T15:19:56.604665+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7555,9 +7199,7 @@
     "date": "2026-02-21",
     "timestamp": "2026-02-21T15:09:54.325901+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7597,9 +7239,7 @@
     "date": "2026-02-22",
     "timestamp": "2026-02-22T15:10:23.857774+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7639,9 +7279,7 @@
     "date": "2026-02-23",
     "timestamp": "2026-02-23T10:14:51.497238+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7683,9 +7321,7 @@
     "date": "2026-02-23",
     "timestamp": "2026-02-23T15:22:36.689882+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7725,9 +7361,7 @@
     "date": "2026-02-24",
     "timestamp": "2026-02-24T15:26:18.231011+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7769,9 +7403,7 @@
     "date": "2026-02-25",
     "timestamp": "2026-02-25T15:26:56.050279+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7813,9 +7445,7 @@
     "date": "2026-02-26",
     "timestamp": "2026-02-26T15:23:28.748923+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7855,9 +7485,7 @@
     "date": "2026-02-27",
     "timestamp": "2026-02-27T15:20:09.192157+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7897,9 +7525,7 @@
     "date": "2026-02-28",
     "timestamp": "2026-02-28T15:08:09.183004+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7939,9 +7565,7 @@
     "date": "2026-03-01",
     "timestamp": "2026-03-01T15:08:59.457752+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -7981,9 +7605,7 @@
     "date": "2026-03-02",
     "timestamp": "2026-03-02T15:20:31.897171+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8023,9 +7645,7 @@
     "date": "2026-03-03",
     "timestamp": "2026-03-03T15:23:47.713155+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8065,9 +7685,7 @@
     "date": "2026-03-04",
     "timestamp": "2026-03-04T15:19:07.162920+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8107,9 +7725,7 @@
     "date": "2026-03-05",
     "timestamp": "2026-03-05T15:23:25.848804+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8149,9 +7765,7 @@
     "date": "2026-03-06",
     "timestamp": "2026-03-06T15:17:22.354486+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8191,9 +7805,7 @@
     "date": "2026-03-07",
     "timestamp": "2026-03-07T15:08:51.546438+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8233,9 +7845,7 @@
     "date": "2026-03-08",
     "timestamp": "2026-03-08T15:09:21.012723+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8275,9 +7885,7 @@
     "date": "2026-03-09",
     "timestamp": "2026-03-09T15:26:21.032857+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8319,9 +7927,7 @@
     "date": "2026-03-10",
     "timestamp": "2026-03-10T15:26:14.230110+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8361,9 +7967,7 @@
     "date": "2026-03-11",
     "timestamp": "2026-03-11T15:21:57.044029+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8405,9 +8009,7 @@
     "date": "2026-03-12",
     "timestamp": "2026-03-12T15:25:37.009171+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",
@@ -8447,9 +8049,7 @@
     "date": "2026-03-13",
     "timestamp": "2026-03-13T15:21:35.366865+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
+    "insights": ["Basic ingestion only (no model key set)."],
     "next_plan": [
       "Deep-dive one allow-listed source",
       "Deep-dive one allow-listed source",

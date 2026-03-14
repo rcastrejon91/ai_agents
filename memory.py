@@ -12,8 +12,7 @@ class Memory:
 
     def __init__(self, db_path: str = "memory.db") -> None:
         self.conn = sqlite3.connect(db_path, check_same_thread=False)
-        self.conn.execute(
-            """
+        self.conn.execute("""
             CREATE TABLE IF NOT EXISTS history (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 timestamp TEXT,
@@ -21,8 +20,7 @@ class Memory:
                 input TEXT,
                 output TEXT
             )
-            """
-        )
+            """)
         self.conn.commit()
 
     def record(self, agent: str, input_data: Dict[str, Any], output: Any) -> None:
