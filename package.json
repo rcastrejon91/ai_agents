@@ -1,18 +1,169 @@
 {
+  "name": "lyra-ai-platform",
+  "version": "1.0.0",
+  "description": "Lyra AI - Multi-perspective orchestrator with specialized agents",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
+    "// ============================================================": "",
+    "// DEVELOPMENT": "",
+    "// ============================================================": "",
+    
     "dev": "npm --workspace apps/companion_api run dev & npm --workspace apps/companion_web run dev",
-    "dev:agents": "python \"Controller Script\" --start",
+    "dev:api": "npm --workspace apps/companion_api run dev",
+    "dev:web": "npm --workspace apps/companion_web run dev",
+    "dev:agents": "python lyra_app/app.py",
     "dev:gateway": "python api_gateway.py",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:agents\" \"npm run dev:gateway\"",
+    "dev:lyra": "python -m lyra_app.app",
+    
+    "dev:all": "concurrently -n \"API,WEB,AGENTS,GATEWAY\" -c \"cyan,magenta,yellow,green\" \"npm run dev:api\" \"npm run dev:web\" \"npm run dev:agents\" \"npm run dev:gateway\"",
+    "dev:full": "concurrently -n \"WEB,LYRA\" -c \"magenta,yellow\" \"npm run dev\" \"npm run dev:lyra\"",
+    
+    "// ============================================================": "",
+    "// AGENT MANAGEMENT": "",
+    "// ============================================================": "",
+    
+    "agents:start": "python scripts/start_agents.py",
+    "agents:stop": "python scripts/stop_agents.py",
+    "agents:status": "python scripts/agent_status.py",
+    "agents:test": "python scripts/test_agents.py",
+    "agents:test:frontend": "python scripts/test_frontend_agent.py",
+    "agents:test:legal": "python scripts/test_legal_agent.py",
+    "agents:test:medical": "python scripts/test_medical_agent.py",
+    "agents:test:concierge": "python scripts/test_concierge_agent.py",
+    
+    "// ============================================================": "",
+    "// CONFIGURATION": "",
+    "// ============================================================": "",
+    
+    "config:validate": "python scripts/test_config.py",
+    "config:show": "python -c \"from lyra_app.config import print_config_summary; print_config_summary()\"",
+    "config:init": "python scripts/init_config.py",
+    
+    "// ============================================================": "",
+    "// TESTING": "",
+    "// ============================================================": "",
+    
+    "test": "npm run test:agents && npm run test:web && npm run test:api",
+    "test:agents": "pytest tests/agents -v",
+    "test:web": "npm --workspace apps/companion_web run test",
+    "test:api": "npm --workspace apps/companion_api run test",
+    "test:integration": "pytest tests/integration -v",
+    "test:e2e": "playwright test",
+    "test:watch": "pytest tests --watch",
+    
+    "// ============================================================": "",
+    "// LINTING & FORMATTING": "",
+    "// ============================================================": "",
+    
+    "lint": "npm run lint:js && npm run lint:python",
+    "lint:js": "eslint \"apps/**/*.{js,jsx,ts,tsx}\"",
+    "lint:python": "flake8 lyra_app agents scripts",
+    "format": "npm run format:js && npm run format:python",
+    "format:js": "prettier --write \"apps/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "format:python": "black lyra_app agents scripts",
+    "typecheck": "tsc --noEmit",
+    
+    "// ============================================================": "",
+    "// BUILD & DEPLOYMENT": "",
+    "// ============================================================": "",
+    
     "check:pages": "node scripts/check-pages-default-export.mjs apps/companion_web/pages",
-    "build": "npm run check:pages && next build",
-    "start:agents": "bash \"Startup Script\""
+    "build": "npm run check:pages && npm run build:web && npm run build:api",
+    "build:web": "npm --workspace apps/companion_web run build",
+    "build:api": "npm --workspace apps/companion_api run build",
+    "build:docker": "docker-compose build",
+    
+    "// ============================================================": "",
+    "// PRODUCTION": "",
+    "// ============================================================": "",
+    
+    "start": "npm run start:all",
+    "start:all": "concurrently -n \"API,WEB,AGENTS\" -c \"cyan,magenta,yellow\" \"npm run start:api\" \"npm run start:web\" \"npm run start:agents\"",
+    "start:web": "npm --workspace apps/companion_web run start",
+    "start:api": "npm --workspace apps/companion_api run start",
+    "start:agents": "python lyra_app/app.py --production",
+    "start:gateway": "gunicorn -w 4 -b 0.0.0.0:8000 api_gateway:app",
+    
+    "// ============================================================": "",
+    "// DATABASE": "",
+    "// ============================================================": "",
+    
+    "db:migrate": "python scripts/migrate_db.py",
+    "db:seed": "python scripts/seed_db.py",
+    "db:reset": "python scripts/reset_db.py",
+    "db:backup": "python scripts/backup_db.py",
+    
+    "// ============================================================": "",
+    "// UTILITIES": "",
+    "// ============================================================": "",
+    
+    "clean": "npm run clean:deps && npm run clean:build && npm run clean:cache",
+    "clean:deps": "rm -rf node_modules apps/*/node_modules",
+    "clean:build": "rm -rf apps/*/.next apps/*/dist apps/*/build",
+    "clean:cache": "rm -rf .pytest_cache __pycache__ */__pycache__ */*/__pycache__",
+    "clean:logs": "rm -rf logs/*.log",
+    
+    "setup": "npm install && pip install -r requirements.txt && npm run config:init",
+    "setup:dev": "npm install && pip install -r requirements-dev.txt && npm run config:init",
+    
+    "logs": "tail -f logs/lyra.log",
+    "logs:agents": "tail -f logs/agents.log",
+    "logs:security": "tail -f logs/security.log",
+    
+    "// ============================================================": "",
+    "// MONITORING & HEALTH": "",
+    "// ============================================================": "",
+    
+    "health": "python scripts/health_check.py",
+    "monitor": "python scripts/monitor_system.py",
+    "stats": "python scripts/system_stats.py",
+    
+    "// ============================================================": "",
+    "// DOCUMENTATION": "",
+    "// ============================================================": "",
+    
+    "docs": "npm run docs:generate && npm run docs:serve",
+    "docs:generate": "python scripts/generate_docs.py",
+    "docs:serve": "docsify serve docs",
+    "docs:api": "python scripts/generate_api_docs.py"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
-  }
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "@playwright/test": "^1.40.1",
+    "docsify-cli": "^4.4.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "python": ">=3.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/lyra-ai-platform.git"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "orchestrator",
+    "multi-perspective",
+    "lyra"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
 }
