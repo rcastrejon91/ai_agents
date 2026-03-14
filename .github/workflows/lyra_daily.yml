@@ -1,39 +1,39 @@
 name: Lyra Daily Learning
 on:
   schedule:
-    - cron: "0 15 * * *"        # 3 PM UTC
+    - cron: "0 15 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  learn-and-email:
+  learn-and-grow:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: '3.10' }
+        with: { python-version: "3.11" }
       - name: Install deps
-        run: pip install requests beautifulsoup4 pyyaml openai
-      - name: Run Lyra learning
+        run: pip install requests beautifulsoup4 pyyaml anthropic python-dotenv
+      - name: Run Lyra daily learning
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          EMAIL_TO:   ${{ secrets.EMAIL_TO }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          OPENAI_API_KEY: ${{ secrets.LYRA_TAVI_KEY }}
         run: python lyra_learning.py
-      - name: Commit updated memory (if changed)
+      - name: Commit updated memory
         run: |
           if [[ -n "$(git status --porcelain data/lyra_memory.json)" ]]; then
             git config user.name "Lyra Bot"
-            git config user.email "actions@users.noreply.github.com"
+            git config user.email "lyra@aitaskflo.com"
             git add data/lyra_memory.json
-            git commit -m "Lyra memory update ($(date -u +'%Y-%m-%d'))"
+            git commit -m "chore: Lyra memory update $(date -u +'%Y-%m-%d')"
             git push
           else
-            echo "No memory changes."
+            echo "No memory changes today."
           fi

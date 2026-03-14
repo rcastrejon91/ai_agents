@@ -30,6 +30,41 @@ from lyra_app.middleware.error_handlers import (
     register_error_handlers,
     setup_logging,
 )
+
+
+def load_lyra_context():
+    """Load Lyra's system prompt and recent memory"""
+    import json
+    
+    # Load system prompt
+    try:
+        with open("prompts/lyra_system.txt", "r") as f:
+            base_prompt = f.read()
+    except:
+        base_prompt = "You are Lyra, Ricky's AI companion."
+    
+    # Load recent memory (last 5 days)
+    memory_context = ""
+    try:
+        with open("data/lyra_memory.json", "r") as f:
+            memory = json.load(f)
+            if isinstance(memory, list) and len(memory) > 0:
+                recent = memory[-3:]  # Last 3 days
+                summaries = []
+                for day in recent:
+                    date = day.get("date", "")
+                    summary = day.get("summary", "")
+                    sources = day.get("sources_kept", [])
+                    news = " | ".join([s.get("text", "")[:200] for s in sources[:2]])
+                    if date and news:
+                        summaries.append(f"[{date}] {news}")
+                if summaries:
+                    memory_context = "\n\n## YOUR RECENT LEARNING\n" + "\n".join(summaries)
+    except:
+        pass
+    
+    return base_prompt + memory_context
+
 # ====== Config ======
 OWNER_NAME = "Ricky"
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
@@ -492,6 +527,9 @@ if __name__ == "__main__":
     print(f"{'='*60}\n")
 
     app.run(host="0.0.0.0", port=port, debug=True)
+
+
+
 
 
 
