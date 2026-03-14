@@ -218,7 +218,45 @@ HTML = """
     <p class="small">🧠 Powered by Lyra's multi-perspective intelligence + Claude</p>
   </main>
 <script>
-const chat = document.getElementById('chat');
+
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"});
+    const el = document.getElementById("lyra-clock");
+    if (el) el.textContent = "?? " + time;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Geolocation
+  window._lyraLat = null;
+  window._lyraLon = null;
+  window._lyraCity = null;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      window._lyraLat = pos.coords.latitude;
+      window._lyraLon = pos.coords.longitude;
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${window._lyraLat}&lon=${window._lyraLon}&format=json`);
+        const data = await res.json();
+        const city = data.address.city || data.address.town || data.address.village || "your area";
+        const country = data.address.country || "";
+        window._lyraCity = city;
+        const locEl = document.getElementById("lyra-location");
+        if (locEl) locEl.textContent = "?? " + city + (country ? ", " + country : "");
+      } catch(e) {
+        const locEl = document.getElementById("lyra-location");
+        if (locEl) locEl.textContent = "?? location found";
+      }
+    }, () => {
+      const locEl = document.getElementById("lyra-location");
+      if (locEl) locEl.textContent = "?? location off";
+    });
+  }
+
+  const chat = document.getElementById('chat');
 const t = document.getElementById('t');
 const f = document.getElementById('f');
 
@@ -281,7 +319,19 @@ f.addEventListener('submit', async (e) => {
         'Content-Type':'application/json',
         'X-CSRF-Token': csrfToken
       },
-      body: JSON.stringify({ message:text, history })
+      body: JSON.stringify({ 
+          message: text, 
+          history,
+          context: {
+            timestamp: new Date().toISOString(),
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            local_time: new Date().toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"}),
+            local_date: new Date().toLocaleDateString([], {weekday:"long", year:"numeric", month:"long", day:"numeric"}),
+            lat: window._lyraLat || null,
+            lon: window._lyraLon || null,
+            city: window._lyraCity || null
+          }
+        })
     });
     
     hideThinking();
@@ -527,6 +577,12 @@ if __name__ == "__main__":
     print(f"{'='*60}\n")
 
     app.run(host="0.0.0.0", port=port, debug=True)
+
+
+
+
+
+
 
 
 
