@@ -1,9 +1,13 @@
 # app.py
 
+import asyncio
 import os
 from datetime import datetime
 
 from flask import Flask, jsonify, render_template_string, request
+
+# ✨ NEW: Import Lyra Orchestrator
+from core.lyra_orchestrator import LyraOrchestrator
 
 # Import security middleware
 from middleware.auth import (
@@ -20,10 +24,6 @@ from middleware.error_handlers import (
     setup_logging,
 )
 
-# ✨ NEW: Import Lyra Orchestrator
-from core.lyra_orchestrator import LyraOrchestrator
-import asyncio
-
 # ====== Config ======
 OWNER_NAME = "Ricky"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -32,6 +32,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI = None
 if OPENAI_API_KEY:
     from openai import OpenAI
+
     OPENAI = OpenAI(api_key=OPENAI_API_KEY)
 
 app = Flask(__name__)
@@ -46,17 +47,19 @@ log_request_info(app)
 
 # ✨ NEW: Initialize Lyra with multi-perspective intelligence
 print("🧠 Initializing Lyra Orchestrator...")
-lyra = LyraOrchestrator(config={
-    "perspective_weights": {
-        "Pragmatist": 0.20,
-        "Visionary": 0.15,
-        "Analyst": 0.20,
-        "Creator": 0.15,
-        "Rebel": 0.15,
-        "Empath": 0.15
-    },
-    "owner_name": OWNER_NAME
-})
+lyra = LyraOrchestrator(
+    config={
+        "perspective_weights": {
+            "Pragmatist": 0.20,
+            "Visionary": 0.15,
+            "Analyst": 0.20,
+            "Creator": 0.15,
+            "Rebel": 0.15,
+            "Empath": 0.15,
+        },
+        "owner_name": OWNER_NAME,
+    }
+)
 print("✅ Lyra ready with 6-perspective intelligence")
 
 
@@ -288,8 +291,8 @@ def ping():
         lyra={
             "active": True,
             "perspectives": len(lyra_status["perspectives"]),
-            "interactions": lyra_status["interactions_processed"]
-        }
+            "interactions": lyra_status["interactions_processed"],
+        },
     )
 
 
@@ -375,10 +378,10 @@ def lyra_chat():
                 "intent": lyra_analysis.get("intent"),
                 "dominant_perspective": lyra_analysis.get("dominant_perspective"),
                 "confidence": lyra_analysis.get("confidence"),
-                "approach": lyra_analysis.get("approach")
-            }
+                "approach": lyra_analysis.get("approach"),
+            },
         )
-        
+
     except Exception as e:
         # Log error without exposing sensitive details
         app.logger.error(f"Chat API error: {str(e)}")
@@ -403,25 +406,24 @@ def lyra_status():
 def adjust_perspectives():
     """Adjust Lyra's perspective weights"""
     data = request.get_json(silent=True) or {}
-    
+
     perspective = sanitize_input(data.get("perspective", ""), max_length=50)
     adjustment = float(data.get("adjustment", 0))
-    
+
     if not perspective or abs(adjustment) > 0.2:
         return jsonify(error="Invalid perspective or adjustment"), 400
-    
+
     try:
-        lyra.adjust_perspective_weights({
-            "perspective": perspective,
-            "adjustment": adjustment
-        })
-        
+        lyra.adjust_perspective_weights(
+            {"perspective": perspective, "adjustment": adjustment}
+        )
+
         app.logger.info(f"Perspective adjusted: {perspective} by {adjustment}")
-        
+
         return jsonify(
             ok=True,
             message=f"Adjusted {perspective} by {adjustment}",
-            new_weights=lyra.perspective_weights
+            new_weights=lyra.perspective_weights,
         )
     except Exception as e:
         app.logger.error(f"Perspective adjustment error: {str(e)}")
@@ -474,12 +476,14 @@ if __name__ == "__main__":
     # Local dev run: python app.py
     port = int(os.getenv("PORT", "8080"))
     print(f"\n{'='*60}")
-    print(f"🧠 LYRA AI - Multi-Perspective Orchestrator")
+    print("🧠 LYRA AI - Multi-Perspective Orchestrator")
     print(f"{'='*60}")
     print(f"🚀 Server starting on port {port}")
-    print(f"💭 6 perspectives active: Pragmatist, Visionary, Analyst, Creator, Rebel, Empath")
-    print(f"🔒 Security middleware: Active")
+    print(
+        "💭 6 perspectives active: Pragmatist, Visionary, Analyst, Creator, Rebel, Empath"
+    )
+    print("🔒 Security middleware: Active")
     print(f"📡 API: http://localhost:{port}")
     print(f"{'='*60}\n")
-    
+
     app.run(host="0.0.0.0", port=port, debug=True)
