@@ -4,15 +4,16 @@
 Concierge Agent - Handles bookings, reservations, and scheduling
 """
 
-from agents.base import SyncAgent
 from typing import Dict, List
+
+from agents.base import SyncAgent
 
 
 class ConciergeAgent(SyncAgent):
     """
     Concierge agent for bookings, reservations, and personal assistance
     """
-    
+
     name = "concierge"
     description = "Handles bookings, reservations, scheduling, and personal assistance"
     capabilities = [
@@ -21,9 +22,9 @@ class ConciergeAgent(SyncAgent):
         "event_tickets",
         "travel_planning",
         "appointment_scheduling",
-        "personal_shopping"
+        "personal_shopping",
     ]
-    
+
     def define_personality(self) -> Dict:
         return {
             "type": "ConciergeAgent",
@@ -32,17 +33,12 @@ class ConciergeAgent(SyncAgent):
                 "attentive",
                 "detail-oriented",
                 "proactive",
-                "service-focused"
+                "service-focused",
             ],
             "communication_style": "professional and courteous",
-            "expertise": [
-                "hospitality",
-                "travel",
-                "event planning",
-                "luxury services"
-            ]
+            "expertise": ["hospitality", "travel", "event planning", "luxury services"],
         }
-    
+
     def load_tools(self) -> List:
         """Load concierge-specific tools"""
         # TODO: Integrate with actual booking APIs
@@ -52,35 +48,43 @@ class ConciergeAgent(SyncAgent):
             "ticketmaster_api",  # Event tickets
             "calendar_api",  # Scheduling
         ]
-    
+
     def handle(self, message: str) -> str:
         """Handle concierge requests"""
-        
+
         # Parse request type
         message_lower = message.lower()
-        
-        if any(word in message_lower for word in ["restaurant", "dinner", "lunch", "table"]):
+
+        if any(
+            word in message_lower for word in ["restaurant", "dinner", "lunch", "table"]
+        ):
             return self._handle_restaurant_booking(message)
-        
-        elif any(word in message_lower for word in ["hotel", "room", "accommodation", "stay"]):
+
+        elif any(
+            word in message_lower for word in ["hotel", "room", "accommodation", "stay"]
+        ):
             return self._handle_hotel_booking(message)
-        
-        elif any(word in message_lower for word in ["ticket", "event", "concert", "show"]):
+
+        elif any(
+            word in message_lower for word in ["ticket", "event", "concert", "show"]
+        ):
             return self._handle_event_tickets(message)
-        
-        elif any(word in message_lower for word in ["appointment", "schedule", "meeting"]):
+
+        elif any(
+            word in message_lower for word in ["appointment", "schedule", "meeting"]
+        ):
             return self._handle_appointment(message)
-        
+
         elif any(word in message_lower for word in ["travel", "flight", "trip"]):
             return self._handle_travel_planning(message)
-        
+
         else:
             return self._handle_general_request(message)
-    
+
     def _handle_restaurant_booking(self, message: str) -> str:
         """Handle restaurant reservation requests"""
         # TODO: Integrate with OpenTable or similar API
-        
+
         return f"""
 🍽️ **Restaurant Reservation**
 
@@ -108,11 +112,11 @@ Would you like me to proceed with any of these reservations?
 
 *Note: This is a demo. Real bookings require API integration.*
         """.strip()
-    
+
     def _handle_hotel_booking(self, message: str) -> str:
         """Handle hotel booking requests"""
         # TODO: Integrate with Booking.com or similar API
-        
+
         return f"""
 🏨 **Hotel Booking**
 
@@ -140,11 +144,11 @@ Shall I proceed with booking one of these options?
 
 *Note: This is a demo. Real bookings require API integration.*
         """.strip()
-    
+
     def _handle_event_tickets(self, message: str) -> str:
         """Handle event ticket requests"""
         # TODO: Integrate with Ticketmaster or similar API
-        
+
         return f"""
 🎫 **Event Tickets**
 
@@ -172,11 +176,11 @@ Which event interests you? I can check availability and pricing.
 
 *Note: This is a demo. Real bookings require API integration.*
         """.strip()
-    
+
     def _handle_appointment(self, message: str) -> str:
         """Handle appointment scheduling"""
         # TODO: Integrate with Google Calendar or similar
-        
+
         return f"""
 📅 **Appointment Scheduling**
 
@@ -198,11 +202,11 @@ Which time works best for you?
 
 *Note: This is a demo. Real scheduling requires calendar integration.*
         """.strip()
-    
+
     def _handle_travel_planning(self, message: str) -> str:
         """Handle travel planning requests"""
         # TODO: Integrate with flight/travel APIs
-        
+
         return f"""
 ✈️ **Travel Planning**
 
@@ -233,7 +237,7 @@ Would you like me to refine this itinerary?
 
 *Note: This is a demo. Real bookings require API integration.*
         """.strip()
-    
+
     def _handle_general_request(self, message: str) -> str:
         """Handle general concierge requests"""
         return f"""
@@ -256,14 +260,13 @@ Please provide more details about what you'd like me to arrange, and I'll take c
 
 *Note: This is a demo. Full functionality requires API integrations.*
         """.strip()
-    
+
     def extract_lesson(self, experience: Dict) -> str:
         """Learn from concierge interactions"""
         task_type = experience.get("task_type", "general")
         success = experience.get("success", False)
-        
+
         if success:
             return f"Successfully handled {task_type} request"
         else:
             return f"Need to improve {task_type} handling"
-
