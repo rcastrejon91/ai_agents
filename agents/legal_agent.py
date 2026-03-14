@@ -4,16 +4,16 @@
 Legal Agent - Legal research, contract analysis, compliance, and advisory
 """
 
+from typing import Dict, List
+
 from agents.base import SyncAgent
-from typing import Dict, List, Optional
-import re
 
 
 class LegalAgent(SyncAgent):
     """
     Specialized agent for legal research, contract analysis, and compliance
     """
-    
+
     name = "legal"
     description = "Legal research, contract analysis, compliance checking, and advisory"
     capabilities = [
@@ -25,9 +25,9 @@ class LegalAgent(SyncAgent):
         "regulatory_guidance",
         "intellectual_property",
         "employment_law",
-        "business_law"
+        "business_law",
     ]
-    
+
     def define_personality(self) -> Dict:
         return {
             "type": "LegalAgent",
@@ -37,7 +37,7 @@ class LegalAgent(SyncAgent):
                 "analytical",
                 "cautious",
                 "detail-oriented",
-                "objective"
+                "objective",
             ],
             "communication_style": "formal yet accessible",
             "expertise": [
@@ -46,10 +46,10 @@ class LegalAgent(SyncAgent):
                 "intellectual property",
                 "employment law",
                 "regulatory compliance",
-                "risk management"
-            ]
+                "risk management",
+            ],
         }
-    
+
     def load_tools(self) -> List:
         """Load legal-specific tools"""
         return [
@@ -58,39 +58,52 @@ class LegalAgent(SyncAgent):
             "contract_analyzer",
             "compliance_checker",
             "risk_assessor",
-            "legal_citation_formatter"
+            "legal_citation_formatter",
         ]
-    
+
     def handle(self, message: str) -> str:
         """Handle legal requests"""
-        
+
         message_lower = message.lower()
-        
+
         # Route to appropriate handler
         if any(word in message_lower for word in ["contract", "agreement", "terms"]):
             return self._analyze_contract(message)
-        
-        elif any(word in message_lower for word in ["compliance", "regulation", "regulatory"]):
+
+        elif any(
+            word in message_lower for word in ["compliance", "regulation", "regulatory"]
+        ):
             return self._check_compliance(message)
-        
-        elif any(word in message_lower for word in ["trademark", "patent", "copyright", "ip"]):
+
+        elif any(
+            word in message_lower for word in ["trademark", "patent", "copyright", "ip"]
+        ):
             return self._handle_intellectual_property(message)
-        
-        elif any(word in message_lower for word in ["employment", "employee", "hire", "termination"]):
+
+        elif any(
+            word in message_lower
+            for word in ["employment", "employee", "hire", "termination"]
+        ):
             return self._handle_employment_law(message)
-        
+
         elif any(word in message_lower for word in ["liability", "risk", "exposure"]):
             return self._assess_risk(message)
-        
-        elif any(word in message_lower for word in ["privacy", "gdpr", "ccpa", "data protection"]):
+
+        elif any(
+            word in message_lower
+            for word in ["privacy", "gdpr", "ccpa", "data protection"]
+        ):
             return self._handle_privacy_law(message)
-        
-        elif any(word in message_lower for word in ["startup", "incorporation", "llc", "business formation"]):
+
+        elif any(
+            word in message_lower
+            for word in ["startup", "incorporation", "llc", "business formation"]
+        ):
             return self._handle_business_formation(message)
-        
+
         else:
             return self._general_legal_research(message)
-    
+
     def _analyze_contract(self, message: str) -> str:
         """Analyze contracts and agreements"""
         return f"""
@@ -159,7 +172,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a licensed attorney for your specific situation.*
         """.strip()
-    
+
     def _check_compliance(self, message: str) -> str:
         """Check regulatory compliance"""
         return f"""
@@ -239,7 +252,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a licensed attorney and compliance expert.*
         """.strip()
-    
+
     def _handle_intellectual_property(self, message: str) -> str:
         """Handle IP matters"""
         return f"""
@@ -330,7 +343,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a licensed IP attorney.*
         """.strip()
-    
+
     def _handle_employment_law(self, message: str) -> str:
         """Handle employment law matters"""
         return f"""
@@ -466,7 +479,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult an employment attorney.*
         """.strip()
-    
+
     def _assess_risk(self, message: str) -> str:
         """Assess legal risks"""
         return f"""
@@ -610,7 +623,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a licensed attorney for risk assessment.*
         """.strip()
-    
+
     def _handle_privacy_law(self, message: str) -> str:
         """Handle privacy and data protection"""
         return f"""
@@ -765,7 +778,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a privacy attorney and data protection expert.*
         """.strip()
-    
+
     def _handle_business_formation(self, message: str) -> str:
         """Handle business formation and structure"""
         return f"""
@@ -991,7 +1004,7 @@ class LegalAgent(SyncAgent):
 ---
 *This is general information, not legal advice. Consult a business attorney and tax advisor.*
         """.strip()
-    
+
     def _general_legal_research(self, message: str) -> str:
         """Handle general legal research"""
         return f"""
@@ -1085,12 +1098,12 @@ class LegalAgent(SyncAgent):
    • Timeline and urgency
    • Desired outcome
         """.strip()
-    
+
     def extract_lesson(self, experience: Dict) -> str:
         """Learn from legal interactions"""
         task_type = experience.get("task_type", "general")
         success = experience.get("success", False)
-        
+
         if success:
             return f"Successfully provided legal guidance on {task_type}"
         else:
