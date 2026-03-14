@@ -1,14 +1,14 @@
-from agents.concierge_agent import ConciergeAgent
-from agents.finance_agent import FinanceAgent
-from agents.healthcare_agent import HealthcareAgent
-from agents.legal_agent import LegalAgent
-from agents.retail_agent import RetailAgent
+# core/__init__.py
 
-REGISTRY = {
-    "finance": FinanceAgent,
-    "legal": LegalAgent,
-    "healthcare": HealthcareAgent,
-    "retail": RetailAgent,
-    "concierge": ConciergeAgent,
-}
-"""Agent Modules"""
+"""
+Core AI Agent Framework
+Now powered by Lyra multi-perspective orchestrator
+"""
+
+from core.base_agent import BaseAgent
+from core.launch_manager import LaunchManager
+
+__version__ = "2.0.0"
+__all__ = ["BaseAgent", "LaunchManager"]
+
+print("🧠 Core AI Framework loaded - Lyra Integration Active")
