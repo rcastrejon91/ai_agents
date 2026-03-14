@@ -1,0 +1,28 @@
+{
+  "system": {
+    "name": "Lyra AI System",
+    "version": "1.0.0"
+  },
+  "lyra_core": {
+    "enabled": true,
+    "port": 5001
+  },
+  "agents": {
+    "medical": {
+      "enabled": true,
+      "learning_path": "data/medical_learning"
+    },
+    "legal": {
+      "enabled": true,
+      "learning_path": "data/legal_learning"
+    },
+    "tech": {
+      "enabled": true,
+      "learning_path": "data/tech_learning"
+    },
+    "wealth": {
+      "enabled": true,
+      "learning_path": "data/wealth_learning"
+    }
+  }
+}
