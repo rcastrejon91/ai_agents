@@ -1,47 +1,5 @@
 [
   {
-    "date": "2025-08-29",
-    "timestamp": "2025-08-29T15:22:31.934874+00:00",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Fletcher Merkel: (definition pending — no model key set)",
-      "Harper Moyski: (definition pending — no model key set)",
-      "Naomi Osaka: (definition pending — no model key set)",
-      "Jelena Ostapenko: (definition pending — no model key set)",
-      "Court: (definition pending — no model key set)",
-      "Paetongtarn Shinawatra: (definition pending — no model key set)",
-      "Cambodia: (definition pending — no model key set)",
-      "Hun Sen: (definition pending — no model key set)",
-      "Thai: (definition pending — no model key set)",
-      "Watch: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "Court rules Paetongtarn Shinawatra breached ethics guidelines in a call where she called Cambodia's ex-leader Hun Sen \"uncle\" and criticised the Thai army. The two children killed in the shooting have been identified as Fletcher Merkel, eight, and Harper Moyski, 10. Naomi Osaka hits out at Jelena Ostapenko after she told a black player she had \"no class\" for failing to acknowledge a lucky shot. Watch: Luxury neighbourhood in Lahore submerged in floods Critics fear a new law in Texas will prove discriminatory - but officials say it is vital to combat \"adversaries\". The two children killed in the shooting have been identified as Fletcher Merkel, eight, and Harper Moyski, 10. A memo seen by the BBC ends the security arrangement for the Democratic former vice-president. The legal case over Trump's move could have lasting implications for the central bank's independence. Lower-price goods will no longer be duty-free, in a move that will affect millions of shipments. Naomi Osaka hits out at Jelena Ostapenko after she told a black player she had \"no class\" for failing to acknowledge a lucky shot."
-      },
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "Student AIs Pick Up Unexpected Traits from Teachers through Subliminal Learning AI can transfer strange qualities through seemingly unrelated training—from a love of owls to something more dangerous Emma R. Hasson How to See Faster-Than-Light Motion Phil Plait 20 Years after Katrina, Major Hurricane Forecasting Advances Could Erode Andrea Thompson CDC’s Leadership Is in Chaos—Experts Warn of Public Health Risks Lauren J. Young Science Quiz: Dust Storms and Disappearing Cities"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0029038c10>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-30",
     "timestamp": "2025-08-30T15:21:21.012230+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
@@ -8473,6 +8431,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "A 100-year-old theory might explain what’s wrong with quantum mechanics One physicist is on a mission to get scientists to look into Louis de Broglie’s pilot wave theory Tim Folger What Bugonia reveals about the real search for aliens Emma Gometz Oil reserves tapped as nuclear assertions face pushback, warming fuels hail, and microbiome affects the brain Kendra Pierre-Louis, Dan Vergano, Fonda Mwangi, Alex Sugiura Spaceflight supercharges viruses’ ability to infect bacteria K. R. Callaway Today’s Easy Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-17",
+    "timestamp": "2026-03-17T15:30:18.793913+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iran: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Larijani: (definition pending — no model key set)",
+      "Friday: (definition pending — no model key set)",
+      "Quds Day: (definition pending — no model key set)",
+      "National Counterterrorism Center: (definition pending — no model key set)",
+      "Director Joe Kent: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "American: (definition pending — no model key set)",
+      "Severe: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Larijani, one of Iran's most senior leaders, was last seen in public on Friday taking part in Quds Day rallies. Iran has not yet confirmed he has been killed. National Counterterrorism Center Director Joe Kent says Trump \"started this war due to pressure from Israel and its powerful American lobby\". Severe weather is plaguing the US from coast to coast, bringing a mix of extreme heat and bitter cold. Timelapse video shows rescuers cautiously manoeuvre a vessel in blizzard conditions to the edge of the ice near Mackinac Island, Michigan. The odds of a quick resolution to the war appear to be dwindling by the day, and the political stakes for the president are only growing. Some of the bodies were injured beyond recognition, forensic laboratory sources told the BBC. A jury found that Kouri Richins killed her husband in March 2022 by poisoning him with a fentanyl-laced drink. The star has spoken about the viral images that appeared to show her marrying partner Tom Holland. US allies have either pushed back or remained cautious on Trump's request to send ships to the crucial oil route. Troops are targeting \"Hezbollah strongholds\" in south Lebanon, where strikes reportedly killed nine people on Monday."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Why pristine mountain lakes are suddenly turning green High in the Rockies, researchers are discovering that wind-borne pollution and rising heat are fueling unprecedented algal blooms Cody Cottier The real reason there are no snakes in Ireland K. R. Callaway New ways to save kidneys Lauren Gravitz SpaceX now has more than 10,000 Starlink satellites in orbit Jonathan O'Callaghan Today’s Medium Sudoku"
       },
       {
         "url": "https://techcrunch.com/",
