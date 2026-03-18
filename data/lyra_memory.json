@@ -1,49 +1,5 @@
 [
   {
-    "date": "2025-08-30",
-    "timestamp": "2025-08-30T15:21:21.012230+00:00",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Trump: (definition pending — no model key set)",
-      "October: (definition pending — no model key set)",
-      "Supreme Court: (definition pending — no model key set)",
-      "Her: (definition pending — no model key set)",
-      "After The Hunt: (definition pending — no model key set)",
-      "Venice Film Festival: (definition pending — no model key set)",
-      "Ukraine: (definition pending — no model key set)",
-      "President Zelensky: (definition pending — no model key set)",
-      "Parubiy: (definition pending — no model key set)",
-      "Missouri: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "President Zelensky said the killing of Parubiy was a \"terrible murder\" - with a manhunt under way. The tariffs can remain in place until mid-October to allow the Trump administration time to request the Supreme Court take up the case. Her new film After The Hunt premiered at the Venice Film Festival to mixed opinion. Missouri is  joining Texas and California in a political battle poised to have a major impact on the balance of power in Washington DC. Kim Jong Un met the families of North Korean soldiers killed fighting for Russia against Ukraine. The tariffs can remain in place until mid-October to allow the Trump administration time to request the Supreme Court take up the case. A US appeals court has ruled that most of Trump’s tariffs are illegal - so what happens now? One woman was killed in Ukraine's Zaporizhzhia region, with 28 people injured, according to local officials. Two officers were shot dead in a small, rural town, allegedly by a man with links to the \"SovCit\" movement. Her new film After The Hunt premiered at the Venice Film Festival to mixed opinion."
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "A Forgotten Math Idea Could Supercharge Quantum Computers Scientists have revived an ignored area of math to envision a path toward stable quantum computing Ananya Palivela Turn the Page on Summer: August’s Essential Book Picks Brianne Kane Voting Integrity Messages Fight Misinformation in the Lab. But What about the Real World? Dan Vergano 20 Years after Katrina, Major Hurricane Forecasting Advances Could Erode Andrea Thompson Math Puzzle: Rubik’s Cube Shadows",
-        "reason": "not in allow list"
-      }
-    ],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6709c4a00>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-08-31",
     "timestamp": "2025-08-31T15:22:04.511361+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
@@ -8473,6 +8429,48 @@
       {
         "url": "https://www.scientificamerican.com/",
         "text": "Why pristine mountain lakes are suddenly turning green High in the Rockies, researchers are discovering that wind-borne pollution and rising heat are fueling unprecedented algal blooms Cody Cottier The real reason there are no snakes in Ireland K. R. Callaway New ways to save kidneys Lauren Gravitz SpaceX now has more than 10,000 Starlink satellites in orbit Jonathan O'Callaghan Today’s Medium Sudoku"
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-18",
+    "timestamp": "2026-03-18T15:33:44.877867+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Iran: (definition pending — no model key set)",
+      "BBC: (definition pending — no model key set)",
+      "Esmail Khatib: (definition pending — no model key set)",
+      "Israel: (definition pending — no model key set)",
+      "Markwayne Mullin: (definition pending — no model key set)",
+      "Senate: (definition pending — no model key set)",
+      "Homeland Security: (definition pending — no model key set)",
+      "The Senegalese: (definition pending — no model key set)",
+      "Confederation: (definition pending — no model key set)",
+      "African Football: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "Iran's president confirms Esmail Khatib has been killed after Israel earlier said he has been \"eliminated\" in an overnight attack. Markwayne Mullin needs to be confirmed by the Senate before he can be appointed as Homeland Security secretary. The Senegalese government calls for an \"independent international investigation\" at the Confederation of African Football after it stripped Senegal of the Africa Cup of Nations title. Zhang Kequn was found with the large consignment of ants in his luggage at a Nairobi airport. They had initially sought sanctuary after declining to sing Iran's anthem, prompting fears for their safety. In an exclusive interview with the BBC, the Ukrainian president says Putin wants a \"long war\" between the US and Iran. With India’s semaglutide patent expiring on 20 March, about 50 branded generics are expected to enter the market. Venezuela won its first-ever World Baseball Classic title, defeating the United States 3–2 in the championship game. Tehran residents tell the BBC they're caught between US-Israeli bombing and an Iranian regime trying to reassert its power. Larijani has long been seen as one of the Islamic Republic's most experienced and influential policy makers."
+      },
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "Galaxies without dark matter mystify astronomers Bizarre objects that seem to lack all dark matter present a cosmic mystery Maria Luísa Buzzo These fish can tell when you’re staring Gennaro Tomma Should women get testosterone boosts? Lydia Denworth The case for timing medical treatments to daily circadian rhythms Lauren J. Young Today’s Hard Sudoku"
       },
       {
         "url": "https://techcrunch.com/",
