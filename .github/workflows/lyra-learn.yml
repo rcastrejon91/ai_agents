@@ -33,22 +33,27 @@ jobs:
         run: python scripts/lyra_pull.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
+          GROQ_API_KEY: ${{ secrets._groq_key }}
 
       # ── Step 2: Process ─────────────────────────────────────────────────────
       - name: Process — Claude summarises and tags everything
         run: python scripts/lyra_process.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
+          GROQ_API_KEY: ${{ secrets._groq_key }}
 
       # ── Step 3: Digest ──────────────────────────────────────────────────────
       - name: Digest — write knowledge/YYYY-MM-DD.md
         run: python scripts/lyra_digest.py
+        env:
+          GROQ_API_KEY: ${{ secrets._groq_key }}
 
       # ── Step 4: Neural Map ──────────────────────────────────────────────────
       - name: Neural Map — evolve mind/ state, connections, journal, pathways
         run: python scripts/lyra_neural_map.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
+          GROQ_API_KEY: ${{ secrets._groq_key }}
 
       # ── Commit ──────────────────────────────────────────────────────────────
       - name: Commit new knowledge to repo
