@@ -1,47 +1,5 @@
 [
   {
-    "date": "2025-08-31",
-    "timestamp": "2025-08-31T15:22:04.511361+00:00",
-    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
-    "insights": [
-      "Basic ingestion only (no model key set)."
-    ],
-    "next_plan": [
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source",
-      "Deep-dive one allow-listed source"
-    ],
-    "glossary": [
-      "Narendra Modi: (definition pending — no model key set)",
-      "Russian President Vladimir: (definition pending — no model key set)",
-      "Putin: (definition pending — no model key set)",
-      "Indian Prime Minister: (definition pending — no model key set)",
-      "China: (definition pending — no model key set)",
-      "Asian: (definition pending — no model key set)",
-      "Jinping: (definition pending — no model key set)",
-      "Russia: (definition pending — no model key set)",
-      "Vladimir Putin: (definition pending — no model key set)",
-      "Thousands: (definition pending — no model key set)"
-    ],
-    "sources_kept": [
-      {
-        "url": "https://www.bbc.com/news",
-        "text": "Xi Jinping and Narendra Modi met on the sidelines of a summit that Russia's Vladimir Putin is also attending. Russian President Vladimir Putin and Indian Prime Minister Narendra Modi are among the 20 world leaders attending a regional security summit in China. The plastic containers have become a staple in many Asian restaurants and takeaways around the world. The move aims to subdue anti-government demonstrations that have swept across the country. Thousands march through Mexico's cities urging more government action against enforced disappearances - a problem often linked to drug cartels. Russian President Vladimir Putin and Indian Prime Minister Narendra Modi are among the 20 world leaders attending a regional security summit in China. March for Australia rallies were condemned by the centre-left government as \"spreading hate\". Kamil Majchrzak shared a clip of him meeting the boy, after a viral video appeared to show a spectator depriving him of one. Human remains can mean profits. But there is an emotional debate about the ethics of the industry. The plastic containers have become a staple in many Asian restaurants and takeaways around the world."
-      },
-      {
-        "url": "https://www.scientificamerican.com/",
-        "text": "AI Spots Hidden Signs of Consciousness in Comatose Patients before Doctors Do A machine-learning algorithm spotted signs of “covert consciousness” in coma patients—in some cases, days before doctors could do so Andrew Chapman EPA Fires ‘Dissent’ Statement Signers Dan Vergano Huge Cracks in the Earth Are Slicing through Cities, Swallowing Houses and Displacing Thousands of People Miryam Naddaf, Nature magazine A Forgotten Math Idea Could Supercharge Quantum Computers Ananya Palivela Cover Art Jigsaw: April 1955"
-      },
-      {
-        "url": "https://techcrunch.com/",
-        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
-      }
-    ],
-    "sources_skipped": [],
-    "robotics_sandbox": "(disabled)",
-    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f233fbc08b0>: Failed to establish a new connection: [Errno 111] Connection refused')))"
-  },
-  {
     "date": "2025-09-01",
     "timestamp": "2025-09-01T15:24:09.033608+00:00",
     "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://www.scientificamerican.com/\n- https://techcrunch.com/",
@@ -8478,6 +8436,50 @@
       }
     ],
     "sources_skipped": [],
+    "robotics_sandbox": "(disabled)",
+    "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
+  },
+  {
+    "date": "2026-03-19",
+    "timestamp": "2026-03-19T15:22:52.125750+00:00",
+    "summary": "Fetched sources:\n- https://www.bbc.com/news\n- https://techcrunch.com/",
+    "insights": [
+      "Basic ingestion only (no model key set)."
+    ],
+    "next_plan": [
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source",
+      "Deep-dive one allow-listed source"
+    ],
+    "glossary": [
+      "Europe: (definition pending — no model key set)",
+      "Trump: (definition pending — no model key set)",
+      "Qatar: (definition pending — no model key set)",
+      "Ras Laffan: (definition pending — no model key set)",
+      "What: (definition pending — no model key set)",
+      "Truth Social: (definition pending — no model key set)",
+      "US-Israeli: (definition pending — no model key set)",
+      "News: (definition pending — no model key set)",
+      "Spanish: (definition pending — no model key set)",
+      "Mexico: (definition pending — no model key set)"
+    ],
+    "sources_kept": [
+      {
+        "url": "https://www.bbc.com/news",
+        "text": "The price of gas has risen sharply in the UK and Europe following an attack on Qatar's Ras Laffan energy complex. What does Trump's Truth Social post after gas field attacks tell us about US-Israeli alignment? The actor agrees an out-of-court settlement with three men who accused him of sexual assault. News of the invitation emerges after the monarch acknowledged \"a lot of abuse\" during the Spanish conquest of Mexico. It is not the first time that there has been deep energy-linked frustration in the heart of Europe. It comes days after Trump criticised Japan for not answering his demands for help in the Strait of Hormuz. The King Charles coastal path will allow walkers right of access to the entire coast for the first time. The BBC's Will Grant reports from the island days after the entire national electric grid collapsed. With oil supply disrupted, Beijing's oil reserves and renewable energy push are being put to the test. Lawmakers pressed intelligence officials about the Iran war, and if the Islamic Republic had posed an imminent threat."
+      },
+      {
+        "url": "https://techcrunch.com/",
+        "text": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise"
+      }
+    ],
+    "sources_skipped": [
+      {
+        "url": "https://www.scientificamerican.com/",
+        "text": "The kids are all right Surprising studies show young people are doing better than previous generations in many ways Melinda Wenner Moyer The math of March Madness brackets Emma R. Hasson Gerd Faltings, mathematician who proved the Mordell conjecture, wins the Abel Prize at age 71 Joseph Howlett NASA’s Perseverance Mars rover discovers even older lost rivers at Jezero Crater Joseph Howlett Today’s Expert Sudoku",
+        "reason": "not in allow list"
+      }
+    ],
     "robotics_sandbox": "(disabled)",
     "self_repair_status": "(robot_core not reachable: HTTPConnectionPool(host='localhost', port=8088): Max retries exceeded with url: /robot/diagnose (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8088): Failed to establish a new connection: [Errno 111] Connection refused\")))"
   }
