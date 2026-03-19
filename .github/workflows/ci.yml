@@ -1,18 +1,60 @@
 name: CI
+
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  pull_request:
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: write
+
 jobs:
-  gitleaks:
+  ci:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'chore: autofix')"
+    if: "!contains(github.event.head_commit.message, 'chore: autofix') && !contains(github.event.head_commit.message, 'Lyra learned')"
+
     steps:
       - uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+
+      # ── Secret scan ────────────────────────────────────────────────────────
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Python autofix ─────────────────────────────────────────────────────
+      - name: Set up Python
+        if: ${{ hashFiles('**/*.py') != '' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ruff + Black + isort
+        if: ${{ hashFiles('**/*.py') != '' }}
+        run: |
+          pip install ruff black isort --quiet
+          ruff check . --fix --ignore E501 || true
+          isort . --profile black || true
+          black . --quiet || true
+
+      # ── Commit fixes if any ────────────────────────────────────────────────
+      - name: Commit autofix changes
+        run: |
+          git add -A
+          git restore --staged .github/workflows || true
+          if git diff --cached --quiet; then
+            echo "Nothing to fix"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git commit -m "chore: autofix (Ruff/Black/isort)"
+          git push origin HEAD:main
