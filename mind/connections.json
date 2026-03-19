@@ -1,5 +1,90 @@
 {
-  "connections": [],
-  "last_updated": "",
-  "total_connections": 0
+  "connections": [
+    {
+      "from": "tech/AutoResearchClaw",
+      "to": "medical/ECG-GPT",
+      "description": "Both represent AI systems automating complex professional tasks that traditionally required extensive human expertise - autonomous research generation and automated medical diagnosis interpretation.",
+      "strength": 0.7,
+      "evidence": [
+        "AutoResearchClaw automates the entire research process from idea to published paper",
+        "ECG-GPT provides automated interpretation of electrocardiograms with multinational validation"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "research/AgentFactory",
+      "to": "medical/migrant-mHealth",
+      "description": "Both address the challenge of creating adaptive, reusable solutions that can evolve based on user feedback and specific community needs.",
+      "strength": 0.5,
+      "evidence": [
+        "AgentFactory preserves successful solutions as reusable code components that improve through feedback",
+        "mHealth study examines community-engaged approaches to adapt technology for specific migrant populations"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "research/STTS-video-efficiency",
+      "to": "tech/Kitten-TTS",
+      "description": "Both focus on dramatic efficiency improvements in AI models - STTS achieving 62% efficiency with token pruning, and Kitten TTS creating sub-25MB models for on-device deployment.",
+      "strength": 0.6,
+      "evidence": [
+        "STTS prunes 50% of vision tokens with only 0.7% performance drop",
+        "Kitten TTS smallest model is less than 25MB for local deployment"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "research/MQTE-quantum",
+      "to": "medical/circadian-biofeedback",
+      "description": "Both develop noise-robust measurement techniques for complex biological systems - MQTE handles quantum noise while circadian biofeedback must work despite physiological variability.",
+      "strength": 0.4,
+      "evidence": [
+        "MQTE designed to be robust against NISQ device noise through increased measurement samples",
+        "Circadian biofeedback must account for individual biological rhythm variations in heart failure patients"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "research/Loc3R-VLM",
+      "to": "medical/glioblastoma-migration",
+      "description": "Both require sophisticated 3D spatial understanding - Loc3R-VLM for general 3D reasoning and glioblastoma research for understanding tumor cell migration mechanics in brain tissue.",
+      "strength": 0.6,
+      "evidence": [
+        "Loc3R-VLM enhances 2D models with 3D spatial understanding using monocular video",
+        "Glioblastoma study uses motor-clutch model to analyze 3D migration mechanics in brain tissue"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "medical/nano-liquid-hub",
+      "to": "research/LoST-3D-tokenization",
+      "description": "Both deal with hierarchical organization where semantic importance takes precedence over structural detail - nano-scale cellular organization and 3D shape representation respectively.",
+      "strength": 0.5,
+      "evidence": [
+        "GEM hub integrates multiple signaling pathways in a 34-nanometer liquid assembly",
+        "LoST prioritizes semantic importance over geometric detail hierarchies in 3D tokenization"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    },
+    {
+      "from": "tech/Juggalo-makeup",
+      "to": "medical/laboratory-medicine-training",
+      "description": "Both highlight how simple interventions can disrupt complex systems - makeup defeating facial recognition and the need for laboratory specialists to adapt to technological disruption.",
+      "strength": 0.3,
+      "evidence": [
+        "Juggalo makeup's simple patterns effectively defeat sophisticated facial recognition algorithms",
+        "Laboratory medicine specialists must adapt training to handle technological advances disrupting traditional methods"
+      ],
+      "first_seen": "2026-03-19",
+      "last_reinforced": "2026-03-19"
+    }
+  ],
+  "last_updated": "2026-03-19",
+  "total_connections": 7
 }
