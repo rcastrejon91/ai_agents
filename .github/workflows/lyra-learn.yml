@@ -32,13 +32,13 @@ jobs:
       - name: Pull — gather knowledge from the world
         run: python scripts/lyra_pull.py
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
 
       # ── Step 2: Process ─────────────────────────────────────────────────────
       - name: Process — Claude summarises and tags everything
         run: python scripts/lyra_process.py
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
 
       # ── Step 3: Digest ──────────────────────────────────────────────────────
       - name: Digest — write knowledge/YYYY-MM-DD.md
@@ -48,7 +48,7 @@ jobs:
       - name: Neural Map — evolve mind/ state, connections, journal, pathways
         run: python scripts/lyra_neural_map.py
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets._anthropic_key }}
 
       # ── Commit ──────────────────────────────────────────────────────────────
       - name: Commit new knowledge to repo
