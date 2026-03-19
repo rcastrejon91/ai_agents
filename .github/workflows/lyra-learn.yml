@@ -1,15 +1,65 @@
 name: Lyra Daily Learning
+
 on:
   schedule:
-    - cron: "0 14 * * *"
-  workflow_dispatch: {}
+    - cron: "0 6 * * *"   # 6 AM UTC every day
+  workflow_dispatch:       # manual trigger
+
+permissions:
+  contents: write
+
 jobs:
-  run:
+  learn:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
-      - name: Trigger pull
-        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/pull
-      - name: Process
-        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/process
-      - name: Digest
-        run: curl -s -X POST ${{ secrets.SITE_BASE_URL }}/api/learn/digest
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install requests anthropic
+
+      # ── Step 1: Pull ────────────────────────────────────────────────────────
+      - name: Pull — gather knowledge from the world
+        run: python scripts/lyra_pull.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Step 2: Process ─────────────────────────────────────────────────────
+      - name: Process — Claude summarises and tags everything
+        run: python scripts/lyra_process.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Step 3: Digest ──────────────────────────────────────────────────────
+      - name: Digest — write knowledge/YYYY-MM-DD.md
+        run: python scripts/lyra_digest.py
+
+      # ── Step 4: Neural Map ──────────────────────────────────────────────────
+      - name: Neural Map — evolve mind/ state, connections, journal, pathways
+        run: python scripts/lyra_neural_map.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Commit ──────────────────────────────────────────────────────────────
+      - name: Commit new knowledge to repo
+        run: |
+          git config user.name  "Lyra"
+          git config user.email "lyra@aiagents.dev"
+          git add knowledge/ mind/
+          if git diff --cached --quiet; then
+            echo "Nothing new today — Lyra is already up to date."
+          else
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "🧠 Lyra learned something new on ${DATE}"
+            git push
+          fi
