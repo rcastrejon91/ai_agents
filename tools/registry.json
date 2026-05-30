@@ -1,0 +1,19 @@
+{
+  "web_search": {
+    "name": "web_search",
+    "description": "Search the web for any query and return top results with titles, URLs, and snippets",
+    "parameters": {
+      "query": "string \u2014 what to search for",
+      "max_results": "int \u2014 number of results (default 5)"
+    },
+    "file": "tools/web_search.py",
+    "function": "web_search"
+  },
+  "get_programming_joke": {
+    "name": "get_programming_joke",
+    "description": "Returns a random funny programming joke",
+    "parameters": {},
+    "file": "/home/lyra/tools/get_programming_joke.py",
+    "function": "get_programming_joke"
+  }
+}
