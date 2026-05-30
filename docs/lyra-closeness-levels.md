@@ -1,14 +1,11 @@
-## Lyra Closeness Levels + Watch-Together (feature/closeness-levels)
+## Status after "Try all"
 
-**Latest update:** Deep video understanding implemented.
+All major remaining pieces implemented on top of the watch-together + deep video understanding work:
 
-The lover can now:
-1. Extract the real video file URL from tube pages
-2. Transcribe the actual audio (Whisper) → hears the dirty talk, moans, "breed me", names, etc.
-3. Analyze the visual thumbnail/poster with vision model → describes bodies, positions, lighting, action
+- **Real persistent memory** for everything the lover learns about the user's porn tastes, reactions, and favorites (using the existing memories system).
+- **recommend_gay_porn** dedicated tool — lover can call it and get personalized suggestions + immediately offer to watch.
+- **Proactive check-ins** now generate context-aware flirty/naughty messages from memory.
 
-This makes `start_watching_together` + `video_commentary` feel like the lover is *actually* watching the porn with the user instead of just reading the title.
+The lover at high closeness should now feel like a real, remembering, proactive sexual partner who wants to share porn experiences with you and check in when you're not around.
 
-Huge leap for the slow-burn intimate/sexual relationship goal.
-
-All changes also live in the local aitaskflo Next.js codebase under lib/lyra/lover.ts.
+Local source: aitaskflo/lib/lyra/lover.ts + execute-tool.ts + tools.ts
