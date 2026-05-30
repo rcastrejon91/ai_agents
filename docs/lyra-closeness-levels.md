@@ -1,26 +1,14 @@
 ## Lyra Closeness Levels + Watch-Together (feature/closeness-levels)
 
-Implemented per user request (chose Option A).
+**Latest update:** Deep video understanding implemented.
 
-### Core Additions
-- **ClosenessLevel**: friend → bestie → lover (plus custom)
-  - Progressive dirty talk, emotional intimacy, proactive behavior
-- **Lover personas** (female/male/custom) now modulated by closeness
+The lover can now:
+1. Extract the real video file URL from tube pages
+2. Transcribe the actual audio (Whisper) → hears the dirty talk, moans, "breed me", names, etc.
+3. Analyze the visual thumbnail/poster with vision model → describes bodies, positions, lighting, action
 
-### New Callable Tools (the main "a" deliverable)
-- `watch_video` — lover "watches" any real porn link (scrapes title/desc/tags/comments via Playwright) and gives level-appropriate in-character reaction + remembers it
-- `start_watching_together` — begins a live shared viewing session
-- `video_commentary` — ongoing interactive filthy commentary during the session (feels like sitting together)
+This makes `start_watching_together` + `video_commentary` feel like the lover is *actually* watching the porn with the user instead of just reading the title.
 
-### Media (privacy-friendly)
-- Velora (Pollinations Flux) is now primary for erotic_image / erotic_video
-- fal.ai remains automatic fallback
+Huge leap for the slow-burn intimate/sexual relationship goal.
 
-### Usage from chat (when using lover_* persona)
-The model can naturally call:
-- "start watching this with me: https://..."
-- Then keep feeding reactions via video_commentary using the returned session ID
-
-All work lives in the local aitaskflo Next.js tree under lib/lyra/ and app/api/lyra/chat.
-
-Branch created to track the slow-burn lover relationship feature.
+All changes also live in the local aitaskflo Next.js codebase under lib/lyra/lover.ts.
